@@ -1,0 +1,69 @@
+FILE 0: 
+a,0FILE 1: 
+
+,0FILE 2: 
+b,0FILE 3: 
+c,0...This time ,the file directory:    ----
+NAME       INDEX_ADDRESS
+      a            b218b0
+ //////////The index of FILEa://///////
+ LOGIC_NUMBER  PHYSICAL_NUMBER   FLAG
+             This time the bit mapping graph:               
+        00000000
+        00000000
+        00000000
+        00000000
+...This time ,the file directory:    ----
+NAME       INDEX_ADDRESS
+      a            b218b0
+      
+            b219e8
+ //////////The index of FILEa://///////
+ LOGIC_NUMBER  PHYSICAL_NUMBER   FLAG
+ //////////The index of FILE
+://///////
+ LOGIC_NUMBER  PHYSICAL_NUMBER   FLAG
+             This time the bit mapping graph:               
+        00000000
+        00000000
+        00000000
+        00000000
+...This time ,the file directory:    ----
+NAME       INDEX_ADDRESS
+      a            b218b0
+      
+            b219e8
+      b            b21b20
+ //////////The index of FILEa://///////
+ LOGIC_NUMBER  PHYSICAL_NUMBER   FLAG
+ //////////The index of FILE
+://///////
+ LOGIC_NUMBER  PHYSICAL_NUMBER   FLAG
+ //////////The index of FILEb://///////
+ LOGIC_NUMBER  PHYSICAL_NUMBER   FLAG
+             This time the bit mapping graph:               
+        00000000
+        00000000
+        00000000
+        00000000
+...This time ,the file directory:    ----
+NAME       INDEX_ADDRESS
+      a            b218b0
+      
+            b219e8
+      b            b21b20
+      c            b21c58
+ //////////The index of FILEa://///////
+ LOGIC_NUMBER  PHYSICAL_NUMBER   FLAG
+ //////////The index of FILE
+://///////
+ LOGIC_NUMBER  PHYSICAL_NUMBER   FLAG
+ //////////The index of FILEb://///////
+ LOGIC_NUMBER  PHYSICAL_NUMBER   FLAG
+ //////////The index of FILEc://///////
+ LOGIC_NUMBER  PHYSICAL_NUMBER   FLAG
+             This time the bit mapping graph:               
+        00000000
+        00000000
+        00000000
+        00000000

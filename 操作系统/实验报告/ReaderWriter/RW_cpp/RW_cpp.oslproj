@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="gb2312"?>
+<OSLProject Version="1.00" Name="RW_cpp" SubjectID="1580a23c-aa04-4cf3-8cca-488dc577df8d" TemplatePath="console(c++)\Project" IncrementalUpload="0">
+	<Configurations>
+		<Configuration Name="Debug">
+			<Tool Name="PreBuildEventTool"/>
+			<Tool Name="CustomBuildTool"/>
+			<Tool Name="GCCCompilerTool" PreprocessorDefinitions="_DEBUG" GenerateDebugInformation="-1"/>
+			<Tool Name="NASMAssemblerTool"/>
+			<Tool Name="PreLinkEventTool"/>
+			<Tool Name="GCCLinkerTool"/>
+			<Tool Name="PostBuildEventTool"/>
+		</Configuration>
+		<Configuration Name="Release">
+			<Tool Name="PreBuildEventTool"/>
+			<Tool Name="CustomBuildTool"/>
+			<Tool Name="GCCCompilerTool" PreprocessorDefinitions="NDEBUG"/>
+			<Tool Name="NASMAssemblerTool"/>
+			<Tool Name="PreLinkEventTool"/>
+			<Tool Name="GCCLinkerTool"/>
+			<Tool Name="PostBuildEventTool"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+		<Filter Name="头文件" Filter="h;hpp;hxx">
+			<File RelativePath=".\console.h">
+			</File>
+		</Filter>
+		<Filter Name="源文件" Filter="cpp;c;cc;cxx">
+			<File RelativePath=".\console.cpp">
+			</File>
+		</Filter>
+	</Files>
+</OSLProject>

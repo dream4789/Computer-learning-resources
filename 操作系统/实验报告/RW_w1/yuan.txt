@@ -1,0 +1,138 @@
+#include <windows.h>
+#include <iostream>
+#include <winbase.h>
+
+using namespace std;
+
+unsigned short ReaderID = 0;    //读者编号
+unsigned short WriterID = 0;    //写者编号
+
+int nReaders = 0; // 当前读者数
+bool p_ccontinue = true;      //控制程序结束
+	
+// 定义互斥量和信号量
+HANDLE mutex, rwMutex;
+
+DWORD WINAPI Reader(LPVOID);    //读者线程
+DWORD WINAPI Writer(LPVOID);    //写者线程
+
+
+int main() {
+    // 初始化互斥量和读写锁
+    mutex = CreateMutex(NULL, FALSE, NULL);
+    rwMutex = CreateSemaphore(NULL, 1, 1, NULL);
+
+    const unsigned short READER_COUNT = 8;  //读者的个数
+    const unsigned short WRITER_COUNT = 2;  //写者的个数
+    //总的线程数
+    const unsigned short THREADS_COUNT = READER_COUNT+WRITER_COUNT;
+
+	HANDLE hThreads[THREADS_COUNT]; //各线程的handle
+    DWORD readerID[READER_COUNT]; //读者的标识符
+    DWORD writerID[WRITER_COUNT]; //写者线程的标识符
+
+    // 创建读者线程
+    for (int i = 0; i < READER_COUNT; i++) {
+		hThreads[i]=CreateThread(NULL,0,Reader,NULL,0,&readerID[i]);
+        if (hThreads[i]==NULL) return -1;
+
+    }
+
+    // 创建写者线程
+    for (int j = 0; j < WRITER_COUNT; j++) {
+		hThreads[READER_COUNT+j]=CreateThread(NULL,0,Writer,NULL,0,&writerID[j]);
+        if (hThreads[j]==NULL) return -1;
+
+    }
+
+	while(p_ccontinue){
+        if(getchar()){ //按回车后终止程序运行
+            p_ccontinue = false;
+        }
+    }
+
+	// 等待所有线程结束
+    WaitForMultipleObjects(THREADS_COUNT, hThreads, TRUE, INFINITE);
+
+    // 关闭句柄
+	for (int k = 0; k < THREADS_COUNT; k++)
+    {
+        CloseHandle(hThreads[k]);
+    }
+
+	// 关闭互斥量和读写锁
+    CloseHandle(mutex);
+    CloseHandle(rwMutex);
+
+    return 0;
+}
+
+void Read()
+{
+	// 执行读操作
+    std::cout << "Reader " << ReaderID++ << " is reading." << endl;
+    std::cout << "Succeed" << std::endl;
+}
+
+void Write()
+{
+    // 执行写操作
+    cout << "Writer " << WriterID++ << " is writing." << endl;
+    std::cout << "Succeed" << std::endl;
+}
+
+// 定义读者线程函数
+DWORD WINAPI Reader(LPVOID lpParam) {
+    while (p_ccontinue) {
+       // 进入读取区域前，需要先申请互斥量
+        WaitForSingleObject(mutex, INFINITE);
+
+        // 如果没有读者，则需要先申请读写锁
+        if (nReaders == 0) {
+            WaitForSingleObject(rwMutex, INFINITE);
+        }
+
+        nReaders++; // 读者数加一
+        // 释放互斥量
+        ReleaseMutex(mutex);
+
+        // 执行读操作
+        Read();
+        Sleep(1000);
+
+        // 离开读取区域前，需要先申请互斥量
+        WaitForSingleObject(mutex, INFINITE);
+        nReaders--; // 读者数减一
+        if (nReaders == 0) {
+            // 如果当前是最后一个读者，则释放读写锁
+            ReleaseSemaphore(rwMutex, 1, NULL);
+        }
+        // 释放互斥量
+        ReleaseMutex(mutex);
+
+        // 读者线程休眠
+        Sleep(rand() % 3000);
+    }
+
+    return 0;
+}
+
+// 定义写者线程函数
+DWORD WINAPI Writer(LPVOID lpParam) {
+    while (p_ccontinue) {
+        // 申请读写锁
+        WaitForSingleObject(rwMutex, INFINITE);
+
+        // 执行写操作
+        Write();
+        Sleep(1000);
+
+        // 释放读写锁
+        ReleaseSemaphore(rwMutex, 1, NULL);
+
+        // 写者线程休眠
+        Sleep(rand() % 3000);
+    }
+
+    return 0;
+}

@@ -1,0 +1,145 @@
+#include <windows.h>
+#include <iostream>
+#include <winbase.h>
+#include <stdlib.h>
+
+using namespace std;
+
+unsigned short ReaderID = 0;    //读者编号
+unsigned short WriterID = 0;    //写者编号
+
+int nReaders = 0; // 当前读者数
+bool p_ccontinue = true;      //控制程序结束
+	
+// 定义互斥量和信号量
+HANDLE mutex, wMutex;
+DWORD WINAPI Reader(LPVOID);    //读者线程
+DWORD WINAPI Writer(LPVOID);    //写者线程
+
+
+// 开始时间
+int T_R = 0;
+int T_W = 0;
+int time_R[5] = {1,2,6,7,8};
+float time_W[2] = {2,4.5};
+
+double start;
+double end;
+
+
+int main() {
+	srand(time(NULL));
+
+    // 初始化互斥量和读写锁
+    mutex = CreateMutex(NULL, FALSE, NULL);
+    wMutex = CreateSemaphore(NULL, 1, 1, NULL);
+
+
+    const unsigned short READER_COUNT = 5;  //读者的个数
+    const unsigned short WRITER_COUNT = 2;  //写者的个数
+    
+    //总的线程数
+    const unsigned short THREADS_COUNT = READER_COUNT+WRITER_COUNT;
+
+	HANDLE hThreads[THREADS_COUNT]; //各线程的handle
+    DWORD readerID[READER_COUNT]; //读者的标识符
+    DWORD writerID[WRITER_COUNT]; //写者线程的标识符
+    
+    start = GetTickCount();
+
+    // 创建读者线程
+    for (int i = 0; i < READER_COUNT; i++) {
+		hThreads[i]=CreateThread(NULL,0,Reader,NULL,0,&readerID[i]);
+        if (hThreads[i]==NULL) return -1;
+    }
+
+    // 创建写者线程
+    for (int j = 0; j < WRITER_COUNT; j++) {
+		hThreads[READER_COUNT+j]=CreateThread(NULL,0,Writer,NULL,0,&writerID[j]);
+        if (hThreads[j]==NULL) return -1;
+    }
+    
+	while(p_ccontinue){
+        if(getchar()){ //按回车后终止程序运行
+            p_ccontinue = false;
+        }
+    }
+
+	// 等待所有线程结束
+    WaitForMultipleObjects(THREADS_COUNT, hThreads, TRUE, INFINITE);
+
+    // 关闭句柄
+	for (int k = 0; k < THREADS_COUNT; k++) CloseHandle(hThreads[k]);
+
+	// 关闭互斥量和读写锁
+    CloseHandle(mutex);
+    CloseHandle(wMutex);
+
+    return 0;
+}
+
+void Read()
+{
+    int a = rand()%500+500;  // 0.5-1
+    std::cout << "READ..STAR.." << a << ".." << GetTickCount() - start << ".." << ++ReaderID << std::endl;
+    Sleep(a);
+    std::cout << "READ..END.." << ReaderID << ".." << GetTickCount() - start << std::endl;
+    //if (ReaderID == 5) ReaderID=0;
+}
+
+void Write()
+{
+    int a = rand()%1000+1000;  // 1-2
+    std::cout << "WRITER..STAR.." << a << ".." << GetTickCount() - start << ".." << ++WriterID << std::endl;
+    Sleep(a);
+    std::cout << "WRITER..END.." << WriterID << ".." << GetTickCount() - start << std::endl;
+    //if (WriterID == 2) WriterID=0;
+}
+
+// 定义读者线程函数
+DWORD WINAPI Reader(LPVOID lpParam) {
+
+	// if(T_R==5) T_R=0;
+	// Sleep(time_R[T_R++]*1000);
+    while (p_ccontinue) {
+    
+    	if(T_R==5) T_R=0;
+    	Sleep(time_R[T_R++]*1000);
+    
+        WaitForSingleObject(mutex, INFINITE);
+        if (nReaders == 0) WaitForSingleObject(wMutex, INFINITE);
+        nReaders++;
+        ReleaseMutex(mutex);
+		
+		Read();
+
+        WaitForSingleObject(mutex, INFINITE);
+        nReaders--;
+        if (nReaders == 0) ReleaseSemaphore(wMutex, 1, NULL);
+        ReleaseMutex(mutex);
+
+        // Sleep(rand() % 3000);
+    }
+
+    return 0;
+}
+
+// 定义写者线程函数
+DWORD WINAPI Writer(LPVOID lpParam) {
+
+	//if(T_R==2) T_R=0;
+	// Sleep(time_W[T_W++]*1000);
+    while (p_ccontinue) {
+    
+    	if(T_W==2) T_W=0;
+    	Sleep(time_W[T_W++]*1000);
+
+        WaitForSingleObject(wMutex, INFINITE);
+		Write();
+        ReleaseSemaphore(wMutex, 1, NULL);
+        
+        // Sleep(rand() % 3000);
+    }
+
+    return 0;
+}

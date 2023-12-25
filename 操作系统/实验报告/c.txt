@@ -1,0 +1,61 @@
+//初始化空闲区链表以及文件索引链
+
+void intlist(){
+  fidx=NULL;
+  fblk=NULL;
+  int i=0;
+  struct dreitem dnow;
+  FILE *fp;
+  if(!(fp=fopen(usernowname,"rb"))) {
+    cout<<"Error:打开用户目录失败\n";
+    return ;
+  } else {
+    int enp;
+    int sp;
+    fseek(fp,0,2);
+    enp=ftell(fp);
+    fseek(fp,0,0);
+    sp=ftell(fp);
+    if(sp==enp) return;
+    while(!feof(fp)){
+      fread(&dnow,sizeof(struct dreitem),1,fp);
+      if(dnow.empty==0) {
+        //把空闲区连到空闲链表中
+        struct freeb *fb =getb(struct freeb);
+        fb->number=i;
+        fb->next=NULL;
+        struct freeb *p=fblk;
+        if(p==NULL) {
+          fblk=getb(struct freeb);
+          fblk->next=fb;
+        } else {
+          while(p->next!=NULL){
+            p=p->next;
+          }
+          p->next=fb;
+        }
+      } else {
+        //建立索引表
+        struct findex *fi =(struct findex*)malloc(sizeof(struct findex));
+        strcpy(fi->name,dnow.name);
+        fi->number=i;
+        fi->kind=dnow.kind;
+        fi->parent=dnow.parent;
+        fi->next=NULL;
+        struct findex *pi=fidx;
+        if(pi==NULL) {
+          fidx=getb(struct findex);
+          fidx->next=fi;
+        } else {
+          while(pi->next!=NULL) {
+            pi=pi->next;
+          }
+          pi->next=fi;
+        }
+      }
+      i++;
+    }
+    fclose(fp);
+    return ; 
+  }
+}
