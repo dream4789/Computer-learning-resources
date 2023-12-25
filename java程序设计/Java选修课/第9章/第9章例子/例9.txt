@@ -1,0 +1,137 @@
+import java.io.*;
+class FirstThread extends Thread
+{
+    PipedInputStream  in;
+    DataInputStream   dataIn;
+    PipedOutputStream  out;
+    DataOutputStream   dataOut;
+    FirstThread()
+    {  
+      in=new PipedInputStream();  //准备和另外一个线程的输出管道连接的输入管道。
+      dataIn=new DataInputStream(in);//用数据流从自己的输入管道读取数据。
+      out=new PipedOutputStream(); //准备和另外一个线程的输入管道连接的输出管道。
+      dataOut=new DataOutputStream(out); //用数据流向自己的输出管道写入数据。
+    } 
+    public PipedOutputStream  getPipedOutputStream()
+    {
+        return  out;
+    } 
+    public PipedInputStream  getPipedInputStream()
+    {
+        return  in;
+    } 
+    public void run()
+    {  
+       int realNmber=(int)(Math.random()*100)+1;
+       try {
+             dataOut.writeUTF("给你一个1至100之间的数,请您猜");
+             while(true)
+             {
+         int receiveGuess=dataIn.readInt(); //读取另外一个线程的管道输出流中的数据。
+               if(receiveGuess>realNmber)
+               {
+                  dataOut.writeUTF("您猜大了");
+                System.out.printf("\n您的猜测是:%d",receiveGuess);
+               }
+               else if(receiveGuess<realNmber)
+               { 
+                  dataOut.writeUTF("您猜小了");
+                  System.out.printf("\n您的猜测是:%d",receiveGuess);
+               }
+              else
+               {
+                  dataOut.writeUTF("您猜对了");
+                  System.out.printf("\n您的猜测是:%d",receiveGuess);
+                  return;
+               }
+              try
+               {
+                  sleep(1200);
+               }
+             catch(InterruptedException e)
+               {
+               }
+            }
+         }
+       catch(IOException e)
+         {
+         }
+   }
+}
+class SecondThread extends Thread
+{
+    PipedInputStream  in;
+    DataInputStream   dataIn;
+    PipedOutputStream  out;
+    DataOutputStream   dataOut;
+    SecondThread()
+    {
+          in=new PipedInputStream();
+          dataIn=new DataInputStream(in);
+          out=new PipedOutputStream();
+          dataOut=new DataOutputStream(out);
+    } 
+    public PipedOutputStream  getPipedOutputStream()
+    {
+        return  out;
+    } 
+    public PipedInputStream  getPipedInputStream()
+    {
+        return  in;
+    } 
+    public void run()
+    { 
+       int gessNumber=(int)(Math.random()*100)+1;
+       int min=0,max=100;
+       while(true)
+       { 
+          try{
+         String message=dataIn.readUTF(); //读取另外一个线程的管道输出流中的数据。
+               System.out.println(message);
+               if(message.equals("给你一个1至100之间的数,请您猜"))
+                  {
+                    dataOut.writeInt(gessNumber);
+                    System.out.printf("\t\t\t\t\t我猜这个数是%d",gessNumber);
+                  }
+               else if(message.equals("您猜大了"))
+                  {
+                   max=gessNumber; 
+                     gessNumber=(gessNumber+min)/2;
+                     dataOut.writeInt(gessNumber);
+                     System.out.printf("\t\t\t\t\t我猜这个数是%d",gessNumber);
+                  }
+                else if(message.equals("您猜小了"))
+                  {
+                     min=gessNumber; 
+                     gessNumber=(gessNumber+max)/2;
+                     dataOut.writeInt(gessNumber);
+                     System.out.printf("\t\t\t\t\t我猜这个数是%d",gessNumber);
+                  }
+                else
+                  {
+                     System.out.printf("\t\t\t\t\t我猜对了,这个数就是:%d",gessNumber);
+                     return;
+                  }  
+             }
+          catch(IOException e)
+             {}
+       }
+   }
+}
+public class Example
+{
+    public static void main(String args[])
+    {
+        FirstThread firstThread=new FirstThread();
+        SecondThread secondThread=new SecondThread();
+       try{
+       (firstThread.getPipedOutputStream()).connect
+                                      (secondThread.getPipedInputStream());
+       (firstThread.getPipedInputStream()).connect
+                                     (secondThread.getPipedOutputStream());
+          }
+       catch(IOException e){}
+       firstThread.start();
+       secondThread.start();
+    }
+}

@@ -1,0 +1,27 @@
+import java.io.*;
+public class Example
+{  
+   public static void main(String args[ ])
+   { 
+      File file=new File("hello.txt");
+      byte b[]="»¶Ó­welcome".getBytes();
+      try{
+           FileOutputStream  out=new  FileOutputStream(file);
+           out.write(b);
+           out.close();
+           
+           FileInputStream  in=new FileInputStream(file);
+           int n=0;
+           while((n=in.read(b,0,2))!=-1)
+           {
+               String str=new String(b,0,2);
+               System.out.println(str);
+           }
+           in.close();
+         }
+      catch(IOException e)
+         {
+           System.out.println(e);
+         }  
+   }
+}

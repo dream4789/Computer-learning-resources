@@ -1,0 +1,59 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+class EditWindow extends JFrame implements ActionListener
+{  
+    JPopupMenu menu;
+    JMenuItem  itemCopy,itemCut,itemPaste; 
+    JTextArea text;
+    EditWindow(String s) 
+    {  
+      super(s);        
+      setSize(260,270);
+      setLocation(120,120);
+      setVisible(true);               
+      menu=new JPopupMenu();   
+      itemCopy=new JMenuItem("¿½±´");
+      itemCut=new JMenuItem("¼ôÇÐ");
+      itemPaste=new JMenuItem("Õ³Ìù");
+      menu.add(itemCopy);
+      menu.add(itemCut);
+      menu.add(itemPaste);
+      text=new JTextArea();
+      text.addMouseListener(new MouseAdapter()
+                              {
+                                 public void mousePressed(MouseEvent e)
+                                 {
+                                     if(e.getModifiers()==InputEvent.BUTTON3_MASK)
+                                      {
+                                         menu.show(text,e.getX(),e.getY());
+                                      }
+                                 }
+                              }
+                           );
+      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      Container con=getContentPane();
+      con.add(new JScrollPane(text),BorderLayout.CENTER);
+      con.validate();
+      validate();
+      itemCopy.addActionListener(this);
+      itemCut.addActionListener(this);
+      itemPaste.addActionListener(this);
+    } 
+   
+   public void actionPerformed(ActionEvent e)
+    {
+       if(e.getSource()==itemCopy)
+           text.copy();
+       else if(e.getSource()==itemCut)
+           text.cut();
+       else if(e.getSource()==itemPaste)
+           text.paste();
+    }
+}
+public class Example
+{  
+    public static void main(String args[])
+    { 
+      EditWindow win=new EditWindow("´°¿Ú");
+    }

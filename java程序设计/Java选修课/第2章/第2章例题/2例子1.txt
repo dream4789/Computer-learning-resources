@@ -1,0 +1,13 @@
+public class  Example 
+{  
+    public static void main (String args[ ])
+    {
+         char c='α';
+         System.out.println("希腊字母\'α\'在unicode表中的顺序位置:"+(int)c);
+         System.out.println("希腊字母表：");
+         for(int i=(int)'α';i<=(int)'ω';i++)
+          {
+            System.out.print(" "+(char)i);
+          }
+    }
+}

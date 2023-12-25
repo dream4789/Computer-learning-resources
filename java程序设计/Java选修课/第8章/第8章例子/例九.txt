@@ -1,0 +1,71 @@
+class Bank  implements Runnable
+{  
+   int money=300;
+   int time1,time2;
+   Thread accountant,cashier;
+   public Bank()
+   { 
+      accountant=new Thread(this);
+      accountant.setName("会计");
+      cashier=new Thread(this);
+      cashier.setName("出纳");   
+   }
+  public void run()
+   { 
+       for(int i=1;i<=3;i++) //从周一到周三会计和出纳都要使用saveOrTake方法。
+          {  
+             if(Thread.currentThread()==accountant)  
+              {
+                 time1=i;
+                 saveOrTake(30);  //accountant线程占有CUP资源期间调用了同步方法。
+              }
+             else if(Thread.currentThread()==cashier)  
+              {
+                 time2=i;
+                 saveOrTake(30); //cashier线程占有CUP资源期间调用了同步方法。
+              }
+          }
+   }
+  public synchronized void saveOrTake(int number) //同步方法。
+   {  
+       if(Thread.currentThread()==accountant)    //如果是accountant占有CPU资源。
+       {  
+          System.out.printf("%s%d\n","今天是星期",time1);
+          for(int i=1;i<=3;i++)        //accountant使用该方法存入90万，存入30万，稍歇一下，
+            {                                          //这时cashier仍不能使用该方法，
+                money=money+number;                   //因为accountant还没使用该方法。
+                try {  
+                       Thread.sleep(1000);         
+                    }             
+                catch(InterruptedException e)
+                    {
+                    }
+                System.out.printf("%s，目前帐上有%d万圆\n","我是"+accountant.getName(),money);
+            }
+       }
+      else if(Thread.currentThread()==cashier) //如果是cashier占有CPU资源。
+      {    
+           System.out.printf("%35s%d\n","今天是星期",time2);
+           for(int i=1;i<=2;i++)        //cashier使用该方法取出30元，取出15元，稍歇一下，
+            {                                       //这时accountant仍不能使用该方法，
+               money=money-number/2;                //因为cashier还没使用完该方法。
+               try  {
+                      Thread.sleep(1000);    
+                    }
+               catch(InterruptedException e)
+                    {
+                    }
+               System.out.printf("%35s，目前帐上有%d万圆\n","我是"+cashier.getName(),money);
+            }
+      }
+   }
+}
+class Example
+{
+    public static void main(String args[ ])
+    {
+        Bank a=new Bank();
+        a.accountant.start();
+        a.cashier.start();
+   }
+}

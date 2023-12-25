@@ -1,0 +1,53 @@
+class Move implements Runnable
+{
+    Thread zhang,keven;
+    Move()
+    {
+       zhang=new Thread(this); 
+       zhang.setName("张名");
+       keven=new Thread(this);
+       keven.setName("Jam.keven");
+    } 
+    public void run()      
+    {   
+       int i=0;
+        while(true)
+         {
+           if(Thread.currentThread()==zhang) 
+            {  
+               i=i+1;
+               System.out.printf("%s线程的局部变量i=%d\n",zhang.getName(),i);
+               if(i>=8)
+                  { 
+                     System.out.printf("%s线程进入死亡状态\n",zhang.getName());
+                     return;
+                  }
+            } 
+           else if(Thread.currentThread()==keven) 
+            {
+               i=i-1;
+               System.out.printf("%s线程的局部变量i=%d\n",keven.getName(),i);
+               if(i<=-20)
+                  { 
+                     System.out.printf("%s线程进入死亡状态\n",keven.getName());
+                     return;
+                  }
+            } 
+         try{
+              Thread.sleep(800);
+            }
+        catch(InterruptedException e)
+            {
+            }
+        }
+    }
+}
+class Example
+{
+    public static void main(String args[ ])
+    {
+        Move move=new Move();
+        move.zhang.start();
+        move.keven.start(); 
+    }
+}

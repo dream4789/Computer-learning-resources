@@ -1,0 +1,30 @@
+class A
+{
+     private int x=10;
+     protected  double y=12.56;
+     void f()
+     {
+         y=y+x;
+         System.out.printf("x=%d,y=%f\n",x,y);
+     } 
+}
+class B extends A
+{
+     double z=12;
+     void g()
+     {
+         z=y+100;
+         System.out.printf("z=%f\n",z);
+     }
+}
+class Example
+{    
+     public static void main(String args[])
+     {
+         B b=new B();
+b.g(); //调用子类自己声明的方法。
+b.f();//调用从父类继承的方法。
+b.g();
+     }  
+   
+}

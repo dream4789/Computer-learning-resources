@@ -1,0 +1,61 @@
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+import java.util.regex.*;
+class Dwindow extends Jframe
+ implements ActionListener
+{  
+    JTextField inputNumber; 
+    JTextArea  save;
+    Dwindow(String s)
+    {  
+      super(s);
+      inputNumber=new JTextField(22);
+      inputNumber.addActionListener(this);
+      save=new JTextArea(12,16);
+      Container con=getContentPane();
+      con.setLayout(new FlowLayout());
+      con.add(inputNumber); 
+      con.add(save); 
+      setBounds(60,60,300,300);
+      setVisible(true);
+      validate();
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void actionPerformed(ActionEvent e) 
+    { 
+       String s=inputNumber.getText();
+       Pattern  p;                             //模式对象。
+       Matcher  m;                            //匹配对象。
+       p=Pattern.compile("\\D");              //用模式"\\D"初试化模式对象。
+       m=p.matcher(s);                       //用待匹配字符序列初始化匹配对象。
+       if(m.find())
+       {
+         JOptionPane.showMessageDialog(this,"您输入了非法字符","警告对话框",
+                                             JOptionPane.WARNING_MESSAGE);
+          String temp=m.replaceAll("");
+          inputNumber.setText(temp);
+    
+       } 
+      else
+       {
+         int n=JOptionPane.showConfirmDialog(this,"确认正确吗？","确认对话框",
+                                                  JOptionPane.YES_NO_OPTION );
+         if(n==JOptionPane.YES_OPTION)  
+            { 
+                save.append("\n"+s);
+            }  
+         else if(n==JOptionPane.NO_OPTION)  
+            {
+               inputNumber.setText(null);
+            }  
+       }
+  }
+}
+public class Example
+{ 
+   public static void main(String args[]) 
+    { 
+       new Dwindow("带对话框的窗口");
+    }
+}

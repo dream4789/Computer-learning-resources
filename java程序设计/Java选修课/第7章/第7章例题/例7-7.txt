@@ -1,0 +1,34 @@
+import java.util.*;
+class Student
+{
+    String name ;
+    int number;
+    float score;
+    Student(String name,int number,float score)
+    {
+      this.name=name;
+      this.number=number;
+      this.score=score;
+    }
+}
+public class Example
+{
+    public  static void main(String args[])
+    {
+      LinkedList<Student> mylist=new LinkedList<Student>();
+      Student stu_1=new Student("ÕÔÃñ" ,9012,80.0f),
+              stu_2=new Student("Ç®Çà" ,9013,90.0f),  
+              stu_3=new Student("ËïÃ¶" ,9014,78.0f),
+              stu_4=new Student("ÖÜÓÒ" ,9015,55.0f);
+      mylist.add(stu_1); 
+      mylist.add(stu_2);
+      mylist.add(stu_3); 
+      mylist.add(stu_4);
+      Iterator<Student> iter=mylist.iterator();
+      while(iter.hasNext())
+      { 
+         Student te=iter.next();
+         System.out.println(te.name+" "+te.number+"  "+te.score);
+       }
+    }
+}

@@ -1,0 +1,11 @@
+class 三角形  
+{  
+    float sideA,sideB,sideC,lengthSum;
+    void setSide(float sideA,float sideB,float sideC)  
+    { 
+        this.sideA=sideA;  
+        this.sideB=sideB;
+        this.sideC=sideC;
+    }
+}
+this.sideA、this.sideB、this.sideC就分别表示当前对象的成员变量sideA、sideB、sideC。   

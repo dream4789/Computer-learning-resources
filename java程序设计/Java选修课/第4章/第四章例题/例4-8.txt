@@ -1,0 +1,28 @@
+class People
+{   
+    float getArea(float r)
+    { 
+       return 3.14f*r*r;
+    }
+   double getArea(float x,int y) 
+    { 
+       return x*y;
+    }
+    float getArea(int x,float y) 
+    {   
+       return x*y;
+    }
+    double getArea(float x,float y,float z) 
+    {   
+       return (x*x+y*y+z*z)*2.0;
+    }
+}
+public class Example
+{
+   public static void main(String args[])
+   {
+     People zhang=new People();
+     System.out.println("求半径是100的圆的面积:"+zhang.getArea(100));
+     System.out.println("求单位立方体的表面积:"+zhang.getArea(1,1,1));
+   }
+}

@@ -1,0 +1,29 @@
+
+import java.util.regex.*;
+
+public class Example
+{
+   public static void main(String args[ ])
+   {
+       Pattern p;//
+       Matcher m;//
+       String s1="2010年08月08日20点，北京奥运会开幕式";//
+       p=Pattern.compile("\\d+");//
+       m=p.matcher(s1);//
+       
+       while(m.find()){//
+       		String str=m.group();
+       		System.out.print("从"+m.start()+"到"+m.end()+"匹配的字符串");//
+       		System.out.println(" "+str);
+       }
+  	//
+  	  p=Pattern.compile("\\D+");//
+       m=p.matcher(s1);//
+       
+       while(m.find()){//
+       		String str=m.group();
+       		System.out.print("从"+m.start()+"到"+m.end()+"匹配的字符串");//
+       		System.out.println(" "+str);
+       }
+   }
+}

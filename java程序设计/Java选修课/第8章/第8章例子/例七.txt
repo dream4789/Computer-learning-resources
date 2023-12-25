@@ -1,0 +1,36 @@
+class A implements Runnable
+{
+    Thread thread;
+    int n=0;
+    A()
+    {
+       thread=new Thread(this); 
+    } 
+    public void run()      
+    {   
+         while(true)
+         {
+            n++;
+            System.out.println("ÄãºÃ£¡");
+            try{
+                 Thread.sleep(1000);
+               }
+            catch(InterruptedException e)
+              {
+              }
+            if(n==5)
+              {
+                 thread=new Thread(this);
+                 thread.start();
+              }
+        }
+    }
+}
+class Example
+{
+    public static void main(String args[ ])
+    {
+        A a=new A();
+        a.thread.start();
+    }
+}

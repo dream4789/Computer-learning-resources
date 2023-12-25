@@ -1,0 +1,10 @@
+class Èý½ÇÐÎ  
+{  
+    float sideA,sideB,sideC,lengthSum;
+    void setSide(float sideA,float sideB,float sideC)  
+    { 
+        this.sideA=sideA;  
+        this.sideB=sideB;
+        this.sideC=sideC;
+    }
+}

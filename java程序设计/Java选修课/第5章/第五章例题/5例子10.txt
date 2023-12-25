@@ -1,0 +1,63 @@
+abstract class Geometry 
+{  
+    public abstract double ComputerArea();
+}
+class Lader extends Geometry 
+{ 
+    double a,b,h;
+    Lader(double a,double b,double h)
+    {  
+       this.a=a;this.b=b;this.h=h;
+    }
+    public double ComputerArea() 
+    {  
+         return((1/2.0)*(a+b)*h);
+    }
+}
+class Circle extends Geometry  
+{  
+    double r;
+    Circle(double r)
+    {  
+       this.r=r;
+    }
+    public double ComputerArea()
+    {  
+       return(3.14*r*r);
+    }
+}
+class Cone 
+{  
+    Geometry bottom;
+    double height;
+    Cone(Geometry bottom,double height) //上转型对象，实现多态
+    { 
+        this.bottom=bottom;
+        this.height=height;
+    }
+    void changBottom(Geometry bottom) 
+    {
+        this.bottom=bottom;
+    }
+    public double ComputerVolume() 
+    {  
+       return (bottom.ComputerArea()*height)/3.0;//bottom指向哪个子类，就是用那个子类的面积
+    }
+}
+public class Example
+{ 
+    public static void main(String args[]) 
+    { 
+       Cone cone;
+       Geometry geometry;
+       geometry=new Lader(2.0,7.0,10.7);//geometry指向梯形
+       System.out.println("梯形的面积"+geometry.ComputerArea());
+       cone=new Cone(geometry,30);
+       System.out.println("梯形底的锥的体积"+cone.ComputerVolume());
+
+       geometry=new Circle(10);//geometry指向圆形
+       System.out.println("半径是10的圆的面积"+geometry.ComputerArea());
+       cone.changBottom(geometry);
+       System.out.println("圆形底的锥的体积"+cone.ComputerVolume());
+    }
+}

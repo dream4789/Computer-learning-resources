@@ -1,0 +1,10 @@
+class A
+{ 
+     int a=9;
+     float b=12 .6f;
+     void f() 
+     {
+          a=12; 
+          b=12.56f;
+     }
+}

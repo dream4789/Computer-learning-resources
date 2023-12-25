@@ -1,0 +1,46 @@
+class Lader
+{
+    double above,bottom,height;
+    Lader(double a,double b,double h)
+    {
+        above=a;
+        bottom=b;
+        height=h;
+    }
+    public void setAbove(double a)
+    {
+        above=a;
+    }
+    public void setBottom(double b)
+    {
+        bottom=b;
+    }
+    public void setHeight(double h)
+    {
+        height=h;
+    }
+    double computeArea()
+    {
+        return (above+bottom)*height/2.0;
+    }
+}
+public class Example
+{
+    public static void main(String args[])
+    {
+       double area1=0,area2=0;
+       Lader laderOne,laderTwo;
+       laderOne=new Lader(5,10,12);
+       laderTwo=new Lader(10,20.45,20);
+
+       area1=laderOne.computeArea();
+       area2=laderTwo.computeArea();
+       System.out.printf("laderOne和laderTwo的面积分别是:%n%f,%f\n",area1,area2);
+
+       laderOne.setAbove(10);
+       laderTwo.setBottom(40);
+       area1=laderOne.computeArea();
+       area2=laderTwo.computeArea();
+       System.out.printf("laderOne和laderTwo的面积分别是:%n%f,%f\n",area1,area2);
+    }
+}

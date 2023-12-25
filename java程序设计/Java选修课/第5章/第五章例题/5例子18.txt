@@ -1,0 +1,83 @@
+class MyException extends Exception
+{
+    String message;
+    MyException()
+    {
+        message="数字不是正数";
+    }
+    public String toString()
+    {
+        return message;
+    }
+}
+class YourException extends Exception
+{
+    String message;
+    YourException()
+    {
+        message="数字不是偶数";
+    }
+ public String toString()
+    {
+        return message;
+    }
+}
+class A
+{
+    public void f(int n) throws MyException,YourException
+    {
+      if(n<0)
+        {
+          throw(new  MyException());             //抛出异常，结束方法的执行。
+        }
+      if(n%2!=0)
+        {
+          throw(new  YourException());           //抛出异常,结束方法的执行。
+        }
+      double number=Math.sqrt(n);
+      System.out.println(number);
+    }
+}
+public class Example
+{
+   public static void main(String args[])
+    {
+      A a=new A();
+     try 
+         {
+           a.f(9);
+         }
+      catch(MyException e)
+         {
+            System.out.println(e.toString());
+         }
+      catch(YourException e)
+         {
+            System.out.println(e.toString());
+         }
+       try 
+         {
+           a.f(-8);
+         }
+      catch(MyException e)
+         {
+            System.out.println(e.toString());
+         }
+      catch(YourException e)
+         {
+            System.out.println(e.toString());
+         }
+       try 
+         {
+           a.f(16);
+         }
+      catch(MyException e)
+         {
+            System.out.println(e.toString());
+         }
+       catch(YourException e)
+         {
+            System.out.println(e.toString());
+         }
+    }
+}

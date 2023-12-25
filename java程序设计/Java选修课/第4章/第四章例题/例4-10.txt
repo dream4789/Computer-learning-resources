@@ -1,0 +1,17 @@
+package tom.jiafei;
+class Tom
+{
+    void speak()
+    { 
+       System.out.println("Tom类在tom.jiafei包中");  
+    }
+}
+public class  Example 
+{  
+    public static void main(String args[])
+    {
+       Tom tom=new Tom();
+       tom.speak();
+       System.out.println("Example类在tom.jiafei包中");  
+    }
+}

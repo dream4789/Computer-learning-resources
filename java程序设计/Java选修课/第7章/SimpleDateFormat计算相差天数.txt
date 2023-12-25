@@ -1,0 +1,18 @@
+import java.io.*;
+import java.text.*;
+import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+public class ThreadTest
+{  
+   public static void main(String args[ ])throws ParseException
+   { 
+
+     SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-dd");
+     Date d1=sdf.parse("2000-02-05");
+     Date d2=sdf.parse("2012-04-05");
+     long days=(d2.getTime()-d1.getTime()+1000000)/(3600*24*1000);
+     	System.out.println("days="+days);
+      
+   }
+}

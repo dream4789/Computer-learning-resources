@@ -1,0 +1,44 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+class Win extends JFrame implements KeyListener
+{  
+    JTextArea text;
+    Win()
+    { 
+       Container con=getContentPane();
+       con.setLayout(new FlowLayout());
+       text=new JTextArea(30,20);
+       text.addKeyListener(this);
+       con.add(new JScrollPane(text),BorderLayout.CENTER);
+       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       setBounds(10,10,300,300);
+       setVisible(true); 
+       validate();
+    }
+     public void keyTyped(KeyEvent e)
+    { 
+     JTextArea te=(JTextArea)e.getSource(); 
+     if(e.getModifiers()==InputEvent.CTRL_MASK&&e.getKeyCode()==KeyEvent.VK_X)
+      {     
+        te.cut();
+      }
+     else if(e.getModifiers()==InputEvent.CTRL_MASK&&e.getKeyCode()==KeyEvent.VK_C)
+      { 
+         te.copy();
+      }
+     else if(e.getModifiers()==InputEvent.CTRL_MASK&&e.getKeyCode()==KeyEvent.VK_V)
+      { 
+         te.paste();
+      }
+    }
+    public void keyPressed(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {}
+}
+public class Example
+{  
+   public static void main(String args[])
+    { 
+       Win win=new Win();
+    }
+}

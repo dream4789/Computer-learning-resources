@@ -1,0 +1,74 @@
+import java.util.*;
+
+public class A{
+	public static void main(String[] args){
+	int y=0,m=0,d=0;
+	//y m
+	Scanner r=new Scanner(System.in);
+	System.out.println("please input year");
+	y=r.nextInt();
+	System.out.println("please input month");
+	m=r.nextInt();
+	//d
+	switch(m){
+		case 1:
+			case 3:
+				case 5:
+					case 7:
+						case 8:
+							case 10:
+								case 12: d=31;break;
+		case 4:
+			case 6:
+				case 9:
+					case 11: d=30;break;
+		default:{
+			if(y % 400 ==0  || (y % 4==0 && y % 100 !=0))
+				d=29;
+				else
+					d=28;
+		}
+	}//end switc
+	System.out.println("d="+d);
+	//
+	Calendar ca = new GregorianCalendar();
+	//Calendar ca=Calendar.getInstance();
+	ca.set(y,m-1,1);
+	int xq=ca.get(Calendar.DAY_OF_WEEK)-1;
+	//System.out.println(xq);
+	String a[]=new String[xq+d];
+	for(int i=0;i<a.length;i++) a[i]="";
+	for(int i=xq,n=1;i<a.length;i++){
+		a[i]=String.valueOf(n);n++;
+	}//end for
+	
+	
+	System.out.printf("%4c%4c%4c%4c%4c%4c%4c\n",'日','一','二','三','四','五','六');
+	for(int i=0;i<a.length;i++){
+		if(i % 7 ==0 && i!=0)
+			System.out.println();
+		System.out.printf("%5s",a[i]);
+	}//end for
+	
+	
+	//
+	System.out.println("\n输入两个日期，求天数");
+	int yy,mm,dd;
+	Calendar calendar=new GregorianCalendar();
+	System.out.println("\n输入第一个车年月日");
+	Scanner rr=new Scanner(System.in);
+	String line=rr.nextLine();
+	rr.close();
+	StringTokenizer st=new StringTokenizer(line,",");
+	yy=Integer.parseInt(st.nextToken());
+	mm=Integer.parseInt(st.nextToken());
+	dd=Integer.parseInt(st.nextToken());
+	calendar.set(yy,mm,dd);
+	Long t1=calendar.getTimeInMillis();
+	
+	
+	calendar.set(2005,1,1);
+	Long t2=calendar.getTimeInMillis();
+	System.out.println("="+(t2-t1)/(3600*24*1000));
+	}
+}

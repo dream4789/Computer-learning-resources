@@ -1,0 +1,41 @@
+class Jerry
+{
+     int leg;
+     Jerry(int n)
+     {
+         leg=n;
+     }
+     void setLeg(int n)
+     {
+         leg=n;
+     }
+    int getLeg()
+     {
+         return leg;
+     }
+}
+class Tom
+{   void f(Jerry a)
+     {
+        a.setLeg(12); //a指向实参jerry的空间
+        System.out.println("在f函数内，参数a的成员leg的值:"+a.getLeg());
+
+        a=new Jerry(101);//改变形参的引用，不指向实参jerry的空间
+        System.out.println("在f函数内，改变形参的引用后，参数a的成员leg的值:"+a.getLeg());
+        } 
+}
+
+public class Example
+{
+   public static void main(String args[])
+   {
+     Tom tom=new Tom();
+      Jerry jerry=new Jerry(2);
+     System.out.println("在主函数中，在调用方法f之前,jerry的成员leg的值:"+jerry.getLeg());
+
+     tom.f(jerry);
+     System.out.println("在主函数中，在调用方法f之后,jerry的成员leg的值:"+jerry.getLeg());
+     
+
+   }
+}

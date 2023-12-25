@@ -1,0 +1,20 @@
+class Tom
+{
+   int leg;
+   Tom(int leg)
+   {
+        this.cry();
+        this.leg=leg;
+        this.cry(); 
+   }
+   void cry()
+   {
+        System.out.println("我是Tom ,我现在有"+this.leg+"条腿");
+
+   }
+   public static void main(String args[])
+   {
+        Tom tom=new Tom(4);
+	leg=100;
+   }
+}

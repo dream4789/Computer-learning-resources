@@ -1,0 +1,27 @@
+import java.util.*;
+class Example
+{ 
+    public static void main(String args[ ]) 
+   {  
+     Calendar calendar=Calendar.getInstance();
+      calendar.setTime(new Date());
+      String 年=String.valueOf(calendar.get(Calendar.YEAR)),
+             月=String.valueOf(calendar.get(Calendar.MONTH)+1),
+             日=String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)),
+             星期=String.valueOf(calendar.get(Calendar.DAY_OF_WEEK)-1);
+      int hour=calendar.get(Calendar.HOUR_OF_DAY),
+          minute=calendar.get(Calendar.MINUTE),
+          second=calendar.get(Calendar.SECOND);
+      System.out.println("现在的时间是：");
+      System.out.println(""+年+"年"+月+"月"+日+"日 "+ "星期"+星期);
+      System.out.println(""+hour+"时"+minute+"分"+second+"秒");
+      
+      //球两个日子之间的天数
+      calendar.set(1949,9,1);
+      long time1949=calendar.getTimeInMillis();
+      calendar.set(2005,9,1);
+      long time2005=calendar.getTimeInMillis();
+      long 相隔天数=(time2005-time1949)/(1000*60*60*24);
+      System.out.println("2005年10月1日和1949年10月1日相隔"+相隔天数+"天");
+   }  
+}

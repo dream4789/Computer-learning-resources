@@ -1,0 +1,9 @@
+class  Tom
+{
+    int x=188,y;
+    void f()
+    { 
+       int x=3;
+       y=this.x; //y得到的值是3，不是188。
+    }
+}

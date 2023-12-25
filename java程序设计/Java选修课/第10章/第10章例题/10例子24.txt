@@ -1,0 +1,34 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+class Win extends JFrame implements MouseMotionListener
+{  
+    PointerInfo pi;
+    Win()
+    { 
+      setTitle("你可以用鼠标拖动本窗体"); 
+      addMouseMotionListener(this);
+      setBounds(10,10,300,300);
+      setVisible(true); 
+      validate();
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void mouseMoved(MouseEvent e){} 
+    public void mouseDragged(MouseEvent e)
+    { 
+       pi=MouseInfo.getPointerInfo();
+       java.awt.Point point=pi.getLocation() ;
+       int x=(int)point.getX();
+       int y=(int)point.getY();
+       int w=getSize().width;        //获取窗体的宽。
+       int h=getSize().height;
+       setLocation(x-w/2,y-h/2);     //窗体的中心跟随鼠标指针移动。      
+       setTitle("("+x+","+y+")");    //窗体标题显示鼠标指针的坐标值。
+    }
+}
+public class Example
+{  public static void main(String args[])
+    { 
+       Win win=new Win();
+    }
+}

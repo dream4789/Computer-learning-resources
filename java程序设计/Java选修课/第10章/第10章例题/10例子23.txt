@@ -1,0 +1,55 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+class Win extends JFrame implements MouseListener
+{  
+    JLabel b[]=new JLabel[12];
+    Icon iconGreen=new ImageIcon("a.gif"),
+         iconRed=new ImageIcon("b.gif");
+    Win()
+    { 
+      Container con=getContentPane();
+      con.setLayout(new GridLayout(3,4));
+      for(int i=0;i<b.length;i++)
+        {
+          b[i]=new JLabel(iconGreen);
+          con.add(b[i]);
+          b[i].addMouseListener(this);
+          b[i].setBorder(BorderFactory.createBevelBorder(
+                         BevelBorder.RAISED,Color.red,Color.white)); 
+        }
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setBounds(10,10,380,300);
+      setVisible(true); 
+      validate();
+    }
+    public void mousePressed(MouseEvent e)
+    { 
+      JLabel label=(JLabel)e.getSource();
+      label.setIcon(iconRed);
+      int m=(int)(Math.random()*b.length);
+      e=SwingUtilities.convertMouseEvent(label,e,b[m]);//转移鼠标事件随机转移到一个组件。
+         if(e.getSource()==b[m])
+           {
+              b[m].setIcon(iconRed) ;
+           }
+    }
+    public void mouseReleased(MouseEvent e)
+    {
+     for(int i=0;i<b.length;i++)
+       {
+          b[i].setIcon(iconGreen); 
+       }  
+    }
+    public void mouseEntered(MouseEvent e)  {}
+    public void mouseExited(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e){}
+}
+public class Example
+{ 
+    public static void main(String args[])
+    { 
+       Win win=new Win();
+    }
+}

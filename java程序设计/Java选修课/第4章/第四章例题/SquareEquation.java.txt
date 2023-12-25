@@ -1,0 +1,16 @@
+public class SquareEquation 
+{ 
+    public  SquareEquation(double a,double b,double c) 
+    {
+        System.out.println("我没有包名,我和使用我的程序在同一目录中 ");
+        System.out.println("你好,我先被加载了!");
+    }
+    public void  getRoots() 
+    {    
+        System.out.println("你好,我已经被加载了!");
+    } 
+   public void setCoefficient(double a,double b,double c)
+    {
+       System.out.println("随便改吧");
+    }
+}

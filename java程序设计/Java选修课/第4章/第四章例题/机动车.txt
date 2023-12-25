@@ -1,0 +1,17 @@
+class 机动车 
+{ 
+    int speed;                             //变量定义部分。
+    float weight,height;                    //变量定义部分。
+    void changSpeed(int newSpeed)          //方法定义。
+    {     
+       speed=newSpeed;
+    } 
+    float getWeight()                      //方法定义。
+    {  
+       return weight;
+    }
+   float getHeight()                      //方法定义。
+    {  
+       return height;
+    }
+}

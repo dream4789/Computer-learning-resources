@@ -1,0 +1,75 @@
+习题3 P104
+
+一、综合题
+设计一个能细分为矩形、三角形、圆形和椭圆形的“图形”类。使用继承将这些图形分类，找出能作为基类部分的共同特征(如校准点)和方法(如求面积、初始化)，并看看这些图形是否能进一步划分为子类。  本题只考虑实现思想，不考虑具体实现的细节，实现方式可自由发挥。 
+
+二、综合题  
+定义一个抽象的"Role"类，有姓名，年龄，性别等成员变量  
+1.要求尽可能隐藏所有变量(能够私有就私有,能够保护就不要公有)
+，再通 过GetXXX()和SetXXX()方法对各变量进行读写。
+具有一个抽象的play()方法，该方法不返回任何值，同时至少定义两个构造方法。
+Role类中要体现出this的几种用法。
+  
+2. 从Role类派生出一个"Employee"类，该类具有Role类的所有成员（构 造方法除外）
+，并扩展 salary成员变量，同时增加一个静态成员变量“职工编号（ID）”。同样要有至少两个构造方法，要体现出
+this和super的几种用法，还要求覆盖play()方法，并提供一个final sing()方法。
+ 
+3."Manager"类继承"Employee"类，有一个final成员变量"vehicle"  
+4. 在main()方法中制造Manager和Employee对象,并测试这些对象的方法。
+
+三、泛型类
+参考书例5-21，参考如下程序.。
+设计一个矩形类，完成如下操作：给出一个点坐标p1和长宽距离，1）求出该矩形的其他三个点的坐标；2）如果设置放大和缩小比例（p1不变） scale的值，在求出其他三个坐标；3）在窗体上画出该矩形（可不做）。
+class Point<T>{
+       private T x ;           // 表示X坐标
+       private T y ;           // 表示Y坐标
+       public void setX(T x){
+              this.x = x ;
+       }
+       public void setY(T y){
+              this.y = y ;
+       }
+       public T getX(){
+              return this.x ;
+       }
+       public T getY(){
+              return this.y ;
+       }};
+
+public class AppPoint{
+       public static void main(String args[]){
+              Point<Integer> p = new Point<Integer>() ;
+              p.setX(10) ;          //装箱
+              p.setY(120) ;         
+              int x = p.getX() ;   //拆箱
+              int y = p.getY() ;    
+              System.out.println("整数表示，X坐标为：" + x) ;
+              System.out.println("整数表示，Y坐标为：" + y) ;       }
+};
+
+四、思考题
+1、建立一个Java抽象类Drink，应当：
+a、声明一个抽象方法taste()，该方法负责输出饮料的味道； 
+b、声明int型常量来代表不同的饮料类型（咖啡、啤酒、牛奶），如：
+ c、声明方法getDrink(int drinkType)，根据传入的参数创建
+不同的饮料对象，并返回该对象，建议使用switch语句。
+该方法要求声明DrinkNotFoundException，当没有相对应的饮料类型时，抛
+出该异常。 
+2、建立Drink的具体子类： 
+a、分别建立Drink的子类：Coffee（代表咖啡），Beer（代表啤酒），Milk
+（代表牛奶）; 
+b、实现taste()方法，要求在控制台打印各自的味道特征。 
+3、建立异常类DrinkNotFoundException 
+a、继承Exception 
+b、在Drink的方法getDrink(int drinkType)中声明引发
+DrinkNotFoundException异常，当传入的参数没有相对应的饮料类型时，抛出异常。 
+c、在使用getDrink方法的类中捕捉该异常。
+ 
+4、建立Test测试类，测试以上内容的正确性
+ a、编写main方法，通过命令行传参的方式传入某种饮料的类型。
+ b、在main方法中，调用rink类的getDrink方法，获得相应的饮料对象。注意捕获DrinkNotFoundException。
+ c、然后调用该饮料对象的taste()方法，输出该饮料的味道。
+ 5、编译程序，并运行。
+
+
+ 

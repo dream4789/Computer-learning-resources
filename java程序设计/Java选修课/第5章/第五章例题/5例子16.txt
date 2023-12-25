@@ -1,0 +1,29 @@
+interface Computable
+{
+    public void add(int x,int y);
+}
+
+class A
+{
+	void f(Computable c,int a,int b)
+	{c.add(a,b);
+	} 
+	void g()
+   {
+		f(new Computable()                       
+		{
+		  public void add(int x,int y)
+                          {
+                            System.out.printf("\n%d与%d的和等于%d",x,y,x+y);
+                          }
+                       } ,12,34);
+   }
+}
+
+ class Example{	
+	public static void main(String[] args){
+		A a=new A();
+		a.g();
+		
+	}	
+}

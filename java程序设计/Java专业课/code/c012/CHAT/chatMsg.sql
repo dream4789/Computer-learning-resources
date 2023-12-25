@@ -1,0 +1,1 @@
+CREATE TABLE  chatMsg ( id int  not null AUTO_INCREMENT ,from_User_Number varchar(10),to_User_Number varchar(20),msg varchar(60),msg_Date varchar(50) ,PRIMARY KEY (id) )

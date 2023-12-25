@@ -1,0 +1,44 @@
+import java.awt.*; 
+import java.awt.event.*;
+import javax.swing.*;
+class MyWindow extends JFrame implements ActionListener
+{ 		
+    JTextField titleText;
+    JPasswordField passwordText; 
+    MyWindow(String s) 
+    { 
+      super(s);
+      titleText=new JTextField(10);
+      passwordText=new JPasswordField (10);
+      passwordText.setEchoChar('*');
+      titleText.addActionListener(this);
+      passwordText.addActionListener(this);
+      Container con=getContentPane();
+      con.setLayout(new FlowLayout());
+      con.add(titleText); 
+      con.add(passwordText); 
+      setBounds(100,100,150,150);
+      setVisible(true);
+      validate();
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void actionPerformed(ActionEvent e) 
+    {  
+      if(e.getSource()==titleText)
+       {
+         this.setTitle(titleText.getText());
+       }
+      else if(e.getSource()==passwordText)
+       {
+         char c[]=passwordText.getPassword();
+         titleText.setText(new String(c));
+       }   
+    }
+}
+class Example
+{
+    public static void main(String args[ ])
+    { 
+       MyWindow win=new MyWindow("´°¿Ú");
+    }
+}

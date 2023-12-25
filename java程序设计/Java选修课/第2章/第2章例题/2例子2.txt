@@ -1,0 +1,21 @@
+public class Example
+{ 
+    public static void main (String args[ ]) 
+    { 
+      byte  a=120;
+      short b=255;
+      int c=2200; 
+      long d=8000;
+      float f;
+      double g=0.1234567812345678;
+      b=a;
+      c=(int)d;
+      f=(float)g;   //导致精度的损失.
+      System.out.println("a="+a);   
+      System.out.println("b="+b); 
+      System.out.println("c="+c);    
+      System.out.println("d="+d); 
+      System.out.println("f="+f);  
+      System.out.println("g="+g); 
+    }
+}

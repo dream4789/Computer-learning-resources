@@ -1,0 +1,116 @@
+import javax.swing.*;
+import java.awt.print.*;
+import java.awt.event.*;
+import java.awt.*;
+import java.io.*;
+class PrinterWindow extends JFrame implements ActionListener,Printable   
+{   
+    int m,n=3,p=1,i=1;    //m:总行数、n:每页打印的行数,p:总页数,i:打印的页码。
+    PrinterJob  printerJob;
+    JButton buttonPrint;
+    JLabel label;
+    JTextArea text; 
+    CharArrayWriter out;
+    CharArrayReader in;
+    BufferedReader readIn; 
+    Container con;
+    PrinterWindow(String s) 
+    {  
+      super(s);        
+      setSize(360,200);
+      setLocation(120,120);
+      setVisible(true);
+      label=new JLabel("单击按钮开始打印第"+i+"页");
+      buttonPrint=new JButton("打印第"+i+"页");
+      buttonPrint.addActionListener(this);
+      text=new JTextArea();
+      con=getContentPane();
+      JPanel panel=new JPanel(new GridLayout(1,2));
+      panel.add(label);
+      panel.add(buttonPrint);
+      con.add(new JScrollPane(text),BorderLayout.CENTER);
+      con.add(panel,BorderLayout.SOUTH);
+      validate();
+      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    } 
+   public void actionPerformed(ActionEvent e) 
+    {
+       try
+       { 
+           label.setText("正在打印第"+i+"页");
+         
+           if(i==1)
+             {  
+                out=new CharArrayWriter();
+                char message[]=text.getText().toCharArray();
+                out.write(message);               //将文本区中的内容写入内存。
+                m=text.getLineCount();
+                p=(m%n==0)?(m/n):(m/n+1);
+                in=new CharArrayReader(out.toCharArray());
+                readIn=new BufferedReader(in);
+             }
+          if(i<=p)            
+            { 
+              printerJob=PrinterJob.getPrinterJob();
+              PageFormat pageFormat=printerJob.pageDialog(printerJob.defaultPage());
+              text.setText(null);
+              String str=null;
+int number=1; 
+text.append("这是第"+i+"页\n\n");
+              while((number<=n)&&(str=readIn.readLine())!=null) //读入需要的行数。
+              {
+                    text.append(str+"\n");
+                    number++;
+              }
+             boolean boo=printerJob.printDialog() ;       //弹出打印对话框。
+             if(boo==true)
+               { 
+                 printerJob.setPrintable(this,pageFormat);
+                 printerJob.print();
+                 i++;
+                 buttonPrint.setText("打印下一页吗?");    
+               }
+            }
+           else
+            {
+              label.setText("打印完毕,再打一份吗?");
+              i=1;
+              buttonPrint.setText("打印第"+i+"页");
+              in=new CharArrayReader(out.toCharArray());
+              readIn=new BufferedReader(in);
+              String str=null;
+              text.setText(null);
+              while((str=readIn.readLine())!=null) //文本区恢复原有文本。
+              {
+                    text.append(str+"\n");
+              }
+              out.close();
+              readIn.close();
+              in.close();
+            }
+       }
+      catch(Exception ee)
+       {
+       }
+    } 
+  public int  print(Graphics graphics,PageFormat pageFormat,int pageIndex)
+    {
+       if(pageIndex==0)                          //只打印一页。
+        { 
+          graphics.translate(80,80);
+          text.paintAll(graphics);
+          return Printable.PAGE_EXISTS;       //通知打印机已经准备好了该打印页。
+        }
+       else                               
+        {
+          return Printable.NO_SUCH_PAGE;          //打印作业布置结束。
+        }
+    }
+}
+public class Example
+{  
+    public static void main(String args[])
+    { 
+      PrinterWindow win=new  PrinterWindow("窗口");
+    }
+}

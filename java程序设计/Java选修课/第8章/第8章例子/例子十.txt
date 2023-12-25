@@ -1,0 +1,91 @@
+class TicketSeller         //负责卖票的类。
+{
+   int fiveNumber=1,tenNumber=0,twentyNumber=0; 
+   public synchronized void  sellTicket(int receiveMoney)
+   { 
+       if(receiveMoney==5)
+       {
+          fiveNumber=fiveNumber+1; 
+          System.out.printf("%s给我5元钱，这是您的1张入场卷\n",
+                             Thread.currentThread().getName()); 
+       }
+       else if(receiveMoney==10)           
+        {  
+          while(fiveNumber<1)
+            { 
+                try { 
+                       System.out.printf("%30s靠边等\n",Thread.currentThread().getName());
+                       wait();    //如果线程占有CUP期间执行了wait,就进入中断状态。
+                       System.out.printf("%30s结束等待\n",Thread.currentThread().getName());
+                    }
+               catch(InterruptedException e)
+                    {
+                    }
+            }
+           fiveNumber=fiveNumber-1;
+           tenNumber=tenNumber+1;
+           System.out.printf("%s给我10元钱，找您5元，这是您的1张入场卷\n",
+                             Thread.currentThread().getName());
+        }
+       else if(receiveMoney==20)           
+        {  
+          while(fiveNumber<1||tenNumber<1)
+            { 
+                try { 
+                       System.out.printf("%30s靠边等\n",Thread.currentThread().getName());
+                       wait();    //如果线程占有CUP期间执行了wait,就进入中断状态。
+                       System.out.printf("%30s结束等待\n",Thread.currentThread().getName());
+                    }
+               catch(InterruptedException e)
+                    {
+                    }
+            }
+           fiveNumber=fiveNumber-1;
+           tenNumber=tenNumber-1;
+           twentyNumber=twentyNumber+1;
+           System.out.printf("%s给20元钱，找您一张5元和一张10元，这是您的1张入场卷",
+                             Thread.currentThread().getName());
+        }
+       notifyAll();
+   }
+}
+class Cinema implements Runnable            //实现Runnable接口的类（电影院）。
+{  
+   Thread zhang,sun,zhao;                  //电影院中买票的线程。
+   TicketSeller seller;                      //电影院的售票员。
+  Cinema()
+   {
+      zhang=new Thread(this);
+      sun=new Thread(this);
+      zhao=new Thread(this);
+      zhang.setName("张小有");
+      sun.setName("孙大名");
+      zhao.setName("赵中堂");
+      seller=new TicketSeller();
+   } 
+   public void run()
+   {
+       if(Thread.currentThread()==zhang)
+       {
+          seller.sellTicket(20);
+       }
+       else if(Thread.currentThread()==sun)
+       {
+          seller.sellTicket(10);
+       }
+       else if(Thread.currentThread()==zhao)
+       {
+          seller.sellTicket(5);
+       }
+   }
+}
+public class Example
+{
+    public static void main(String args[])
+    {
+        Cinema a=new Cinema();
+        a.zhang.start();
+        a.sun.start();
+        a.zhao.start();
+    }
+}

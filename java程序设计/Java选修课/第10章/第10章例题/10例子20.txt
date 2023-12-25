@@ -1,0 +1,38 @@
+import java.awt.*; 
+import java.awt.event.*;
+import javax.swing.*;
+class MyWindow extends JFrame
+{ 		
+    JButton button;
+    MyWindow(String s) 
+    { 
+      super(s);
+      addWindowListener(new WindowAdapter()
+                            {              //匿名类对象做监视器。
+                               public void windowClosing(WindowEvent e)
+                                {  
+                                   System.exit(0);
+                                }
+                                public void windowIconified(WindowEvent e)
+                                {  
+                                   button.setBackground(Color.yellow);
+                                }
+                            } 
+                       );
+      button=new JButton("按钮");
+      Container con=getContentPane();
+      con.setLayout(new FlowLayout());
+      con.add(button); 
+      setBounds(100,100,150,150);
+      setVisible(true);
+      validate();
+      setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+    }
+}
+class Example
+{
+    public static void main(String args[])
+    { 
+       MyWindow win=new MyWindow("窗口");
+    }
+}

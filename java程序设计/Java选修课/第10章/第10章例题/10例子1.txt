@@ -1,0 +1,36 @@
+import javax.swing.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+class FirstWindow extends JFrame  
+{  
+    JMenuBar menubar;
+    JMenu menu;
+    JMenuItem  item1,item2; 
+    FirstWindow(String s) 
+    {  
+      super(s);        
+      setSize(160,170);
+      setLocation(120,120);
+      setVisible(true);               
+      menubar=new JMenuBar(); 
+      menu=new JMenu("文件");   
+      item1=new JMenuItem("打开",new ImageIcon("open.gif"));
+      item2=new JMenuItem("保存",new ImageIcon("save.gif"));
+      item1.setAccelerator(KeyStroke.getKeyStroke('O')); 
+      item2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_MASK));         
+      menu.add(item1);
+      menu.addSeparator();
+      menu.add(item2);
+      menubar.add(menu);
+      setJMenuBar(menubar);
+      validate();
+      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    } 
+}
+public class Example
+{  
+    public static void main(String args[])
+    { 
+      FirstWindow win=new FirstWindow("一个简单的窗口");
+    }
+}

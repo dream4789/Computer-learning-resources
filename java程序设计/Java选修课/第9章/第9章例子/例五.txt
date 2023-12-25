@@ -1,0 +1,47 @@
+import java.io.*;
+public class Example
+{  
+   public static void main(String args[ ])
+   { 
+      File readFile=new File("Student.txt"),
+      		
+           writeFile=new File("Hello.txt");
+           
+      try{
+      		readFile.createNewFile();
+      		writeFile.createNewFile();
+           FileReader  inOne=new FileReader("Student.txt");//reading from student
+           BufferedReader inTwo= new BufferedReader(inOne);
+           
+           FileWriter  tofile=new FileWriter("hello.txt");//writing to hellos
+           BufferedWriter out= new BufferedWriter(tofile);
+           
+           //writing to hello  and reading from student
+           String s=null;
+           int i=0;
+           while((s=inTwo.readLine())!=null)
+           {
+               i++;
+               out.write(i+" "+s);
+               out.newLine();//»»ÐÐ
+           }
+           out.flush();//Ë¢ÐÂ»º³åÇø
+           out.close();
+           tofile.close();//close output file
+           
+           //reading from hello
+           inOne=new FileReader("hello.txt");
+           inTwo= new BufferedReader(inOne);
+           while((s=inTwo.readLine())!=null)
+           {
+             System.out.println(s);
+           } 
+           inOne.close();
+           inTwo.close();
+      }
+      catch(IOException e)
+         {
+           System.out.println(e);
+         }  
+   }
+}

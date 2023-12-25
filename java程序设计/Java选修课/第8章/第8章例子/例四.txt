@@ -1,0 +1,52 @@
+class Bank implements Runnable
+{
+    private int money=0;
+    Thread zhang,cheng;
+    Bank()
+    {
+        //创建的bank对象是zhang的目标对象,Bank类必须实现Runnable接口。
+            zhang=new Thread(this); 
+       zhang.setName("会计");
+       cheng=new Thread(this);    //cheng 和zhang是同一目标对象。
+       cheng.setName("出纳");
+    } 
+    public void setMoney(int mount)
+    {
+        money=mount;
+    }
+   public void run()        //接口中的方法。
+    {   
+        while(true)
+         {
+            money=money-10;
+            if(Thread.currentThread()==zhang) 
+            {
+               System.out.printf("我是%s,现在有%d元\n",zhang.getName(),money);
+               if(money<=100)
+                  return;         //如果money少于50,zhang的run方法结束。    
+            } 
+           else if(Thread.currentThread()==cheng) 
+            {
+               System.out.printf("我是%s,现在有%d元\n",cheng.getName(),money);
+               if(money<=0)
+                  return;          //如果money少于0,cheng的run方法结束。   
+            } 
+         try{
+                 Thread.sleep(1800);
+            }
+         catch(InterruptedException e)
+            {
+            }
+         }
+    }
+}
+class Example
+{
+    public static void main(String args[ ])
+    {
+        Bank bank=new Bank();
+        bank.setMoney(170);               //线程的目标对象设置被线程共享的money。
+        bank.zhang.start();
+        bank.cheng.start();
+    }
+}

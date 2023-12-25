@@ -1,0 +1,58 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+class Win extends JFrame implements MouseMotionListener,MouseListener 
+{  
+    JButton button[]=new JButton[6];
+    JTextField text;
+    JLayeredPane layerPane;
+    Container con; 
+    Win()
+    { 
+      layerPane=new JLayeredPane();
+      layerPane.setLayout(new FlowLayout());
+      con=getContentPane();
+      con.add(layerPane,BorderLayout.CENTER);
+      for(int i=0;i<button.length;i++)
+         {
+           button[i]=new JButton("用鼠标拖动我"+i);
+           button[i].addMouseMotionListener(this);
+           button[i].addMouseListener(this);
+           layerPane.add(button[i],JLayeredPane.DEFAULT_LAYER);
+         } 
+      con.addMouseMotionListener(this);
+      setBounds(10,10,300,300);
+      setVisible(true); 
+      validate();
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void mouseMoved(MouseEvent e){} 
+    public void mouseDragged(MouseEvent e)
+    { 
+       JComponent source=(JComponent)e.getSource(); 
+       layerPane.setLayer(source,JLayeredPane.DRAG_LAYER);
+       int x=e.getX();
+       int y=e.getY();
+       java.awt.Point point=SwingUtilities.convertPoint(source,x,y,con);
+       int x1=(int)point.getX();         //获取鼠标指针在容器坐标系中的坐标。
+       int y1=(int)point.getY();
+       int w=source.getSize().width;
+       int h=source.getSize().height;
+       source.setLocation(x1-w/2,y1-h/2); //组件中心跟随鼠标指针移动。
+    }
+    public void mouseReleased(MouseEvent e)
+    {
+       JComponent source=(JComponent)e.getSource(); 
+       layerPane.setLayer(source,JLayeredPane.DEFAULT_LAYER);
+    }
+    public void mousePressed(MouseEvent e){}
+    public void mouseEntered(MouseEvent e){}
+    public void mouseExited(MouseEvent e){}
+    public void mouseClicked(MouseEvent e){}
+}
+public class Example
+{  public static void main(String args[])
+    { 
+       Win win=new Win();
+    }
+}

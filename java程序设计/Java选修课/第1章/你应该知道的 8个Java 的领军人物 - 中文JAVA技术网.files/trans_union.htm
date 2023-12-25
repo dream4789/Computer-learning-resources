@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0071)http://trans.netat.net/trans_union.php?width=240&height=500&uid=cn-java -->
+<HTML lang=gb2312 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>在线翻译_谷词在线词典</TITLE>
+<META http-equiv=content-type content=text/html;charset=GB2312>
+<META content=在线翻译|汉英翻译|翻译|谷词 name=keywords>
+<META content=在线翻译|汉英翻译|翻译|谷词 name=description><LINK 
+href="trans_union.files/search.css" rel=stylesheet>
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY 
+style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 220px; PADDING-TOP: 0px">
+<TABLE cellSpacing=0 cellPadding=0 align=center border=0>
+  <FORM name=from_trans action=trans_union.php method=post>
+  <TBODY>
+  <TR bgColor=#ffffff>
+    <TD>&nbsp;&nbsp;&nbsp;&nbsp;要翻译的内容&nbsp;&nbsp;<FONT 
+      color=red>(要翻译的内容不能超过300字)</FONT><BR>&nbsp;&nbsp; <TEXTAREA dir=ltr style="WIDTH: 200px; HEIGHT: 195px" name=from_content wrap=PHYSICAL></TEXTAREA> 
+      &nbsp;&nbsp;&nbsp;&nbsp;从 <SELECT name=langpair> <OPTION value=en_zh 
+        selected>英语 翻译成 中文(简体)</OPTION><OPTION value=zh_en>中文(简体) 翻译成 
+        英语</OPTION><OPTION value=en_jp>英语 翻译成 日文</OPTION><OPTION value=jp_en>日文 
+        翻译成 英语</OPTION><OPTION value=en_kr>英语 翻译成 韩文</OPTION><OPTION 
+        value=kr_en>韩文 翻译成 英语</OPTION><OPTION value=en_tw>英语 翻译成 
+        繁体中文</OPTION><OPTION value=tw_en>繁体中文 翻译成 英语</OPTION></SELECT> <INPUT onclick="return check(1);" type=button value=自动翻译 name=submit_1> 
+      <INPUT type=hidden value=cn-java name=uid> <INPUT type=hidden value=500 
+      name=height> <INPUT type=hidden value=240 name=width> <INPUT onclick="return check(2);" type=button value=人工翻译 name=submit_1> 
+      &nbsp;&nbsp;<FONT id=errormsg color=red></FONT> </TD></TR></FORM>
+  <TR>
+    <TD>
+      <DIV 
+      style="BORDER-RIGHT: #e7efff 1px solid; BORDER-TOP: #e7efff 1px solid; MARGIN-TOP: 10px; FONT-SIZE: 14px; BACKGROUND: #fffbff; MARGIN-LEFT: 15px; OVERFLOW: hidden; BORDER-LEFT: #e7efff 1px solid; WIDTH: 200px; BORDER-BOTTOM: #e7efff 1px solid; HEIGHT: 195px"></DIV></TD></TR></TBODY></TABLE>
+<SCRIPT language=javascript>
+function check(type)
+{
+	document.getElementById("errormsg").innerHTML="";
+	if(type == 1)
+	{
+		if(document.from_trans.from_content.value.length < 1)
+		{
+			document.getElementById("errormsg").innerHTML="要翻译的内容不能为空";
+			return false;
+		}
+		if(document.from_trans.from_content.value.length > 300)
+		{
+			document.getElementById("errormsg").innerHTML="要翻译的内容已经超过300字";
+			return false;
+		}
+
+		document.from_trans.action = "trans_union.php";
+		document.from_trans.target = "_self";
+	}
+	else
+	{
+		if(document.from_trans.from_content.value.length < 1)
+		{
+			document.getElementById("errormsg").innerHTML="要翻译的内容不能为空";
+			return false;
+		}
+
+		document.from_trans.action = "http://trans.netat.net/center_dingdan.php";
+		document.from_trans.target = "_blank";
+	}
+	
+	document.from_trans.submit();
+	return true;
+}
+</SCRIPT>
+</BODY></HTML>

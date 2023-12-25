@@ -1,0 +1,32 @@
+class A
+{
+     protected  double x=10,y=12.56;
+     public void speak()
+     {
+         System.out.println("Œ“œ≤ª∂NBA");
+     }
+     public void cry()
+     { 
+         y=x+y;   
+         System.out.printf("y=%f\n",y);
+     }
+}
+class B extends A
+{
+     int y=100,z;
+     public void speak()
+     {
+         z=2*y;
+         System.out.println("I love This Game");
+         System.out.printf("y=%d,z=%d",y,z);
+     } 
+}
+class Example
+{    
+     public static void main(String args[ ])
+     {
+         B b=new B();
+           b.cry()  ;
+           b.speak();
+     }  
+}

@@ -1,0 +1,29 @@
+interface  ShowMessage 
+{  
+    void showTradeMark();
+}
+class TV implements ShowMessage 
+{  
+    public void showTradeMark() 
+    { 
+       System.out.println("我是电视机");
+    }
+}
+class PC implements ShowMessage 
+{ 
+    public void showTradeMark() 
+    {  
+        System.out.println("我是电脑");
+    }
+}
+public class Example
+{  
+    public static void main(String args[])
+    { 
+ShowMessage sm;
+sm=new TV();
+sm.showTradeMark();
+sm=new PC();
+sm.showTradeMark();
+    } 
+}

@@ -1,0 +1,65 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import java.util.regex.*;
+import javax.swing.event.*;
+class EditWindow extends JFrame implements DocumentListener 
+{  
+    JTextArea text1,text2;
+    JTextField modelText;
+    Pattern  p;                              //模式对象。
+    Matcher  m;                             //匹配对象。
+    EditWindow(String s) 
+    {  
+      super(s);        
+      setSize(260,270);
+      setLocation(120,120);
+      setVisible(true);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);               
+      text1=new JTextArea();
+      text2=new JTextArea();
+      text1.setLineWrap(true);
+      text1.setWrapStyleWord(true);
+      text2.setLineWrap(true);
+      text2.setWrapStyleWord(true);
+      modelText=new JTextField("[0123456789]+");
+      Container con=getContentPane();
+      JPanel panel=new JPanel();
+      panel.setLayout(new GridLayout(1,2));
+      panel.add(new JScrollPane(text1));
+      panel.add(new JScrollPane(text2));
+      panel.validate();
+      con.add(panel,BorderLayout.CENTER);
+      con.add(modelText,BorderLayout.SOUTH);
+      con.validate();
+      validate();
+      (text1.getDocument()).addDocumentListener(this);//向文档注册监视器。
+    } 
+    public void changedUpdate(DocumentEvent e)    //接口方法。 
+    {
+         text2.setText(null);
+         String s=text1.getText();
+         p=Pattern.compile(modelText.getText());  //初试化模式对象。
+         m=p.matcher(s);                       
+         while(m.find())
+         {
+           text2.append(m.group()+",");
+         } 
+    } 
+    public void removeUpdate(DocumentEvent e)//接口方法。
+    {
+       changedUpdate(e);
+    }
+    public void insertUpdate(DocumentEvent e)//接口方法。
+    {    
+       changedUpdate(e);
+    }
+
+}
+public class Example
+{  
+    public static void main(String args[])
+    { 
+      EditWindow win=new EditWindow("窗口");
+    }
+}

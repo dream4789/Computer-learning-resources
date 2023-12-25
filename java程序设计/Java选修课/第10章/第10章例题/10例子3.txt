@@ -1,0 +1,24 @@
+import javax.swing.*;
+import java.awt.*; 
+class Example
+{
+    public static void main(String args[])
+    {
+       JFrame win=new JFrame("窗体"); 
+       win.setBounds(100,100,300,300);
+       win.setVisible(true);
+       JButton bSouth=new JButton("南"),
+              bNorth=new JButton("北"),
+              bEast =new JButton("东"),
+              bWest =new JButton("西");
+       JTextArea  bCenter=new JTextArea("中心");
+       Container contenetPane=win.getContentPane();
+       contenetPane.add(bNorth,BorderLayout.NORTH);
+       contenetPane.add(bSouth,BorderLayout.SOUTH);
+       contenetPane.add(bEast,BorderLayout.EAST);
+       contenetPane.add(bWest,BorderLayout.WEST); 
+       contenetPane.add(bCenter,BorderLayout.CENTER);
+       contenetPane.validate();
+       win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}

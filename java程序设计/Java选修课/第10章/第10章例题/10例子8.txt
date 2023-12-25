@@ -1,0 +1,49 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.math.*;
+class MyWindow extends JFrame 
+{ 		
+    JTextField text1,text2;
+    MyWindow(String s) 
+    { 
+      super(s);
+      text1=new JTextField(10);
+      text2=new JTextField(15);
+      text1.addActionListener(new ActionListener()
+                                  {   //实现ActionListener接口的匿名类。
+                                      public void actionPerformed(ActionEvent e) 
+                                      {
+                                          String s=text1.getText();
+                                          try
+                                             { 
+                                                BigInteger n=new  BigInteger(s); 
+                                                n=n.pow(2);
+                                                text2.setText(n.toString());   
+                                             }
+                                          catch(NumberFormatException ee)
+                                             {
+                                                text2.setText("请输入数字字符");
+                                                text1.setText(null);
+                                             }  
+                                      }
+     
+                                  }
+                             );
+      Container con=getContentPane();
+      con.setLayout(new FlowLayout());
+      con.add(text1); 
+      con.add(text2); 
+      setBounds(100,100,150,150);
+      setVisible(true);
+      validate();
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
+class Example
+{
+    public static void main(String args[])
+    { 
+       MyWindow win=new MyWindow("窗口");
+    }
+}

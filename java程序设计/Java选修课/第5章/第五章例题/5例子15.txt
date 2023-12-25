@@ -1,0 +1,49 @@
+class B                      //B类的声明。
+{
+    double a;
+    void speak()
+    { 
+    }
+   void cry()
+    { 
+       System.out.println("我大声叫喊：加油!");
+    }
+}
+class A
+{
+   double b;
+   void f(B x)
+    {
+       x.speak();               //执行匿名类体中重写的speak。
+       x.cry();                 //执行匿名类体中继承的cry。
+    } 
+   void g()
+   {
+      //在方法g中,调用方法f。
+      f(new B()                   //向方法f传递一个匿名对象。
+              {                  //匿名类的类体：
+                 int z=100;       //匿名类的类体添加了新的变量。
+                 void speak()     //重写B类中的speak方法,继承B类的cry方法。
+                 {
+                     a=3.1415926; 
+                     b=a+10;     //使用了外嵌类的成员b。 
+                     System.out.printf("我悄悄地对你说:\nz=%d,a=%f,b=%f\n",z,a,b);
+                     h();        //调用了外嵌类的方法
+                 }
+              }                 //匿名类类体结束。
+              );
+   }
+  void h()
+    { 
+       System.out.println("我是A类的方法");
+    }
+}
+
+public class Example
+{
+   public static void main(String args[])
+   {
+      A a=new A();
+      a.g();
+   } 
+}

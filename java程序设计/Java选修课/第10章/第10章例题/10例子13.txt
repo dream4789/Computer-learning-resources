@@ -1,0 +1,84 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import java.io.*;
+import java.util.regex.*;
+import java.util.*;
+class GoodWindow extends JFrame implements ItemListener 
+{  
+    JComboBox list;
+    JTextArea text1,text2;
+    Pattern  p;        
+    Matcher  m;   
+    GoodWindow(String s) 
+    {  
+      super(s);        
+      setSize(500,370);
+      setLocation(120,120);
+      setVisible(true);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      text1=new JTextArea(12,12);  
+      text2=new JTextArea(12,12); 
+      list=new JComboBox();
+      list.addItem("Example.java");
+      list.addItem("A.java");
+      list.addItem("B.java");
+      Container con=getContentPane();
+      con.setLayout(new FlowLayout());
+      con.add(list);
+      con.add(new JScrollPane(text1));
+      con.add(new JScrollPane(text2));
+      con.validate();
+      validate();
+      list.addItemListener(this);
+     } 
+   public void itemStateChanged(ItemEvent e)
+    { 
+        String fileName=(list.getSelectedItem()).toString();
+        File readFile=new File(fileName);
+        text1.setText(null);
+        text2.setText(null);
+       try{
+           FileReader  inOne=new FileReader(readFile);
+           BufferedReader inTwo= new BufferedReader(inOne);
+           FileWriter  tofile=new FileWriter("hello.txt");
+           BufferedWriter out= new BufferedWriter(tofile);
+           String s=null;
+           int i=0;
+           while((s=inTwo.readLine())!=null)
+           {
+               text1.append("\n"+s);
+           }
+           out.flush();
+           out.close();
+           tofile.close();
+           String  content=text1.getText();    //待匹配的字符序列。
+           p=Pattern.compile("[\\s(]{1}[A-Z]+\\w+");//初试化模式对象:空格或'('开头的大写单词。
+           m=p.matcher(content);
+           TreeSet<String> tree=new TreeSet<String>();        
+           while(m.find())
+           {
+              String str=m.group();
+              str=str.substring(1);          //去掉空格或'('字符.
+              tree.add(str);
+           } 
+           Iterator<String> iter=tree.iterator();
+           while(iter.hasNext())
+           {
+              String item=iter.next();
+              text2.append("\n"+item);
+           }
+         }
+       catch(IOException ex)
+           {
+              text1.setText(ex.toString());   
+           }
+     }
+}
+public class Example
+{  
+    public static void main(String args[])
+    { 
+      GoodWindow win=new GoodWindow("窗口");
+    }
+}

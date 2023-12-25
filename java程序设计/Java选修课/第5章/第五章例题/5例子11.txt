@@ -1,0 +1,45 @@
+interface Computable 
+{  
+    final int MAX=100;
+    int f(int x);
+    public abstract int g(int x,int y);
+}
+
+class A implements Computable 
+{
+    public int f(int x)
+    {
+       return x*x;
+    } 
+   public int g(int x,int y)
+    {
+       return x+y;
+    }
+}
+class B implements Computable 
+{
+    public int f(int x)         
+    {
+       return x*x*x;
+    } 
+   public int g(int x,int y)
+    {
+       return x*y;
+    }
+}
+
+interface cc extends Computable{
+	
+}
+public class Example
+{ 
+    public static void main(String args[]) 
+    {
+       A a=new A();
+       B b=new B();
+       System.out.println(a.MAX);
+       System.out.println(""+a.f(10)+" "+a.g(12,2));
+       System.out.println(b.MAX);
+       System.out.println(""+b.f(10)+" "+b.g(12,2));
+    }
+}

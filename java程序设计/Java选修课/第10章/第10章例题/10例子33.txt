@@ -1,0 +1,63 @@
+import javax.swing.*;
+import java.awt.print.*;
+import java.awt.event.*;
+import java.awt.*;
+class PrinterWindow extends JFrame implements ActionListener,Printable   
+{  
+    PrinterJob  printerJob;
+    JButton button; 
+    PrinterWindow(String s) 
+    {  
+      super(s);        
+      setSize(160,170);
+      setLocation(120,120);
+      setVisible(true);  
+      button=new JButton("打印",new ImageIcon("a.gif"));
+      button.addActionListener(this);
+      Container con=getContentPane();
+      con.add(button,BorderLayout.CENTER);
+      validate();
+      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    } 
+   public void actionPerformed(ActionEvent e) 
+    {
+        printerJob=PrinterJob.getPrinterJob();
+        PageFormat pageFormat=printerJob.pageDialog(printerJob.defaultPage());
+         try{
+             boolean boo=printerJob.printDialog() ;
+             if(boo==true)
+              { 
+                 printerJob.setPrintable(this,pageFormat);
+                 printerJob.print();
+              }
+           }
+        catch(PrinterException ee){System.out.println(ee);}
+    } 
+  public int  print(Graphics graphics,PageFormat pageFormat,int pageIndex)
+    {
+   
+       if(pageIndex==0)                         //第1页打印当前窗口。
+        { 
+            graphics.translate(80,80);
+            this.paintAll(graphics);
+            return Printable.PAGE_EXISTS;       //通知打印机已经准备好了打印页。
+        }
+      else if(pageIndex==1)                     //第2页打印按钮。
+        { 
+            graphics.translate(80,80);
+            button.paintAll(graphics);
+            return Printable.PAGE_EXISTS;   
+        }
+      else     
+        { 
+             return Printable.NO_SUCH_PAGE;      //打印作业布置结束。
+        }
+    }
+}
+public class Example
+{  
+    public static void main(String args[])
+    { 
+      PrinterWindow win=new  PrinterWindow("窗口");
+    }
+}

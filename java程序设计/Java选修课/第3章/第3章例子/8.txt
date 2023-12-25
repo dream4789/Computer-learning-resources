@@ -1,0 +1,44 @@
+/**
+ * @(#)AA.java
+ *
+ *
+ * @author 
+ * @version 1.00 2010/9/2
+ */
+
+import java.util.Scanner;
+public class AA {
+
+    public AA() {
+    }
+    public static void main(String[] args){
+
+ 		int n,start,end,middle;
+ 		int a[]={-10,0,10,13,19,22,26,30,39,50,70,90,100};
+ 		start=0;
+ 		end=a.length-1;
+ 		middle=(start+end)/2;
+ 		 		
+ 		Scanner s=new Scanner(System.in);
+ 		System.out.println("请输入一个要查找的整数");
+ 		n=s.nextInt();
+ 		
+ 		while(start<=end){
+ 			if(n==a[middle])
+ 				break;
+ 			else if(n>a[middle])
+ 				start=middle+1;
+ 			else if(n<a[middle])
+ 				end=middle-1;
+ 			middle=(start+end)/2;
+ 		}
+ 		if(start<=end)
+ 			System.out.println(n+"在数组中第"+middle+"个元素");
+ 		else
+ 			System.out.println("不在数组中");
+
+    }
+    
+}
+
+

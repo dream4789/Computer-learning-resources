@@ -1,0 +1,11 @@
+public class Example
+{  
+    public static void main (String args[ ])
+    {
+        long x=5678;
+        float f=123.456789f;
+        double d=123456.12345678;
+        char c='a';
+        System.out.printf("%c\n%10.3f%n%f,%12d%n%d",c,f,d,x=x+2,x);
+    }
+}

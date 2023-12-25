@@ -1,0 +1,10 @@
+class A
+{ 
+    int a;
+    float b;
+    a=12;    //非法
+    b=12.56f; //非法
+    void f() 
+    {
+    }
+}

@@ -1,0 +1,35 @@
+class A  
+{  
+    float a,b;
+    void sum(float x,float y)
+    {  
+      a=max(x,y);
+      b=min(x,y);
+    }
+    static  float  getMaxSqrt(float x,float y) 
+    {   
+      float c;
+      c=max(x,y)*max(x,y);
+      return c;  
+    }
+    static  float max(float x,float y) 
+    {  
+        return x>y?x:y;
+    }
+    float min(float x,float y)  
+    {  
+        return x<y?x:y;
+    }
+}
+
+
+public class AA {
+
+    public AA() {
+    }
+    public static void main(String[] args){
+		A a=new A();
+		
+		System.out.println(a.getMaxSqrt(100,88));
+}
+}

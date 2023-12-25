@@ -1,0 +1,40 @@
+interface Computer<E,F>
+{
+   void makeChorus(E x,F y);
+}
+class Chorus<E,F> implements Computer<E,F>
+{
+   public void makeChorus(E x,F y)
+   {
+      x.toString();
+      y.toString();
+   }
+}
+class 乐器
+{
+   public String toString()
+   {
+      System.out.println("|5 6 3-|5  17 56|");
+      return "";
+   }
+}
+class 歌手
+{
+   public String toString()
+   {
+      System.out.println("好一朵美丽的茉莉花");
+      return "";
+   }
+}
+
+class Example
+{
+   public static void main(String args[ ])
+   {
+       Chorus<歌手 ,乐器> model=new Chorus<歌手,乐器>();    //创建一个对象model。
+       歌手 pengliyuan=new 歌手();
+       乐器 piano=new 乐器();
+       model.makeChorus(pengliyuan,piano);
+   }
+}
+ 

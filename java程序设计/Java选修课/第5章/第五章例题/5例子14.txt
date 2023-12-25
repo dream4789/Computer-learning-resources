@@ -1,0 +1,41 @@
+class NorthEast
+{
+   String land="黑土地";
+}
+class China
+{
+    int x=10,y=10;
+    LiaoNing dalian;             //内部类声明的对象，作为外嵌类的成员。
+    China()
+    {
+        dalian=new LiaoNing();
+    }
+    void f()
+    {
+       System.out.println("我是中国");
+       dalian.speak();
+    } 
+   class LiaoNing extends NorthEast       //内部类的声明。
+   {
+      int z;
+      //继承父类中的成员变量land
+      void speak()
+      { 
+        System.out.println("我是大连,z="+z+":"+land);
+      }
+      void g()
+      {
+         z=x+y; //使用外嵌类的成员变量x,y
+         f();//使用外嵌类的成员方法f()
+      }   
+   }
+}
+class Example
+{
+   public static void main(String args[])
+   {
+      China china=new China();
+      china.f();
+      china.dalian.g();
+   }   
+}

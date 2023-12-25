@@ -1,0 +1,66 @@
+class Father 
+{  
+      private int moneyDollar=300;
+      int moneyHK=200;
+      int add(int x,int y) 
+      { 
+          return x+y;
+      }
+    public int getDollar(){
+	return moneyDollar;
+	}
+}
+class Son extends Father 
+{   
+      int  moneyRMB=120;
+	//having moneyHK
+	//having add() getDoloar() methods
+      public void changMoneyHK(int x)
+      {
+          moneyHK=x;  
+      }
+      int subs(int x,int y)
+      {   
+          return x-y;      
+      }
+} 
+class GrandSon extends Son
+{	
+	//having moneyHK    moneyRMB
+	//having add() getDoloar()  changeMoneyHK()   subs() methods 
+      public void changMoneyRMB(int x)
+      {
+          moneyRMB=x;
+      }
+      int multi(int x,int y)
+      {
+          return x*y;      
+      }
+}
+public class Example
+{  
+    public static void main(String args[]) 
+    { 
+       int a=5,b=3; 
+       Son son=new Son();
+       GrandSon sunzi=new GrandSon();
+       son.changMoneyHK(60);
+       System.out.printf("儿子有港币,是继承的:%d,人民币,新增的的属性:%d\n",
+                           son.moneyHK,son.moneyRMB);
+       System.out.printf("儿子会减法,儿子新增的功能,%d-%d等于%d\n",
+                           a,b,son.subs(a,b));
+       System.out.printf("儿子还会加法,是继承的功能,%d+%d等于%d\n",
+                           a,b,son.add(a,b)); 
+
+       sunzi.changMoneyHK(20);
+       sunzi.changMoneyRMB(10); 
+       System.out.printf("孙子有港币,是继承的:%d,人民币:%d\n",
+                           sunzi.moneyHK,sunzi.moneyRMB); 
+       System.out.printf("孙子会乘法,孙子新增的功能,%d*%d等于%d\n",
+                           a,b,sunzi.multi(a,b));   
+       System.out.printf("孙子还会加法,是继承的功能,%d+%d等于%d\n",
+                           a,b,sunzi.add(a,b)); 
+       System.out.printf("孙子还会减法,是继承的功能,%d-%d等于%d\n",
+                           a,b,sunzi.subs(a,b)); 
+    }
+}

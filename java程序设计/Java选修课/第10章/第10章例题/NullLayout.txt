@@ -1,0 +1,29 @@
+import java.awt.*;
+import javax.swing.*;
+class WindowNull extends JFrame 
+{  
+    WindowNull(String s) 
+    { 
+      super(s);
+      Container  contenetPane=this.getContentPane();
+      contenetPane.setLayout(null);
+      JButton b1=null;
+      for(int i=0;i<5;i++){
+       	b1=new JButton("任意位置按钮"+i);
+      	int x=(int)(Math.random()*200);
+      	b1.setBounds(x,x,200,40);
+      	add(b1);
+      }
+      contenetPane.validate();
+      setBounds(200,200,450,420);
+      setVisible(true);
+      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+}
+class Example
+{
+    public static void main(String args[])
+    { 
+       WindowNull win=new WindowNull("Null布局窗口");
+    }
+}

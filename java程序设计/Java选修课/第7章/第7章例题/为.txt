@@ -1,0 +1,8 @@
+public int compareTo(Object b)
+ { 
+    Student st=(Student)b;
+    if((this.english-st.English)==0)
+         return 1;
+    else
+         return (this.english-st.english);
+ }

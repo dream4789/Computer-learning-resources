@@ -1,0 +1,34 @@
+interface  Show
+{  
+    void show();
+}
+class A implements Show 
+{  
+    public void show() 
+    { 
+       System.out.println("I love This Game");
+    }
+}
+class B implements Show 
+{ 
+    public void show() 
+    { 
+       System.out.println("我喜欢看NBA");
+    }
+}
+class C
+{
+    public void f(Show s)    //接口做参数
+    {
+       s.show();
+    }
+}
+public class Example 
+{  
+    public static void main(String args[])
+    { 
+        C c=new C();
+        c.f(new A());
+        c.f(new B());         
+    } 
+}

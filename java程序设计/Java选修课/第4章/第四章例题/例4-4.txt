@@ -1,0 +1,22 @@
+class Computer 
+{  
+    double x;
+	static double y; 
+    static double max(double a,double b)
+    {
+         //x=x+10;
+	y=y+10;
+	return a>b?a:b;
+    }
+}
+class Example
+{
+    public static void main(String args[])
+    {
+       double max=Computer.max(12,45);  //类名调用类方法。
+       System.out.println(max);      
+
+	Computer c1=new Computer();//对象名
+	System.out.println(c1.max(10,20));
+    }   
+}

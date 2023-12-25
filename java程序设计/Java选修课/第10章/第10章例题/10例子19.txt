@@ -1,0 +1,42 @@
+import java.awt.*; 
+import java.awt.event.*;
+import javax.swing.*;
+class MyWindow extends JFrame implements FocusListener
+{ 		
+    JTextField text;
+    JButton button;
+    MyWindow(String s) 
+    { 
+      super(s);
+      text=new JTextField(10);
+      button=new JButton("°´Å¥");
+      text.requestFocusInWindow();
+      Container con=getContentPane();
+      con.setLayout(new FlowLayout());
+      con.add(text); 
+      con.add(button); 
+      text.addFocusListener(this);
+      button.addFocusListener(this);
+      setBounds(100,100,150,150);
+      setVisible(true);
+      validate();
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+   public void focusGained(FocusEvent e)
+    {
+       JComponent com=(JComponent)e.getSource();
+       com.setBackground(Color.blue);
+    }
+   public void focusLost(FocusEvent e)
+    {
+       JComponent com=(JComponent)e.getSource();
+       com.setBackground(Color.red);
+    }
+}
+class Example
+{
+    public static void main(String args[])
+    { 
+       MyWindow win=new MyWindow("´°¿Ú");
+    }
+}

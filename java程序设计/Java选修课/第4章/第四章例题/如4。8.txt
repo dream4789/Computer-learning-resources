@@ -1,0 +1,12 @@
+class  B 
+{  
+    void f()
+    {  
+       this.g();           //对象调用方法f时又调用了方法g。
+    }
+   static  void g()
+    {  
+       System.out.println("ok");
+	//this.f();
+    } 
+}

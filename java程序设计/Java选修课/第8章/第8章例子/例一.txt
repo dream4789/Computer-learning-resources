@@ -1,0 +1,29 @@
+class  WriteWordThread extends Thread
+{
+   WriteWordThread(String s)
+   {
+       setName(s);//调用Thread类的方法setName为线程起个名字。
+   }
+   public void run()
+   {
+      for(int i=1;i<=8;i++)
+      {
+         System.out.println("我是一个线程，我的名字是"+getName());
+      }
+   }
+}
+public class Example
+{
+   public static void main(String args[ ])
+   {
+       WriteWordThread  zhang,wang;
+       zhang=new WriteWordThread("张小红");
+       wang=new WriteWordThread("JamsKeven");
+       zhang.start();
+      for(int i=1;i<=6;i++)
+      {
+         System.out.println("我是主线程中的语句");
+      }  
+     wang.start();//启动线程
+   }
+}

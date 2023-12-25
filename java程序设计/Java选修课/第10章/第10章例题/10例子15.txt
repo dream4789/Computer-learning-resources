@@ -1,0 +1,42 @@
+import javax.swing.*; 
+import javax.swing.tree.*;	
+import java.awt.*;
+import javax.swing.event.*;
+class Win extends JFrame implements TreeSelectionListener
+{   
+    JTree tree;
+    public Win()
+    {
+      Container con=getContentPane();
+      DefaultMutableTreeNode root=new DefaultMutableTreeNode("java程序设计");
+      DefaultMutableTreeNode node=new DefaultMutableTreeNode("组件");//节点。
+      DefaultMutableTreeNode nodeson1=new DefaultMutableTreeNode("树组件");
+      DefaultMutableTreeNode nodeson2=new DefaultMutableTreeNode("按钮组件");
+      root.add(node);
+      node.add(nodeson1);
+      node.add(nodeson2);
+      tree=new JTree(root); 
+      tree.addTreeSelectionListener(this);
+      JScrollPane scrollpane=new JScrollPane(tree);
+      con.add(scrollpane);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setVisible(true);
+      setBounds(80,80,300,300);
+      con.validate();
+      validate();
+    }
+    public void valueChanged(TreeSelectionEvent e)
+    {
+       DefaultMutableTreeNode node=
+           (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+       if(node.isLeaf())
+           this.setTitle((node.getUserObject()).toString());
+    }
+}
+public class Example
+{
+    public static void main(String args[])
+    {
+      Win win=new Win(); 
+    } 
+}

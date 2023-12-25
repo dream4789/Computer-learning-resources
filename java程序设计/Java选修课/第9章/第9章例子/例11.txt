@@ -1,0 +1,78 @@
+import java.io.*;
+class Goods implements Serializable 
+{  
+   String name=null;
+   Goods(String name)
+   {  
+         this.name=name;
+   }
+   public void setName(String name)
+   {  
+         this.name=name;
+   }
+   public String getName()
+   {
+         return name;
+   }
+}
+class Shop implements Serializable 
+{
+   Goods goods[ ];
+   public void setGoods(Goods s[ ])
+   {
+     goods=s;
+   }
+   public Goods[ ] getGoods()
+   {
+      return goods;
+   }
+}
+public class Example
+{ 
+   public static void main(String args[ ])
+   {  
+      Shop shop1=new  Shop();
+      Goods s1[]={new Goods("TV"),new Goods("PC")};
+      shop1.setGoods(s1);//创建一个商店对象，里面有两个物品对象
+      try
+      {  
+             ByteArrayOutputStream   out=new ByteArrayOutputStream();
+             ObjectOutputStream  objectOut=new ObjectOutputStream(out);
+             objectOut.writeObject(shop1);  //写入商店对象shop1
+             ByteArrayInputStream in=new ByteArrayInputStream(out.toByteArray());
+             ObjectInputStream objectIn=new ObjectInputStream(in);
+             Shop shop2=(Shop)objectIn.readObject();//读取商店对象,放到shop2中，那么shop2是shop1的深度克隆
+             Goods good1[ ]=shop1.getGoods();
+             Goods good2[ ]=shop2.getGoods();
+             System.out.println("shop1中的商品:");
+             for(int i=0;i<good1.length;i++)
+             {
+                System.out.println(good1[i].getName());
+             }
+             System.out.println("shop2是shop1的一个克隆,shop2中的商品:");
+             for(int i=0;i<good2.length;i++)
+             {
+                System.out.println(good2[i].getName());
+             }
+             System.out.println("更新shop2中货物，看看shop2更不更新");
+             Goods s2[]={new Goods("棉花"),new Goods("西服"),new Goods("篮球")};
+             shop2.setGoods(s2);
+             good1=shop1.getGoods();
+             good2=shop2.getGoods();
+             System.out.println("目前,shop2中的商品:");
+             for(int i=0;i<good2.length;i++)
+             {
+                System.out.println(good2[i].getName());
+             }
+             System.out.println("目前,shop1中的商品:");
+             for(int i=0;i<good1.length;i++)
+             {
+                System.out.println(good1[i].getName());
+             }
+      }
+      catch(Exception event)
+      {  
+         System.out.println(event);
+      }
+   }
+}

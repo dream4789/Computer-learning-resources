@@ -1,0 +1,68 @@
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+import java.io.*;
+class Dwindow extends JFrame implements ActionListener 
+{ 
+    JButton buttonColor,buttonFile;
+    JTextArea text;
+    JFileChooser fileChooser;
+    JToolBar bar;
+    Container con;
+    Dwindow() 
+    {  
+      fileChooser=new JFileChooser("c:/");
+      buttonColor=new JButton("设置颜色"); 
+      buttonFile=new JButton("打开文件");
+      text=new JTextArea("显示文件内容");
+      buttonColor.addActionListener(this);
+      buttonFile.addActionListener(this);
+      bar=new JToolBar();     //工具条对象
+      bar.add(buttonColor);
+      bar.add(buttonFile);
+      con=getContentPane();
+      con.add(bar,BorderLayout.NORTH);
+      con.add(new JScrollPane(text));
+      setBounds(60,60,300,300);
+      setVisible(true);
+      validate();
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void actionPerformed(ActionEvent e)
+    { 
+      if(e.getSource()==buttonColor)
+       {
+         Color newColor=JColorChooser.showDialog(this,"调色板",text.getForeground());
+         text.setForeground(newColor); 
+       }
+      else if(e.getSource()==buttonFile)  
+       { 
+          text.setText(null);
+          int n=fileChooser.showOpenDialog(con);
+          if(n==JFileChooser.APPROVE_OPTION)
+          {
+             File file=fileChooser.getSelectedFile();
+             try{
+                  FileReader readfile=new FileReader(file); 
+                  BufferedReader in=new BufferedReader(readfile);
+                  String s=null;
+                  while((s=in.readLine())!=null)
+                     {
+                        text.append(s+"\n");
+                     }   
+                 }
+            catch(IOException ee)
+                 {
+                   text.setText("你没有选择文件");   
+                 }
+         }
+      }
+   }
+}
+public class Example
+{ 
+    public static void main(String args[])
+    { 
+       new Dwindow();
+    }
+}

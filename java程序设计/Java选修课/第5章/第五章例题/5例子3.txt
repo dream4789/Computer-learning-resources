@@ -1,0 +1,23 @@
+class A
+{
+     protected  double y=12.56;
+}
+class B extends A
+{
+     int y=0;
+     void g()
+     {
+         y=y+100;
+         System.out.printf("y=%d\n",y);
+     }
+}
+class Example
+{    
+     public static void main(String args[ ])
+     {
+         B  b=new B();
+            b.y=-100;
+            b.g();
+     }  
+   
+}

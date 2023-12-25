@@ -1,0 +1,48 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+class CheckBoxWindow extends JFrame implements ItemListener 
+{  
+    JCheckBox box1,box2;
+    JTextField text;
+    CheckBoxWindow(String s) 
+    {  
+      super(s);        
+      setSize(260,270);
+      setLocation(120,120);
+      setVisible(true);
+      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);   
+      box1=new JCheckBox("box1",new ImageIcon("a.gif"));
+      box2=new JCheckBox("box2");
+      box1.setSelectedIcon(new ImageIcon("b.gif"));
+      text=new JTextField(20);
+      Container con=getContentPane();
+      con.setLayout(new FlowLayout());
+      con.add(box1);
+      con.add(box2);
+      con.add(text);
+      con.validate();
+      validate();
+      box1.addItemListener(this);
+      box2.addItemListener(this);
+    } 
+   public void itemStateChanged(ItemEvent e)
+    {
+       JCheckBox box=(JCheckBox)e.getItemSelectable();
+       if(box.isSelected())
+       {
+          text.setText(box.getText()+"从未选中到选中");
+       }
+       else
+       {
+          text.setText(box.getText()+"从选中到未选中");
+       }   
+    }
+}
+public class Example
+{  
+    public static void main(String args[])
+    { 
+     CheckBoxWindow win=new CheckBoxWindow("窗口");
+    }
+}

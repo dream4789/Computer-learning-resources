@@ -1,0 +1,16 @@
+class Tom
+{
+    final int MAX=100;
+    static final int MIN=20; 
+}
+class Example
+{
+    public static void main(String args[])
+    {
+        System.out.println(Tom.MIN);
+        Tom tom=new Tom();
+        int x=0;
+        x=Tom.MIN+tom.MAX;
+        System.out.println(x);
+    }
+}

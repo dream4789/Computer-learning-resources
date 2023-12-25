@@ -1,0 +1,63 @@
+import java.awt.*; 
+import java.awt.event.*;
+import javax.swing.*;
+class MyWindow extends JFrame implements MouseListener 
+{ 		
+    JButton button;
+    JTextArea textArea;
+    Container con; 
+    MyWindow() 
+    { 
+      con=getContentPane();
+      con.setLayout(new FlowLayout());
+      con.addMouseListener(this);
+      button=new JButton("我是按钮"); 
+      button.addMouseListener(this);
+      textArea=new JTextArea(8,28);
+      con.add(button); 
+      con.add(new JScrollPane(textArea));
+      setBounds(100,100,150,150);
+      setVisible(true);
+      validate();
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+   public void mousePressed(MouseEvent e)
+   { 
+      textArea.append("\n鼠标按下,位置:"+"("+e.getX()+","+e.getY()+")");
+   }
+   public void mouseReleased(MouseEvent e) 
+   {
+      if(e.getSource()==button)
+       {
+          textArea.append("\n在按钮上鼠标送开,位置:"+"("+e.getX()+","+e.getY()+")");
+       }
+   }
+   public void mouseEntered(MouseEvent e) 
+   {
+       if(e.getSource()==button)
+       {
+         textArea.append("\n鼠标进入按钮,位置:"+"("+e.getX()+","+e.getY()+")");
+       }  
+   }
+   public void mouseExited(MouseEvent e)
+   {
+       if(e.getSource()==con)
+       {
+         textArea.append("\n在鼠标离开容器,位置:"+"("+e.getX()+","+e.getY()+")");
+       }
+   }
+   public void mouseClicked(MouseEvent e)
+   {
+      if(e.getModifiers()==InputEvent.BUTTON3_MASK&&e.getClickCount()>=2)
+       {
+         textArea.setText("您双击了鼠标右键");
+       }
+   }
+}
+class Example
+{
+    public static void main(String args[])
+    { 
+       MyWindow win=new MyWindow();
+    }
+}

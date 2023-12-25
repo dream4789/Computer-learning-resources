@@ -1,0 +1,64 @@
+class A implements Runnable
+{
+    Thread  zhangXiao,zhengMing,teacher;
+    A()
+    {
+       teacher=new Thread(this); 
+       zhangXiao=new Thread(this); 
+       zhangXiao.setName("张小");
+       zhengMing=new Thread(this); 
+       zhengMing.setName("郑明");
+    } 
+    public void run()      
+    {   
+           if(Thread.currentThread()==zhangXiao)
+           {
+             try{
+                   System.out.printf("\n%s休息10秒后再说问候语\n",zhangXiao.getName());
+                   Thread.sleep(10000);
+                }
+            catch(InterruptedException e)
+               {
+                   System.out.printf("\n%s被吵醒了",zhangXiao.getName());
+               }
+             System.out.printf("\n早上好！"); 
+           }
+          else if(Thread.currentThread()==zhengMing)
+           {
+             try{
+                   System.out.printf("\n%s休息10秒后再说问候语\n",zhengMing.getName());
+                   Thread.sleep(10000);
+                }
+            catch(InterruptedException e)
+               {
+                   System.out.printf("\n%s被吵醒了",zhengMing.getName());
+               }
+             System.out.printf("\ngood morning!"); 
+           }
+          else if(Thread.currentThread()==teacher)
+           {
+              for(int i=1;i<=3;i++)
+              {
+                   System.out.printf("\t上课!");
+                   try{
+                         Thread.sleep(500);
+                      }
+                     catch(InterruptedException e)
+                      {
+                      } 
+               }
+              zhengMing.interrupt();           //吵醒zhengMing。
+              zhangXiao.interrupt();           //吵醒zhangXiao。
+           }
+    }
+}
+class Example
+{
+    public static void main(String args[])
+    {
+        A a=new A();
+        a.zhangXiao.start();
+        a.zhengMing.start();
+        a.teacher.start();
+    }
+}

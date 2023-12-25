@@ -1,0 +1,30 @@
+import java.awt.*;
+import javax.swing.*;
+class WindowFlow extends JFrame 
+{  
+    WindowFlow(String s) 
+    { 
+      super(s);
+      Container  contenetPane=this.getContentPane();
+      FlowLayout flow=new FlowLayout();
+      flow.setAlignment(FlowLayout.LEFT);
+      flow.setHgap(2);
+      flow.setVgap(8);
+      contenetPane.setLayout(flow);
+      for(int i=1;i<=10;i++) 
+         { 
+           contenetPane.add(new JButton("i am "+i));
+         }
+      contenetPane.validate();
+      setBounds(100,100,150,120);
+      setVisible(true);
+      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+}
+class Example
+{
+    public static void main(String args[])
+    { 
+       WindowFlow win=new WindowFlow("FlowLayout²¼¾Ö´°¿Ú");
+    }
+}

@@ -1,0 +1,47 @@
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+class Win extends JFrame implements ItemListener
+{  
+    JComboBox list;
+    JTextArea text;
+    Win(String s) 
+    {  
+      super(s);        
+      setSize(260,270);
+      setLocation(120,120);
+      setVisible(true);
+      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      text=new JTextArea(12,12);               
+      list=new JComboBox();
+      list.setBackground(Color.red);
+      text.setForeground(Color.blue);
+      GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
+      String fontName[]=ge.getAvailableFontFamilyNames();
+      for(int i=0;i<fontName.length;i++)
+          { 
+             list.addItem(fontName[i]);
+          }
+      Container con=getContentPane();
+      con.add(list,BorderLayout.NORTH);
+      con.add(text,BorderLayout.CENTER);
+      list.addItemListener(this);
+      setVisible(true); 
+      setBounds(100,120,300,300);
+      validate();
+    }
+    public void itemStateChanged(ItemEvent e)
+    {  
+      String name=(String)list.getSelectedItem();
+      Font f=new Font(name,Font.BOLD,32);
+      text.setFont(f);
+      text.setText("\nWelcome 2008±±¾©°ÂÔË");
+    }
+}
+public class Example
+{  
+    public static void main(String args[]) 
+    {  
+        Win win=new Win("ok");
+    }
+}

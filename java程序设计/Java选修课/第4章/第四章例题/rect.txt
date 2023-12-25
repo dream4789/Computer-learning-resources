@@ -1,0 +1,15 @@
+class Rect{
+	Rect(){width=0;height=0;}
+	Rect(double a,double b){
+	width=a;height=b;
+	}
+	double width,height;
+}
+
+class A{
+	public static void main(String[] args){
+		//Rect rectangleOne =new Rect();
+   
+    		Rect rectangleOne =new Rect(10,20);
+	}
+}
