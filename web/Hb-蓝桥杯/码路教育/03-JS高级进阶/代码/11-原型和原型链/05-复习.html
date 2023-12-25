@@ -1,0 +1,215 @@
+<!-- <script>
+    console.log(a);
+    var a = 110;
+    console.log(a);
+
+    fn();
+    function fn(){
+        console.log("fn...");
+    }
+
+    gn(); // 报错：gn is not a function
+    // 提升的仅仅是 var gn 
+    // 函数表达式本质就是一个变量
+    var gn = function(){
+        console.log("gn...");
+    }
+</script> -->
+
+<!-- <script>
+    var a = 110;
+    var b = ["a","b","c"];
+    function fn(){
+        console.log("fn...");
+    }
+    var obj = {
+        name:"wc",
+        age:18
+    };
+</script> -->
+
+<!-- <script>
+    var a = 110;
+    function fn(){
+        console.log("fn...");
+    }
+    fn();
+</script> -->
+
+<!-- <li>1</li>
+<li>2</li>
+<li>3</li>
+
+<script>
+    let lis = document.getElementsByTagName("li");
+    // 形成3个块级作用域    每一个块级作用域中都有自己的i
+    // 0  1  2
+    for(let i=0; i<lis.length; i++){
+        lis[i].onclick = function(){
+            console.log(i+1);
+        }
+    }
+</script> -->
+
+<!-- <script>
+    let add = function (n1, n2) { return n1 + n2 }
+    let sub = function (n1, n2) { return n1 - n2 }
+
+    // 高阶函数
+    function calc(n1, n2, func) {
+        console.log(func(n1, n2));
+    }
+    calc(1, 2, add)
+    calc(1, 2, sub)
+</script> -->
+
+<!-- <script>
+    let nums = [12,14,9,40,20,15];
+
+    let newArr = [];
+    // 命令式编程  最主流的编程方式：声明式编程
+    for(let i=0; i<nums.length; i++){
+        if(nums[i] % 2 == 0){
+            newArr.push(nums[i])
+        }
+    }
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+    let nums = [12, 14, 9, 40, 20, 15];
+
+    // 不要问为什么，后面手写filter
+    let newArr = nums.filter(function(item,index){
+        // console.log(item,index);
+        return item % 2 == 0;
+    })
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+    let nums = [12, 14, 9, 40, 20, 15];
+
+    let newArr = nums.map(function(item,index){
+        return item*item;
+    });
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+    var i = 5;
+    function fn(i) {
+        return function (n) {
+            console.log(n + (++i))
+        }
+    }
+    var f = fn(1);
+    fn(2);
+    fn(3)(4);
+    fn(5)(6);
+    f(7);
+    console.log(i);
+</script> -->
+
+
+<!-- <li>1</li>
+<li>2</li>
+<li>3</li>
+
+<script>
+    let lis = document.getElementsByTagName("li");
+    for (var i = 0; i < lis.length; i++) {
+        ; (function (i) {
+            lis[i].onclick = function () {
+                console.log(i + 1);
+            }
+        })(i)
+    }
+</script> -->
+
+<!-- <script>
+    // this = 123;
+
+    console.log(this);
+</script> -->
+
+<!-- <script>
+    function fn(){
+        console.log(this);
+    }
+
+    // fn(); // 独立的函数调用  this=>win
+
+    // 显示绑定   call  apply  bind是原型对象上的方法
+    fn.call({a:1});
+    console.dir(fn)
+</script> -->
+
+<!-- <script>
+    // new绑定：new做什么
+    function Person(){
+        // 1）在构造器内部创建一个空对象  {}  0x666   {a:1,b:2}
+        // 2）把函数内部的this赋值为0x666 （new绑定）   让this指向{}
+        // 3）执行函数中的代码
+        this.a = 1;
+        this.b = 2;
+        // 4）返回这个对象  返回的是地址
+    }
+    // new做了什么？
+    let p = new Person();  // 把地址赋值给p   p的值0x666
+    console.log(p);
+</script> -->
+
+<!-- <script>
+    // Person叫构造器  类
+    // 在JS中，函数还有其它的角色
+    // 其有一个角色，叫构造器  类   有了类，就可以new出来一个对象
+    function Person(){
+        console.log(this);
+    }
+
+    let res = Person(); // 函数独立调用
+    console.log(res);
+</script> -->
+
+<!-- <script>
+    // new 做了什么？
+    //    new的原理。 它的内部做了什么？
+    //    1）创建一个空对象
+    //    2）让函数内部的this指向这个对象  说白了，就是让对象的地址赋值给this
+    //    3）执行函数中代码 
+    //    4）返回对象  说白了，返回的是地址
+    function Person() {
+        this.a = 1;
+        this.b = 2;
+        console.log(this);
+    }
+
+    let res = new Person();
+    console.log(res);
+</script> -->
+
+<!-- <script>
+    function Animal(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    // console.dir(Animal);
+    let pig = new Animal("pig",10);
+    let pig2 = new Animal("pig2",10);
+    console.log(pig);
+</script> -->
+
+<!-- <script>
+    // var a = 1, b = 2, c = 3; // var a = 1; var b = 2; var c = 3;
+
+    let a = {}, b = { a: 1 }, c = { a: 2 };
+    // [object Object]
+    // a = { {a:1} : "ok", {a:2} : "bad" } 错的
+    // a = { '[object Object]': "bad" }
+    // 如果对象中的键是一个对象，会自动调用toString。
+    a[b] = "ok";  // b => '[object Object]'
+    a[c] = "bad";  // c => '[object Object]'
+    console.log(a);
+    console.log(a[b]);  // b => '[object Object]'
+</script> -->

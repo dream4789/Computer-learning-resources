@@ -1,0 +1,121 @@
+<!-- <script>
+    // 函数返回对象
+    // let f = ()=>{
+    //     return { name:"wc" }
+    // };
+
+    // 如果返回的是对象，对象需要使用()包起来
+    // 如果不包，对象的{}会当成函数的{}
+    let f = () => ({ name: "wc" })
+
+    console.log(f());
+</script> -->
+
+<!-- <script>
+    let p = {
+        name:"wc",
+        getName:function(){
+            // this是 p 隐式绑定
+            // 点前面是谁
+            console.log(this.name);
+        }
+    }
+
+    p.getName();
+</script> -->
+
+<!-- <script>
+    let p = {
+        name: "wc",
+        getName: function () {
+            setTimeout(function () {
+                // this表示window
+                // 定时器中的this表示window
+                // window中本身就有name
+                console.log(this.name);
+            }, 1000)
+        }
+    }
+
+    p.getName();
+</script> -->
+
+<!-- <script>
+    let p = {
+        name: "wc",
+        getName: function () {
+            let that = this;  // that就是p
+            setTimeout(function () {
+                console.log(that.name);
+            }, 1000)
+        }
+    }
+    p.getName();
+</script> -->
+
+<!-- <script>
+    let p = {
+        name: "wc",
+        getName: function () {
+            // .....
+            setTimeout(()=>{
+                // 可以这样理解：箭头函数中没有this
+                // 如果箭头函数中使用到了this,需要向外找一层，向外找一层的this，就是箭头函数中的this
+                console.log(this.name);
+            }, 1000)
+        }
+    }
+    p.getName();
+</script> -->
+
+<!-- <script>
+    let p = {
+        name: "wc",
+        getName: () => {
+            console.log(this.name);
+        }
+    }
+    p.getName();
+</script> -->
+
+<!-- <script>
+    let p = {
+        name: "wc",
+        getName: function () {
+            // console.log(this);
+            return () => {
+                console.log(this.name);
+            }
+        }
+    }
+    p.getName()();
+</script> -->
+
+<!-- <script>
+    let p = {
+        name: "wc",
+        getName: () => {
+            return () => {
+                console.log(this.name);
+            }
+        }
+    }
+    p.getName()();
+</script> -->
+
+<script>
+    let p = {
+        num: 1,
+        add: function (a) {
+            // this表示p
+            let f = v => v + this.num;
+            let b = { num2: 3 }
+
+            // call的作用：
+            //    问：f是箭头函数。箭头函数没有this
+            //    不能利用call,apply,bind改变箭头函数中的this
+            return f.call(b, a)
+        }
+    }
+    console.log(p.add(1));;
+</script>

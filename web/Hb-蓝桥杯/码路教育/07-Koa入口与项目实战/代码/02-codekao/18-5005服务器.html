@@ -1,0 +1,11 @@
+<script>
+    // ajax就是一个服务员，就是一个小兵
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            console.log(xhr.response);
+        }
+    }
+    xhr.open("get", "http://localhost:3000/");
+    xhr.send();
+</script>

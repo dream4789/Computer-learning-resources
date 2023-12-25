@@ -1,0 +1,7 @@
+<van-row custom-class="tips">
+  <van-col span="8"><van-icon color="darkred" name="checked" /> 30天无忧退货</van-col>
+  <van-col span="8"><van-icon color="darkred" name="checked" /> 48小时快速退费</van-col>
+  <van-col span="8"><van-icon color="darkred" name="checked" /> 满88元免邮费</van-col>
+</van-row>
+
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		Math 对象<br>
+		Math 对象用于执行数学任务。<br>
+
+		使用 Math 的属性和方法的语法：<br>
+		var pi_value=Math.PI;<br>
+		var sqrt_value=Math.sqrt(15);<br>
+		<hr>
+		<script>
+			var i;
+			//四舍五入
+			i = Math.round(5 / 2)
+
+			//取整 向下取整
+			i = Math.floor(5 / 2)
+
+			//绝对值
+			Math.abs(-100)
+
+			//随机数 [0,1)之间
+			i = Math.random()
+
+			//产生0-10之间的随机数？
+			i = Math.random() * 10
+
+			//产生5-10之间的随机数？
+			i = Math.random() * 5 + 5
+
+			//公式：取x到y之间的随机数:;
+			//Math.random()*(y-x)+x
+			
+			// 问题：如何产生 [0,10] 之间的随机整数？
+			// 有误差：Math.floor(Math.random()*10);
+			// console.log(Math.floor(Math.random()*10))
+			Math.floor(Math.random() * 11);
+			console.log(Math.floor(Math.random() * 11))
+
+			//方法：先产生0-    之间的随机数 然后        .
+
+
+			document.write(i);
+			//alert(i);
+
+			/*练习  写一个随机点菜的小程序
+			1 创建一个数组 
+			2 随机产生数组下标
+			3 将下标对应的数组元素 输出来.
+			js中定义数组:var arr=["鱼头豆腐","红烧排骨","土豆丝","西红柿鸡蛋汤","鸦片鱼头","小鸡炖蘑菇"]
+			*/
+			var arr = ["鱼头豆腐", "红烧排骨", "土豆丝", "西红柿鸡蛋汤", "鸦片鱼头", "小鸡炖蘑菇"]
+			document.write("<br/>", "今天吃：", arr[Math.floor(Math.random() * arr.length)]);
+		
+			console.log("换行:\n,\t,");
+			document.write("换\n行:<br>");  // \n在write里为 空格
+			alert("换行:\n,\t");
+		</script>
+	</body>
+</html>

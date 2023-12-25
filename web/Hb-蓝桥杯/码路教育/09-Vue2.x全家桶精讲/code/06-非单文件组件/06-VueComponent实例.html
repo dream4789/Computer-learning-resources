@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app1">
+			<h1>{{name}}</h1>
+		</div>
+		<script>
+			// Vue.extend 返回 VueComponent，是一个函数
+			// VueComponentK 是一个类，不需要我们去 new，当我们使用组件时，Vue 内部会帮我们去 new 
+			// 换句话说，一个组件就是一个对象，只不过这个对象不是我们 new 出来的,是 vue 底层帮我们 new出来的的
+
+			let Count = Vue.extend({
+				data() {
+					return {
+						count: 0
+					}
+				},
+				template: `
+                <div>
+                    <button @click='count--'>-</button>
+                    <span>{{count}}</span>  
+                    <button @click='count++'>+</button>
+                </div>`
+			})
+			console.log(Count);
+
+			// 下面是我们自己去 new 了这个类
+			let res = new Count();
+			console.log(res.$data);
+
+			let vm1 = new Vue({
+				template: `
+			       <div>
+			            <div>我是一个孤独的DIV</div>
+			            <hr/>
+			            <Count></Count>
+			       </div>`,
+				data() {
+					return {
+						name: "aaa"
+					}
+				},
+				components: {
+					Count
+				}
+			});
+			vm1.$mount(".app1")
+		</script>
+	</body>
+
+</html>

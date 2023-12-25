@@ -1,0 +1,125 @@
+<!-- 
+    我们需要掌握数组中内置的高阶函数
+        数组中内置的高阶函数，非常重要，特别是后面写项目的过程。
+ -->
+<!-- <script>
+    let nums = [19,20,9,30,12,15,50];
+    // 需要把里面偶数项过滤出来
+    let newArr = [];
+    // 命令式编程
+    for(let i=0; i<nums.length; i++){
+        if(nums[i] % 2 == 0){
+            newArr.push(nums[i])
+        }
+    }
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+    let nums = [19, 20, 9, 30, 12, 15, 50];
+    // 使用高阶函数，找出偶数项
+    // filter  过滤   filter是人家内置好的一个高阶函数，我们只需要去调用
+    // 函数调用时，写的参数都是实参
+    // function filter(func){ func(item) }
+    // 声明式编程  filter天生自带遍历功能
+    // filter的返回值是一个过滤完的新数组
+    let newArr = nums.filter(function(item,index){
+        // item表示数组中的每一项
+        // console.log(item,index);
+
+        // return 后面跟一个条件，当某一项条件为true时，就会把这一项过滤出来
+        return item % 2 == 0;
+    });
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+    // 手写filter 
+    let nums = [19, 20, 9, 30, 12, 15, 50];
+    let newArr = nums.filter(function (item, index) {
+        // item > 20是过滤条件
+        return item > 20;
+    });
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+    // 手写map
+    let nums = [19, 20, 9, 30, 12, 15, 50];
+
+    // map 本意：地图的意思  计算机中：映射
+    // map天生自带遍历功能
+    // map可以把数组中的每一个老元素，映射成新元素
+    // map是对数组中的每一项进行加工
+    // map返回一个加工后的新数组
+    let newArr = nums.map(function(item){
+        // console.log(item);
+        return item * 10
+    })
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+    let nums = [19, 20, 9, 30, 12, 15, 50];
+
+    // forEach是专门用来遍历数组的
+    let res = nums.forEach(function(item){
+        console.log(item);
+    })
+    console.log(res);
+</script> -->
+
+<!-- <script>
+    let nums = [19, 20, 9, 30, 12, 15, 50];
+
+    // find是查找数组中是否有某一个元素，如果找到返回这个元素
+    // 如果找不到，返回 und
+    let res = nums.find(function(item){
+        return item == 300
+    })
+    console.log(res);  // 30
+</script> -->
+
+
+<!-- <script>
+    let nums = [19, 20, 9, 30, 12, 15, 50, 30];
+
+    // findIndex是查找数组中某个元素的第1次出现的位置索引
+    // 如果找不到，返回-1
+    let res = nums.findIndex(function (item) {
+        return item == 300
+    })
+    console.log(res);  
+</script> -->
+
+<script>
+    let names = [
+        {name:"wc",age:10},
+        {name:"xq",age:13},
+        {name:"z3",age:16},
+        {name:"w5",age:28},
+    ];
+
+    // 返回找到的那个元素
+    let res = names.find(function(item){
+        return item.name === "z3"
+    })
+    console.log(res.age);
+</script>
+
+<!-- 
+
+    数组中常用的高阶函数有如下：
+        1）filter
+        2）map
+        3）find
+        4）findIndex
+        5）forEach
+        // --------------------
+        6）every()
+        7）indexOf()
+        8）reduce()
+        9）slice()
+        10）some()
+        11）splice()
+ -->

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		DOM获取元素
+		8种方案（两静态四动态两特殊）
+
+		<h2>1. 两个静态获取</h2>
+		一下两种方法不具有 实时性（只能获取页面已经存在的元素）
+		使用 css 选择器 进行选择（.类名）
+
+		<h2>1.1 querySelector</h2>
+		document.querySelector('选择器')
+		<hr />
+		在指定上下文中通过选择器获取第一个元素（只能获取一个），获取不到就是null
+
+		<h2>1.2 querySelectorAll</h2>
+		document.querySelectorAll(‘选择器’)
+		<hr />
+		在指定上下文中通过选择器获取一组元素集合，获取不到就是空元（通过数组方法取元素）
+
+
+		<h2>2. 四个动态获取</h2>
+		<h2>2.1 getElementById</h2>
+		document.getElementByid('id名')
+		<hr />
+		在document上下文下获取元素(通过Id获取的元素是一个元素对象，获取不到就是null)
+		
+		<h2>2.2getElementByTagName</h2>
+		document.getElementByTagName(‘标签名’)
+		<hr />
+		通过指定的上下文获取指定的标签，获取的是一个元素集合，如果没有获取到元素，那就是空元素集合 (通过数组方法取元素）
+		
+		<h2>2.3 getElementByName</h2>
+		document.getElementByName(‘标签名’)
+		<hr />
+		在整个文档中，通过标签的NAME属性值获取一组节点集合（在IE中只有表单元素的NAME才能识别，所以我们一般应用于表单元素的处理）
+
+		<h2>2.4 getElementClassName</h2>
+		document.getElementClassName('类名')
+		<hr />
+		通过指定的上下文或按照class名取指定的标签，获取的是一个元素集合，如果没有获取到元素,那就是空元素集合 (通过数组方法取元素）
+
+
+		<h2>3.两个特殊获取</h2>
+		<h2>3.1 document.body</h2>
+		var body=document.body;<br />
+		console.log(body);
+		<hr />
+
+		body 属性用于设置或返回文档体。
+		如果是返回, 该属性返回当前文档的 body 元素。
+		如果是设置, 该属性会覆盖所有在 body 元素中的子元素, 并用新的内容来替换它。
+
+		<h2>3.2 document.documentElement</h2>
+		var html=document.documentElement;<br />
+		console.log(html);
+		<hr />
+
+		documentElement 属性以一个元素对象返回一个文档的文档元素。
+		HTML 文档返回对象为HTML元素。
+		注意： 如果 HTML 元素缺失，返回值为 null。
+		
+		<h2>4.动态获取中id获取器</h2>
+		动态获取里面 id 得先存在 在获取<br />
+
+		id获取器是一个特殊的方法，可以不用变量接收通过id获取的值，直接用id名称调用
+
+		<!-- <div id="box"></div>
+		<script>
+			window.alert("niha")
+			console.log(box);
+		</script> -->
+
+	</body>
+</html>

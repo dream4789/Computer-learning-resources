@@ -1,0 +1,142 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=dataset-simple0
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%"></div>
+
+
+    <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+    <script type="text/javascript">var dom = document.getElementById('container');
+      var myChart = echarts.init(dom, null, {
+        renderer: 'svg',
+        useDirtyRect: false
+      });
+      var app = {};
+
+      var option;
+
+      option = {
+        legend: {},
+        tooltip: {},
+        
+        toolbox: {
+        	feature: {
+        		restore: {},
+        		saveAsImage: {}
+        	}
+        },
+
+        dataset: [{
+            source: [
+              ['duration of use', 'Average Prices', 'Median Value', 'Standard Deviation'],
+              ['4', 291060, 294263, 74331],
+              ['5', 267839, 259000, 83697],
+              ['6', 258304, 249586, 73335],
+              ['7', 226715, 208720, 73822],
+              ['8', 226223, 211549, 71705],
+              ['9', 226780, 206498, 76284],
+              ['10', 211338, 197388, 77909],
+              ['11', 220778, 203845, 86978],
+              ['12', 183906, 173701, 66202],
+              ['13', 203041, 188281, 83998],
+              ['14', 177672, 155509, 70037],
+              ['15', 184968, 163984, 84167],
+              ['16', 181058, 168820, 81764],
+              ['17', 159986, 144900, 72592],
+              ['18', 161298, 139690, 77256],
+            ]
+          },
+          // {
+          //   transform: {
+          //     type: 'ecStat:regression',
+          //     config: {
+          //       method: 'exponential'
+          //       // 'end' by default
+          //       // formulaOn: 'start'
+          //     }
+          //   }
+          // }
+        ],
+        xAxis: {
+          type: 'category',
+          // type: 'value',
+          name: 'duration of use',
+          position: 'left',
+          alignTicks: true,
+          axisLine: {
+            show: true,
+          },
+          axisLabel: {
+            formatter: '{value} year'
+          }
+        },
+        yAxis: {
+          type: 'value',
+          name: 'Sailing Price',
+          position: 'left',
+          alignTicks: true,
+          axisLine: {
+            show: true,
+          },
+          axisLabel: {
+            formatter: '${value}'
+          }
+        },
+        // Declare several bar series, each will be mapped
+        // to a column of dataset.source by default.
+        series: [{
+            type: 'bar',
+            label: {
+              position: 'top',
+              // show: true,
+              // rotate: 20,
+            },
+            color: '#d48265'
+          }, {
+            type: 'bar',
+            label: {
+              position: 'top',
+              // show: true,
+              // rotate: 20,
+            },
+            color: '#749f83',
+            // '#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83', '#ca8622'
+          }, {
+            type: 'scatter',
+            label: {
+              position: 'top',
+              show: true,
+              rotate: 20,
+            },
+            color: '#2f4554',
+            markLine: {
+              data: [{
+                type: 'average',
+                name: 'Avg'
+              }]
+            }
+
+
+            // datasetIndex: 1,
+            // yAxisIndex: 1,
+            //data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+          },
+
+
+        ]
+      };
+
+      if (option && typeof option === 'object') {
+        myChart.setOption(option);
+      }
+
+      window.addEventListener('resize', myChart.resize);
+    </script>
+  </body>
+</html>

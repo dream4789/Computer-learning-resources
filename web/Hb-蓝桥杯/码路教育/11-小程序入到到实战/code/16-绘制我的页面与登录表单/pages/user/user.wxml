@@ -1,0 +1,35 @@
+<view class="user">
+  <view class="top">
+    <image class="avatar" src="{{avatar}}" mode="widthFix"></image>
+      <view class="username" bindtap="gotoLogin">{{username}}</view>
+      <van-icon class="icon" name="arrow" />
+  </view>
+</view>
+
+<view class="down">
+    <van-grid column-num="3" square>
+      <van-grid-item wx:for="{{iconArr}}" wx:key="index" icon="{{item.icon}}" text="{{item.text}}" />
+    </van-grid>
+</view>
+
+<van-popup style="position: relative; z-index:99999;" show="{{ isShowLoginWindow }}" bind:close="onClose">
+  <van-cell-group>
+    <view class="login-form">
+      <van-field
+        bind:input="updateUsername"
+        value="{{ login_username }}"
+        label="用户名"
+        placeholder="请输入用户名"
+        error-message="{{username_err ? '请输入用户名' : ''}}"
+      />
+      <van-field  
+      bind:input="updatePassword"
+        value="{{ login_password }}"
+        label="密码"
+        placeholder="请输入密码"
+        error-message="{{password_err ? '请输入密码' : ''}}"
+      />
+      <van-button type="danger" block bindtap="goToLogin">登录</van-button>
+    </view>
+  </van-cell-group>
+</van-popup>

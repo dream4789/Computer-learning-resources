@@ -1,0 +1,56 @@
+<!-- 
+    每个对象身上都有一个__proto__属性
+        __proto__叫隐式原型
+
+    每个构造器（类）上都有一个叫prototype属性
+        prototype叫显示原型
+
+    显示原型和隐式原型指向同一个对象
+ -->
+
+<!-- <script>
+     function fn(){
+         console.log("fn...");
+     }
+     console.dir(fn);
+ </script> -->
+
+<!-- <script>
+    // arr1是对象  对象身上都有一个隐式原型
+    // Array是类，也叫构造器，本质就是函数
+    // 函数身都都一个显示原型
+    let arr1 = new Array("wc", "xq");
+    let arr2 = new Array("jj");
+    console.log(Array.prototype == arr1.__proto__); // true
+    console.log(Array.prototype == arr2.__proto__); // true
+    console.log(arr1.__proto__.__proto__ == Object.prototype); // true
+    console.log(arr1.__proto__.__proto__.__proto__); // null
+
+    let obj1 = new Object()
+</script> -->
+
+<!-- <script>
+    // 构造器
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+
+    let p = new Person("wc",18);
+
+    console.log(p.__proto__.constructor == Person); // true
+</script> -->
+
+<script>
+    let num = new Number(110);
+    console.log(num.__proto__.constructor == Number);
+
+    // 1）一切都是对象
+    // 2）对象是属性的无序集合
+    // 3）属性分公有属性和私有属性
+    // 4）每个对象身上都有一个__proto__属性，叫隐式原型 
+    // 5）每个函数身上都有一个prototype属性，叫显示式原型
+    // 6）对象的隐式原型和函数的显示原型，指向一个对象，叫原型对象
+    // 7）每一个原型对象身上有一个constructor属性，指向函数本身
+    
+</script>

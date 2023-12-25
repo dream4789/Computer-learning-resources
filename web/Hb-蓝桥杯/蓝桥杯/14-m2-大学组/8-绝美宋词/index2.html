@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>绝美宋词</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="./js/vue.min.js"></script>
+		<script src="./js/axios.min.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<h1 style="text-align: center">输入关键字，找一首词</h1>
+			<!-- TODO：待补充代码 -->
+			<div class="search-form">
+				<input type="text" id="search" v-model.trim="kw" class="search" placeholder="词牌名 词句 词人" />
+				<ul class="suggestions">
+					<!-- 每一首完整词句用一个 li 包裹 -->
+					<li v-for="item in showdata">
+						<span class="poet" v-html="item.poetry_content"></span>
+						<span class="title" v-html="item.title + '-' +item.author"></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			let vm = new Vue({
+				el: '#app',
+				// TODO：待补充代码
+				data() {
+					return {
+						data: [],
+						showdata: [],
+						kw: ''
+					}
+				},
+				watch: {
+					kw(val) {
+						if (!val) {
+							return this.showdata = []
+						}
+						// 这里使用 json 是为了深拷贝，不然会影响原来的对象 this.data
+						this.showdata = JSON.parse(JSON.stringify(this.data)).reduce((arr, item) => {
+							for (let i in item) {
+								if (item[i].includes(val)) {
+									// 如果有包含关键字， 遍历这个对象，把所有包含关键字的替换高亮
+									for (let j in item) {
+										item[j] = item[j].replaceAll(val, `<span class="highlight">$&</span>`)
+									}
+									return [...arr, item]
+								}
+							}
+							return [...arr]
+						}, [])
+					}
+				},
+				created() {
+					axios.get('./data.json').then(res => this.data = res.data)
+				}
+			})
+		</script>
+	</body>
+
+</html>

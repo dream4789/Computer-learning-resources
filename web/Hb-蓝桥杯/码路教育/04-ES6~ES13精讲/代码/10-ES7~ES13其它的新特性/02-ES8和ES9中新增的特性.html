@@ -1,0 +1,61 @@
+<!-- <script>
+    // Object.value  是用来获取对象中所有的值
+
+    let obj = {
+        name: "wc",
+        age: 18,
+        height: 188
+    };
+
+    console.log(Object.keys(obj)); // ['name', 'age', 'height']
+
+    // ES8中  Object.values
+    console.log(Object.values(obj));  // ['wc', 18, 188]
+
+    // ES8中，Object.entries  键值对象   
+    console.log(Object.entries(obj));
+
+    for (let entry of Object.entries(obj)) {
+        let [key, value] = entry;
+        console.log(key + "---" + value);
+    }
+
+    console.log("------------");
+
+    console.log(Object.entries(["wc","xq"]));
+    console.log(Object.entries("hello"));
+</script> -->
+
+<!-- <script>
+
+    let str = "hello";
+    // padStart是前面补充
+    console.log(str.padStart(10,"0"));
+    console.log(str.padEnd(10,"*"));
+
+    // ES8中新增的API  String Padding 
+    // 185******90
+    let idCard = "410889344387487552";
+    // console.log(idCard.slice(-4));
+    let sliceNumber = idCard.slice(-4);  // 7552
+    idCard = sliceNumber.padStart(idCard.length,"*")
+    console.log(idCard);
+</script> -->
+
+<!-- <script>
+    // 在形参最后面，可以多一个逗号 
+    function foo(a,b,){
+        console.log(a+b);
+    }
+    foo(1,2)
+</script> -->
+
+<!-- <script>
+    // ES8中还有一个 async函数   重新
+</script> -->
+
+<script>
+    // ES9中添加了  iterator迭代器  等讲完ajax后说
+    // ES9中  在Promise上添加了finally方法
+    // .... 
+</script>

@@ -1,0 +1,164 @@
+<!-- <script>
+    function Fn() {
+        let a = 1;
+        this.a = a;
+    }
+    Fn.prototype.say = function () {
+        this.a = 2;
+    }
+    Fn.prototype = new Fn();
+    let f1 = new Fn();
+    Fn.prototype.b = function () {
+        this.a = 3;
+    }
+    console.log(f1.a)
+    f1.say();
+    console.log(f1.a)
+    f1.b();
+    console.log(f1.a)
+</script> -->
+
+<!-- <script>
+    function Foo() { }
+    const f1 = new Foo()
+    const f2 = new Foo()
+
+    const o1 = new Object()
+    const o2 = {}
+
+    // Foo instanceof Object  
+    // Foo instanceOf Function  
+    // Object instanceof Object  
+    // Function instanceof Function  
+    // Function instanceof Object  
+    // Object instanceof Foo
+    // f1 instanceof Function
+    // f1 instanceof Object
+</script> -->
+
+<!-- <script>
+    function Fn() {
+        this.x = 10;
+        this.y = 20;
+    }
+    // 把Fn当成了对象，给这个对象上添加一个n属性，值是1000
+    Fn.n = 1000;
+    // 还是把Fn当成了对象，给这个对象上添加一个say方法
+    Fn.say = function () {
+        console.log("hello")
+    }
+    // 给Fn的原型对象上，添加一个sum方法
+    Fn.prototype.sum = function () {
+        return this.x + this.y;
+    }
+    // new出一个f1对象
+    let f1 = new Fn();
+    f1.sum();  // f1.sum 找sum 
+    console.log(f1.sum());  // 30
+    console.log(Fn.prototype == Fn.__proto__);
+    Fn.sum();
+</script> -->
+
+<!-- <script>
+    function C1(name) {
+        if (name) {
+            this.name = name;
+        }
+    }
+    function C2(name) {
+        this.name = name;
+    }
+    function C3(name) {
+        this.name = name || "Hello";
+    }
+    C1.prototype.name = "Tom"
+    C2.prototype.name = "Tom"
+    C3.prototype.name = "Tom"
+    // "Tom" + und + "Hello";
+    console.log((new C1().name) + (new C2().name) + (new C3().name))
+</script> -->
+
+<!-- <script>
+    // 缺点：不能批量地创建对象
+    let coder = new Object();
+    coder.color = "red";
+    coder.coding = function(){
+        console.log("开始打代码...");
+    }
+    console.log(coder.color);
+    coder.coding();
+</script> -->
+
+<!-- <script>
+    // 利用工厂函数创建对象
+    // 缺点：每一个对象都属于Object的实例，浪费内存
+    function createCoder(){
+        let coder = new Object();
+        coder.color = "red";
+        coder.coding = function(){
+            console.log("开始打代码啦~");
+        }
+        return coder;
+    }
+
+    let coder1 = createCoder();
+    let coder2 = createCoder();
+    let coder3 = createCoder();
+</script> -->
+
+<!-- <script>
+    // 构造器创建对象
+    // 缺点：浪费内存
+    function Coder(color){
+        this.color = color;
+        this.coding = function(){
+            console.log("打代码....");
+        }
+    }
+
+    // coder1 coder2 coder3属于Coder类的实例
+    let coder1 = new Coder("red");
+    let coder2 = new Coder("red");
+    let coder3 = new Coder("red");
+</script> -->
+
+<!-- <script>
+    // 构造器 + 原型对象 创建对象
+    function Coder(color) {
+        this.color = color;
+    }
+
+    Coder.prototype.coding = function(){
+        console.log("打代码");
+    }
+
+    let coder1 = new Coder("red");
+    let coder2 = new Coder("red");
+    let coder3 = new Coder("red");
+</script> -->
+
+<script>
+    // new 是运算符  
+    // 只能使用函数去模拟new运算符
+
+    // 手写new的实现
+    function myNew(Fn, ...args){
+        let obj = {};  // 之前原型对象是Object的原型对象
+        obj.__proto__ = Fn.prototype; // 现在是Person的原型对象
+        Fn.apply(obj, args);
+        return obj;
+    }
+
+    function Person(a,b,c){
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+    Person.prototype.coding = function(){ console.log("打代码..."); }
+
+    // let p = new Person();  // new是人家的
+    
+    let p = myNew(Person,1,2,3);
+    console.log(p.a);
+    p.coding();
+</script>

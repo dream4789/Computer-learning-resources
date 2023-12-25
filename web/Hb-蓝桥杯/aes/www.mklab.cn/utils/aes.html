@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang='zh'>
+<head>
+
+		<title>AES在线加密解密工具 - MKLab在线工具 </title>
+
+<meta charset="utf-8">
+<meta name="author" content="monkey">
+<meta name="Robots" content="all">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0,minimum-scale=1.0,user-scalable=yes" />
+<meta http-equiv="Cache-Control" content="max-age=7200" />  
+<link rel="icon" href="https://cdn.mklab.cn/images/favicon.png" type="image/png" />
+
+	<link rel="stylesheet" href="/aes/www.mklab.cn/common/layui-v2.5.6/css/layui.css" media="all">
+	<link rel="stylesheet" href="/aes/www.mklab.cn/web/index/css/common.css" type="text/css"/>
+
+	<script type="text/javascript" src="/aes/www.mklab.cn/common/jquery-3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/aes/www.mklab.cn/common/jquery-3.3.1/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="/aes/www.mklab.cn/common/js/jqueryUtils.js"></script>
+	<script type="text/javascript" src="/aes/www.mklab.cn/common/layui-v2.5.6/layui.js"></script>
+	<script type="text/javascript" src="/aes/www.mklab.cn/common/jquery-nicescroll-3.7.6/jquery.nicescroll.min.js"></script>
+	<script type="text/javascript" src="/aes/www.mklab.cn/common/js/global.js"></script>
+
+<meta name="title" content="AES在线工具,AES加密解密,AES在线解密,ECB,CBC,CTR,CFB,OFB模式,Pkcs7,Pkcs5,NoPadding,ZeroPadding填充,CryptoJS加解密,Cipher加解密">
+<meta name="keywords" content="AES在线工具,AES加密解密,AES在线解密,ECB,CBC,CTR,CFB,OFB模式,Pkcs7,Pkcs5,NoPadding,ZeroPadding填充,CryptoJS加解密,Cipher加解密">
+<meta name="description" content="AES在线工具,AES加密解密,AES在线解密,ECB,CBC,CTR,CFB,OFB模式,Pkcs7,Pkcs5,NoPadding,ZeroPadding填充,CryptoJS加解密,Cipher加解密">
+
+<link rel="stylesheet" type="text/css" href="/aes/www.mklab.cn/web/utils/utils.css" />
+<link rel="stylesheet" type="text/css" href="/aes/www.mklab.cn/web/utils/tabs.css" />
+
+<script type="text/javascript" src="/aes/www.mklab.cn/common/crypto-js-4.0.0/crypto-js.js"></script>
+
+<script type="text/javascript" src="/aes/www.mklab.cn/common/clipboard-2.0.4/clipboard.min.js"></script>
+<script type="text/javascript" src="/aes/www.mklab.cn/common/jquery-format-0.1.2/jquery.format.js"></script>
+<script type="text/javascript" src="/aes/www.mklab.cn/web/utils/utils.js"></script>
+<script type="text/javascript" src="/aes/www.mklab.cn/web/utils/tabs.js"></script>
+<style type="text/css">
+.encrypt_label {
+	padding: 9px 2px;
+}
+.layui-form-radio{
+	padding-right:2px;
+}
+</style>
+	<script type="text/javascript" src="/aes/www.mklab.cn/common/particles.js-2.0.0/particles.min.js"></script>
+	<script type="text/javascript" src="/aes/www.mklab.cn/web/index/js/index_tpl.js"></script>
+	<script type="text/javascript" src="/aes/www.mklab.cn/web/index/js/header_tpl.js"></script>
+	<script type="text/javascript" src="/aes/www.mklab.cn/web/index/js/footer_tpl.js"></script>
+</head>
+
+<body> <!-- class="layui-layout-body" -->
+<div id="mk-tpl" class="layui-layout layui-layout-admin">
+	
+<div class="layui-header" id="mk-header">
+	<div class="layui-logo" id="mk-leftTop">
+		<!-- <a href="javascript:;" title="首页">
+			<img alt="" src="https://cdn.mklab.cn/images/icon.gif" class="layui-nav-img mk-logo">
+		</a> -->
+	</div>
+		<div class="mk-title">
+			<a href="/" title="首页">MK</a>
+		</div>
+	<div id="mk-centerTop">
+		<ul class="layui-nav layui-layout-left" >
+			<li class="layui-nav-item"><a href="/">首页</a></li>
+			<li class="layui-nav-item"><a href="/api">在线API</a></li>
+			<li class="layui-nav-item"><a href="/search">聚合搜索</a></li>
+			<li class="layui-nav-item"><a href="/open">站点推荐</a></li>
+			<!-- <li class="layui-nav-item"><a href="/javadoc">JavaDoc</a></li> -->
+			<!-- <li class="layui-nav-item"><a href="/linux">Linux命令</a></li> -->
+			<li class="layui-nav-item"><a href="//www.ixcl.cn" target="_blank" rel="noopener">博客</a></li>
+		</ul>
+	</div>
+	<div class="layui-nav layui-layout-right" id="mk-rightTop">
+		<form class="layui-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label">语言</label>
+			<div class="layui-input-inline" style="width:80px;">
+				<select name="lang" id="lang" lay-ignore="true">
+					<option value="zh-CN" selected="">中文</option>
+					<option value="en-US">English</option>
+				</select>
+			</div>
+		</div>
+		</form>
+	</div>
+
+</div>
+	
+	<div class="layui-body" id="mk-body">
+		<div id="mk-layout" class="mk-layout">
+			
+
+<div class="menus menus1">
+    <ul>
+        <div class="bg"></div>
+        <li id="md5"><span><a href="/aes/www.mklab.cn/utils/md5">MD5</a></span></li>
+        <li id="ripemd"><span><a href="/aes/www.mklab.cn/utils/ripemd">RipeMD</a></span></li>
+        <li id="sha"><span><a href="/aes/www.mklab.cn/utils/sha">SHA</a></span></li>
+        <li id="hmac"><span><a href="/aes/www.mklab.cn/utils/hmac">HMAC</a></span></li>
+        <li id="aes"><span><a href="/aes/www.mklab.cn/utils/aes">AES</a></span></li>
+        <li id="des"><span><a href="/aes/www.mklab.cn/utils/des">DES</a></span></li>
+        <li id="tripledes"><span><a href="/aes/www.mklab.cn/utils/tripledes">3DES</a></span></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<div id="mk-content" class="mk-tools">
+<header>
+	<div class="mk-subnav">
+		<img src="/aes/www.mklab.cn/web/index/img/aes_128.png" alt="AES在线加密解密工具">
+		<h1>AES在线加密解密工具</h1>
+	</div>
+	<p class="layui-elem-quote mk-intro" class="hidden">
+		AES密码学中的高级加密标准（Advanced Encryption Standard，AES），又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。<br>当用户密钥长度不足时，调用CryptoJS(128/192/256位)前不进行手动填充，采用框架自身机制，调用后台Java(128位)前将以0进行填充。
+	</p>
+</header>
+
+	<div class="extraBtns">
+    	<input type="hidden" id="type_value" value="aes">
+    </div>
+
+	<div class="left" style="height:120px;">
+		<textarea id="leftTxt" placeholder="粘贴需要操作的内容"></textarea>
+	</div>
+	<div class="fun">
+		<form class="layui-form" action="" style="text-align:left;">
+			<div class="layui-inline">
+				<label class="layui-form-label encrypt_label" style="width:50px;">编码</label>
+				<div class="layui-input-inline" style="width:90px;">
+					<select id="encode" name="encode">
+						<option value="Hex" selected="">Hex</option>
+						<option value="Base64">Base64</option>
+					</select>
+				</div>
+			</div>
+		    
+			<div class="layui-inline">
+				<label class="layui-form-label encrypt_label" style="width:60px;">模式</label>
+				<div class="layui-input-inline" style="width:70px;">
+					<select id="mode" name="mode" lay-filter="mode">
+						<option value="ECB" selected="">ECB</option>
+						<option value="CBC">CBC</option>
+						<option value="CTR">CTR</option>
+						<option value="CFB">CFB</option>
+						<option value="OFB">OFB</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label encrypt_label" style="width:60px;">填充</label>
+				<div class="layui-input-inline" style="width:130px;">
+					<select id="pad" name="pad">
+						<option value="Pkcs7" selected="">Pkcs7-Pkcs5</option>
+						<option value="NoPadding">NoPadding</option>
+						<option value="AnsiX923">AnsiX923</option>
+						<option value="Iso10126">Iso10126</option>
+						<option value="ZeroPadding">ZeroPadding</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label encrypt_label" style="width:50px;">位数</label>
+				<div class="layui-input-inline" style="width:90px;">
+					<select id="digit" name="digit">
+						<option value="64">64位</option>
+						<option value="128" selected="">128位</option>
+						<option value="192">192位</option>
+						<option value="256">256位</option>
+					</select>
+				</div>
+			</div>
+			
+		    <div class="layui-inline">
+		    	<label class="layui-form-label encrypt_label" style="width:50px;">密钥</label>
+		      	<div class="layui-input-inline">
+		        	<input type="text" id="key" name="key" autocomplete="off" class="layui-input" placeholder="key 16/24/32bytes" 
+		        		style="width:140px;height:28px;margin: 6px 0px;border-color: #b3b3b3;">
+		      	</div>
+		      	<div id="key_tip" style="display:inline-block;">0 bytes</div>
+		    </div>
+		    <div class="layui-inline">
+		    	<label class="layui-form-label encrypt_label" style="width:65px;padding-left:0px;text-align:right;">偏移量</label>
+		      	<div class="layui-input-inline">
+		        	<input type="text" id="iv" name="iv" autocomplete="off" class="layui-input" placeholder="iv 16bytes" 
+		        		style="width:140px;height:28px;margin:6px 0px;border-color: #b3b3b3;">
+		      	</div>
+		      	<div id="iv_tip" style="display:inline-block;">0 bytes</div>
+		    </div>
+			<div class="layui-inline" style="float:right;">
+				
+		    </div>
+		</form>
+		
+	
+		<button id="aes_encrypt" class="layui-btn layui-btn-sm layui-btn-normal fun_btn jsbg_handle">AES-加密</button>
+		<button id="aes_decrypt" class="layui-btn layui-btn-sm layui-btn-normal fun_btn jsbg_handle">AES-解密</button>
+		<button type="button" id="clear" class="layui-btn layui-btn-sm layui-btn-danger fun_btn_small">清空</button>
+		<button type="button" id="copy" class="layui-btn layui-btn-sm fun_btn_small" data-clipboard-target="#jsTxt">复制JS结果</button>
+	</div>
+	
+	<div class="right" style="height:280px">
+		JS 处理结果(由 <a href="https://github.com/brix/crypto-js" target="_blank">CryptoJS</a> 组件完成)
+		<textarea id="jsTxt" placeholder="" style="height:42%;"></textarea>
+		Java 处理结果(由
+		<a href="https://www.mklab.cn/onlineapi/jdk_11_cn/java.base/javax/crypto/Cipher.html" target="_blank">JDK Cipher</a>
+		组件完成)
+		<textarea id="javaTxt" placeholder="" style="height:42%;"></textarea>
+	</div>
+</div>
+
+			
+			<div style="width:100%;opacity:0.5;margin-top:10px;">
+				<div style="height:100%;margin:0px auto;width:80%;">
+					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5676207938288715"
+		     crossorigin="anonymous"></script>
+					<!-- 广告A -->
+					<ins class="adsbygoogle"
+					     style="display:block"
+					     data-ad-client="ca-pub-5676207938288715"
+					     data-ad-slot="3137795819"
+					     data-ad-format="auto"
+					     data-full-width-responsive="true"></ins>
+					<script>
+					     (adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+			</div>
+		</div>
+		
+   	</div>
+</div>
+
+<div id="improve" style="display:none;">
+	<form class="layui-form" action="">
+		<div class="layui-form-item">
+			<label class="layui-form-label">联系邮箱</label>
+			<div class="layui-input-block">
+				<input type="text" name="email" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">改进链接</label>
+			<div class="layui-input-block">
+				<input type="text" name="url" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item layui-form-text">
+			<label class="layui-form-label layui-required">改进内容</label>
+			<div class="layui-input-block">
+				<textarea placeholder="请输入内容" class="layui-textarea" name="txt" lay-verify="required" lay-reqtext="内容不能为空！"></textarea>
+			</div>
+		</div>
+
+		<button id="btn" lay-submit="" lay-filter="improve" style="display:none;"></button>
+	</form>
+</div>
+<script type="text/javascript" src="/aes/www.mklab.cn/web/index/js/push.js"></script>
+</body>
+</html>

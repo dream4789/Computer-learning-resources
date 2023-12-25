@@ -1,0 +1,13 @@
+
+<svg width="34px" height="20px" viewBox="0 0 34 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="大赛介绍" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="nav">
+            <g id="icon/hot">
+                <rect id="矩形" fill="#FAAD14" x="0" y="0" width="34" height="20" rx="4"></rect>
+                <text id="HOT" font-family=".AppleSystemUIFont" font-size="11.9999999" font-weight="normal" line-spacing="15.9999999" letter-spacing="-0.239999993" fill="#FFFFFF" transform="translate(0, 1)">
+                    <tspan x="4.65101573" y="13">HOT</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

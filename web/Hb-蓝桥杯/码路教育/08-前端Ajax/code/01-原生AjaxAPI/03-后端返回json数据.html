@@ -1,0 +1,15 @@
+<script>
+    let xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+        console.log(xhr.response);
+        console.log(xhr.response.name);
+        console.log(xhr.response.culture);
+        console.log(typeof xhr.response);
+    }
+    // 期望后端返回json数据,如果不作这样的配置,得到的是纯文本字符串
+    xhr.responseType = "json";
+
+    xhr.open("get", "http://127.0.0.1:3000/json");
+    xhr.send();
+</script>

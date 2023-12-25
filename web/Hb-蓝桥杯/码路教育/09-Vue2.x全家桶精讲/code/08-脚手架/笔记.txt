@@ -1,0 +1,134 @@
+
+组件：
+    组件都有自己的模板，JS逻辑，样式。
+
+---------------------------------------
+
+在真实开发中，一个组件，通常是一个模块，一个模块就是一个文件，也就是说一个组件就是一个文件。
+文件的后缀是.vue。这样的组件，简称为SFC，Single File Component，单文件组件。
+
+特点：
+    一个组件就是一个文件，便于维护。
+    SFC代码高亮，需要安装插件：Vetur  Volar(官方推荐)
+    组件作用域的CSS，写的CSS，只能当前的组件有效。
+    模块化：
+        导入  导出
+        CommontJS模块化
+        ES6Module
+    .....
+
+---------------------------------------
+
+如何让项目支持SFC？
+    1）自己配置webpack  后面讲
+    2）使用脚手架
+
+安装脚手架：
+    npm install @vue/cli -g
+
+使用脚手架创建项目：
+    vue create myapp
+
+---------------------------------------
+创建项目的步骤：
+
+Vue CLI v5.0.8
+? Please pick a preset:
+  Default ([Vue 3] babel, eslint)   ==> 选择vue3  里面有babel和eslint
+  Default ([Vue 2] babel, eslint)   ==> 选择vue2  里面有babel和eslint
+> Manually select features   ==> 手动选择更多
+---------------------------------------
+
+Vue CLI v5.0.8
+? Please pick a preset: Manually select features
+? Check the features needed for your project: (Press <space> to select, <a> to toggle all, <i> to invert selection, and <enter> to proceed)
+ (*) Babel
+ ( ) TypeScript
+ ( ) Progressive Web App (PWA) Support
+ ( ) Router
+ ( ) Vuex
+>(*) CSS Pre-processors
+ ( ) Linter / Formatter
+ ( ) Unit Testing
+ ( ) E2E Testing
+
+---------------------------------------
+
+? Check the features needed for your project: Babel, CSS Pre-processors
+? Choose a version of Vue.js that you want to start the project with 
+  3.x
+> 2.x
+
+---------------------------------------
+
+? Check the features needed for your project: Babel, CSS Pre-processors
+? Choose a version of Vue.js that you want to start the project with 2.x
+? Pick a CSS pre-processor (PostCSS, Autoprefixer and CSS Modules are supported by default): 
+  Sass/SCSS (with dart-sass)
+> Less
+  Stylus
+
+---------------------------------------
+
+? Check the features needed for your project: Babel, CSS Pre-processors
+? Choose a version of Vue.js that you want to start the project with 2.x
+? Pick a CSS pre-processor (PostCSS, Autoprefixer and CSS Modules are supported by default): Less
+? Where do you prefer placing config for Babel, ESLint, etc.? 
+> In dedicated config files
+  In package.json
+
+---------------------------------------
+
+? Check the features needed for your project: Babel, CSS Pre-processors
+? Choose a version of Vue.js that you want to start the project with 2.x
+? Pick a CSS pre-processor (PostCSS, Autoprefixer and CSS Modules are supported by default): Less
+? Where do you prefer placing config for Babel, ESLint, etc.? In dedicated config files
+? Save this as a preset for future projects? (y/N) n
+
+---------------------------------------
+
+myapp
+  node_modules  项目中用到的第三方依赖
+    后面写项目，会用到非常多的依赖  npm i jq
+  public 
+    项目的一些资源   学习webpack时，会讲到
+    favicon.ico
+    index.html  
+       <div id="app"></div>  项目的容器  vm要与容器关联
+  src 
+    放项目的源码，我们写的绝大部分代码都是放在src下面的
+    assets  也是放一些资源  css  js   img 
+    components 
+      放组件  SFC  单文件组件
+      HelloWorld.vue  
+    App.vue   也是一个组件
+    main.js   项目的入口  new Vue();
+
+  .broserslistrc  
+    设置目标浏览器  后面讲  就是配置  现在不用管
+  .gitignore
+    git的忽略文件  
+  babel.config.js 
+    babel的配置文件  现在不用管  后面讲 
+  jsconfig.json 
+  package.json 
+    项目的依赖记录文件   项目的管理文件
+  README.md 
+    项目说明书
+  vue.config.js 
+    项目的配置文件 
+
+
+---------------------------------------
+
+一个单文件组件分成三个部分：
+  1）<template>    组件的模板
+  2）组件VC  用的时候，人家内部会帮我们去new
+  3）组件的样式  
+
+---------------------------------------
+
+
+
+
+

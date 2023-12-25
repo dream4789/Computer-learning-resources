@@ -1,0 +1,44 @@
+
+
+<!-- <script>
+
+    console.log(this);
+
+    // 箭头函数中的this需要往向找一层
+    var gn = ()=>{
+        console.log(this);
+    }
+
+    var obj = {
+        name:"wc"
+    }
+
+    // 显示绑定
+    gn.call(obj)
+</script> -->
+
+<!-- <script>
+    let fn = ()=>{
+        console.log(this);
+    }
+
+    fn.call("hello");
+    fn.call({});
+</script> -->
+
+<!-- <script>
+    var obj = {
+        name:"wc",
+        fn:()=>{
+            console.log(this);
+        }
+    }
+
+    obj.fn();
+</script> -->
+
+<script>
+    setTimeout(()=>{
+        console.log(this);
+    },2000)
+</script>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.parent {
+				width: 200px;
+				height: 200px;
+				background: #168bf5;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 0;
+			}
+
+			.child1 {
+				width: 100px;
+				height: 200px;
+				background: #32d19c;
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				z-index: 1;
+			}
+
+			.child2 {
+				width: 100px;
+				height: 200px;
+				background: #e4c950;
+				position: absolute;
+				top: 40px;
+				left: 40px;
+				z-index: -1;
+			}
+
+			.child2-1 {
+				width: 100px;
+				height: 200px;
+				background: #e45050;
+				position: absolute;
+				top: 60px;
+				left: 60px;
+				z-index: 9999;
+			}
+
+			.child2-2 {
+				width: 100px;
+				height: 200px;
+				background: #db68a7;
+				position: absolute;
+				top: 70px;
+				left: 30px;
+				z-index: -9999;
+			}
+		</style>
+	</head>
+
+
+	<div class="parent">parent-(0)-蓝1
+		<div class="child1">child1-(1)-绿5 郝娜娜是个大坏蛋</div>
+		<div class="child2">child2-(-1)-黄2
+			<div class="child2-1">child2-1-(9999)-红4</div>
+			<div class="child2-2">child2-2-(-9999)-紫3</div>
+		</div>
+	</div>
+
+
+	</body>
+</html>

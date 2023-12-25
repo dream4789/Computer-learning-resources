@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Mouse Position</title>
+		<style>
+			*{
+				margin: 0;
+				border: 0;
+			}
+			#map {
+				height: 100px;
+				width: 100px;
+				background-color: red;
+				border-radius: 50%;
+				
+			}
+		</style>
+
+
+	</head>
+	<body>
+		<div id="map"></div>
+
+		<script>
+			// document.addEventListener('mousemove', function(e) {
+			document.addEventListener('click', function(e) {
+				// mousemove 只要鼠标一移动，就会触发事件
+				// 获取鼠标最新的坐标
+				var x1 = e.pageX;
+				var y1 = e.pageY;
+				console.log("(pageX  ,  pageY)" + x1 + "," + y1);
+
+				var x2 = e.clientX;
+				var y2 = e.clientY;
+				console.log("(clientX,clientY)" + x2 + "," + y2);
+				
+				var x4 = screenX;
+				var y4 = screenY;
+				var w4 = screenLeft;
+				var q4 = screenTop;
+				console.log("(screenX,screenY)" + x4 + "," + y4 + " | " + w4 + " & " + q4);
+
+				var map = document.getElementById('map');
+				var x3 = map.offsetLeft;
+				var y3 = map.offsetTop;
+				var w3 = map.offsetWidth;
+				var q3 = map.offsetHeight;
+				var z3 = map.offsetParent;
+				console.log("(offsetLeft,offsetLeft)" + x3 + "," + y3 + " | " + w3 + " & " + q3 + " & " + z3);
+
+			})
+		</script>
+	</body>
+</html>

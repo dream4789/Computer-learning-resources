@@ -1,0 +1,7 @@
+{
+  "name": "03_yarn_demo01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {}
+}

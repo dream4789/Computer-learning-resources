@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../lib/vue2.7.8.js"></script>
+</head>
+
+<body>
+    <div class="app1">
+		不显示
+        <!-- <h1>{{name}}</h1> -->
+    </div>
+
+    <!-- <hr> -->
+    <hr>
+    <!-- <hr> -->
+
+    <div class="app2">
+        <!-- <h1>{{name}}</h1> -->
+    </div>
+
+    <script>
+
+        let Count = Vue.extend({
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            template: `
+                <div>
+                    <button @click='count--'>-</button>
+                    <span>{{count}}</span>  
+                    <button @click='count++'>+</button>
+                </div>`
+        })
+
+        // 在项目中，有些组件为了方便使用，会使用全局注册
+        // 全局注册  只要注册好，在任何组件中都可以使用
+        Vue.component("Count", Count)
+
+
+        let vm1 = new Vue({
+            template: `
+               <div>
+                    <div>vm1---DIV</div>
+                    <hr/>
+                    <Count></Count>
+               </div>`,
+            data() {
+                return {
+                    name: "vm1"
+                }
+            },
+            components: {
+                // 局部注册
+                // 在vm中注册，只能在当前的vm对应的模板中使用
+                // Count
+            }
+        });
+        vm1.$mount(".app1")
+
+        let vm2 = new Vue({
+            template: `
+               <div>
+                    <div>vm2---DIV</div>
+                    <hr/>
+                    <Count></Count>
+               </div>`,
+            data() {
+                return {
+                    name: "vm2"
+                }
+            },
+            components: {}
+        });
+        vm2.$mount(".app2")
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1 :style="{opacity:tmd}">{{name}}</h1>
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						tmd: 1
+					}
+				},
+				// mounted叫生命周期函数，也叫钩子函数
+				// 钩子函数在合适的时机，会自动调用
+				// 钩子函数的名字是订死的，不要随便写
+				// 每个钩子函数都有特殊的含义，有特殊的应用场景
+				mounted() {
+					setInterval(() => {
+						this.tmd -= .1;
+						if (this.tmd <= 0) this.tmd = 1;
+					}, 500)
+				}
+			});
+		</script>
+	</body>
+
+</html>

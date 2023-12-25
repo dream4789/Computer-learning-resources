@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<SCRIPT type="text/javascript">
+			var maxtime = 60 * 60; //一个小时，按秒计算，自己调整!
+			function CountDown() {
+				if (maxtime >= 0) {
+					minutes = Math.floor(maxtime / 60);
+					seconds = Math.floor(maxtime % 60);
+					msg = "距离结束还有" + minutes + "分" + seconds + "秒";
+					document.all["time"].innerHTML = msg;
+					if (maxtime == 5 * 60)
+						alert("还剩5分钟");
+					--maxtime;
+				} else {
+					clearInterval(time);
+					alert("时间到，结束!");
+				}
+			}
+			time = setInterval("CountDown()", 1000);
+		</SCRIPT>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				background-color: #f7f7f7;
+			}
+
+			.main {
+				width: 1000px;
+				height: 360px;
+				border: 4px solid #ffbd9b;
+				margin: 20px auto;
+				position: relative;
+				overflow: hidden;
+				/* 将显示溢出部分隐藏 */
+			}
+
+			.main .nf {
+				position: absolute;
+				top: -20px;
+				left: -50px;
+
+			}
+
+			.main .right {
+				width: 500px;
+				height: 360px;
+				border: 1px solid #ffbd9b;
+				background-color: #f7f7f7;
+				position: absolute;
+				right: 0px;
+				top: 0px;
+				display: flex;
+			}
+
+			.main #time {
+				width: 240px;
+				height: 26px;
+				position: absolute;
+				left: 250px;
+				background: #333333;
+				color: white;
+				text-align: center;
+				line-height: 26px;
+				margin: 20px auto;
+			}
+
+			.main .title {
+				font-size: 30px;
+				width: 200px;
+				/* display: inline-block; */
+				position: absolute;
+				top: 10px;
+				left: 20px;
+			}
+
+			.main .des,
+			.des1 {
+				display: block;
+				width: 440px;
+				font-size: 16px;
+				color: #8b4040;
+				line-height: 24px;
+				text-decoration: none;
+
+				position: absolute;
+				left: 20px;
+				top: 70px;
+			}
+
+			.main .des1 {
+				position: absolute;
+				left: 20px;
+				top: 130px;
+			}
+
+			#jg {
+				position: absolute;
+				top: 230px;
+				left: 50px;
+				height: 100px;
+				width: 210px;
+				/* border: 2px solid #55ff7f; */
+			}
+
+			#aa {
+				font-size: 30px;
+				color: #ff69b4;
+				font-weight: 800;
+				margin: 0 5px 0 5px;
+			}
+
+			#bb {
+				font-size: 15px;
+				color: #818181;
+				font-weight: 800;
+				margin: 0 5px 0 5px;
+			}
+
+			#cc {
+				border-radius: 5px;
+				padding: 2px;
+				font-size: 15px;
+				color: #ffffff;
+				background-color: #ff8e3d;
+				font-weight: 800;
+				margin: 0 5px 0 5px;
+			}
+
+			#dd {
+				display: block;
+				font-size: 15px;
+				color: #818181;
+				font-weight: 800;
+				margin: 10px;
+			}
+
+			#ck {
+				background-color: #ff69b4;
+				position: absolute;
+				top: 230px;
+				right: 50px;
+				height: 100px;
+				width: 100px;
+				border-radius: 50%;
+				opacity: 0.8;
+			}
+
+			#ff {
+				position: absolute;
+				top: 12px;
+				left: 18px;
+				color: #ffffff;
+				height: 70px;
+				width: 70px;
+				font-size: 27px;
+				font-weight: 800;
+				opacity: 0.9;
+			}
+
+			#ff:hover {
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<img src="./img/nf.jpg" class="nf">
+			<div class="right">
+				<h1 class="title">Abbott雅培</h1>
+				<p id="time"></p>
+				<a href="" class="des">
+					我们是一家全球性的多元化医疗保健公司，
+					致力于探索维持健康的新药品、新技术和新方法。
+				</a>
+				<a href="" class="des1">
+					我们的产品跨越整个医疗护理领域，从营养品和诊断产品到医疗器械和医药治疗方案。
+					我们全线产品系列贯穿各个年龄段，满足从婴幼儿到老年人的重要健康需求。
+				</a>
+
+				<div id="jg">
+					<a id="aa">￥616</a>
+					<del id="bb">￥716</del>
+					<a id="cc">包邮</a>
+					<a id="dd">31人已购买</a>
+				</div>
+
+				<div id="ck">
+					<a id="ff">查 看详 情</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

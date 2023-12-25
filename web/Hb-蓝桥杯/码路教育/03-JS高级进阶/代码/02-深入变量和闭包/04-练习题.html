@@ -1,0 +1,100 @@
+<!-- <script>
+    console.log(fn)  // 打印出 und
+    // window.fn();   // 报错  und()  
+    console.log(window.fn);
+    if ("fn" in window) {
+        // 如果条件成立，进来的第1件事，就是fn赋值
+        fn();  // fn...
+
+        // 函数们于if条件中
+        // 在最新版本的浏览器中，不会提升整体，仅仅是提升fn函数名
+        // 就提升到了代码段的最前面
+        function fn() {
+            console.log("fn...");
+        }
+    }
+    fn();
+</script> -->
+
+<!-- <script>
+    fn();
+    function fn() { console.log(1); }
+    fn();
+    function fn() { console.log(2); }
+    fn();
+    var fn = function () { console.log(3); }
+    fn();
+    function fn() { console.log(4); }
+    fn();
+    function fn() { console.log(5); }
+    fn();
+</script> -->
+
+<!-- <script>
+    var a = 12; b = 13; c = 14;
+    function fn(a){
+        console.log(a,b,c);
+        a = 100;
+        b = 200;
+        console.log(a,b,c);
+    }
+    b = fn(10);
+    console.log(a,b,c);
+</script> -->
+
+<!-- <script>
+    var ary = [12, 13];  // [100, 13]
+    function fn(ary) {
+        console.log(ary);  // [12,13]
+        ary[0] = 100;  
+        ary = [100];  // 让函数内部的ary指向新堆
+        ary[0] = 0;  // 让新堆的第1个元素变成0
+        console.log(ary);  // [0]
+    }
+    fn(ary);
+    console.log(ary);  // [100,13]
+</script> -->
+
+<!-- <script>
+    function fn(){
+        function gn(){
+            console.log("gn...");
+        }
+        // return了一个地址
+        return gn;  
+    }
+    let res = fn();
+    res();
+</script> -->
+
+<!-- <script>
+    function fn() {
+        return function() {
+            console.log("gn...");
+        }
+    }
+    let res = fn();
+    res();1
+</script> -->
+
+<script>
+    // 闭包：一个不能被回收的栈内存，就可以称为闭包
+    // 作用：
+    //     1）保护   保护EC中的变量，外界不能直接访问
+    //     2）保存   可以让我们像使用全局变量那样使用局部变量，延长变量的生命周期
+    var i = 0;
+    function A() {
+        var i = 10;
+        function x() {
+            console.log(i);
+        }
+        return x;
+    }
+    var y = A();
+    y();
+    function B() {
+        var i = 20;
+        y();
+    }
+    B();
+</script>

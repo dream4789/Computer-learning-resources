@@ -1,0 +1,48 @@
+<!-- <script>
+    let num = 666;
+    num = 888;
+    console.log(num);
+</script> -->
+
+<!-- <script>
+    const PI = 3.14;
+    PI = 666;
+    // TypeError: Assignment to constant variable.
+    console.log(PI);
+</script> -->
+
+<!-- <script>
+    // 1）不存在提升
+    // 也会形成暂时性死区
+    // ReferenceError: Cannot access 'PI' before initialization
+    console.log(PI);
+    const PI = 3.14;
+</script> -->
+
+<!-- <script>
+    // 2）也会形成块给作用域
+    if(true){
+        const PI = 3.14;
+    }
+    // ReferenceError: PI is not defined
+    console.log(PI);
+</script> -->
+
+<!-- <script>
+    // 3）也会形成块给作用域
+    const PI = 3.14;
+    var PI = 666;
+</script> -->
+
+<!-- <script>
+    // 4）const声明的常量必须要赋值
+    // SyntaxError: Missing initializer in const declaration
+    const PI;
+    PI = 123;
+</script> -->
+
+<script>
+    // 5）const声明的常量必须要赋值
+    const PI = 123;
+    console.log(window.PI);
+</script>

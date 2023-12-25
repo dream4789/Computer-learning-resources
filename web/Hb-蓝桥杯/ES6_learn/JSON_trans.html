@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			let json = [{
+					id: "01",
+					title: 1,
+					done: true
+				},
+				{
+					id: "02",
+					title: 2,
+					done: false
+				},
+				{
+					id: "03",
+					title: 3,
+					done: false
+				},
+			];
+			console.log(json);
+			console.log(JSON.stringify(json)); // json -> js
+			console.log(JSON.parse(JSON.stringify(json))); // json -> js -> json
+
+			let str = '{"aaa":1,"bbb":2,"ccc":3}'; // 一定加上''，意为字符串
+			console.log(str);
+			console.log(JSON.parse(str)); // js -> json
+			console.log(JSON.stringify(JSON.parse(str))); // js -> json -> js		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body {
+        /* Prevent the user selecting text in the example */
+        user-select: none;
+      }
+
+      #draggable {
+        text-align: center;
+        background: white;
+      }
+
+      .dropzone {
+        width: 200px;
+        height: 20px;
+        background: blueviolet;
+        margin: 10px;
+        padding: 10px;
+      }
+
+      .dropzone.dragover {
+        background-color: purple;
+      }
+
+      .dragging {
+        opacity: .5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dropzone">
+      <div id="draggable" draggable="true">
+        该节点可拖拉
+      </div>
+    </div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+
+
+    <script>
+      // 关于拖拉事件，有以下几个注意点。
+      // 拖拉过程只触发以上这些拖拉事件，尽管鼠标在移动，但是鼠标事件不会触发。
+      // 将文件从操作系统拖拉进浏览器，不会触发dragstart和dragend事件。
+      // dragenter和dragover事件的监听函数，用来取出拖拉的数据（即允许放下被拖拉的元素）。由于网页的大部分区域不适合作为放下拖拉元素的目标节点，所以这两个事件的默认设置为当前节点不允许接受被拖拉的元素。如果想要在目标节点上放下的数据，首先必须阻止这两个事件的默认行为。
+
+      // 被拖拉节点
+      var dragged;
+
+      document.addEventListener('dragstart', function(event) { // 拖动 本 触发
+        // 保存被拖拉节点
+        dragged = event.target;
+        // 被拖拉节点的背景色变透明
+        event.target.style.opacity = 0.5;
+      }, false);
+
+      document.addEventListener('dragend', function(event) { // 放开 本 鼠标
+        // 被拖拉节点的背景色恢复正常
+        event.target.style.opacity = '';
+      }, false);
+
+      document.addEventListener('dragover', function(event) { // 允许 本 放置
+        // 防止拖拉效果被重置，允许被拖拉的节点放入目标节点
+        event.preventDefault();
+      }, false);
+
+      document.addEventListener('dragenter', function(event) {  // 移入 后 变化
+        // 目标节点的背景色变紫色
+        // 由于该事件会冒泡，所以要过滤节点
+        if (event.target.className === 'dropzone') {
+          event.target.style.background = 'purple';
+        }
+      }, false);
+
+      document.addEventListener('dragleave', function(event) {  // 移出 原 变化
+        // 目标节点的背景色恢复原样
+        if (event.target.className === 'dropzone') {
+          event.target.style.background = '';
+        }
+      }, false);
+
+      document.addEventListener('drop', function(event) {  // 主要函数
+        // 防止事件默认行为（比如某些元素节点上可以打开链接），
+        event.preventDefault();
+        if (event.target.className === 'dropzone') {
+          // 恢复目标节点背景色
+          event.target.style.background = '';
+          // 将被拖拉节点插入目标节点
+          dragged.parentNode.removeChild(dragged);  // 移出 原 删除
+          event.target.appendChild(dragged);  // 移入 后 添加
+        }
+      }, false);
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,314 @@
+<!-- <script>
+    var a = 1;
+    var b = 1;
+    function gn() {
+        console.log(a, b);
+        var a = b = 2;  // var a = 2; b = 2;
+        // var a = 2, b = 2; // var a = 2; var b = 2;
+        console.log(a, b);
+    }
+    gn();
+    console.log(a, b);
+</script> -->
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = 1;
+    var obj = { uname: "wangcai" }
+    function fn() {
+        var a2 = a;
+        obj2 = obj;
+        a2 = a;
+        obj.uname = "xiaoqiang";
+        console.log(a2);
+        console.log(obj2);
+    }
+    fn();
+    console.log(a);
+    console.log(obj);
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    // 加var的同名变量，只会提升一个
+    // var a = 1;
+    // var a = 2;
+    // var a = 3;
+    // console.log(a);
+
+    var a;
+    a = 1;
+    a = 2;
+    a = 3;
+    console.log(a);
+</script> -->
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = 1;
+    function a() {
+        console.log("a...");
+    }
+    console.log(a); 
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    // 在JS中函数是一等公民
+    // 优先级
+    function a() {
+        console.log("a...");
+    }
+    var a;
+    console.log(a); 
+</script> -->
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = 10;
+    // 把栈区中a对应的数据10  copy一份给b 
+    // a和b分别对应两个内存空间  没有关系
+    var b = a;
+    console.log(a, b);
+    b = 1;
+    console.log(a, b); 
+</script> -->
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = [1, 2];
+    var b = a;
+    console.log(a, b);
+    b = [3, 4];
+    console.log(a, b); 
+</script> -->
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = [1, 2];
+    var b = a;
+    console.log(a, b);
+    b[0] = 110;
+    console.log(a, b); 
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = [1, 2];
+    var b = [1, 2];
+    console.log(a == b);
+    console.log(a === b);  
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = 110;
+    var b = 110;
+    console.log(a == b);
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = [1, 2];
+    var b = a;
+    console.log(a == b);
+    console.log(a === b); 
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    console.log(a, b);
+    var a = b = 2;  // var a = 2; b = 2;
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = { m: 666 };
+    var b = a;
+    b = { m: 888 };
+    console.log(a.m); 
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = { n: 12 };
+    var b = a;
+    b.n = 13;
+    console.log(a.n);  
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    console.log(a);
+    a = 111;
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var m = 1;
+    n = 2;
+    console.log(window.m);
+    console.log(window.n);  
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    function fn() {
+        var a = 111;
+    }
+    fn();
+    console.log(a);
+    console.log(window.a);
+    // a.b  找a   走的是作用域链
+    //      找b   走的是原型链
+    // console.log(a);
+    // console.log(window.a); 
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = -1;
+    // ++a    a的值是0   ++a整体的值是0
+    // a++    a的值是0   a++整体的值是-1
+    if (++a) {
+        console.log("666");
+    } else {
+        console.log("888");
+    }
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    console.log(a, b);
+    if (true) {
+        var a = 1;
+    } else {
+        var b = 2;
+    }
+    console.log(a, b); 
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var obj = {
+        name: "wc",
+        age: 18
+    }
+    // in 是一个运算符，判断一个属性是否是一个对象的属性
+    // 不管是私有属性，还是公有属性
+    console.log("name" in obj);
+    console.log("score" in obj); 
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a;
+    console.log(a);
+    if ("a" in window) {
+        a = 110;
+    }
+    console.log(a);  
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    console.log(a);
+    if ("a" in window) {
+        var a = 110;
+    }
+    console.log(a); 
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var a = 100;
+    function fn() {
+        console.log(a);
+        return
+        var a = 110;
+    }
+    fn();
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    var n = 100;
+    function foo() {
+        n = 200;
+    }
+    foo()
+    console.log(n);
+</script> -->
+
+
+<!-- ================================= -->
+
+<!-- <script>
+    function fn() {
+        var a = b = 100;
+    }
+    fn();
+    console.log(a);
+    console.log(b);
+</script> -->
+
+
+<!-- ================================= -->
+
+<script>
+    var n = 100;
+    function fn() {
+        console.log(n);
+    }
+    function gn() {
+        var n = 200;
+        console.log(n);
+        fn()
+    }
+    gn()
+    console.log(n); 
+</script>
+
+<!-- ================================= -->
+

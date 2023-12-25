@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		1 基于原型链的继承
+		<script>
+			function Person(age) {
+				this.age = age
+			}
+			Person.prototype.say = function() {
+				alert('hello world');
+			}
+
+			function Student() {}
+			//继承
+			//1 构造父类的实例
+			var p1 = new Person(20)
+			//2 设置为子类的原型对象
+			Student.prototype = p1
+			////问题：Student.prototypeconstructor指向那个构造函数
+			//回答：指向Person构造函数（原因 画图）
+			//3 修复子类函数原型的constructor指针即可
+			Student.prototype.constructor = Student
+			var stud1 = new Student();
+			stud1.say()
+			console.log(stud1.age)
+		</script>
+		2 存在问题：实例共享引用类型
+		<script>
+			function Parent() {
+
+				this.newArr = ["唱歌", "跑步"];
+			}
+
+			function Child() {
+				this.name = "abc";
+			}
+
+			Child.prototype = new Parent();
+			Child.prototype.constructor = Child;
+			var p1 = new Child();
+			p1.newArr.push("玩游戏");
+			console.log(p1.newArr); // ["唱歌", "跑步","玩游戏"]
+
+			var p2 = new Child();
+
+			console.log(p2.newArr); // ["唱歌", "跑步","玩游戏"]
+		</script>
+		3 call函数
+		<script>
+			//call函数
+			var demo1 = {
+				name: '好人:',
+				showABC: function(param1, param2) {
+					console.log(this.name, param1, param2)
+				}
+			}
+			demo1.showABC('张三', '李四')
+
+			var demo2 = {
+				name: '坏人'
+			}
+			//call来让demo2对象 借用demo1的showABC方法
+			demo1.showABC.call(demo2, '大盗', '小偷')
+		</script>
+		4 利用构造函数继承属性
+		<script>
+			function Father(uname, age) {
+				this.uname = uname;
+				this.age = age;
+			}
+			// Son想要继承Father的属性
+			function Son(uname, age) {
+				//this指向Son的对象实例.
+				//借用Father构造函数
+				Father.call(this, uname, age) //把Father中的this改为了Son的对象实例.
+			}
+			var son = new Son('大大', 20);
+			console.log(son);
+		</script>
+
+	</body>
+</html>

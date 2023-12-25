@@ -1,0 +1,82 @@
+<!-- 
+    前端能发请求的方式：
+        // =================  get 
+            浏览器的地址栏
+            a标签的href
+            img标签src
+            script标签的src
+            link标签的href
+            postman工具也可以发请求
+            表单
+            ajax
+        // =================  post
+            postman工具也可以发请求
+            表单
+            ajax
+
+    AJAX:Asynchronous Javascript And XML（异步JavaScript和XML）
+        并不是一个新技术，是多门技术的结合体，如：js bom json...
+
+        作用：向后端发出请求，后端给出响应
+
+    XML:
+        HTML:
+            <div>  <p>   <span> ... 
+        XML:
+            <pig>   <dog>   <student>...
+            在10年前，是前后端通信的一种数据格式
+            现在，前后端通信主要是以json为主
+    
+    -----------------------------------
+    ajax发请求的经典步骤：
+        1）创建一个ajax对象   XMLHttpRequest
+        2）监听ajax对象的状态变化    或     监听onload事件
+        3）配置网络请求
+        4）发出请求
+-->
+
+<script>
+    // 1）创建一个ajax对象   XMLHttpRequest   属于BOM中的内容
+    let xhr = new XMLHttpRequest();
+    console.log(xhr);
+    console.log(xhr.readyState);  // ajax刚创建出来的时状态是0
+
+    // 2）监听ajax对象的状态变化 
+    xhr.onreadystatechange = function () {
+        // console.log("==>", xhr.readyState);
+        // if(xhr.readyState === 4){
+        //     console.log("-------------");
+        //     console.log(xhr.response);
+        //     console.log("-------------");
+        // }
+
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            console.log("-------------");
+            console.log(xhr.response);
+            console.log("-------------");
+        }
+    }
+
+    // 3）配置网络请求
+    xhr.open("get", "http://127.0.0.1:3000/get")
+    console.log(xhr.readyState);  // 调用完open方法后,ajax的状态就变成1
+
+    // 4）发出请求  send(请求体)  请求体就是给后端传递数据
+    // get请求没有所谓的请求体  只有post请求才能请求体
+    // 你发出了get请求,send()  ()中不需要写任何内容 
+    xhr.send()
+    console.log(xhr.readyState);  // ajax的状态就变成1
+</script>
+
+<!-- <script>
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            console.log(xhr.response);
+        }
+    }
+
+    xhr.open("get", "http://127.0.0.1:3000/get");
+    xhr.send();
+</script> -->

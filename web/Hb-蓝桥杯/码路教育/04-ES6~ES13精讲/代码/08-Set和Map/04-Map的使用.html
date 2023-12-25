@@ -1,0 +1,63 @@
+<!-- <script>
+    // Map  新的集合  存储的是键值对
+    // 对象 {} 存储的也是键值对   对象中的键通常都是字符串，也可以是Symbol
+    // Map中存储的键值对中的键可以是其它类型。
+
+    let obj1 = { name: "wc" };
+    let obj2 = { age: 18 };
+
+    // [object Object]  如果把对象作为键，会调用对象的toString，得到[object Object]
+    let obj3 = {
+        address: "bj", // address是字符串
+        [obj1]: "xixi",
+        [obj2]: "haha"
+    }
+    console.log(obj3);
+</script> -->
+
+<!-- <script>
+    let obj1 = { name: "wc" };
+    let obj2 = { age: 18 };
+
+    let map = new Map();
+    map.set(obj1,"wc");
+    map.set(obj2,"xq");
+    console.log(map);
+</script> -->
+
+<!-- <script>
+    let obj1 = { name: "wc" };
+    let obj2 = { age: 18 };
+
+    let map = new Map();
+    // set是用来设置键值对
+    map.set(obj1, "wc");
+    map.set(obj2, "xq");
+    // console.log(map);
+
+    console.log(map.get(obj1));
+
+    map.delete(obj2);
+    console.log(map.get(obj2));
+
+    console.log(map.has(obj1));
+
+    map.clear();
+    console.log(map);
+</script> -->
+
+<!-- <script>
+    let obj1 = { name: "wc" };
+    let obj2 = { age: 18 };
+
+    let map = new Map();
+    map.set(obj1, "wc");
+    map.set(obj2, "xq");
+
+    map.forEach(item=>console.log(item))
+
+    for(let item of map){
+        let [key,value] = item;
+        console.log(key,value);
+    }
+</script> -->

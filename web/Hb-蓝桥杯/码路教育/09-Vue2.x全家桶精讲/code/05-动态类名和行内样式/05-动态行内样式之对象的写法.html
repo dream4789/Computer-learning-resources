@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+			<!-- 写死的行内样式-->
+			<div style="width: 100px; height: 100px; background: gold;">
+				style---DIV
+			</div>
+			<hr>
+
+			<!-- 动态的行内样式 -->
+			<!-- :style后面可以跟一个对象,在对象中写样式 -->
+			<div :style="{width: '100px', height: '100px', background: 'gold'}">
+				:style-{}---DIV
+			</div>
+			<hr>
+
+			<!-- 可以把对象放到data中,可以操作data -->
+			<div :style="obj">
+				:style-obj---DIV
+			</div>
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						// 把行内样式放到data中，操作data，模板要重新渲染
+						obj: {
+							width: '100px',
+							height: '100px',
+							background: 'gold'
+						}
+					}
+				}
+			});
+			// vm.obj.color 是不能添加响应式数据的  color不是响应式数据
+			// 后期想添加响应式数据？
+			// 答： $set
+
+			vm.$set(vm.obj, 'color', 'red')
+		</script>
+	</body>
+
+</html>

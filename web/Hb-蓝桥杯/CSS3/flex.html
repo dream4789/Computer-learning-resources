@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#container>div {
+				width: 30px;
+				height: 30px;
+				background-color: greenyellow;
+			}
+
+			#div1 {
+				display: flex;
+				/* 居中 */
+				justify-content: center;
+			}
+
+			#div2 {
+				display: flex;
+				/* 左对齐 */
+				justify-content: flex-start;
+
+			}
+
+			#div3 {
+				width: 300px;
+				height: 30px;
+				border: 1px solid red;
+				display: flex;
+				/* 两端对齐，项目之间的间隔都相等 */
+				/* justify-content: space-between */
+				
+				/* 每个项目两侧的间隔相等，项目之间的间隔比项目与边框的间隔大一倍 */
+				justify-content:space-around
+			}
+
+			#div3>div {
+				width: 30px;
+				height: 30px;
+				background-color: aqua;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div id="div1">
+				111
+			</div>
+			<div id="div2">
+				333
+			</div>
+			<div id="div1">
+				222
+			</div>
+			<div id="div2">
+				444
+			</div>
+		</div>
+
+		<div id="div3">
+			<div> </div>
+			<div> </div>
+			<div> </div>
+			<div> </div>
+		</div>
+
+
+	</body>
+</html>

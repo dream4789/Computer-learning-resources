@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<table width=800 style="text-align: center; margin: 0 auto;" border=1>
+				<caption>打折案例</caption>
+				<tr>
+					<th>香蕉 {{ price }} ¥ / 斤, 折扣 &lt; {{ discount }} 折 &gt;</th>
+				</tr>
+				<tr>
+					<td>
+						请输入你要购买的斤数 <input v-model="count" type="number" placeholder="斤数">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button @click="jisuan">结账买单~</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						结账单:
+						<span>总价: {{ allPrice }} ¥元</span>
+						<span>折后价: {{ disPrice }} ¥元</span>
+						<span>省了: {{ savePrice }} ¥元</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+		</div>
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						price: 10, // 香蕉的单价
+						discount: .8, // 折扣
+						count: 0, // 购买的斤数
+						allPrice: 0, // 总价
+						disPrice: 0, // 折后价格
+						savePrice: 0, // 省了多钱
+					}
+				},
+				methods: {
+					jisuan() {
+						this.allPrice = this.price * this.count; // 计算总价
+						this.disPrice = this.allPrice * this.discount; // 折后价格
+						this.savePrice = this.allPrice - this.disPrice; // 省了多钱
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

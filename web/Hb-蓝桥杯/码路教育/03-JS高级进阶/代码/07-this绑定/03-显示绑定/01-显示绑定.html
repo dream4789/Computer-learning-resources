@@ -1,0 +1,120 @@
+<!-- 
+<script>
+    // 显示绑定
+
+    // 在JS中，函数有多处角色
+    //   1）角色一：普通函数
+    //   2）角色二：对象中的方法
+    //   3）角色三：对象（一切都是对象）   对象是属性的无序集合
+
+    // 函数也是一个对象，对象是属性的无序集合，内部有非常多的默认属性或方法，我们需要掌握三个，call，apply，bind
+
+    function fn(){
+        console.log("fn...");
+    }
+    fn();
+
+    let obj = {
+        // 可以把对应中的函数称为方法
+        running:function(){
+            console.log("running...");
+        }
+    }
+
+    function gn(){
+        console.log("gn...");
+    }
+    gn.a = 1;
+    gn.b = 2;
+    gn.c = 3;
+    console.log(gn.a);
+    console.log(gn.b);
+    console.log(gn.c);
+    // dir表示以对象有形式打印出函数
+    console.dir(gn);
+</script> -->
+
+
+<!-- <script>
+    function fn(){
+        // console.log("fn...");
+        console.log(this);
+    }
+
+    let obj = {name:"wc"}
+
+    // 函数也是对象，call是它内部的一个方法
+    // 我们直接去调用这个方法
+    // 此方法，可以让我们显示地绑定this
+    // call的作用：1）显示绑定this  2）让fn执行
+    fn.call(obj);  // 显示绑定函数中的this
+
+    // 独立地函数调用  this表示window
+    // fn();
+</script> -->
+
+<!-- <script>
+    function fn(num1,num2) {
+        // console.log("fn...");
+        console.log(this, num1+num2);
+    }
+
+    let obj = { name: "wc" }
+
+    // call传参：从第2个参数起，传递的参数就会传递给函数
+    // call的作用：1）显示绑定this  2）让函数执行   3）也可以传递
+    fn.call(obj,666,111);  
+
+    // 独立地函数调用  this表示window
+    // fn(1,2);
+</script> -->
+
+
+<!-- <script>
+    function fn(num1, num2) {
+        console.log(this, num1 + num2);
+    }
+
+    let obj = { name: "wc" }
+
+    // apply的作用和call一样，只不过传参的方式不一样
+    // apply的话，需要把参数放到一个数组中
+    fn.apply(obj, [666, 111]);
+
+</script> -->
+
+<!-- <script>
+    function fn(num1, num2) {
+        console.log(this, num1 + num2);
+    }
+
+    let obj = { name: "wc" }
+
+    // bind的作用：1）显示绑定this  2）也可以传参   但是不会让函数执行，call和apply都会让函数执行  3）bind返回绑定this之后的新函数
+    let newFn = fn.bind(obj, 666, 111);
+
+    newFn();
+
+</script> -->
+
+<!-- 
+    显示绑定：
+        1）call  fn.call(obj,1,2)  显示绑定this   让fn执行   也能传参
+        2）apply  fn.apply(obj,[1,2])  显示绑定this   让fn执行  参数放数组中
+        3）bind  fn.bind(obj,1,2)  显示绑定this  返回绑定this后的新函数  也能传参
+ -->
+
+<script>
+    function fn() {
+        console.log(this);
+    }
+    // String {'hello'}  是一个对象
+    //  会把hello包装成一个对象
+    // fn.call("hello");
+
+    // 如果绑定到und上，实际是绑定到了window上
+    // fn.call(undefined);
+
+    // 如果绑定到null上，实际是绑定到了window上
+    fn.call(null)
+</script>

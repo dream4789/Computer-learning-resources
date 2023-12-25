@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<style>
+			.wrap {
+				width: 100%;
+				display: flex;
+				margin: 0.2rem 0 0 0;
+				position: relative;
+			}
+
+			/*左侧的导航样式*/
+			.nav_left {
+				width: 21.1875rem;
+				overflow: scroll;
+			}
+
+			.nav_left::-webkit-scrollbar {
+				display: none;
+			}
+
+			.nav_content {
+				white-space: nowrap;
+				padding: 0 0.7rem;
+			}
+
+			.nav_content span {
+				display: inline-block;
+				padding: 0.4rem 0.6rem;
+				font-size: 0.875rem;
+			}
+
+			.nav_content .active {
+				border-bottom: 2px solid #7f4395;
+				color: #7f4395;
+			}
+
+			.nav_left,
+			.down {
+				float: left;
+			}
+
+			/*右侧导航部分*/
+			.down {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.gray {
+				color: gray;
+				display: inline-block;
+				vertical-align: middle;
+			}
+		</style>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<div class="wrap">
+				<div class="nav_left">
+					<div class="nav_content">
+						<span :class="{active:isSelIndex === index}" v-for="(item,index) in arr"
+							@click="handler(index)">{{item.first_name}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "码路教育",
+						isSelIndex: 0,
+						arr: [{
+								first_id: "0",
+								first_name: "热门"
+							},
+							{
+								first_id: "1",
+								first_name: "喜剧",
+							},
+							{
+								first_id: "2",
+								first_name: "音乐",
+							},
+							{
+								first_id: "3",
+								first_name: "冒险",
+							},
+							{
+								first_id: "4",
+								first_name: "NBA",
+							},
+							{
+								first_id: "5",
+								first_name: "军事",
+							},
+							{
+								first_id: "6",
+								first_name: "娱乐",
+							},
+							{
+								first_id: "7",
+								first_name: "码路",
+							},
+							{
+								first_id: "8",
+								first_name: "前端",
+							},
+							{
+								first_id: "9",
+								first_name: "后端",
+							},
+							{
+								first_id: "10",
+								first_name: "Vue",
+							},
+							{
+								first_id: "11",
+								first_name: "React",
+							},
+							{
+								first_id: "12",
+								first_name: "小程序",
+							},
+							{
+								first_id: "13",
+								first_name: "UniApp",
+							},
+							{
+								first_id: "14",
+								first_name: "原生JS",
+							}
+						],
+					}
+				},
+				methods: {
+					handler(index) {
+						this.isSelIndex = index;
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

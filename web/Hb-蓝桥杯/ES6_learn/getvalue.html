@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="test" id="aa">
+		<script>
+			let inp = document.getElementById('aa');
+			// inp.onkeydown = function(){
+			// 	console.log(this.value);
+			// }
+			// inp.onclick = function(){
+			// 	console.log(this.value);
+			// }
+			// inp.onblur = function(){
+			// 	console.log(this.value);
+			// }
+			inp.ondblclick = function(){
+				console.log(this.value);
+			}
+		</script>
+	</body>
+</html>

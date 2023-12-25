@@ -1,0 +1,21 @@
+
+<!-- 
+    1）加var的变量在预编译期间会提升，不加var的变量在预编译期间不会提升。
+    2）不管是否加var，只要是全局变量，在非严格模式下，都会挂载到GO上
+    3）加var的变量，可以做全局变量，也可以做局部变量，没有加var只能做全局变量。
+
+    做项目时，不要使用var，更不要使用没有加var的变量。
+ -->
+
+<script>
+    console.log(a);
+    var a = 110;
+    console.log(a);
+    console.log(window.a);
+
+    // console.log(b);
+    b = 666;
+    console.log(window.b);
+</script>
+
+

@@ -1,0 +1,12 @@
+<view style="background-color: #efefef;">
+  <view wx:for="{{TopicList.data}}" wx:key="*this" style="text-align: center;width: 100%;margin:30rpx 0;background-color: #fff;">
+    <image style="width: 100%;" src="{{item.scene_pic_url}}"></image>
+    <view style="margin-top: 10rpx;">{{item.title}}</view>
+    <view style="margin:20rpx 0;padding: 0 30rpx;" class="sheng">{{item.subtitle}}</view>
+    <view style="padding-bottom: 20rpx;color: rgb(165, 57, 57);">￥ {{item.price_info}} 元</view>
+  </view>
+</view>
+<view class="button" >
+  <button style="border: none; width: 50%;" >上一页</button>  
+  <button style="border: none; width: 50%;" >下一页</button>
+</view>

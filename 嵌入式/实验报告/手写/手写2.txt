@@ -1,0 +1,244 @@
+// NVIC配置、EXTI配置任务（key0--key3的动作用于触发按键中断，通过EXTI通道送达NVIC，中断优先级key0>key1>key2>key3）
+
+#include "stm32f10x.h"
+
+//#define KEY_ON  0
+//#define KEY_OFF 1
+
+#define ON  0
+#define OFF 1
+
+#define LED1(a)	if (a) GPIO_SetBits(GPIOC,GPIO_Pin_0); \
+					else GPIO_ResetBits(GPIOC,GPIO_Pin_0)
+
+#define LED2(a)	if (a) GPIO_SetBits(GPIOC,GPIO_Pin_2); \
+					else GPIO_ResetBits(GPIOC,GPIO_Pin_2)
+
+//static void NVIC_Configuration(void){
+//  NVIC_InitTypeDef NVIC_InitStructure;
+//  NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+//  NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;
+//  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+//  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+//  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+//  NVIC_Init(&NVIC_InitStructure);
+//}
+//
+//void EXTI_PA1_Config(void){
+//    GPIO_InitTypeDef GPIO_InitStructure;
+//    EXTI_InitTypeDef EXTI_InitStructure;
+//
+//    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE);
+//    NVIC_Configuration();
+//
+//    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
+//    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	 // 上拉输入
+//    GPIO_Init(GPIOA, &GPIO_InitStructure);
+//
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);
+//
+//    EXTI_InitStructure.EXTI_Line = EXTI_Line1;
+//    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; //下降沿中断
+//    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+//    EXTI_Init(&EXTI_InitStructure);
+//}
+//
+//void EXTI_PA4_Config(void){
+//    GPIO_InitTypeDef GPIO_InitStructure;
+//    EXTI_InitTypeDef EXTI_InitStructure;
+//
+//    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE);
+//    NVIC_Configuration();
+//
+//    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+//    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	 // 上拉输入
+//    GPIO_Init(GPIOA, &GPIO_InitStructure);
+//
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource4);
+//
+//    EXTI_InitStructure.EXTI_Line = EXTI_Line4;
+//    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; //下降沿中断
+//    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+//    EXTI_Init(&EXTI_InitStructure);
+//}
+//
+//void EXTI_PA8_Config(void){
+//    GPIO_InitTypeDef GPIO_InitStructure;
+//    EXTI_InitTypeDef EXTI_InitStructure;
+//
+//    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE);
+//    NVIC_Configuration();
+//
+//    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+//    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	 // 上拉输入
+//    GPIO_Init(GPIOA, &GPIO_InitStructure);
+//
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource8);
+//
+//    EXTI_InitStructure.EXTI_Line = EXTI_Line8;
+//    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; //下降沿中断
+//    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+//    EXTI_Init(&EXTI_InitStructure);
+//}
+//
+//void EXTI_PA11_Config(void){
+//    GPIO_InitTypeDef GPIO_InitStructure;
+//    EXTI_InitTypeDef EXTI_InitStructure;
+//
+//    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE);
+//    NVIC_Configuration();
+//
+//    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;
+//    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	 // 上拉输入
+//    GPIO_Init(GPIOA, &GPIO_InitStructure);
+//
+//    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource11);
+//
+//    EXTI_InitStructure.EXTI_Line = EXTI_Line11;
+//    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; //下降沿中断
+//    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+//    EXTI_Init(&EXTI_InitStructure);
+//}
+
+
+void EXTI_Config(void){
+    GPIO_InitTypeDef GPIO_InitStructure;
+    NVIC_InitTypeDef NVIC_InitStructure;
+    EXTI_InitTypeDef EXTI_InitStructure;
+
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE);
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+
+    // GPIO PA1
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	 // 上拉输入
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    //EXTI0 NVIC 配置
+    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);// EXIT与GPIO匹配
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;          // EXTI0中断通道
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; // 抢占优先级
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;		    // 子优先级
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;		        // IRQ通道使能
+    NVIC_Init(&NVIC_InitStructure);                         	// 根据指定的参数初始化VIC寄存器
+
+    // GPIO PA4
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	 // 上拉输入
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    //EXTI2 NVIC 配置
+    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource4);
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+    // GPIO PA8
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	 // 上拉输入
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    //EXTI3 NVIC 配置
+    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource8);
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+    // GPIO PA11
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;	 // 上拉输入
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    //EXTI4 NVIC 配置
+    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource11);
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+
+    EXTI_InitStructure.EXTI_Line = EXTI_Line1 | EXTI_Line4 | EXTI_Line8 | EXTI_Line11;
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
+}
+
+
+void Delay(__IO u32 nCount) {
+    for(; nCount != 0; nCount--);
+}
+
+void EXTI1_IRQHandler (void){
+  /* I/O线中断，中断线为PA1 */
+	if(EXTI_GetITStatus(EXTI_Line1) != RESET) { //确保是否产生了EXTI Line中断
+		// LED0 取反
+		GPIO_WriteBit(GPIOC, GPIO_Pin_0,
+			(BitAction)((1-GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_0))));
+		EXTI_ClearITPendingBit(EXTI_Line1);       // 清除中断标志位
+	}
+}
+
+void EXTI4_IRQHandler (void){
+  /* I/O线中断，中断线为PA4 */
+	if(EXTI_GetITStatus(EXTI_Line4) != RESET) { // 确保是否产生了EXTI Line中断
+		// LED2 取反
+		GPIO_WriteBit(GPIOC, GPIO_Pin_2,
+			(BitAction)((1-GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_2))));
+		EXTI_ClearITPendingBit(EXTI_Line4);     // 清除中断标志位
+	}
+}
+
+void EXTI9_5_IRQHandler (void){
+  /* I/O线中断，中断线为PA8 */
+	if(EXTI_GetITStatus(EXTI_Line8) != RESET) { // 确保是否产生了EXTI Line中断
+		// LED0 取反
+		GPIO_WriteBit(GPIOC, GPIO_Pin_0,
+			(BitAction)((1-GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_0))));
+		EXTI_ClearITPendingBit(EXTI_Line8);      // 清除中断标志位
+	}
+}
+
+void EXTI15_10_IRQHandler (void){
+  /* I/O线中断，中断线为PA11 */
+	if(EXTI_GetITStatus(EXTI_Line11) != RESET) { // 确保是否产生了EXTI Line中断
+		// LED2 取反
+		GPIO_WriteBit(GPIOC, GPIO_Pin_2,
+			(BitAction)((1-GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_2))));
+		EXTI_ClearITPendingBit(EXTI_Line11);      // 清除中断标志位
+	}
+}
+
+
+void LED_GPIO_Config(void){
+  	GPIO_InitTypeDef GPIO_InitStructure;
+  	RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOC, ENABLE);
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_2;
+  	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  	GPIO_Init(GPIOC, &GPIO_InitStructure);
+  	GPIO_SetBits(GPIOC, GPIO_Pin_0 | GPIO_Pin_2);	 // turn off all led
+}
+
+int main(void){
+
+    LED_GPIO_Config();
+
+    LED1( ON );
+    LED2( ON );
+
+//    EXTI_PA1_Config();
+//    EXTI_PA4_Config();
+//    EXTI_PA8_Config();
+//    EXTI_PA11_Config();
+
+    EXIT_Config();
+
+    /* wait interrupt */
+    while(1){}
+}

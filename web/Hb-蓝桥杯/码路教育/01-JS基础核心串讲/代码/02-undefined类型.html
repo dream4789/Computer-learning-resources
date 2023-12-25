@@ -1,0 +1,92 @@
+<!-- <script>
+    // undefined数据类型
+    //   对应的值就一个，是und
+
+    // uname没有赋值  uname的值是und
+    // und这个值对应类型也是und
+    var uname;
+    console.log(uname);  // 打印的是值
+    console.log(typeof uname);
+</script> -->
+
+<!-- =============================== -->
+
+<!-- <script>
+    // und会出现在什么地方？
+    //   1）声明一个变量没有赋值    var是用来声明一个变量
+    //      var a;   var a = 1;   声明带赋值可以叫定义
+    // var name;  
+    // console.log(name);
+
+    //    2）如果一个函数没有返回值，默认返回und
+    function fn(){
+        // return "hello";
+        // return 123;
+
+        // undefined 是值
+        // return undefined;  // 不返回und值，默认也是返回und值
+    }
+    // 函数调用  
+    // 函数调用表达式    什么是表达式？答：任何有值的内容都是表达式
+    console.log(fn());;  // fn()在你的眼中是值
+</script> -->
+
+<script>
+    // und会出现在什么地方？
+    //   1）声明一个变量没有赋值    var是用来声明一个变量
+    //      var a;   var a = 1;   声明带赋值可以叫定义
+    // var name;  
+    // console.log(name);
+
+    //    2）如果一个函数没有返回值，默认返回und
+    // function fn() {
+    // }
+    // console.log(fn());
+
+    //    3）访问一个对象中不存在的属性，结果也是und
+    // var obj = {
+    //     // name:"wc",整体叫属性  属性分属性名和属性值
+    //     // name叫属性名，"wc"叫属性值
+    //     // 属性名也叫键，key    属性值也叫值，value   
+    //     // key vlaue 键值对
+    //     // 对象是属性的无序集合 
+    //     name:"wc",
+    //     age:18,
+    //     score:88
+    // }
+
+    // .属性访问运算符   运算符有返回值吗？答：有
+    // console.log(obj.name);
+    // 当访问一个对象中不存在的属性时，得到und
+    // console.log(obj.address);
+
+    //    4）访问数据中不存在的元素，得到und
+    // var arr = ["a","b","c"];
+    // console.log(arr[0]);
+    // console.log(arr[1]);
+    // console.log(arr[2]);
+    // console.log(arr[3]);
+    // console.log(arr[100]);
+
+    //    5）如果没有实参给形参赋值，形参的默认值也是und
+    function fn(a,b,c,d,e){
+        console.log(c,d,e);
+        return a+b;
+    }
+    // 函数调用的过程，就是实参向形参赋值的过程
+    console.log(fn(1, 2));;
+</script>
+
+<script>
+    // +是运算符  运算完后，整体是有一个值的
+    // 1+1 
+
+    // 2>1   ===> true
+
+    // = 赋值运算符   a = 1整体也有值  值是1
+    // a的值是1    a=1整体的值是1
+    // a = 1;
+
+    // 110赋值给c  c的值是110  c=100整体的值是110
+    // var a = b = c = 110;
+</script>

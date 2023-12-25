@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">点击</button>
+		<script>
+			document.getElementById('btn').onclick = function() {
+				list = new Array(1000000)
+			}
+		</script>
+		<button id="btn11">点击11</button>
+		<script>
+			document.getElementById('btn11').addEventListener('click', event => { console.log('捕获')},true)
+			document.getElementById('btn11').addEventListener('click', event => { console.log('冒泡')},false)
+			
+		</script>
+		<hr>
+		<script>
+			let a = () => {
+				var age = 22; // 局部不可达
+				name = 'xxx'; // 全局可达
+				let aa = 21; // 局部不可达
+			}
+			console.log(window.age); // undefined
+			// console.log(age); // ReferenceError
+			console.log(window.name); // xxx
+			console.log(name); // xxx
+			// console.log(aa); // ReferenceError
+			console.log("----------------")
+		</script>
+		<hr>
+		<script>
+			function original(x) {
+				this.a = 1;
+				this.b = function() {
+					return this.a + x
+				}
+			}
+			var obj = {
+				a: 10
+			}
+			var newObj1 = new(original.bind(obj));
+			console.log(newObj1.a); // 1
+			console.log(newObj1.b());  // NaN
+			
+			
+			var newObj = new(original.bind(obj, 2)); // 传入了一个实参2给x
+			console.log(newObj.a); // 1, 说明返回的函数用作构造函数时obj(this的值)被忽略了
+			console.log(newObj.b()); // 3 ，说明传入的实参2传入了原函数original
+		</script>
+	</body>
+</html>

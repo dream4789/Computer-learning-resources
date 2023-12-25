@@ -1,0 +1,48 @@
+<!-- <script>
+    // 使用class声明一个类
+    class Person {
+        // 当你new时，会自动调用constructor
+        // new时，传递的参数，会给constructor
+        constructor(name, age) {
+            // 当成私有属性
+            this.name = name;
+            this.age = age;
+        }
+        // sayHello是公有的，是原型链上的
+        sayHello() {
+            console.log("会说话...");
+        }
+    }
+
+    let p = new Person("wc", 18);
+    console.log(p);
+    console.log(p.name);
+    p.sayHello();
+    console.log(p.hasOwnProperty("name"));
+    console.log(p.hasOwnProperty("sayHello"));
+</script> -->
+
+
+<script>
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        sayHello() {
+            console.log("会说话...");
+        }
+    }
+
+    // 让Student类继承Person类
+    class Student extends Person {
+        constructor(name, age, className) {
+            super(name, age); // 调用父类的 constructor
+            this.className = className;
+        }
+    }
+    let stu1 = new Student("wc", 18, "前端1期");
+    console.log(stu1.name);
+    console.log(stu1.age);
+    stu1.sayHello();
+</script>

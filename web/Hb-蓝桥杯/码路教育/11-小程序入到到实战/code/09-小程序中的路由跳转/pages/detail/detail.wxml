@@ -1,0 +1,9 @@
+<view>
+  详情页
+  <navigator open-type="navigateBack">返回上一页（open-type="navigateBack"）</navigator>
+
+  <navigator url="/pages/comment/comment" open-type="navigate">去评论页</navigator>
+
+  <view>{{uname}}</view>
+  <view>{{age}}</view>
+</view>

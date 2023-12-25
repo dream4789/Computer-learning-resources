@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script type="module">
+
+        // template html模板内容，请作出合理修改
+        let template = `
+        <div class="container">
+            <div :class="data.classString[0]" @click="data.clickHandler[0]">{{data.cardText[0]}}</div>
+            <div :class="data.classString[1]" @click="data.clickHandler[1]">{{data.cardText[1]}}</div>
+        </div>
+        `
+
+        var app = new Vue({
+            el: "#app",
+            template,
+            data()
+            {
+                var leftHandler = () =>
+                {
+                    console.log('left');
+                    // 在此写下你的代码 * 
+                    this.$set(this.data.classString, 0, "box");
+                    this.$set(this.data.classString, 1, "box hide");
+                    this.$set(this.data.cardText, 0, "已选择");
+                    this.$set(this.data.cardText, 1, "未选择");
+                }
+
+                var rightHandler = () =>
+                {
+                    console.log('right');
+                    // 在此写下你的代码 *
+                    this.$set(this.data.classString, 0, "box hide");
+                    this.$set(this.data.classString, 1, "box");
+                    this.$set(this.data.cardText, 0, "未选择");
+                    this.$set(this.data.cardText, 1, "已选择");
+                }
+
+                return {
+                    data: {
+                        classString: ["box", "box hide"],
+                        clickHandler: [leftHandler, rightHandler],
+                        cardText: ["已选择", "未选择"]
+                    }
+                }
+            },
+        });
+
+
+    </script>
+</body>
+
+</html>

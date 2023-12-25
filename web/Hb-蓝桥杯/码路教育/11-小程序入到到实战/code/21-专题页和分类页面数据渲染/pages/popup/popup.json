@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-search": "@vant/weapp/search/index",
+    "HistoryHot":"/components/HistoryHot/HistoryHot",
+    "TipsList":"/components/TipsList/TipsList",
+    "ProductList":"/components/ProductList/ProductList"
+  }
+}
+
+

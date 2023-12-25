@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="div1">
+			xxxx
+			111
+			<a>文本节点。</a>
+			<a>1111</a>
+			1111
+		</div>
+		<script>
+			//获取文本节点---一般不获取文本节点
+			var div1 = document.getElementById('div1');
+			var txt1 = div1.firstChild;
+			console.log(txt1);
+			
+			//一般通过属性直接获取或修改文本的值
+			// div1.innerHTML = "hello!";
+			// div1.innerHTML = "<li>hello</li>";
+			
+			// textContent 在获取文本内容时，忽略样式（原样输出）。更加安全
+			// div1.textContent = "helloworld!";
+			// div1.textContent = "<li>helloworld!</li>";
+			
+			
+			
+		</script>
+	</body>
+</html>

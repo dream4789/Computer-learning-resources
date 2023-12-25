@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+			请输入关键字：<input type="text" placeholder="关键字" v-model="keyword">
+		</div>
+
+		<!-- 
+        在开发中，在data中定义状态，当数据变化了，模板会自动重新渲染，
+        但是有些情况下，我们不只要去重新渲染模板，还需要做一些其它事情，
+        此时，就可以使用侦听器了。
+    -->
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						keyword: ""
+					}
+				},
+				// watch选项中，配置侦听器，监听器
+				watch: {
+					// 侦听器的第一种写法
+					// 函数的形式
+					// keyword(){
+					//     console.log("keyword发生了变化~");
+					// }
+
+					// 侦听器的第二种写法
+					keyword: {
+						// 当keyword数据变了，会自动执行handler方法
+						handler() {
+							console.log("keyword发生了变化~");
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

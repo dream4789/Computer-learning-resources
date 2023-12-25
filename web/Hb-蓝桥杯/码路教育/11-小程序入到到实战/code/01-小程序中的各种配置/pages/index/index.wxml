@@ -1,0 +1,6 @@
+<!-- view就是div div怎么用view就怎么用-->
+<!-- 叫小程序中的原生组件 -->
+<!-- 小程序中，建议使用class选择器 -->
+<view class="container">
+  Hello 小程序
+</view>

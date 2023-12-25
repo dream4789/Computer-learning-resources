@@ -1,0 +1,81 @@
+<!-- <script>
+    // ES10中 flat
+    // 可以打平数组
+    // 二维数组，二维数组可以打平成一维数组
+    let arr = [[1, 2], [3, 4]];
+    console.log(arr.flat(1));
+
+    // arr2是三维数组
+    let arr2 = [[[1, 2],], [3, 4]]
+    console.log(arr2.flat(1));
+    console.log(arr2.flat(2));
+</script> -->
+
+<!-- <script>
+    // ES10中 flatMap   map方法是加工的
+    let arr = ["wc","xq","z3"];
+
+    let newArr = [];
+    for(const item of arr){
+        let x = item.split(" ");
+        for(const y of x){
+            newArr.push(y)
+        }
+    }
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+    let arr = ["wc", "xq", "z3"];
+    let newArr = arr.map(item=>item.split(" "));
+    let finalArr = newArr.flat(1)
+    console.log(finalArr);
+</script> -->
+
+<!-- <script>
+    let arr = ["wc", "xq", "z3"];
+    let newArr = arr.flatMap(item=>item.split(" "));
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+    // Object.fromEntries
+
+    let obj = {name:"wc",age:18,height:1.88}
+
+    console.log(Object.keys(obj));
+    console.log(Object.values(obj));
+
+    let entries = Object.entries(obj);
+    console.log(entries);
+
+    console.log(Object.fromEntries(entries));
+</script> -->
+
+<!-- <script>
+    // 查询字符串
+    let queryString = "?name=wc&age=18&height=1.88";
+    let params = new URLSearchParams(queryString);
+    console.log(params.get("name"));
+    console.log(params.get("age"));
+    console.log(params.get("height"));
+
+    // console.log(params.entries());
+
+    for(let item of params.entries()){
+        console.log(item);
+    }
+
+    let obj = Object.fromEntries(params.entries());
+    console.log(obj);
+</script> -->
+
+
+<script>
+    // ES10中，trimStart  trimEnd
+    let msg = "      hello    ";
+    console.log(msg);
+    console.log(msg.trim());
+    console.log(msg.trimStart());
+    console.log(msg.trimEnd());
+</script>

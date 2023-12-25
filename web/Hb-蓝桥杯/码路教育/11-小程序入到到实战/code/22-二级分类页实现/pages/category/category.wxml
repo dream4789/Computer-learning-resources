@@ -1,0 +1,10 @@
+<!-- 搜索框 -->
+<van-search value="{{ value }}" shape="round" background="#fff" placeholder="请输入搜索关键词" />
+<view style="display: flex;">
+  <!-- 左侧导航 -->
+  <van-sidebar style="margin-bottom:150rpx;" active-key="{{ activeKey }}">
+    <van-sidebar-item bindtap="daoHang" data-id="{{item.id}}" wx:for="{{GetTypeIndex.categoryList}}" wx:key="*this" title="{{item.name}}" />
+  </van-sidebar>
+  <!-- 右侧子组件 -->
+  <type currentCategory="{{currentCategory}}" subCategoryList="{{subCategoryList}}"></type>
+</view>

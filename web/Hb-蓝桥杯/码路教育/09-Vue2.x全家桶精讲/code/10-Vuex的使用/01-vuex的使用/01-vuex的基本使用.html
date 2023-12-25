@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../../lib/vue2.7.8.js"></script>
+		<script src="../../lib/vuex.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1>App组件</h1>
+			<p>在App组件中使用仓库中的状态：{{$store.state.counter}}</p>
+			<hr>
+			<add-counter></add-counter>
+			<hr>
+			<sub-counter></sub-counter>
+		</div>
+
+		<script>
+			let store = new Vuex.Store({
+				// 开启严格模式
+				strict: true,
+				state: {
+					counter: 0
+				},
+				// 修改状态的唯一途径是mutation
+				// 一个mutation是一个函数
+				mutations: {
+					// 每一个mutation的第1个参数都是state
+					add(state, payload) {
+						// state.counter++
+						state.counter += payload
+					},
+					sub(state) {
+						state.counter--
+					}
+				},
+				// 放异步代码，如发ajax请求
+				actions: {
+				},
+				// 类似于之前学习的计算属性
+				// 根据上面state中的状态，计算出一个新的状态
+				getters: {
+				}
+			})
+			// 定义一个AddCounter组件
+			let AddCounter = Vue.extend({
+				template: `
+                <div>
+                    <p>我AddCounter组件</p>  
+                    <p>使用仓库中的状态：{{$store.state.counter}}</p>
+                    <button @click="add">加1</button>  
+                </div>`,
+				methods: {
+					add() {
+						// 暴力修改仓库中的状态
+						// 极力不推荐，因为状态就不好追踪了
+						// this.$store.state.counter++
+
+						// 通过commit一个mutation去修改状态
+						// mutation是修改状态的唯一途径
+						this.$store.commit("add", 100)
+					}
+				}
+			})
+
+			// 定义一个SubCounter组件
+			let SubCounter = Vue.extend({
+				template: `
+                <div>
+                    <p>我SubCounter组件</p>  
+                    <p>使用仓库中的状态：{{$store.state.counter}}</p>   
+                    <button @click="sub">减1</button>  
+                </div>`,
+				methods: {
+					sub() {
+						// this.$store.state.counter--;
+						this.$store.commit("sub")
+					}
+				}
+			})
+
+			// vuex本质是一个插件，需要挂载到根组件上
+			// 就意味着所有的子组件都可以使用仓库了
+			let vm = new Vue({
+				el: ".app",
+				store,  // vuex
+				data() {
+					return {
+						name: "aaa"
+					}
+				},
+				components: {
+					AddCounter,
+					SubCounter
+				}
+			});
+		</script>
+	</body>
+
+</html>

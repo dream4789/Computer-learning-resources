@@ -1,0 +1,9 @@
+swiper {
+  /* 保证图片的宽度比是不会变的 */
+  width: 100vw;
+  height: calc(400*100vw / 750);
+}
+swiper image {
+  width: 100vw;
+  height: calc(400*100vw / 750);
+}

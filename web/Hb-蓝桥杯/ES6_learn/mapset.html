@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			const map1 = new Map()
+
+			// 新增键值对 使用 set(key, value)
+			map1.set(true, 1)
+			map1.set(1, 2)
+			map1.set('哈哈', '嘻嘻嘻')
+			console.log(map1) // Map(3) { true => 1, 1 => 2, '哈哈' => '嘻嘻嘻' }
+		</script>
+		<script>
+			const map = new Map([
+				["foo", 1],
+				["bar", 2],
+			])
+			console.log(map); // Map(2) {'foo' => 1, 'bar' => 2}
+			for (let key of map.keys()) {
+				console.log(key); // foo bar
+			}
+			for (let value of map.values()) {
+				console.log(value); // 1 2
+			}
+			for (let items of map.entries()) {
+				console.log(items); // ["foo",1]  ["bar",2]
+			}
+			map.forEach((value, key, map) => {
+				console.log(key, value); // foo 1    bar 2
+			})
+		</script>
+		<script>
+			let wm = new WeakMap();
+			let obj1 = {}
+			let obj2 = {}
+			let obj3 = {}
+			wm.set(obj1, 'a');
+			wm.set(obj2, 'b');
+			wm.set(obj3, 'c');
+			console.log(wm);  // WeakMap {{…} => 'c', {…} => 'a', {…} => 'b'}
+		</script>
+	</body>
+</html>

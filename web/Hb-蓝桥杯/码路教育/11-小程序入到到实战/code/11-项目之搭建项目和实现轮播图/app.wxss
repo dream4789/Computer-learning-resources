@@ -1,0 +1,6 @@
+page{
+  color: #333333;
+  font-family: "黑体";
+  font-size: 28rpx;
+  background: #efefef;
+}

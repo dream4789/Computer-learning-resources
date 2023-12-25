@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+		<style>
+			button {
+				width: 180px;
+				height: 50px;
+				margin-top: 10px;
+			}
+
+			.box {
+				width: 180px;
+				height: 200px;
+				background-color: yellowgreen;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="app">
+			<!-- v-if可以控制一个节点是否创建或销毁 -->
+			<!-- "false" 不是字符串,不是字符串 -->
+			<!-- 指令="xxx"   "xxx"不是字符串  是数据 -->
+			<h1 v-if="false">{{name+"---1"}}</h1>
+
+			<!-- v-if后面也是写表达式(只要有值,就是表达式)  -->
+			<h1 v-if="flag">{{name+"---2"}}</h1>
+
+			<!-- v-if后面写的表达式会转化成true或false -->
+			<!-- 如果为true,DOM节点或组件就会创建 -->
+			<!-- 如果为false,DOM节点或组件就会销毁 -->
+			<h1 v-if="1-1">{{name+"---3"}}</h1>
+
+			<!-- v-if可以控制DOM元素的创建或销毁 -->
+			<!-- 频繁创建或销毁DOM元素,性能低 -->
+			<!-- 换句话,如果一个DOM元素,需要频繁地显示或隐藏,建议不要使用v-if -->
+			<!-- 每一次显示,都会创建一个新的DOM元素,每一次隐藏,都会销毁这个DOM元素 -->
+			<button @click="handle">盒子显示或隐藏</button>
+			<div class="box" v-if="flag"></div>
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						flag: true
+					}
+				},
+				methods: {
+					handle() {
+						this.flag = !this.flag;
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

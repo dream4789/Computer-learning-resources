@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <h2>用户注册</h2>
+    <form method="post">
+        <ul>
+            <li>用户名：<input type="text" name="username" id="user"><span id="msg"></span></li>
+            <li>密码：<input type="text" name="pwd"></li>
+            <li>确认密码：<input type="text" name="repwd"></li>
+            <li><input type="submit" value="注册"></li>
+        </ul>
+    </form>
+    <script>
+        let user = document.querySelector("#user")
+        let msg = document.querySelector("#msg")
+
+        user.onblur = function () {
+            // this 表示事件源  this.value 表示输入框中的内容
+            let username = this.value;
+
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                let res = xhr.response;
+                if (res.code == 0) {
+                    msg.innerHTML = res.msg;
+                    msg.style.color = "red"
+                } else {
+                    msg.innerHTML = res.msg;
+                    msg.style.color = "green"
+                }
+            }
+            xhr.responseType = "json"
+            xhr.open("post", "http://127.0.0.1:3000/check");
+
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+            xhr.send(`username=${username}`)
+        }
+    </script>
+</body>
+
+</html>

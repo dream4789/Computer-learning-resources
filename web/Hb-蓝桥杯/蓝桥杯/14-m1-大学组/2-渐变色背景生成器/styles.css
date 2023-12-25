@@ -1,0 +1,49 @@
+/* 注意这里定义的 CSS 变量，它们会用于生成渐变色背景 */
+:root {
+	--color1: #00dbde;
+	--color2: #fc00ff;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: #222;
+}
+
+.controls {
+	width: 500px;
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+}
+
+input[type="color"] {
+	-webkit-appearance: none;
+	border: none;
+	width: 60px;
+	height: 60px;
+	border-radius: 5px;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+	margin: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+	border-radius: 5px;
+	transform: scale(1.1);
+}
+
+.gradient {
+	width: 500px;
+	height: 500px;
+	border-radius: 5px;
+	background: linear-gradient(45deg, var(--color1), var(--color2));
+}

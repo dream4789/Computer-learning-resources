@@ -1,0 +1,175 @@
+<!-- 
+    JS中的函数是一等公民。JS中的函数非常重要，非常重要。
+
+    后面学习OOP，面向对象编程，核心还是函数。
+
+    高阶函数：
+        一个函数，它的参数是函数，或者它的返回值是函数，那么这个函数叫高阶函数。
+ -->
+
+<!-- <script>
+    // fn函数，接收一个函数
+    function fn(func){
+        // func是一个地址，也指向gn对应的堆
+        func();
+    }
+    function gn(){
+        console.log('gn...');
+    }
+    // gn是一个地址
+    fn(gn); // 
+</script> -->
+
+<!-- <script>
+    // 需求：封装一个计算器函数，接收三个参数
+    // 前两个参数是两个普通数据，第三个参数是一个函数（+，-，*）
+
+    function add(num1,num2){return num1+num2}
+    function sub(num1,num2){return num1-num2}
+    function mul(num1,num2){return num1*num2}
+
+    // calc函数就是一个高阶函数
+    function calc(num1,num2,func){
+        return func(num1, num2)
+    }
+    console.log(calc(1,2,add));
+    console.log(calc(1,2,sub));
+    console.log(calc(1,2,mul));
+</script> -->
+
+<!-- <script>
+    // fn函数内部返回一个函数，fn这个函数叫高阶函数
+    function fn(){
+        function gn(){
+            console.log("gn...");
+        }
+        // 说白了，就是返回一个地址
+        return gn;
+    }
+    let kn = fn();
+    kn();
+</script> -->
+
+<!-- <script>
+    // 产生闭包
+    // 从形式上看：
+    //    闭包就是两个函数嵌套，里面的函数引用了外面函数的变量
+    // 我们的定义：
+    //    一个不能被释放的栈空间就是一个闭包
+    // 作用：
+    //    1）保存：延长了函数内部局部变量的生命周期
+    //    2）保护：闭包中的变量说白了，还是局部变量，外界是不能访问的
+    // 有人还样理解：
+    //    有了闭包，我们可以像使用全局变量那样使用局部变量
+    function fn(count){
+        return function add(num){
+            return count + num;
+        }
+    }
+    console.log(count);
+
+    let gn5 = fn(5);
+    console.log(gn5(5));
+    console.log(gn5(50));
+</script> -->
+
+
+<!-- <script>
+    // 高阶函数：
+    //     一个函数的参数是函数 或 返回值是函数，这个函数就叫高阶函数
+
+    // 高阶函数
+    function fn(func){
+        func()
+    }
+
+    function gn(){
+        console.log("gn...");
+    }
+
+    fn(gn);
+</script> -->
+
+<!-- <script>
+    let arr = [10,20];
+    // map 对数组中的元素进行加工
+    let newArr = arr.map(function(item){
+        console.log(item);
+        return item * item
+    })
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+
+    Array.prototype.mlmap = function (fn) {
+        // this是什么 ？  答：this是arr
+        let newArray = [];
+        for (let i = 0; i < this.length; i++) {
+            // this[i] 表示数组中的每一项
+            let res = fn(this[i], i)
+            newArray.push(res)
+        }
+        return newArray;
+    }
+
+    let arr = [10, 20];
+    let newArr = arr.mlmap(function (item, index) {
+        return item * item
+    })
+    console.log(newArr);
+</script> -->
+
+
+<!-- <script>
+    Array.prototype.mlmap = function (fn) {
+        // this表示数组
+        let newArr = [];
+        for (let i = 0; i < this.length; i++) {
+            newArr.push(fn(this[i], i))
+        }
+        return newArr;
+    }
+
+    let arr = [10, 20];
+    let newArr = arr.mlmap(function (item, index) {
+        return item * item
+    })
+    console.log(newArr);
+</script> -->
+
+<!-- <script>
+    Array.prototype.mlfind = function(fn){
+        for(let i=0; i<this.length; i++){
+            let res = fn(this[i]);
+            if(res){
+                // 如果找到了满足条件的第1上元素
+                return this[i]
+            }
+        }
+    }
+    let arr = [1,2,3,4,5,6,7,8,9,10];
+    let res = arr.mlfind(function(item){
+        return item>6;
+    });
+    // 7 find返回满足条件的第1个元素
+    console.log(res);
+</script> -->
+
+<script>
+    Array.prototype.mlfilter = function(fn){
+        let newArr = [];
+        for(let i=0; i<this.length; i++){
+            let res = fn(this[i]);
+            if(res){
+                newArr.push(this[i])
+            }
+        }
+        return newArr;
+    }
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let res = arr.filter(function (item) {
+        return item > 6;
+    });
+    console.log(res);
+</script>

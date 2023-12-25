@@ -1,0 +1,92 @@
+<view>
+  <van-search bindtap="gotoPopup" shape="round" disabled placeholder="请输入搜索关键词" />
+
+  <swiper indicator-dots="true" autoplay="true">
+   <block wx:for="{{banner}}" wx:key="*this">
+    <swiper-item>
+      <image src="{{item.image_url}}" alt=""></image>
+    </swiper-item>
+   </block>
+  </swiper>
+
+  <van-grid column-num="5">
+    <van-grid-item wx:for="{{channel}}" wx:key="*this" icon="{{item.icon_url}}" text="{{item.name}}"
+    bindtap="fun" data-ji="{{item.id}}"/>
+  </van-grid>
+
+    <!--  品牌制造商 -->
+    <view class="pinpai">
+      <view class="pin-wz">品牌制造商直供</view>
+      <van-row gutter="10">
+        <van-col span="12" wx:for="{{brandList}}" wx:key="*this">
+          <view style="display: inline-block;width: 50%; position: relative;">
+            <image style="width: 100%;" mode="widthFix" src="{{item.pic_url}}"></image>
+            <view style="position: absolute;top: 20%; left: 10%;font-size: 26rpx;font-family: 微软雅黑;">
+              <view style="">{{item.name}}</view>
+              <view style="font-size: 20rpx;padding-top: 10rpx;color: rgb(168, 84, 84);">￥ {{item.floor_price}} 元</view>
+            </view>
+          </view>
+        </van-col>
+      </van-row>
+    </view>
+
+    <!--  周一周四 -->
+    <view class="pinpai" style="padding-bottom: 50rpx;">
+      <view class="pin-wz">周一周四、新品发布</view>
+      <van-row>
+        <van-col data-id="{{item.id}}" span="12" wx:for="{{newGoodsList}}" wx:key="*this">
+          <view style="display: inline-block;width: 50%;">
+            <image style="width: 100%;" mode="widthFix" src="{{item.list_pic_url}}"></image>
+            <view style="font-size: 26rpx;font-family: 微软雅黑;text-align: center;">
+              <view style="">{{item.name}}</view>
+              <view style="font-size: 20rpx;padding-top: 10rpx;color: rgb(168, 84, 84);">￥ {{item.retail_price}}.00 元</view>
+            </view>
+          </view>
+        </van-col>
+      </van-row>
+    </view>
+
+     <!--  人气推荐 -->
+      <view style="padding-bottom: 40rpx;" class="pinpai">
+        <view class="pin-wz">人气推荐</view>
+        <view style="display: flex; background-color: #eee; margin-bottom: 40rpx;" wx:for="{{hotGoodsList}}" wx:key="*this">
+          <!-- 图片 -->
+          <view>
+            <image src="{{ item.list_pic_url }}" style="width: 200rpx;" mode="widthFix"></image>
+          </view>
+          <!-- 文字 -->
+          <view style="font-size: 20rpx;padding-top: 20rpx; height: 50rpx;line-height: 50rpx;">
+            <view style="font-size: 28rpx;">{{item.name}}</view>
+            <view style="font-size: 22rpx;">{{item.goods_brief}}</view>
+            <view style="color: rgb(175, 63, 63);">￥ {{item.retail_price}}.00 元</view>
+          </view>
+        </view>
+      </view>
+
+       <!--  专题推荐 -->
+        <view class="pinpai">
+          <view class="pin-wz">专题推荐</view>
+          <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
+            <view wx:for="{{topicList}}" wx:key="*this" id="{{item.id}}" class="scroll-view-item_H demo-text-1" style="width: 80%;margin: 0 20rpx;">
+              <image src="{{item.item_pic_url}}"></image>
+              <view>{{item.title}} ￥{{item.price_info}}</view>
+              <view class="sheng">{{item.subtitle}}</view>
+            </view>
+          </scroll-view>
+        </view>
+
+        <view class="pinpai" style="padding-bottom: 100rpx;">
+          <!-- 标题 -->
+          <view class="pin-wz" wx:for="{{categoryList}}" wx:key="item" wx:for-item="item">
+              {{item.name}}
+             <!-- 商品 -->
+              <view style="display: flex; width: 100%; flex-wrap: wrap;">
+                  <view style="width: 50%;font-size: 20rpx;" wx:for="{{item.goodsList}}" wx:key="items" wx:for-item="items">
+                  <image style="width: 100%;" mode="widthFix" src="{{items.list_pic_url}}"></image>
+                  <view style="width: 300rpx;padding:0 20rpx;">{{items.name}}</view>
+                  <view style="color: rgb(173, 62, 62);">￥ {{items.retail_price}} 元</view>
+              </view>
+          </view>
+      </view>
+    </view>
+</view>

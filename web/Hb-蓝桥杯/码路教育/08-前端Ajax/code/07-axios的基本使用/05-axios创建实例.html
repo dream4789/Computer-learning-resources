@@ -1,0 +1,31 @@
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+<script>
+    // axios.get
+
+    // 创建自己的实例  {}叫配置对象，这里面，就可以书写自己的配置
+    let axios1 = axios.create({
+        baseURL: "http://127.0.0.1:3000",
+        timeout: 3000,
+        headers: {}
+    })
+
+    axios1.get("/news", {
+        params: { a: 1 }
+    }).then(res => {
+        console.log("res:", res);
+    })
+
+
+    let axios2 = axios.create({
+        baseURL: "http://127.0.0.1:5000",
+        timeout: 5000,
+        headers: {}
+    })
+
+    axios1.get("/students", {
+        params: { a: 1 }
+    }).then(res => {
+        console.log("res:", res);
+    })
+</script>

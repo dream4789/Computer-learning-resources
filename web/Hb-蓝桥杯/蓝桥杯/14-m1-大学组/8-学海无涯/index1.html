@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>学海无涯</title>
+		<!-- <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script> -->
+		<script src="./js/echarts.min.js"></script>
+		<link rel="stylesheet" href="./css/style.css" />
+		<script src="./js/axios.min.js"></script>
+	</head>
+
+	<body style="height: 100%; margin: 0">
+		<!-- tab 栏 -->
+		<div class="container">
+			<div class="tabs">
+				<input type="radio" id="week" name="tabs" checked />
+				<label class="tab" for="week">周</label>
+				<input type="radio" id="month" name="tabs" />
+				<label class="tab" for="month">月</label>
+				<span class="glider"></span>
+			</div>
+		</div>
+		<div id="container" style="width: 80%; height: 80%; margin: 40px auto 0"></div>
+		<script type="text/javascript">
+			var dom = document.getElementById("container");
+			var myChart = echarts.init(dom, null, {
+				renderer: "canvas",
+				useDirtyRect: false,
+			});
+			var option;
+			option = {
+				title: {
+					text: "学习时长统计图",
+				},
+				legend: {},
+				xAxis: { // x 轴数据
+					type: "category",
+					data: [1, 2, 3, 4, 5, 6, 7],
+				},
+				yAxis: {
+					type: "value",
+					name: "分钟",
+					axisLabel: {
+						formatter: "{value}",
+					},
+				},
+				series: [{ // y 轴数据
+					data: [120, 200, 150, 80, 70, 110, 130],
+					type: "bar",
+				}, ],
+			};
+			if (option && typeof option === "object") { // 设置图表
+				myChart.setOption(option);
+			}
+			window.addEventListener("resize", myChart.resize);
+
+			// TODO:待补充代码
+			let xa1
+			let xa2
+			let ydata1 = [];
+			let ydata2 = [];
+
+			axios.get('./data.json')
+				.then(res => {
+					let data = res.data.data;
+					let ydata = data['2月'].concat(data['3月'])
+					// 按周
+					for (let i = 0; i < ydata.length; i += 7) {
+						ydata1.push(ydata.slice(i, i + 7).reduce(((x, y) => x + y)));
+					}
+					// 按月
+					ydata2.push(data['2月'].reduce(((x, y) => x + y)));
+					ydata2.push(data['3月'].reduce(((x, y) => x + y)));
+					xa1 = ['2月第1周', '2月第2周', '2月第3周', '2月第4周', '3月第1周', '3月第2周', '3月第3周', '3月第4周', '3月第5周']
+					xa2 = ['2月', '3月']
+					setnewOption(xa1, ydata1);  // 默认按周显示
+				}).then(() => {
+					document.getElementById('week').onclick = function() {
+						this.checked = 'checked';
+						setnewOption(xa1, ydata1)
+					}
+					document.getElementById('month').onclick = function() {
+						this.checked = 'checked';
+						setnewOption(xa2, ydata2)
+					}
+				})
+
+			function setnewOption(xa, ydata) {
+				option.xAxis.data = xa;
+				option.series[0].data = ydata;
+				myChart.setOption(option);
+			}
+		</script>
+	</body>
+</html>

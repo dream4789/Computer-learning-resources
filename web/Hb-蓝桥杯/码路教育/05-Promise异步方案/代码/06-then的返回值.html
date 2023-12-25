@@ -1,0 +1,115 @@
+<!-- <script>
+    let promise = new Promise((resolve, reject) => {
+        resolve("包包")
+    })
+
+    // then返回一个新的promise，和上面的promise没有关系
+    // let p1 = promise.then(res=>{
+    //     console.log("res:",res);
+    // },err=>{
+    //     console.log("err:",err);
+    // });
+    // console.log(p1);
+
+    promise.then(res1 => {
+        console.log("res1:", res1);
+        // 如果返回一个普通值，新的promise是成功的pormise
+        // return "666"; // 返回的普通值，会作为新的promise的终值（成功的值）
+        // 什么也不返回 ，相当于返回und  也是成功的  终值是undefined
+    }, err1 => {
+        console.log("err1:", err1);
+    }).then(res2=>{
+        console.log("res2:", res2);
+    },err2=>{
+        console.log("err2:", err2);
+    })
+</script> -->
+
+
+<!-- <script>
+    let promise = new Promise((resolve, reject) => {
+        reject("没钱")
+    })
+    // 不要管上一个promise是成功还是失败，看上一个promise做了什么
+    promise.then(res1 => {
+        console.log("res1:", res1);
+        return 666;
+    }, err1 => {
+        console.log("err1:", err1);
+        return 888;
+    }).then(res2 => {
+        console.log("res2:", res2);
+    }, err2 => {
+        console.log("err2:", err2);
+    })
+</script> -->
+
+
+<!-- <script>
+    let p = new Promise((resolve, reject) => {
+        // resolve("ok123")
+        reject("bad")
+    })
+    let promise = new Promise((resolve, reject) => {
+        resolve("ok456")
+    })
+    // 如果上一个then中返回一个promise，新的promise成功还是失败
+    // 取决于你返回的promise是成功还是失败
+    promise.then(res1 => {
+        console.log("res1:", res1);
+        return p;
+    }, err1 => {
+        console.log("err1:", err1);
+    }).then(res2 => {
+        console.log("res2:", res2);
+    }, err2 => {
+        console.log("err2:", err2);
+    })
+</script> -->
+
+<!-- <script>
+    let promise = new Promise((resolve, reject) => {
+        resolve("ok456")
+    })
+    // 如果上一个then中返回一个thenable，新的promise成功还是失败
+    // 取决于你返回的thenable是成功还是失败
+    promise.then(res1 => {
+        console.log("res1:", res1);
+        return {
+            then(resolve, reject) {
+                // resolve("ok666")
+                reject("bad")
+            }
+        }
+    }, err1 => {
+        console.log("err1:", err1);
+    }).then(res2 => {
+        console.log("res2:", res2);
+    }, err2 => {
+        console.log("err2:", err2);
+    })
+</script> -->
+
+<!-- <script>
+    let promise = new Promise((resolve, reject) => {
+        resolve("ok456")
+    })
+    // 如果上一个then 抛出了一个错误，新的promise是失败的promise
+    promise.then(res1 => {
+        console.log("res1:", res1);
+        throw new Error("我是一个错误~")
+    }, err1 => {
+        console.log("err1:", err1);
+    }).then(res2 => {
+        console.log("res2:", res2);
+    }, err2 => {
+        console.log("err2:", err2);
+    })
+</script> -->
+
+<!-- <script>
+    // 1）如果上一个then返回一个普通数据，包含und,新的promise是成功的promise
+    // 2）如果上一个then返回一个promise,新的promis是成功还是失败取决是返回的那个promise
+    // 3）如果上一个then返回一个thenable，新的promis是成功还是失败取决thenable是成功还是失败
+    // 4）如果上一个then抛出一个错误，新的promsie是失败的promsie
+</script> -->

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<h1>{{name}}</h1>
+		</div>
+
+		<script>
+			// vm是对象，对象是属性的无序集合
+			let vm = new Vue({
+				// 除了el与模板进行关联之外，还可以使用$mount进行关联
+				// el:"#app",
+				data() {
+					return {
+						name: "aaa"
+					}
+				}
+			});
+			console.log(Vue.prototype.$mount);
+			console.log(vm);
+
+			// $mount也可以让一个vue实例与容器进行关联
+			vm.$mount("#app");
+
+			// 打印类，函数有多种角色
+			// 函数也是对象   __proto__
+			console.dir(Vue);
+		</script>
+		<!-- 
+        实例与容器(模板)关联的方式: 
+            1) el
+            2) $mount
+     -->
+	</body>
+
+</html>

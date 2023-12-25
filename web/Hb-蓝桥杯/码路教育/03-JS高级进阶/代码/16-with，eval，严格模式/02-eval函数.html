@@ -1,0 +1,14 @@
+<!-- 
+    eval是一个特殊的函数。
+    作用：把一片字符串，当成JS代码去执行。
+ -->
+
+<script>
+    let age = 110;
+    //  一片字符串
+    let jsStr = " var msg='haha'; console.log(msg); console.log(age); ";
+
+    // eval是JS中内置的函数，直接去调用
+    // eval执行的代码，并不是一个沙箱环境，受外界的影响
+    eval(jsStr);
+</script>

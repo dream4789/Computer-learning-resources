@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			* {
+			    padding: 0;
+			    font-size: 13px;
+			    width: 230px;
+			    margin: 0 auto;
+			    font: normal 12px "微软雅黑";
+			}
+			
+			.hide {
+			    display: none;
+			    /*默认隐藏后两个标签页 */
+			}
+			
+			li {
+			    display: inline-block;
+			    /*转换为内联块状元素，并排展示li内容 */
+			    border: 1px solid #ccc;
+			    width: 50px;
+			    height: 22px;
+			    border-bottom: none;
+			    margin-left: 5px;
+			}
+			
+			ul {
+			    list-style: none;
+			    /*去除li默认小黑点 */
+			    margin-top: 2px;
+			    width: 232px;
+			    height: 24px;
+			    border-bottom: 2px solid #8a0f0f;
+			}
+			
+			.all {
+			    border: 1px solid rgb(75, 68, 68);
+			    width: 230px;
+			    border-top: none;
+			}
+			
+			.active {
+			    border-top: 2px solid #8B4513;
+			    border-bottom: 2px solid #FFFFFF;
+			    /*默认显示第一个标题页的效果*/
+			}
+		</style>
+		<script>
+			// JS实现选项卡切换
+			window.onload = function () {
+			//先加载页面，否则函数无效
+			    change('nav', 'content');
+			}
+			// 当页面需要多次实现选项卡效果，可以对函数进行封装，以实现多次调用。
+			function change(navId, contentId) {
+			    // 切换代码
+			    var nav = document.getElementById(navId);
+			    var liarray = nav.children;
+			    var content = document.getElementById(contentId);
+			    var contentarray = content.children;
+			    for (var i = 0; i < liarray.length; i++) {
+			        liarray[i].index = i;
+			        liarray[i].onmouseover = function () {
+			        //为每一个li添加鼠标移过事件
+			            for (var j = 0; j < liarray.length; j++) {
+			                liarray[j].classList.remove("active");
+			                //遍历liarray，全部删除"active"类
+			            }
+			            this.classList.add("active");
+			            //为当前li添加"active"类
+			            for (var j = 0; j < contentarray.length; j++) {
+			                if (!contentarray[j].classList.contains("hide")) {
+			                    contentarray[j].classList.add("hide")
+			                }
+			            }
+			            contentarray[this.index].classList.remove("hide");
+			        }
+			    }
+			}
+		</script>
+		
+	</head>
+	<body>
+		<!-- HTML页面布局 -->
+		<ul class="list" id='nav'>
+		    <li class="active">房产</li>
+		    <li class="">家居</li>
+		    <li class="">二手房</li>
+		</ul>
+		
+		<div class="all " id='content'>
+		    <div class="">
+		        275万购昌平邻铁三居 总价20万买一居
+		        <br> 200万内购五环三居 140万安家东三环
+		        <br> 北京首现零首付楼盘 53万购东5环50平
+		        <br> 京楼盘直降5000 中信府 公园楼王现房
+		        <br>
+		    </div>
+		
+		    <div class="hide ">
+		        40平出租屋大改造 美少女的混搭小窝
+		        <br> 经典清新简欧爱家 90平老房焕发新生
+		        <br> 新中式的酷色温情 66平撞色活泼家居
+		        <br> 瓷砖就像选好老婆 卫生间烟道的设计
+		        <br>
+		    </div>
+		
+		    <div class="hide ">
+		        通州豪华3居260万 二环稀缺2居250w甩
+		        <br> 西3环通透2居290万 130万2居限量抢购
+		        <br> 黄城根小学学区仅260万 121平70万抛!
+		        <br> 独家别墅280万 苏州桥2居优惠价248万
+		        <br>
+		    </div>
+		</div>
+	</body>
+</html>

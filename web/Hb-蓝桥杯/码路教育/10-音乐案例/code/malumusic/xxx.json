@@ -1,0 +1,149 @@
+{
+    "name": "日不落",
+    "id": 209643,
+    "pst": 0,
+    "t": 0,
+    "ar": [
+        {
+            "id": 7219,
+            "name": "蔡依林",
+            "tns": [],
+            "alias": [
+                "Jolin Tsai"
+            ],
+            "alia": [
+                "Jolin Tsai"
+            ]
+        }
+    ],
+    "alia": [],
+    "pop": 100,
+    "st": 0,
+    "rt": "600902000005157183",
+    "fee": 8,
+    "v": 49,
+    "crbt": null,
+    "cf": "",
+    "al": {
+        "id": 21325,
+        "name": "特务J",
+        "picUrl": "http://p3.music.126.net/Yu--DIhsQSoei6XQTrSUNA==/109951163200168756.jpg",
+        "tns": [
+            "Agent J"
+        ],
+        "pic_str": "109951163200168756",
+        "pic": 109951163200168750
+    },
+    "dt": 228506,
+    "h": {
+        "br": 320000,
+        "fid": 0,
+        "size": 9142901,
+        "vd": -66930,
+        "sr": 44100
+    },
+    "m": {
+        "br": 192000,
+        "fid": 0,
+        "size": 5485758,
+        "vd": -64383,
+        "sr": 44100
+    },
+    "l": {
+        "br": 128000,
+        "fid": 0,
+        "size": 3657186,
+        "vd": -62760,
+        "sr": 44100
+    },
+    "sq": {
+        "br": 1051257,
+        "fid": 0,
+        "size": 30027416,
+        "vd": -67094,
+        "sr": 44100
+    },
+    "hr": null,
+    "a": null,
+    "cd": "1",
+    "no": 11,
+    "rtUrl": null,
+    "ftype": 0,
+    "rtUrls": [],
+    "djId": 0,
+    "copyright": 2,
+    "s_id": 0,
+    "mark": 8192,
+    "originCoverType": 1,
+    "originSongSimpleData": null,
+    "tagPicList": null,
+    "resourceState": true,
+    "version": 49,
+    "songJumpInfo": null,
+    "entertainmentTags": null,
+    "single": 0,
+    "noCopyrightRcmd": null,
+    "rtype": 0,
+    "rurl": null,
+    "mst": 9,
+    "cp": 7002,
+    "mv": 186041,
+    "publishTime": 1190304000000,
+    "privilege": {
+        "id": 209643,
+        "fee": 8,
+        "payed": 0,
+        "st": 0,
+        "pl": 128000,
+        "dl": 0,
+        "sp": 7,
+        "cp": 1,
+        "subp": 1,
+        "cs": false,
+        "maxbr": 999000,
+        "fl": 128000,
+        "toast": false,
+        "flag": 4,
+        "preSell": false,
+        "playMaxbr": 999000,
+        "downloadMaxbr": 999000,
+        "maxBrLevel": "lossless",
+        "playMaxBrLevel": "lossless",
+        "downloadMaxBrLevel": "lossless",
+        "plLevel": "standard",
+        "dlLevel": "none",
+        "flLevel": "standard",
+        "rscl": null,
+        "freeTrialPrivilege": {
+            "resConsumable": false,
+            "userConsumable": false,
+            "listenType": null
+        },
+        "chargeInfoList": [
+            {
+                "rate": 128000,
+                "chargeUrl": null,
+                "chargeMessage": null,
+                "chargeType": 0
+            },
+            {
+                "rate": 192000,
+                "chargeUrl": null,
+                "chargeMessage": null,
+                "chargeType": 1
+            },
+            {
+                "rate": 320000,
+                "chargeUrl": null,
+                "chargeMessage": null,
+                "chargeType": 1
+            },
+            {
+                "rate": 999000,
+                "chargeUrl": null,
+                "chargeMessage": null,
+                "chargeType": 1
+            }
+        ]
+    }
+}

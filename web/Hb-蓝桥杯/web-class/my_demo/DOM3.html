@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<h3>1</h3>
+			<h3>2</h3>
+			<h3>3</h3>
+		</div>
+		<script>
+			// query系列获取元素的方式是静态获取
+			// 静态获取： 不能能再次感知到用js的方法添加新的标签的
+			var oBox = document.getElementById("box");
+			var oH4 = document.querySelectorAll("h3");
+			var h3 = document.createElement("h3");
+			oBox.appendChild(h3);
+			h3.innerHTML = 4;
+			console.log(oH4);
+
+
+			// get系列获取元素的方式是动态获取
+			// 动态获取： 能再次感知到用js的方法添加新的标签的
+			var oBox = document.getElementById("box");
+			var oH3 = document.getElementsByTagName("h3");
+			var h3 = document.createElement("h3");
+			oBox.appendChild(h3);
+			console.log(oH3);
+		</script>
+
+	</body>
+</html>

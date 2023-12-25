@@ -1,0 +1,31 @@
+<!-- 
+    继承：让多个类之前，建立关系，便于代码的管理和复用。
+ -->
+
+<!-- 
+    人类：属性：name，age                 方法：会说话
+    学生：属性：name，age，className      方法：会说话
+    工人：属性：name，age，companyName    方法：会说话
+ -->
+
+<script>
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.sayHello = function () { console.log("开始说话..."); }
+
+    function Student(name, age, className) {
+        this.name = name;
+        this.age = age;
+        this.className = className;
+    }
+    Student.prototype.sayHello = function () { console.log("开始说话..."); }
+
+    function Worker(name, age, companyName) {
+        this.name = name;
+        this.age = age;
+        this.companyName = companyName;
+    }
+    Worker.prototype.sayHello = function () { console.log("开始说话..."); }
+</script>

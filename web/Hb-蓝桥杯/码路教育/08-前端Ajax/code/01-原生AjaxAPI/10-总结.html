@@ -1,0 +1,45 @@
+<!-- 
+    get传参:
+        query传参
+            /get?name=wc&age18
+            后端: ctx.query
+            在谷歌浏览器控制台中有一个payload面板
+            payload面板中显示 Query Stirng  查询字符串
+            
+        params传参
+            /get/wc/18/bj
+            后端: /get/:name/:age/:address
+                 ctx.params
+            在谷歌浏览器控制台中没有payload面板
+
+    post传参:
+        send中直接传递请求体:
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+            send(name=wc&age=18&address=bj)
+            后端: 配置body-parser 或  koa-body 
+            后端: ctx.request.body
+            在谷歌浏览器控制台中有一个payload面板
+            payload面板中显示 Form Data  点开view source 
+                name=wc&age=18&address=bj
+
+            如果没有配置
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+                谷歌浏览器控制台中有一个payload面板
+                payload面板中显示 Request Data  
+
+        把数据放到FormData容器:
+            let formData = new FormData();
+            向容器中放数据:
+                1)formData.append("username","wc")
+                2)在new FormData()直接指定表单  这样表单中的数据就是收集到容器
+
+            谷歌浏览器控制台中有一个payload面板,payload面板中显示 Form Data,点开view source 和 send中传递请求体是不一样的
+
+        前端可以传递json数据给后端:
+            前端:xhr.send(JSON.stringify({ "a": 1, "b": 2 }));\
+            后端处理之FormData是一样的,
+            谷歌浏览器控制台中有一个payload面板,payload面板中显示Request Payload,点开view source 还是显示JSON数据
+
+    如果是post传参,能不能传递query参数和params参数?
+    答:可以
+-->

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function aa(s, t) {
+        let n = s.length
+        let m = t.length;
+
+        console.log(n, m)
+
+        // let f = new Array([m + 1][26]);
+
+        var f = new Array(m + 1);
+        for (var i = 0; i < f.length; i++) {
+          f[i] = new Array(26).fill(0);
+        }
+        document.write(f)
+
+
+        console.log(f)
+
+        for (let i = 0; i < 26; i++) {
+          f[m][i] = m;
+        }
+
+        for (let i = m - 1; i >= 0; i--) {
+          for (let j = 0; j < 26; j++) {
+            console.log(j+'a')
+            if (t[i] == j + 'a')
+
+              f[i][j] = i;
+            else
+              f[i][j] = f[i + 1][j];
+            // console.log(f)
+          }
+        }
+
+        // let add = 0;
+        // for (let i = 0; i < n; i++) {
+        //   if (f[add][s[i] - 'a'] == m) {
+        //     return false;
+        //   }
+        //   add = f[add][s[i] - 'a'] + 1;
+        // }
+        return true;
+      }
+
+      console.log(aa("abc", "ahbgdc"))
+    </script>
+  </body>
+</html>

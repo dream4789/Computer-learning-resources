@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<h3>{{name}}</h3>
+			<label for="agree">
+				<!-- 前面：v-model是 :value和@input的语法糖 -->
+				<input type="checkbox" id="agree" v-model="isAgree"> 
+				<a href="">同意XXX协议</a>
+
+				<!-- 还可以是 :checked和@change的语法糖 -->
+				<input type="checkbox" id="agree" :checked="isAgree" @change="isAgree=$event.target.checked">
+				<a href="">同意XXX协议</a>
+			</label>
+			<h3>单选框：{{isAgree}}</h3>
+
+			<hr>
+
+			<div class="hobbies">
+				<h3>请选择你的爱好：</h3>
+				<!-- 如果checkbox是多选，必须要加上value，因为收集的数据就是收集的value -->
+				<label for="sing">
+					<input type="checkbox" id="sing" value="sing" v-model="hobbies"> 唱歌
+				</label>
+				<label for="dance">
+					<input type="checkbox" id="dance" value="dance" v-model="hobbies"> 跳舞
+				</label>
+				<label for="rap">
+					<input type="checkbox" id="rap" value="rap" v-model="hobbies"> rap
+				</label>
+				<label for="basketball">
+					<input type="checkbox" id="basketball" value="basketball" v-model="hobbies"> basketball
+				</label>
+				<h2>爱好：{{hobbies}}</h2>
+			</div>
+
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						isAgree: false,
+						hobbies: []
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

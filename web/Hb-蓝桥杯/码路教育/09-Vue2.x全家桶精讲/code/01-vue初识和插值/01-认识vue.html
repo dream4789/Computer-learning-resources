@@ -1,0 +1,95 @@
+<!-- 
+    Vue: 类似于View，要找前端工作，Vue框架必学。Vue需要学的非常好。
+
+    平常我们说到vue，指的是veu全家桶，或叫vue技术栈。
+        vue.js
+        路由
+        状态管理
+        脚手架
+        axios
+        UI组件库
+        webpack
+        es6
+        ....
+
+    框架：
+        框架就是约束，就是规则，就是规范，要求我们要合适的位置写合适的代码，等待框架去调用。
+
+    库：
+        JQ，工具箱，封装了大量的API，我们是主动的去调用人家的API，实现某个功能。
+
+    文档：https://cn.vuejs.org/
+
+    渐进式 JavaScript 框架：
+        先学习vue.js，后面还需要学习vue的生态。
+
+    前端主要三大框架：
+        1）vue   最火的前端框架    国内
+            vue2.x   vue3.x
+            先学习vue2.x  后面只需要花两天时间学习vue3.x就OK
+        2）react   react是最世界最流行的框架   原生js
+        3）ng  也非常优秀   也有公司用  、
+
+    构建用户界面：
+        所谓的构建用户界面，并不是指如何绘制界面，指的是如何把数据渲染到页面上。
+    
+    现在，我们只需要把vue，当成一个普通的JS库来使用就OK了。
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<!-- 引入vue -->
+		<!-- <script src="../node_modules/vue/dist/vue.js"></script> -->
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<!-- 准备模板，也叫容器，也叫视图 -->
+		<div id="app">
+			<h3>我是vue模板 --- {{msg}}</h3>
+			<h3>我是vue模板 --- {{name}}</h3>
+			<h3>我是vue模板 --- {{age}}</h3>
+			<h3>我是vue模板 --- {{sex}}</h3>
+		</div>
+
+		<script>
+			// Vue是一个类 function Vue(){}
+			// new一个vue，得到一个对象，叫vm，叫vue的根实例，一个项目中，通常只有一个根实例，也可以叫其它名字，通常情况下，都叫vm
+			// newVue时，需要传递一个配置对象
+			// 框架：要求你在合适的位置写合适的代码，等待框架去调用
+			let vm = new Vue({
+				// 让vm实例与上面的容器进行关联，el对应的值是一个选择器
+				// el作用：让vm实例与容器进行关联
+				el: "#app",
+				// 配置data选项  data选项一般配置成函数  需要返回一个对象
+				// 在vue2.x中，根实例中的data可以是对象，一般都写函数
+				// 在vue3.x中，data必须是函数，不能是对象
+				data() {
+					return {
+						// 在这是里，就可以定义一些数据，这里面写的数据，叫响应式数据
+						// 响应式数据是指数据变了，关联的模板要重新渲染
+						// vm代理了，data中所有的数据，通常vm就可以拿数据，通过vm就可以设置数据
+						// vue的核心就是操作数据，不需要操作DOM，但是也可以操作DOM
+						name: "wc",
+						age: 18,
+						msg: "码路",
+						sex: "man"
+					}
+				}
+			});
+		</script>
+		<!-- 
+        总结：
+            1）vm叫Vue根实例   
+            2）new Vue时，需要传递一个配置对象  el:与某个模板进行关联   data:给模板提供数据
+            3）放在data中的数据是响应式数据，所谓的响应式指的是数据变了，模板重新渲染
+            4）放在data中的数据，会挂载到vm实例上，通常vm就可以操作数据
+            5）vue核心就是操作数据，数据也叫状态，操作状态
+     -->
+	</body>
+
+</html>

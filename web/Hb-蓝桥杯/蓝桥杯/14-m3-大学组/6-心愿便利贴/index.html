@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>心愿便利贴</title>
+		<!-- 引入element-ui样式 -->
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="./css/wish.css">
+		<!-- 引入element-ui组件库 -->
+		<script src="./js/vue.min.js"></script>
+		<script src="./js/index.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>心愿便利贴</h1>
+			<div class="container">
+				<!-- TODO 待修改的代码 -->
+				<div class="card" :class="item.css" v-for="(item,index) in wishList" :key="index">
+					<div class="header">
+						<img class="close" @click="closeCard(index)" src="./images/ding.png" alt="close">
+					</div>
+					<el-image v-if="item.pic" style="width: 100px; height: 100px" :src="item.pic"
+						:preview-src-list="picList">
+					</el-image>
+					<div class="content">
+						{{item.content}}
+					</div>
+					<div class="name">{{item.name}}</div>
+				</div>
+			</div>
+			<div class="form">
+				<el-form ref="form" :rules="rules" label-position="left" :model="form" label-width="80px">
+					<el-form-item label="姓名" prop="name">
+						<el-input id="firstName" v-model="form.name" placeholder="请输入姓名"></el-input>
+					</el-form-item>
+					<el-form-item label="许愿内容" prop="content">
+						<el-input type="textarea" id="content" placeholder="请输入内容" v-model="form.content"
+							show-word-limit></el-input>
+					</el-form-item>
+					<el-form-item label="图片上传">
+						<el-upload ref="uploadRef" action="#" :limit="1" list-type="picture-card"
+							:on-remove="handleRemove" :on-change="getPic" :auto-upload="false">
+							<i slot="default" class="el-icon-plus"></i>
+							<div slot="file" slot-scope="{file}">
+								<img class="el-upload-list__item-thumbnail" :src="file.url">
+								<span class="el-upload-list__item-actions">
+									<span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
+										<i class="el-icon-zoom-in"></i>
+									</span>
+									<span v-if="!disabled" class="el-upload-list__item-delete"
+										@click="handleRemove(file)">
+										<i class="el-icon-delete"></i>
+									</span>
+								</span>
+							</div>
+						</el-upload>
+					</el-form-item>
+					<el-form-item>
+						<el-button id="onSubmit" type="primary" @click="onSubmit">发布</el-button>
+						<el-button @click="onRest">重置</el-button>
+					</el-form-item>
+				</el-form>
+				<el-dialog :visible.sync="dialogVisible">
+					<img width="100%" :src="form.pic" alt="">
+				</el-dialog>
+			</div>
+		</div>
+	</body>
+	<script>
+		const app = new Vue({
+			el: "#app",
+			data: {
+				wishList: [],
+				form: {
+					name: '',
+					content: '',
+					pic: ''
+				},
+				rules: {
+					// TODO 待补充验证的代码
+					name: [{
+							required: true,
+							message: '请输入姓名',
+							trigger: 'blur'
+						},
+						{
+							min: 2,
+							max: 4,
+							message: '长度在 2 到 4 个字符',
+							trigger: 'blur'
+						}
+					],
+					content: [{
+							required: true,
+							message: '请输入许愿内容',
+							trigger: 'blur'
+						},
+						{
+							min: 1,
+							max: 30,
+							message: '长度在 1 到 30 个字符',
+							trigger: 'blur'
+
+						}
+					]
+				},
+				num: 1,
+				picList: [],
+				textarea: '',
+				dialogVisible: false,
+				disabled: false
+			},
+			methods: {
+				// 提交方法
+				onSubmit() {
+					this.$refs['form'].validate((valid) => {
+						if (valid) {
+							let obj = this.form;
+							obj.css = 'item' + this.num;
+							this.num++;
+							if (this.num > 4) {
+								this.num = 1;
+							}
+							this.wishList.push(obj)
+							this.form = {};
+							this.$refs.uploadRef.uploadFiles.pop()
+							console.log(this.wishList);
+						} else {
+							this.$message({
+								message: '提交错误！请检查输入内容',
+								type: 'warning'
+							});
+							return false;
+						}
+					});
+				},
+				// 关闭许愿卡
+				closeCard(index) {
+					this.wishList.splice(index, 1)
+				},
+				// 重置表单
+				onRest() {
+					this.$refs['form'].resetFields();
+				},
+				// 图片删除
+				handleRemove(file) {
+					let index = this.$refs.uploadRef.uploadFiles.findIndex(e => e.uid === file.uid);
+					this.$refs.uploadRef.uploadFiles.splice(index, 1);
+				},
+				// 模拟上传图片
+				getPic(e) {
+					this.form.pic = e.url;
+					this.picList.push(e.url)
+				},
+				// 预览图片
+				handlePictureCardPreview(file, fileList) {
+					this.form.pic = file.url;
+					this.dialogVisible = true;
+				}
+			}
+		});
+	</script>
+</html>

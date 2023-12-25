@@ -1,0 +1,73 @@
+<script>
+    // 立即调用函数表达式
+
+    // Immediately 立即 马上的意思
+    // Invoked 调用
+    // Function Expression 函数表达式
+    // IIFE
+    // Immediately Invoked Function Expression（立即调用函数表达式）
+
+    // 正确IIFE写法：
+    //   写法1：;(function fn(){})()
+    //   写法2：;(function fn(){}())
+    //   写法3：+function fn(){}()
+    //   写法4：-function fn(){}()
+    //   写法5：!function fn(){}()
+
+    // function fn(){
+    //     console.log("fn...");
+    // }
+
+    // 不叫立即调用
+    // 叫先去声明一个函数，后面去调用
+    // 所谓的立即调用是指在声明的同时，立马调用
+    // fn();
+</script>
+
+<!-- <script>
+    (function fn() {
+        console.log("fn...");
+    })();
+</script> -->
+
+<!-- <script>
+    (function fn() {
+        console.log("fn...");
+    }());
+</script> -->
+
+<!-- <script>
+    +function fn() {
+        console.log("fn...");
+    }()
+</script> -->
+
+<!-- <script>
+    -function fn() {
+        console.log("fn...");
+    }()
+</script> -->
+
+<!-- <script>
+    // 不行
+    *function fn() {
+        console.log("fn...");
+    }()
+</script> -->
+
+<!-- <script>
+    !function fn() {
+        console.log("fn...");
+    }()
+</script> -->
+
+<script>
+    let obj = {
+        name: "wc",
+        age: 100
+    }
+
+    ;(function () {
+        console.log("mn....");
+    }())
+</script>

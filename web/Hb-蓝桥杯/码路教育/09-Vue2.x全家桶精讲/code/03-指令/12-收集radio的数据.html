@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+			<div class="gender">
+				<!-- 对于radios来说，收集的也是value -->
+				<label for="male">
+					<input type="radio" id="male" value="male" v-model="gender"> 男
+				</label>
+				<label for="female">
+					<input type="radio" id="female" value="female" v-model="gender"> 女
+				</label>
+				<h2>性别：{{gender}}</h2>
+			</div>
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "码路教育",
+						gender: "female"
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

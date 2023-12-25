@@ -1,0 +1,25 @@
+今日内容：
+    1）let和const关键字
+    2）解构赋值
+    3）展开运算符与rest运算符
+    4）箭头函数
+    5）对象的扩展
+    6）Symbol
+    7）Proxy
+    8）Set
+
+今日作业：
+    1）http://tubie.gitee.io/malulesson/other/zuoye/30.html
+
+预习：
+    1）预习ES6+ 后面的内容
+    2）直接看我的课件预习就OK，不需要看视频
+    3）进度快的，可以看一下Promise，可以找视频看，有难度
+
+问题（知识点）反馈：
+    地址：https://kdocs.cn/l/ciZGLDGhO9AS
+    要求：
+        1）哪个知识点没有听懂可以提出来
+
+---------------------------------
+

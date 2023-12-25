@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body {
+        /* Prevent the user selecting text in the example */
+        user-select: none;
+      }
+
+      #draggable {
+        text-align: center;
+        background: white;
+      }
+
+      .dropzone {
+        width: 200px;
+        height: 20px;
+        background: blueviolet;
+        margin: 10px;
+        padding: 10px;
+      }
+
+      .dropzone.dragover {
+        background-color: purple;
+      }
+
+      .dragging {
+        opacity: .5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dropzone">
+      <div id="draggable" draggable="true">
+        该节点可拖拉
+      </div>
+    </div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+
+
+    <script>
+      var dragged;
+
+      document.addEventListener('dragstart', function(event) { // 拖动 本 触发
+        dragged = event.target;// 保存开始被拖拉节点
+      }, false);
+
+      document.addEventListener('dragover', function(event) { // 允许 本 放置
+        // 防止拖拉效果被重置，允许被拖拉的节点放入目标节点
+        event.preventDefault();
+      }, false);
+
+      document.addEventListener('drop', function(event) {  // 主要函数
+        // 防止事件默认行为（比如某些元素节点上可以打开链接）
+        event.preventDefault();
+        if (event.target.className === 'dropzone') {
+          dragged.parentNode.removeChild(dragged);  // 移出 原 删除
+          event.target.appendChild(dragged);  // 移入 后 添加
+        }
+      }, false);
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!-- 
+    扩展运算符，也叫展开运算符。
+    形式：三个点 ...  可以把一个数组转换为用逗号分隔的序列
+ -->
+
+<!-- <script>
+    let arr1 = [1, 2, 3];
+    let arr2 = [4, 5, 6];
+    //  let arr3 = arr1.concat(arr2);
+    let arr3 = [].concat(arr1, arr2)
+    console.log(arr3);
+</script> -->
+
+<!-- <script>
+    let arr1 = [1, 2, 3];
+    let arr2 = [4, 5, 6];
+    let arr3 = [...arr1, ...arr2]
+    console.log(arr3);
+</script> -->
+
+<!-- <script>
+    let arr = [10,9,30,28,33];
+    let max = arr[0];
+    for(let i=0; i<arr.length; i++){
+        if(arr[i] > max){
+            max = arr[i]
+        }
+    }
+    console.log("max=",max);
+</script> -->
+
+<!-- <script>
+    // max就是用来求最大值
+    // console.log(Math.max(2, 3, 4, 5));
+
+    let arr = [10, 9, 30, 28, 33];
+
+    // call apply
+    console.log(Math.max.apply(null, arr));
+
+    console.log(".....");
+
+    console.log(Math.max(arr));
+
+    console.log(".....");
+
+    // 可以把一个数组转换为用逗号分隔的序列
+    console.log(Math.max(...arr));
+</script> -->
+
+<!-- <script>
+    function foo(num1,num2){
+        return num1+num2
+    }
+
+    let arr = [33,44]
+    console.log(foo(11,22));
+    console.log(foo(arr[0],arr[1]));
+    // 可以把一个数组转换为用逗号分隔的序列
+    console.log(foo(...arr));
+</script> -->

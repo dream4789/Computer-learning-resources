@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>判断元素是否在可视区域</title>
+		<style>
+			body {
+				height: 3000px;
+				width: 3000px;
+			}
+
+			#box {
+				width: 300px;
+				height: 300px;
+				background-color: red;
+				margin-top: 300px;
+				margin-left: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 懒加载和无限滚动 -->
+		<!-- 缺点 -->
+		<!-- 1、每次scroll都得重新计算，性能耗费大 -->
+		<!-- 2、引起重绘回流 -->
+		<div id="box"></div>
+		<script>
+			const box = document.getElementById('box');
+			// onscroll 事件在元素滚动条在滚动时触发
+			window.onscroll = function() {
+				// box完整出现在视口里才会输出true，否则为false
+				console.log(checkInView(box))
+			}
+
+			function checkInView(dom) {
+				const {
+					top,
+					left,
+					bottom,
+					right
+				} = dom.getBoundingClientRect()
+				console.log(top, left, bottom, right)
+				console.log(window.innerHeight, window.innerWidth)
+				return top >= 0 && left >= 0 &&
+					bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+					right <= (window.innerWidth || document.documentElement.clientWidth)
+			}
+		</script>
+	</body>
+</html>

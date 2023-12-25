@@ -1,0 +1,9 @@
+<view class="my-slot">
+  <view class="header">头部</view>
+  <view class="content">
+    <!-- 在小程序中，并不支持插槽的默认值，可以使用css来实现 -->
+    <slot>我是插槽的默认值</slot>
+  </view>
+  <view class="default">我是插槽的默认值</view>
+  <view class="footer">底部</view>
+</view>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app1">
+			<h1>{{name}}</h1>
+		</div>
+		<script>
+			Vue.prototype.coding = function() {
+				console.log("开始打代码啦~");
+			}
+
+			let Count = Vue.extend({
+				data() {
+					return {
+						count: 0
+					}
+				},
+				methods: {
+					handler() {
+						// this表示组件实例，说白了，就是VC实例
+						// 不是Vue实例，是VueComponent实例
+						// Vue实例一般叫vm
+						// VueComponent实例一般叫vc
+						// 组件内部的this表示vc
+						this.coding(); // 开始打代码啦~
+						console.log(this); // VueComponent {_uid: 2, _isVue: true...}
+					}
+				},
+				template: `<button @click='handler'>点我</button>`
+			})
+
+			let count = new Count();
+			count.coding(); // 开始打代码啦~
+			console.log(count.__proto__); // Vue {constructor: ƒ}
+			console.log(count.__proto__.__proto__); // {_init: ƒ, $set: ƒ, $delete: ƒ, $watch: ƒ, $on: ƒ, …}
+			
+			
+			console.log(Vue);  // ƒ Vue(options) {} 相当于 Object()
+			console.log(Vue.__proto__); // ƒ () { [native code] }
+			console.log(Vue.prototype); // {_init: ƒ, $set: ƒ, $delete: ƒ, $watch: ƒ, $on: ƒ, …}
+			
+			console.log(count.__proto__.__proto__ == Vue.prototype);  // true // === 为false
+
+			let vm1 = new Vue({
+				template: `
+               <div>
+                    <div>我是一个孤独的DIV</div>
+                    <hr/>
+                    <Count></Count>
+               </div>`,
+				components: {
+					Count
+				}
+			});
+			vm1.$mount(".app1")
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			div {
+				width: 200px;
+				height: 150px;
+			}
+
+			#one {
+				background: #ff0000;
+				/* float: left; */
+			}
+
+			#two {
+				background: #00ff00;
+				float: left;
+			}
+
+			#three {
+				background: #ff00ff;
+				/* float: left; */
+				width: 230px;
+			}
+
+			/* ------------------------------------------------------- */
+			#big1 {
+				width: 200px;
+				height: 200px;
+				border: 1px solid blue;
+				/* padding: 10px; */
+			}
+
+			#big2 {
+				width: 200px;
+				height: 200px;
+				border: 2px solid blue;
+				/* padding: 10px; */
+			}
+
+			#aa {
+				background: #ff0000;
+				width: 100px;
+				height: 200px;
+				float: left;
+			}
+
+			#bb {
+				background: #00ff00;
+				width: 100px;
+				height: 80px;
+				float: left;
+			}
+
+			#cc {
+				background: #ff00ff;
+				width: 100px;
+				height: 120px;
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p>div 块级元素</p>
+		<div id="one"></div>
+		<div id="two"></div>
+		<div id="three">浮动元素的上一行不浮动，换行显示
+			不浮动元素的上一行浮动，会忽略上一行的浮动</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<p>1.浮动元素的上一行不浮动，换行显示</p>
+		<p>2.不浮动元素的上一行浮动，会忽略上一行的浮动</p>
+
+		<br />
+		<p>div 的宽度等于 实际宽度-内边距-边框=div的宽度；</p>
+		<br />
+
+		<div id="big1">
+			<div id="aa"></div>
+			<div id="bb"></div>
+			<div id="cc"></div>
+		</div>
+		<div id="big2">
+			<div id="aa"></div>
+			<div id="bb"></div>
+			<div id="cc"></div>
+		</div>
+		<br />
+
+
+	</body>
+</html>

@@ -1,0 +1,14 @@
+<!-- 图片 名字 -->
+<image class="url-img" src=" {{currentCategory.banner_url}}" mode="widthFix"/>
+<view>{{currentCategory.front_name}}</view>
+<view>
+  {{currentCategory.name}}
+</view>
+
+
+<van-grid column-num="3">
+    <van-grid-item  use-slot wx:for="{{subCategoryList}}" wx:key="*this" >
+    <image style="width: 50%; " mode="widthFix" src="{{item.wap_banner_url}}"></image>
+    <view style="font-size: 20rpx;">{{item.name}}</view>
+    </van-grid-item>
+  </van-grid>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<Box></Box>
+			<Box></Box>
+			<Box></Box>
+		</div>
+
+		<script>
+			// let Box = Vue.extend({
+			// 	template: `<div>我是Box组件</div>`
+			// })
+
+
+			// 下面的写法是Vue.extend的简写形式
+			let Box = {
+				template: `<div>我是Box组件</div>`
+			}
+
+			let vm = new Vue({
+				el: ".app",
+				components: {
+					Box
+				}
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,14 @@
+/**app.wxss**/
+/* 小程序中样式和我们之学习CSS样式基本上95%是一样的 */
+/* 没有浮动，直接使用flex布局 */
+/* 每一个页面，最外层是一个page标签 */
+.container {
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 200rpx 0; */
+  box-sizing: border-box;
+  background-color: red;
+} 

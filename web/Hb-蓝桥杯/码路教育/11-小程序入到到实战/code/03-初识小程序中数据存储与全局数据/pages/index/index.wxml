@@ -1,0 +1,4 @@
+<view>
+  <view>姓名：{{userInfo.name}}</view>
+  <view>年龄：{{userInfo.age}}</view>
+</view>

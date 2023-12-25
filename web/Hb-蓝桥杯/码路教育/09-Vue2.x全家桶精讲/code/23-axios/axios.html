@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="../lib/vue2.7.8.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<search />
+		</div>
+
+		<script type="text/babel"> //列表数据接口: http://apicloud.mypaas.com.cn/mockview/appdesign?path=%2Fapi%2Flistdata&api=%2Fapi%2Flistdata
+	//列表数据搜索
+	var Search= {
+		//TODO
+		data() {
+			return {
+				serarchWord: '',
+				listData: [],
+			}
+		},
+		mounted() {
+			this.debounceSearch=this.debounce(this.getData, 800)
+		},
+		methods: {
+			// 获取数据
+			getData() {
+				axios({
+					url: 'http://apicloud.mypaas.com.cn/mockview/appdesign?path=%2Fapi%2Flistdata&api=%2Fapi%2Flistdata',
+					method: 'GET',
+					params: {
+						keyWord: this.serarchWord
+					}
+				}).then(res=> {
+					// this.listData = res.data.data
+					let data=res.data.data // 数据分组
+					let groupData=this.group(data) // 将分组后的数据依次插入页面
+
+					for(let i=0; i<groupData.length; i++) {
+						setTimeout(()=> {
+							this.listData.push(...groupData[i])
+						}, 1000 * i);
+					}
+				})
+			},
+			// 数据分组[[1,...,1000],...,[1,..,1000]]
+			group(data) {
+				var result=[];
+				var groupItem;
+
+				for (var i=0; i < data.length; i++) {
+					if (i % 1000==0) {
+						groupItem !=null && result.push(groupItem);
+						groupItem=[];
+					}
+					groupItem.push(data[i]);
+				}
+
+				result.push(groupItem);
+				// console.log('result',result)
+				return result;
+			},
+			inputChange() {
+				this.debounceSearch()
+			},
+			// 防抖（setTimeout 函数)
+			debounce(fn, wait) {
+				var timeout=null;
+				return function() {
+					if(timeout !==null) clearTimeout(timeout);
+					timeout=setTimeout(fn, wait);
+				}
+			}
+		},
+
+		template: ` 
+		<div>
+		<input v-model="serarchWord"@input="inputChange"/>
+		<ul><li v-for="(item, index) in listData" :key="item.id"> {{item.title}}</li></ul>
+		</div>`
+	}
+
+	new Vue({
+		el: '#root',
+		components: {
+			'search': Search
+		}
+	}) 
+	</script>
+	</body>
+</html>

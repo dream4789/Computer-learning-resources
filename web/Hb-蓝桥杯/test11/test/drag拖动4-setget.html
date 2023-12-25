@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+  </head>
+  <body>
+    <div id="source" style="min-height: 100px;width: 100px;border: 1px solid black;" draggable="true">
+      文件1
+    </div>
+    <div id="source1" style="min-height: 100px;width: 100px;border: 1px solid black;" draggable="true">
+      文件2
+    </div>
+    <div id="target" style="min-height: 100px;width: 100px;border: 1px solid black;">
+      文件拖拉到这里
+    </div>
+
+    <script>
+
+      document.getElementById('source').ondragstart = function(event) {
+        console.log("dragstart1----")
+        event.dataTransfer.setData('some-key', 'aaaaa');
+      };
+      document.getElementById('source1').ondragstart = function(event) {
+        console.log("dragstart2----")
+        event.dataTransfer.setData('some-key', 'bbbbb');
+      };
+
+      document.getElementById('target').ondrop = function(event) {
+        event.preventDefault(); // 拖动的默认处理方式是在新窗口打开，所以阻止其执行
+        let value = event.dataTransfer.getData('some-key');
+        console.log(value)
+      }
+      document.addEventListener('dragover', function(event) { // 允许 本 放置
+        // 防止拖拉效果被重置，允许被拖拉的节点放入目标节点
+        event.preventDefault();
+      }, false);
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		2、构造函数问题：存在浪费内存空间问题
+		<script>
+			function Person(name, age) {
+				this.name = name;
+				this.age = age;
+				this.say = function() {
+					console.log('hello');
+				}
+			}
+			//浪费内存空间问题
+			var p1 = new Person('abc', 10);
+			var p2 = new Person('bcd', 11);
+			console.log(p1);
+			console.log(p2);
+			//p1.say();
+
+			//===严格相等
+			//如果两个值都引用同一个对象或是函数，那么相等，否则不相等
+			console.log(p1.say == p2.say) // 不一样，存在两个内存中
+		</script>
+		3 构造函数原型prototype ，存原型对象的地址
+		通过原型来实现所有对象共享方法。
+		<script>
+			function Person(name, age) {
+				this.name = name;
+				this.age = age;
+			}
+			//每个构造函数 都有一个prototype属性,指向另外一个对象.
+			console.dir(Person)
+			//我们可以把共有的方法,直接定义在prototype对象上,让所有对象实例共享.
+			//通过原型添加方法
+			Person.prototype.say = function() {
+				alert("原型")
+			}
+
+
+			var p1 = new Person("tom", 10);
+			var p2 = new Person("jerry", 10);
+			p1.say()
+			// p2.say()
+			console.log(p1.say == p2.say) // 一样，存在同一个内存中
+			console.log(Person.prototype)
+		</script>
+
+		</script>
+	</body>
+</html>

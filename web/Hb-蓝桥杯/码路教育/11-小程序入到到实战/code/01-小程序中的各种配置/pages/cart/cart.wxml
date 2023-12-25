@@ -1,0 +1,4 @@
+<!--pages/cart/cart.wxml-->
+
+<!-- text就是span span怎么用text就怎么用 -->
+<text>我是购物车</text>

@@ -1,0 +1,19 @@
+<script>
+    let xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+        console.log(xhr.response);
+    }
+
+    xhr.responseType = "json"
+
+    // query传参  在谷歌浏览器的控制台有一个payload  表示query传递的参数
+    //  querystring  查询字符串
+    // xhr.open("get", "http://127.0.0.1:3000/get?name=wc&age=18&address=bj");
+    // xhr.send();
+
+    // params传参
+    // 在谷歌浏览器的控制台中没有payload  但是也给后端传递了参数
+    xhr.open("get", "http://127.0.0.1:3000/get/wc/18/bj");
+    xhr.send();
+</script>

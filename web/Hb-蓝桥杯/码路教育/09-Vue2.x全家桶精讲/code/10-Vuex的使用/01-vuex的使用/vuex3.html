@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<dl v-show="personLength > 0">
+				<dt>{{personLength}}</dt>
+				<dd v-for="item in persons" :key="item.key">{{item.name}}</dd>
+			</dl>
+			<div v-show="personLength===0">加载中...2s</div>
+		</div>
+		<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+		<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+
+		<script>
+			Vue.use(Vuex);
+
+			const SET_QUERY_FLAG = 'SET_QUERY_FLAG';
+			const SET_PERSONS = 'SET_PERSONS';
+
+			let store = new Vuex.Store({
+				state: {
+					querying: false,
+					persons: []
+				},
+				getters: {
+					persons(state) {
+						return state.persons;
+					}
+				},
+				actions: {
+					startQueryPersons({
+						commit
+					}) {
+						// 设置loading    
+						commit(SET_QUERY_FLAG, true);
+					},
+					queryPersons({
+						dispatch,
+						commit
+					}) {
+						// action 组合，在这里先调用了 startQueryPersons action
+						dispatch('startQueryPersons').then(() => {
+							// 异步操作
+							setTimeout(() => {
+								commit(SET_PERSONS, [{
+										name: '刘能',
+										id: 0
+									},
+									{
+										name: '赵四',
+										id: 1
+									},
+									{
+										name: '广坤',
+										id: 2
+									}
+								])
+							}, 2000);
+						});
+					}
+				},
+				mutations: {
+					[SET_PERSONS](state, persons) {
+						state.persons = persons;
+					},
+					[SET_QUERY_FLAG](state, flag) {
+						state.querying = flag;
+					}
+				}
+			});
+
+			new Vue({
+				el: '#app',
+				store,
+				computed: {
+					personLength() {
+						return this.persons.length;
+					},
+					...Vuex.mapGetters(['persons'])
+				},
+				methods: {
+					// 通过 mapActions 可以把 action 映射为方法
+					...Vuex.mapActions({
+						doQueryPersons: 'queryPersons'
+					})
+				},
+				created() {
+					//this.$store.dispatch('queryPersons'); // 直接 dispatch action
+					this.doQueryPersons();
+				}
+			});
+		</script>
+	</body>
+</html>

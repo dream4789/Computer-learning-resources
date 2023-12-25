@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#div1 {
+				width: 200px;
+				height: 50px;
+				background: yellow;
+				border: 1px solid red;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			alert("hello!!"); //页面上弹出输出
+			document.write("hello!") //页面显示输出
+			console.log("console.log: hello") // 控制台输出
+		</script>
+
+		事件：<br>
+		鼠标移入：onmouseover事件<br>
+		鼠标移出：onmouseout事件<br>
+
+
+
+		<input type="checkbox" onmouseover="div1.style.display='block'" onmouseout="div1.style.display='none'" />10天内免登陆
+		<div id='div1'>
+			为了您的信息安全....
+		</div>
+		
+		<br/>
+		<hr/>
+
+
+
+		数据类型与变量
+		数据类型 分类 两大类：
+		基本(值)类型 :string number boolean undefined null
+
+		引用类型:
+		Object：任意对象
+		Function：函数 一种特殊的对象 每个函数都是 Function 类型的实例
+		Array：数组
+
+		<script>
+			// 定义类型
+			let m,m1,m2;  // 不可重复
+			var n,n2;  // 可重复，n1不可
+
+			// ES5 变量提升，在真正定义前，就可以使用
+			console.log("变量提升:",n) // 后面有定义n
+			// 报错：后面未定义m    console.log(m)
+
+			// ES5 变量弱类型 变量本身没有类型 值有类型
+			var n;
+			n = 10;
+			n = "name";
+
+			// ES5 重复定义变量
+			var n = 100;
+
+			// -------------------------------------
+			// ES6 let定义变量
+			let n1;
+			n1 = 20;
+			// ES6 报错：不能重复定义      let n1=100;
+
+			// ES6 有块级作用域
+			{
+				let n2 = 100;
+			}
+			// 报错：不存在n2    console.log(n2);
+			
+			
+			// -------------------------------------
+			var n2;
+			n2 = 12.3;
+			n2 = '12.3';
+			n2 = true;
+			// typeof 返回变量类型的字符串
+			console.log("返回类型:",typeof n2);
+			
+			var n3;
+			console.log("返回类型:",typeof n3);
+			
+			var n4 = null;
+			console.log("返回类型:",typeof n4);
+			
+			
+		</script>
+
+
+	</body>
+</html>

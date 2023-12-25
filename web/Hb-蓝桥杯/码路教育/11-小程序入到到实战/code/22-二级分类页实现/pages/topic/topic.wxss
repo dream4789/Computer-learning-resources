@@ -1,0 +1,16 @@
+.sheng{
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.button{
+  display: flex;
+  justify-content: space-between;
+  margin-top: .9375rem;
+  padding-bottom: 4.5rem;
+  border: none;
+  width:100%;
+ }

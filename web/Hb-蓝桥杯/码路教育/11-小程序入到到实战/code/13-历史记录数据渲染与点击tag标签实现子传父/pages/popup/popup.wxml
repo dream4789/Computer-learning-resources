@@ -1,0 +1,17 @@
+<van-search 
+  value="{{ searchVal }}"
+  placeholder="{{defaultKeyword.keyword}}"
+  show-action
+  bind:search="onSearch"  
+  bind:cancel="onCancel"
+/>
+
+<HistoryHot 
+  hotKeywordList="{{hotKeywordList}}"
+  historyKeywordList="{{historyKeywordList}}"
+  bind:clearHistory="clearHistory"
+  wx:if="{{blockShow == 1}}"
+  bind:fn="changeBlockShow"
+></HistoryHot>
+<TipsList  wx:elif="{{blockShow == 2}}"></TipsList>
+<ProductList wx:else=""></ProductList>

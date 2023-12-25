@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../lib/vue2.7.8.js"></script>
+    <script src="./data/data.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            /* text-align: center; */
+        }
+
+        thead {
+            background-color: #f5f5f5;
+        }
+
+        th,
+        td {
+            border: 1px solid #aaa;
+            padding: 8px 16px;
+        }
+
+        .active {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>{{name}}</h1>
+        <template v-if="books.length">
+            <table>
+                <thead>
+                    <tr>
+                        <td>序号</td>
+                        <td>书籍名称</td>
+                        <td>出版日期</td>
+                        <td>价格</td>
+                        <td>购物数量</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in books">
+                        <td>{{index+1}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>{{formatPrice(item.price)}}</td>
+                        <td>
+                            <button :disabled="item.count<=1" @click="decrement(index,item)">-</button>
+                            {{item.count}}
+                            <button @click="increment(index,item)">+</button>
+                        </td>
+                        <td>
+                            <button @click="removeBook(index,item)">删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>总价：{{totalPrice}}</h2>
+        </template>
+        <template v-else>
+            <h1>购物车空空如也</h1>
+        </template>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: ".app",
+            data() {
+                return {
+                    name: "码路教育",
+                    books: books
+                }
+            },
+            computed: {
+                totalPrice() {
+                    return this.books.reduce((prev, next) => prev + next.price * next.count, 0)
+                }
+            },
+            methods: {
+                formatPrice(price) {
+                    return "￥" + price
+                },
+                decrement(index, item) {
+                    item.count--
+                },
+                increment(index, item) {
+                    item.count++
+                },
+                removeBook(index, item) {
+                    // 当调用push,pop,.... splice，时，模板也会重新渲染
+                    // 为什么?
+                    // 答：原理 
+                    this.books.splice(index, 1)
+                },
+            }
+        });
+    </script>
+</body>
+
+</html>

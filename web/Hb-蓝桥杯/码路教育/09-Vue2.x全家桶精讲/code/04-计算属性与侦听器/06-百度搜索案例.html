@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<form action="http://www.baidu.com.cn/s" method="get" >
+		    <input type="hidden" name="cl" value="3" />
+		    <input type="text" name="wd"  placeholder="在这里输入文字..." />
+		    <input type="submit" value="百度一下" />
+		</form>
+		<div class="app">
+			<h1>{{name}}</h1>
+			请输入关键字：<input type="text" placeholder="关键字" v-model="keyword">
+			<ul>
+				<li v-for="(item,index) in arr">
+					{{item.q}}
+				</li>
+			</ul>
+		</div>
+
+		<!-- // https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&wd=nba&req=2&csor=1&cb=cb&_=1648605785333 -->
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						keyword: "",
+						arr: []
+					}
+				},
+				watch: {
+					keyword: {
+						deep: true,
+						immediate: true,
+
+						handler() {
+							let that = this;
+							window.cb = function(data) {
+								that.arr = data.g;
+							}
+							let script = document.createElement("script");
+							script.src =
+// 未知`https://www.baidu.com/s?ie=utf-8&mod=11&isbd=1&isid=BC4518F365E60946&ie=utf-8&f=8&rsv_bp=1&rsv_idx=2&tn=baiduhome_pg&wd=${this.keyword}&rsv_spt=1&oq=%25E4%25BD%25A0%25E5%25A5%25BD&rsv_pq=8b43976300204f24&rsv_t=060ai%2FrI07RrgbUkcII0SMOqI59AroBLpgz%2FgJVtYq3R6sAya2PJNUAHTLeNekOZMnkZ&rqlang=cn&rsv_enter=1&rsv_dl=tb&rsv_sug3=4&rsv_sug1=4&rsv_sug7=100&bs=%E4%BD%A0%E5%A5%BD&rsv_sid=undefined&_ss=1&clist=&hsug=&csor=4&pstg=5&_cr1=31349`;
+// 跨域`https://www.baidu.com/s?wd=${this.keyword}&rsv_spt=1&rsv_iqid=0xc6b27f0d00177985&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=tb&rsv_sug3=15&rsv_sug1=16&rsv_sug7=101&rsv_t=d933TRill23UBcH7C2Na9GO7XzNd%2FeTP2aGZapSGXM2zis9VOdaDFCb0mKtiCIMfMhOm&rsv_sug2=0&rsv_btype=i&inputT=7206&rsv_sug4=9342`;
+`https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&wd=${this.keyword}&req=2&csor=1&cb=cb&_=1648605785333`;
+// 跨域`https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=36561,37971,37647,37521,38020,36920,38034,37989,37925,38002,37900,26350,37881&wd=${this.keyword}&req=2&bs=%E4%BD%A0%E5%A5%BD&csor=0&sugmode=2&_=1673628500921`;
+// 跨域`https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=36561,37971,37647,37521,38020,36920,38034,37989,37925,38002,37900,26350,37881&wd=${this.keyword}&req=2&bs=%E4%BD%A0%E5%A5%BD&csor=1&pwd=%E4%BD%A0%E5%A5%BD&_=1673628500922`;
+// `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${this.keyword}`;
+// `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${this.keyword}&json=1`;
+							document.body.prepend(script)
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+	<!-- https://www.baidu.com/s?wd=%E4%BD%A0%E5%A5%BD&rsv_spt=1&rsv_iqid=0xc6b27f0d00177985&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=tb&rsv_sug3=15&rsv_sug1=16&rsv_sug7=101&rsv_t=d933TRill23UBcH7C2Na9GO7XzNd%2FeTP2aGZapSGXM2zis9VOdaDFCb0mKtiCIMfMhOm&rsv_sug2=0&rsv_btype=i&inputT=7206&rsv_sug4=9342 -->
+
+</html>

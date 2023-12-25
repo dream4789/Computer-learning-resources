@@ -1,0 +1,100 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(to bottom , #68eacc 30%,#497be8 70%);
+	overflow: hidden;
+}
+
+.form {
+	height: 470px;
+	margin: 160px auto;
+	max-width: 450px;
+	width: 100%;
+	background-color: white;
+	border-radius: 5px; 
+	position: relative;
+}
+
+.form > .card {
+	width: 300px;
+	height: 180px;
+	border-radius: 5px; 
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -90px;
+	margin: auto;
+	background: #497be8 url("../images/college.jpg") no-repeat;
+	background-position: 0 35px;
+	background-size: 100% 145px;
+	box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
+	z-index: 100;
+}
+
+.cardName { 
+	height: 35px;
+	line-height: 35px; 
+	letter-spacing: 3px;
+	overflow: hidden;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;   
+}
+
+.form > .card > .info { 
+	font-weight: bold;
+	width: 220px; 
+	margin: 20px auto; 
+	color: #fff;
+}
+
+.form > .card > .info > .item {
+	padding: 5px 30px 5px; 
+	text-shadow: 1px 1px black;
+}
+
+.form > .content {
+	width: 300px;
+	position: absolute;
+	top: 110px;
+	left: 0;
+	right: 0;
+	margin: auto; 
+}
+
+button {   
+	margin-top: 25px;
+	width: 100%;
+	padding: .7em; 
+	border: none;
+	color: white;
+	border-radius: 5px;
+	letter-spacing: 2px;
+	font-size: 14px; 
+	background: linear-gradient(90deg,#0162c8,#55e7fc);
+	position: relative;
+	/* overflow: hidden; */
+} 
+button:hover {
+	cursor: pointer;
+} 
+
+.showCard {
+	animation: showCard 0.4s forwards
+}
+
+@keyframes showCard {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(2.5) translateY(88px) rotate(5deg);
+	} 
+}
+ 

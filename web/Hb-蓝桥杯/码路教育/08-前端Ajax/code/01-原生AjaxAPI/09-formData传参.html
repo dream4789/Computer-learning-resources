@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+<form class="info">
+    <input type="text" name="username">
+    <input type="text" name="pwd">
+</form>
+<button class="send">发送请求</button>
+
+<script>
+    let formEle = document.querySelector(".info")
+    let sendEle = document.querySelector(".send")
+    sendEle.onclick = function () {
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            console.log(xhr.response);
+        }
+        xhr.open("post", "http://127.0.0.1:3000/post");
+
+        // formData传参,在谷歌浏览器的控制台中payload中显示form Data
+        // 但是不一样的是 当点view source
+        // formData是一个容器
+        // let formData = new FormData();
+        // formData.append("name", "z3")
+        // formData.append("age", "18")
+        // xhr.send(formData)
+
+        let formData = new FormData(formEle);
+        xhr.send(formData)
+    }
+</script>

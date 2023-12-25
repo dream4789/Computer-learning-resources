@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			console.log('1a')
+
+			setTimeout(function callback() {
+				console.log('2a')
+			}, 1000)
+
+			new Promise((resolve, reject) => {
+					console.log('3a')
+					resolve()
+				})
+				.then(res => {
+					console.log('4a');
+				})
+
+			console.log('5a')
+		</script>
+		<script>
+			console.log('1');
+
+			setTimeout(function() {
+				console.log('2');
+				process.nextTick(function() {
+					console.log('3');
+				})
+				new Promise(function(resolve) {
+					console.log('4');
+					resolve();
+				}).then(function() {
+					console.log('5')
+				})
+			})
+			process.nextTick(function() {
+				console.log('6');
+			})
+			new Promise(function(resolve) {
+				console.log('7');
+				resolve();
+			}).then(function() {
+				console.log('8')
+			})
+
+			setTimeout(function() {
+				console.log('9');
+				process.nextTick(function() {
+					console.log('10');
+				})
+				new Promise(function(resolve) {
+					console.log('11');
+					resolve();
+				}).then(function() {
+					console.log('12')
+				})
+			})
+		</script>
+		<script>
+			setTimeout(() => {
+				console.log('11')
+				Promise.resolve().then(() => {
+					console.log('22')
+				})
+			}, 0)
+
+			new Promise((resolve, reject) => {
+					console.log('33')
+					resolve()
+				})
+				.then(res => {
+					console.log('44');
+				})
+
+			console.log('55')
+		</script>
+		<script>
+			let bar
+			// 这个方法用的是一个异步签名，但其实它是同步方式调用回调的
+			function someAsyncApiCall(callback) {
+				callback();
+			}
+			// 回调函数在`someAsyncApiCall`完成之前被调用
+			someAsyncApiCall(() => {
+				// 由于`someAsyncApiCall`已经完成，bar没有被分配任何值
+				console.log('bar', bar); // undefined
+			});
+
+			bar = 1;
+		</script>
+	</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+			请输入你姓：<input type="text" v-model="fristName"> <br>
+			请输入你名：<input type="text" v-model="lastName"> <br>
+
+			<!-- 在小胡子中，做了运算，只要运行算的结果是一个值，都可以放到小胡子 -->
+			<p>全名：{{fristName + lastName}}</p>
+			<!-- 最好不要在小胡子语法中做运算，你可以把复杂运算放到计算属性中 -->
+			<p>全名大写：{{(fristName + lastName).toUpperCase()}}</p>
+
+			<hr>
+			<!-- 可以把复杂运算放到方法中 -->
+			<!-- 利用计算属性，可以把计算后的数据缓存起来，后面再用，直接从缓存中拿 -->
+			<h2>可以把复杂运算放到 方法 中</h2>
+			<p>全名：{{fullName()}}</p>
+			<p>全名：{{fullName()}}</p>
+			<p>全名：{{fullName()}}</p>
+
+			<hr>
+			<h2>可以把复杂运算放到 计算属性 中</h2>
+			<!--使用计算属性时，不是函数调用 -->
+			<!-- 第一次使用allName时，会计算 -->
+			<p>全名：{{allName}}</p>
+			<p>全名：{{allName}}</p>
+			<p>全名：{{allName}}</p>
+
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						fristName: "ma",
+						lastName: "lu",
+						count: 0
+					}
+				},
+				methods: {
+					fullName() {
+						console.log("函数调用了~ ");
+						return (this.fristName + this.lastName).toUpperCase()
+					}
+				},
+				computed: {
+					// 书写时，可以写成函数的形式，本质是一个属性（状态）
+					// 所谓的计算属性，就是根据已有的数据，计算得到新的数据
+					// 当你依赖的状态发生了变化，会重新计算
+					// 在开发中，能使用计算属性实现的，最好使用计算属性
+					allName() {
+						console.log("计算属性~");
+						// 一个计算属性是什么，看返回值
+						// return 666
+						return (this.fristName + this.lastName).toUpperCase()
+
+						// 不能在计算属性中写异步代码
+						// 侦听器watch：在侦听器中是可以写异步代码
+						// setTimeout(() => {
+						// 	console.log("异步执行了~");
+						// 	return this.fristName + this.lastName;
+						// }, 2000)
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

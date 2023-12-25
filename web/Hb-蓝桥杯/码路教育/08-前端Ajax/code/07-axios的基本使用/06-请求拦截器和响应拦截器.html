@@ -1,0 +1,44 @@
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+
+<button>发送请求</button>
+
+<script>
+    let btn = document.querySelectorAll("button")[0];
+
+    // 给默认实例添加请求拦截器
+    // 这样写，相当于，这个拦截器什么也没有做
+    // axios.interceptors.request.use(config => {
+    //     return config;
+    // })
+
+    // 所谓的做一些事，就是做一些配置
+    axios.interceptors.request.use(config => {
+
+        config.headers.Authorization = `fsadfsadf6789f87s6adf68asodfihasjkdfasdf7678fasd67f8asdfas`;
+
+        NProgress.start(); // 显示进度条
+
+        return config;
+    }, err => {
+        // 失败的回调，直接响应失败的promsie
+        return Promise.reject(err)
+    })
+
+    axios.interceptors.response.use(response => {
+
+        NProgress.done(); // 关闭进度条
+
+        return response.data; // 仅仅把data过滤出来
+    }, err => {
+        // 失败的回调，直接响应失败的promsie
+        return Promise.reject(err)
+    })
+
+    btn.onclick = function () {
+        axios.get("http://127.0.0.1:3000/news?page=1&pageSize=3").then(res => {
+            console.log(res);
+        })
+    }
+</script>

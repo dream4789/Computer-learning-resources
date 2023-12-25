@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#div1 {
+				width: 200px;
+				height: 200px;
+				background: beige;
+			}
+		</style>
+	</head>
+	<body>
+		1、event事件对象：是浏览器在事件触发时所创建的对象。
+		这个对象封装了事件相关的各种信息。
+		-通过事件对象 可以获取事件的各种信息。
+		<hr>
+		2、Dom中存在着多种不同类型的时间对象-他们的父对象都是Event
+		<hr>
+
+		<div id='div1'></div><br>
+		<button id='btn1'>按钮1</button>
+		<script>
+			var div1 = document.getElementById('div1');
+			// event 事件对象
+			div1.onclick = function(event) {
+				console.log(event);  // PointerEvent {isTrusted: true, pointerId: 1, width: 1, height: 1, pressure: 0, …}
+				// target 触发事件的对象
+				console.log(event.target);  // <div id="div1">156 222</div>
+				// this 绑定事件的对象
+				console.log(this);  // <div id="div1">156 222</div>
+				div1.textContent = event.clientX + "---" + event.clientY;
+			}
+
+			// 事件绑定的另外一种方式: 监听事件（优点：可绑定多个方法）
+			var btn1 = document.getElementById('btn1');
+			btn1.addEventListener('click', function() {
+				alert("hello");
+			}); // 参数（事件名，高阶函数）
+			btn1.addEventListener('click', function() {
+				alert("hello11");
+			});
+		</script>
+
+	</body>
+</html>

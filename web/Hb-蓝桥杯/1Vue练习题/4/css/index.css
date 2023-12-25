@@ -1,0 +1,36 @@
+.box {
+	width: 360px;
+	margin: 15px;
+	padding: 10px;
+	background-color: aliceblue;
+}
+
+.info {
+	margin: 15px;
+	padding: 15px;
+	border-radius: 10px;
+	width: 300px;
+	background-color: white;
+	/* display: flex; */
+}
+
+.info>div {
+	margin: 10px;
+	width: 100px;
+	display: inline;
+}
+
+
+/* .info {
+	margin: 10px;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: rgb(220, 220, 220);
+	display: flex;
+}
+
+.info>div {
+	min-width: 150px;
+	margin: 0 10px;
+	padding: 4px;
+} */

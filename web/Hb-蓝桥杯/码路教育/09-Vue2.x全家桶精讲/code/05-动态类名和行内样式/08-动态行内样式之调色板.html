@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+		<style>
+			.box {
+				width: 400px;
+				height: 200px;
+				background-color: #000;
+			}
+
+			input {
+				margin: 10px 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+			<div class="box" :style="{background:`rgb(${r},${g},${b})`}"></div>
+			<p>
+				R: <input type="range" min="0" max="255" v-model.number="r"> <span>{{r}}</span>
+			</p>
+			<p>
+				G: <input type="range" min="0" max="255" v-model.number="g"> <span>{{g}}</span>
+			</p>
+			<p>
+				B: <input type="range" min="0" max="255" v-model.number="b"> <span>{{b}}</span>
+			</p>
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						r: 0,
+						g: 0,
+						b: 0
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

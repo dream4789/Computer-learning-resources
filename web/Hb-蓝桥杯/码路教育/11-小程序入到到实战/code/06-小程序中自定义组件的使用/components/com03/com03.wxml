@@ -1,0 +1,3 @@
+<view>
+  <button bindtap="clickFn">触发自定义事件</button>
+</view>

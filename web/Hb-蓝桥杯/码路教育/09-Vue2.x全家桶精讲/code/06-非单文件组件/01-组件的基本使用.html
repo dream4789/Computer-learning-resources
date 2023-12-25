@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<!-- 
+        组件：
+            只要是一个优秀的框架，都是组件化开发。
+
+        vue特点：
+            1）组件化  声明式编程  虚拟 DOM+ 优秀 DIFF 算法
+     -->
+		<div class="app">
+			<h1>{{name}}</h1>
+			<!-- 使用是最简单，和使用html标签是一样的 -->
+			<Hello></Hello>
+		</div>
+
+		<script>
+			// Vue.extend生成一个类，叫 VueComponent   简称VC
+			// Component叫组件
+			// 此类的作用：用于生成一个组件
+			// 按理说，需要new，就可以创建一个组件
+			// 但是我们不需要new，vue内部会自动帮我们new
+			// Vue.extend需要对组件进行配置
+			// 之前根组件中怎么配置，现在组件中也怎么配置
+			let Hello = Vue.extend({
+				// el只有在根组件中才能使用
+				// 普通组件，只能使用template来指定模板
+				template: `<h1>我是Hello组件</h1>`,
+			})
+
+			// 第一步：定义
+			// 第二步：注册
+			//    全局注册  先不讲
+			//    局部注册
+			// 第三步：使用
+			//    在哪里注册，只能在对应的模板中使用
+
+			// Vue也是类  vm叫vue实例
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa"
+					}
+				},
+				components: {
+					// 第1个Hello是注册名
+					// 第2个Hello是组件VC类
+					// Hello: Hello
+					Hello,
+				}
+			});
+		</script>
+	</body>
+
+</html>

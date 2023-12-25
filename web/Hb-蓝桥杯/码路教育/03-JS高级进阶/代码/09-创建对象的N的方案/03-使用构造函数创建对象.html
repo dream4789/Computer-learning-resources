@@ -1,0 +1,47 @@
+<script>
+    // new做了什么：
+    //     在构造器内部创建一个新的对象
+    //     这个对象内部的prototype属性会被赋值为该构造函数的prototype属性;
+    //     让构造器中的this指向这个对象
+    //     执行构造器中的代码
+    //     如果构造器没有返回对象，则返回上面的创建出来的对象
+
+    // 函数在JS有多种角色
+    //   其中一种角色就是构造器
+    function Fn(){
+        console.log("fn...");
+        // 1）创建一个新的对象
+        // 2）让函数中的this绑定到这个新对象上  new绑定
+        // 3）执行类（函数）中的代码
+        // 4）返回上面的新对象
+    }
+
+    // new一个构造器（类）
+    // let f = new Fn();
+    // console.log(f);
+
+    // console.log(f instanceof Fn);
+</script>
+
+<script>
+    // 使用构造器的形式创建对象
+    // 缺点：也会造成内存空间浪费
+
+    // 问：有没有更加优雅的方式去创建对象?
+    // 答：有    构造器+原型对象的形式
+    function Person(name,age,height,address){
+        this.name = name;
+        this.age = age;
+        this.height = height;
+        this.address = address;
+
+        this.coding = function(){console.log(this.name + " coding");}
+    }
+
+    let wc = new Person("wangcai", 11, 180, "bj");
+    wc.coding();
+    let xq = new Person("xiaoqiang", 12, 160, "zz")
+    xq.coding();
+    let jj = new Person("jiajia", 16, 170, "bj");
+    jj.coding();
+</script>

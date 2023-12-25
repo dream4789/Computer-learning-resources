@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    background-color: #e1e1e1;
+}
+
+.header {
+    background-color: #fff;
+    padding: 10px 0;
+}
+
+.header .menu-bar {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.header .header-title {
+    padding-right: 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.container {
+    width: 1000px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .left {
+    width: 750px;
+}
+
+.container .content-wrapper {
+    background-color: #fff;
+    padding: 10px;
+}
+
+.container .content-wrapper .content {
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.container .content .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 2px solid #f1f1f1;
+}
+
+.container .content .item:last-child {
+    border-bottom: none;
+}
+
+.container .content .item .title {
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container .content .item .item-right {
+    font-size: 12px;
+}
+
+.pagination {
+    display: flex;
+    margin-top: 20px;
+}
+
+.pagination .pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination .pager>li {
+    background-color: #f2f0f5;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 0 5px;
+}
+
+.pagination .pager .number {
+    cursor: pointer;
+}
+
+.pagination .pager .more {
+    cursor: auto;
+}
+
+.pagination .pager .number.active {
+    background-color: #409eff;
+    color: #fff;
+}
+
+.pagination .btn {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #f2f0f5;
+    opacity: 0.65;
+    cursor: pointer;
+}
+
+.pagination .btn.btn-left {
+    margin-right: 5px;
+}
+
+.pagination .btn.btn-right {
+    margin-left: 5px;
+}
+
+.container .sidebar {
+    width: 240px;
+}
+
+.container .sidebar .panel {
+    margin-bottom: 10px;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.container .sidebar .panel .title {
+    padding: 8px 0;
+}
+
+.container .sidebar .panel .content {
+    padding: 5px 0;
+}
+
+.container .sidebar .panel .content>span {
+    color: #409eff;
+    cursor: pointer;
+}
+
+.hide{
+    display: none;
+}

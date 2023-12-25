@@ -1,0 +1,42 @@
+{
+  "name": "Skypixel",
+  "short_name": "Skypixel",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "Skypixel 天空之城",
+  "background_color": "#000",
+  "theme_color": "#000",
+  "icons": [
+    {
+      "src": "https://spcn-webfront.skypixel.com/skypixel/v2/public/assets/icons/apple-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "https://spcn-webfront.skypixel.com/skypixel/v2/public/assets/icons/apple-icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "https://spcn-webfront.skypixel.com/skypixel/v2/public/assets/icons/apple-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://spcn-webfront.skypixel.com/skypixel/v2/public/assets/icons/apple-icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "https://spcn-webfront.skypixel.com/skypixel/v2/public/assets/icons/apple-icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "https://spcn-webfront.skypixel.com/skypixel/v2/public/assets/icons/apple-icon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}

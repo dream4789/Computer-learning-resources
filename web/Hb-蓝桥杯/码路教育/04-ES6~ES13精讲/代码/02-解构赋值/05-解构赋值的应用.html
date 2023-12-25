@@ -1,0 +1,66 @@
+<!-- <script>
+    // 使用解构赋值，交换两个变量的值
+    let a = 1;
+    let b = 2;
+
+    // 之前
+    let c;
+
+    c = a;
+    a = b;
+    b = c;
+    
+    console.log(a,b);
+</script> -->
+
+<!-- <script>
+    let a = 1;
+    let b = 2;
+
+    // 前面的b a是变量
+    // ????
+    [b,a] = [a,b];
+
+    console.log(a,b);
+</script> -->
+
+<!-- <script>
+    function bar(){
+        return ["wc","xq"]
+    }
+
+    // 项目中用的非常多
+    let [a,b] = bar();
+    console.log(a,b);
+</script> -->
+
+<!-- <script>
+    function bar() {
+        return ["wc", "xq", "jj"]
+    }
+
+    // let [a] = bar();
+    // console.log(a);
+
+    // let [,a] = bar();
+    // console.log(a);
+
+    // let [, , a] = bar();
+    // console.log(a);
+
+    let [a, , b] = bar();
+    console.log(a,b);
+</script> -->
+
+<script>
+    function bar() {
+        return {
+            x:1,
+            y:2
+        }
+    }
+
+
+    let {x,y} = bar();
+    console.log(x,y);
+</script>

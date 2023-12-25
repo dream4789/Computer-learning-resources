@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "my-slot":"/components/myslot/my-slot",
+    "mul-slot":"/components/mul-slot/mul-slot"
+  }
+}

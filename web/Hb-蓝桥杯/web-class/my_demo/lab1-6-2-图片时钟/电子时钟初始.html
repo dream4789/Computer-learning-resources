@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=gb2312">
+
+		<title></title>
+	</head>
+	<body style="background:black;color:red;font-size:80px">
+		电子时钟<br>
+		<img src="0.png" width="10%" />
+		<img src="0.png" width="10%" />
+		:
+		<img src="0.png" width="10%" />
+		<img src="0.png" width="10%" />
+		:
+		<img src="0.png" width="10%" />
+		<img src="0.png" width="10%" />
+		<script>
+			// window.onload = function() {
+			// 	var imgs = document.getElementsByTagName('img');
+			// 	console.log(imgs[0]);
+
+			// 	var t = new Date();
+			// 	console.log((t.getHours() - t.getHours() % 10) / 10 + " " + t.getHours() % 10);
+			// 	console.log((t.getMinutes() - t.getMinutes() % 10) / 10 + " " + t.getMinutes() % 10);
+			// 	console.log((t.getSeconds() - t.getSeconds() % 10) / 10 + " " + t.getSeconds() % 10);
+			// 	for (var i = 0; i < imgs.length; i++) {
+			// 		setInterval(function() { // setInterval() 函数会每秒执行一次函数
+			// 			imgs[0].src = ((t.getHours() - t.getHours() % 10) / 10) + '.png';
+			// 			imgs[1].src = t.getHours() % 10 + '.png';
+			// 			imgs[2].src = ((t.getMinutes() - t.getMinutes() % 10) / 10) + '.png';
+			// 			imgs[3].src = t.getMinutes() % 10 + '.png';
+			// 			imgs[4].src = ((t.getSeconds() - t.getSeconds() % 10) / 10 )+ '.png';
+			// 			imgs[5].src = t.getSeconds() % 10 + '.png';
+			// 		}, 10);
+
+			// 	}
+
+			// }
+			
+			var imgs = document.getElementsByTagName('img');
+			// console.log(imgs[0]);
+			
+			var t = new Date();
+			console.log((t.getHours() - t.getHours() % 10) / 10 + " " + t.getHours() % 10);
+			console.log((t.getMinutes() - t.getMinutes() % 10) / 10 + " " + t.getMinutes() % 10);
+			console.log((t.getSeconds() - t.getSeconds() % 10) / 10 + " " + t.getSeconds() % 10);
+		
+				setInterval(function() { // setInterval() 函数会每秒执行一次函数
+					var t = new Date();
+					// console.log("123");
+					
+					imgs[0].src = ((t.getHours() - t.getHours() % 10) / 10) + '.png';
+					imgs[1].src = t.getHours() % 10 + '.png';
+					imgs[2].src = ((t.getMinutes() - t.getMinutes() % 10) / 10) + '.png';
+					imgs[3].src = t.getMinutes() % 10 + '.png';
+					imgs[4].src = ((t.getSeconds() - t.getSeconds() % 10) / 10 )+ '.png';
+					imgs[5].src = t.getSeconds() % 10 + '.png';
+				}, 1000);
+			
+		</script>
+	</body>
+</html>

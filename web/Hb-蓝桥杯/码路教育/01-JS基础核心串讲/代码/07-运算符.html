@@ -1,0 +1,256 @@
+<!-- <script>
+    // 在JS中，算术运算符，关系运算符，逻辑运算符，赋值运算符，位运算符，其它运算符
+    //  问typeof是什么？答：运算符  
+
+    // typeof 是一个运算符  in也是运算符  instanceof也是运算符  delete也是运算符...
+
+    // 全等于运算符  ===
+    console.log(1 === "1"); // false  运算符运算后肯定有一个值
+
+    console.log(1 === Number(1));  // true
+    // new Number(1) 是一个对象  堆  
+    console.log(1 === new Number(1));  // false
+    console.log("ok" === String("ok"));  // true
+    console.log("ok" === new String("ok"));  // false
+    // 比较时，只要有一方为NaN，那么比较的结果就为false
+    console.log(110 === NaN);  // false
+    console.log(NaN === NaN);  // false
+    console.log("abc" === "abc");  // true
+    console.log(null === null);  // true
+    console.log(null === undefined);  // false
+    console.log(undefined === undefined);  // true
+</script> -->
+
+<!-- =========================== -->
+
+
+
+<!-- <script>
+
+    var a = [];
+    // = 赋值运算符  赋值的是栈区的地址
+    var b = a;
+    var c = [];
+    console.log(a === b);  // true
+    console.log(a === c);  // false
+
+</script> -->
+
+<!-- =========================== -->
+
+
+
+<!-- <script>
+    // == 先发生隐式类型转化
+    console.log(null == undefined);  // true
+    // 只要是运算符，两侧的操作数的数据类型要一致，如果不一致会发生隐式类型转化
+
+    // ===> 如果比较的一方是null或und，只有在另一方是null或und的情况下才返回true,否则都是false
+
+    console.log(null == 0);  // false
+    console.log(Number(null));  // 0
+    console.log(undefined == 0);  // false
+
+    console.log(1=="1");  // true
+
+    // 在比较时，如果一方是boolean值，会把boolean进行转化，true转成1,false转成0，转化完毕后再进行比较
+    console.log("1"==true);  // true
+    console.log("2"==true);  // false
+</script> -->
+
+<!-- =========================== -->
+
+
+<!-- <script>
+
+    // typeof运算符
+    //    typeof data
+    //    typeof(data)  ()中也可以有其它的运算符  typeof (1+2)
+    //      ()不是函数调用  不是函数调用   ()也是运算符
+    //    typeof(1+2)  里面有3个运算符
+
+    var a; 
+    console.log(typeof a);
+
+    // 没有声明的变量，使用typeof测试时，也是und
+    console.log(typeof ok);  // undefined 
+
+    // ok is not defined
+    // console.log(ok);
+
+    console.log(typeof undefined); // und
+
+    console.log(typeof true); // boolean
+    console.log(typeof 1.23); // number
+    console.log(typeof ""); // string  空串也是字符串
+    console.log(typeof "abc"); // string
+
+    function foo(){}
+    // typeof测试函数数据，非常准备，后面，判断一个数据是否是函数，放心使用typeof
+    console.log(typeof foo);  // function
+
+    // ------------- 使用typeof测试下面的类型，就不太准备，得到的大部分都是object
+    console.log(typeof ["a"]); // object
+    console.log(typeof {a:1}); // object
+    console.log(typeof Math); // object
+    console.log(typeof null); // object
+
+    // ------------- typeof后面可以加()
+    console.log(typeof(110+110));
+
+</script> -->
+
+<!-- =========================== -->
+
+<!-- <script>
+    // 常用的判空方法
+    // var x = 110;
+    var x = "";
+    // x是number   !x    !一元运算符     只有一个操作数  
+    // !x 就可以把x转成布尔值
+    if (!x) {
+
+    } else {
+
+    }
+</script> -->
+
+<!-- =========================== -->
+
+<script>
+    // 判断变量是否为空对象
+    // let obj = {a:1};
+    // let obj = {};
+    // let obj = null;
+
+    // var obj;
+    // if(obj == null){ // ==  可以判断obj为null或obj为und的情况
+    //     console.log("ok");
+    // }else{
+    //     console.log("bad");
+    // }
+
+    // var obj;
+    // if (obj === null) { // ===  只能判断obj是null的情况
+    //     console.log("ok");
+    // } else {
+    //     console.log("bad");
+    // }
+
+    // var obj;
+    // if (obj === undefined) { // ===  只能判断obj是und的情况
+    //     console.log("ok");
+    // } else {
+    //     console.log("bad");
+    // }
+</script>
+
+<!-- =========================== -->
+
+<!-- <script>
+    let obj = {
+        // 私有属性
+        name: "wc",
+        age: 18
+    }
+
+    // 判断name是否是obj的私有属性
+    console.log(obj.hasOwnProperty("name"));  // true
+    console.log(obj.hasOwnProperty("age"));  // true
+    console.log(obj.hasOwnProperty("sex"));  // false
+</script> -->
+
+<!-- =========================== -->
+
+<!-- <script>
+    let obj = {
+        // 私有属性
+        name: "wc",
+        age: 18
+    }
+
+    // for in 是用来遍历对象中的属性
+    for(var key in obj){
+        // console.log(key);
+        // key是一个变量
+        console.log(obj[key]);
+    }
+</script> -->
+
+<!-- =========================== -->
+
+
+<!-- <script>
+    // 封装一个函数，判断一个对象是否有私有属性
+    // 没有私有属性，叫空对象 {}
+    function isEmpty(obj) {
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // 判断obj中有没有私有属性
+    var obj = { name: "wc" };
+    // console.log(obj);
+
+    console.log(isEmpty(obj));  // false
+
+    let obj2 = {};
+    console.log(isEmpty(obj2));
+</script> -->
+
+<!-- =========================== -->
+
+<!-- <script>
+    // 判断一个变量为空数组
+
+    // let a = "hello"; // ["h","e","l","l",o]
+    let a = []
+
+    if(Array.isArray(a) && a.length === 0){
+        console.log("a是空数组");
+    }
+</script> -->
+
+<!-- =========================== -->
+
+<!-- <script>
+    // 判断变量为0 
+    let a = "0";
+    if(Number(a) === 0){
+        console.log("a是0或‘0’");
+    }
+</script> -->
+
+<script>
+    // // 判断变量为0 或 NaN
+    // // let a = "0";
+    // // let a = 0;
+    // // let a = NaN;
+    // let a = "hello";
+    // // !  最终的结果肯定要布尔类型
+    // if (!(Number(a) && a)) {
+    //     console.log("a是0或NaN");
+    // }
+</script>
+
+<script>
+    // let a = 10*"hello";
+    // let a = 0;
+    // let a = "hello";
+    // if (Number.isNaN(a) || Number(a) === 0) {
+    //     console.log("a是0或NaN");
+    // }
+</script>
+
+<script>
+    // 判断空串
+    // let str = "";
+    let str = "   ";
+    if(str === "" || str.trim().length === 0){
+        console.log("a是空串或a字符串是空格~");
+    }
+</script>

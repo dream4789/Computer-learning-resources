@@ -1,0 +1,81 @@
+<!-- <script>
+    let obj = {};
+
+    Object.defineProperty(obj, "name", {
+        // 访问器   当你访问name属性时，会自动调用get
+        get() {
+            console.log("监听到了obj对象的name属性被访问了");
+
+            // name的值，需要看get方法返回了什么
+            return "wc";
+        },
+        // 设置器  当你设置了name属性，会自动走set
+        set(){
+            console.log("监听到了obj对象的name属性被设置了");
+        }
+    })
+    console.log(obj.name);
+    obj.name = "xq"; // 设置
+</script> -->
+
+<!-- <script>
+    let obj = {
+        name: "wc",
+        age: 18,
+        address: "bj"
+    };
+
+    // console.log(Object.keys(obj));
+
+    Object.keys(obj).forEach(key => {
+        // console.log(key);
+        let value = obj[key];
+        // console.log(value);
+        Object.defineProperty(obj, key, {
+            get() {
+                console.log(`监听到了obj对象的${key}属性被访问了`);
+                return value;
+            },
+            set(val) {
+                console.log(`监听到了obj对象的${key}属性被设置了==>${val}`);
+                // obj[key] = val; // 为什么爆栈了？答： obj[key] = val 一直会走set
+                value = val;
+            }
+        })
+    })
+    // console.log(obj.name);
+    // console.log(obj.age);
+    // console.log(obj.address);
+
+    obj.name = "jj"
+    console.log(obj.name);
+</script> -->
+
+<script>
+    let obj = {
+        name: "wc",
+        age: 18,
+        address: { city: "bj" }
+    };
+    Object.keys(obj).forEach(key => {
+        let value = obj[key];
+        Object.defineProperty(obj, key, {
+            get() {
+                console.log(`监听到了obj对象的${key}属性被访问了`);
+                return value;
+            },
+            set(val) {
+                console.log(`监听到了obj对象的${key}属性被设置了==>${val}`);
+                value = val;
+            }
+        })
+    })
+    console.log(obj.address.city);
+
+    // 上面监听属性的不足：
+    //   1）Object.defineProperty 初衷是用来定义一个对象上的属性，并不是监听对象中的属性
+    //   2）如果是对象的非常复杂，嵌套的非常深，你需要递归进行尝试侦听，性能非常差
+    //   3）有的操作是监听不了的，只能监听到get和set，其它操作监听不了，如：删除操作，添加操作....
+
+    // 在ES6中，出现了一个叫Proxy的东西，功能非常强大
+</script>

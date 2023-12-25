@@ -1,0 +1,13 @@
+// const fs = require('fs.promised');  // 异步操作
+const fs = require('fs').promises;
+
+const Koa = require('koa');
+const app = new Koa();
+
+const main = async function(ctx, next) {
+	ctx.response.type = 'html';
+	ctx.response.body = await fs.readFile('./template.html', 'utf8');
+};
+
+app.use(main);
+app.listen(3000);

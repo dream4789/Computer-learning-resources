@@ -1,0 +1,9 @@
+<van-cell-group>
+  <van-cell bind:click="cellClick" 
+  wx:for="{{tipsList}}" 
+  title="{{item}}" 
+  data-kw="{{item}}"
+  />
+</van-cell-group>
+
+<view wx:if="{{tipsList.length == 0}}" style="text-align: center; margin-top: 40rpx;">没有找到更数据</view>

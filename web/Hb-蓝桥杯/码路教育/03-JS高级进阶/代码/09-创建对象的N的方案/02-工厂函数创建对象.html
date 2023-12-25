@@ -1,0 +1,24 @@
+
+<script>
+    // 工厂函数   产出对象
+    function createPerson(name,age,height,address){
+        let p = {};
+        p.name = name;
+        p.age = age;
+        p.height = height;
+        p.address = address;
+        p.coding = function(){ console.log("coding...");}
+        return p;
+    }
+
+    let wc = createPerson("wangcai",11,180,"bj");  wc.coding();
+    let xq = createPerson("xiaoqiang", 12, 160, "zz"); xq.coding();
+    let jj = createPerson("jiajia", 16, 170, "bj");  jj.coding();
+
+    // wc  xq   jj都是字面量对象
+    //   期望不同的对象，有不同类
+
+    console.log(wc instanceof Object);
+    console.log(xq instanceof Object);
+    console.log(jj instanceof Object);
+</script>

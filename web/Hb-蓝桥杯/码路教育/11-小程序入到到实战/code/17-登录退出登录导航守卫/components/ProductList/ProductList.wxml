@@ -1,0 +1,16 @@
+<van-dropdown-menu>
+  <van-dropdown-item title="综合" disabled />
+  <van-dropdown-item 
+    title="价格" 
+    value="{{ value1 }}" 
+    options="{{ option1 }}" 
+    bind:change="priceChange"
+  />
+  <van-dropdown-item title="分类" 
+    value="{{ filterCategoryCurrentID }}" 
+    options="{{ filterCategory }}" 
+    bind:change="cateChange"
+  />
+</van-dropdown-menu>
+
+<GoodsList goodsList="{{goodsList}}"></GoodsList>

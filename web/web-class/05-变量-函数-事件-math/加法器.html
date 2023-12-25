@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			//函数
+			//js是通过id获得元素
+			function Add() {
+				console.log(typeof txt3.value);
+				console.log("number:", typeof Number(txt1.value));
+				// txt3.value = parseFloat(txt1.value) + parseFloat(txt2.value);
+				console.log("number+:", typeof parseFloat(txt1.value))
+				console.log("number+:", typeof parseFloat(txt1.value) + parseFloat(txt2.value));
+
+				if (isNaN(parseFloat(txt1.value) + parseFloat(txt2.value)))
+
+					alert("错误");
+				else
+					txt3.value = parseFloat(txt1.value) + parseFloat(txt2.value);
+
+
+				// var n1 = parseFloat(txt1.value);
+				// var n2 = parseFloat(txt2.value)
+				// if (isNaN(n1))
+				// 	alert("n1错误");
+				// if else(isNaN(n2))
+				// 	alert("n2错误");
+				// else
+				// 	txt3.value = n1 + n2;
+
+
+
+			}
+		</script>
+	</head>
+	<body>
+		加法器<br />
+		<input type="text" id="txt1" />+
+		<input type="text" id="txt2" />
+		<input type="button" id="btn1" value="=" onclick="Add()" />
+		<input type="text" id="txt3" />
+
+	</body>
+</html>

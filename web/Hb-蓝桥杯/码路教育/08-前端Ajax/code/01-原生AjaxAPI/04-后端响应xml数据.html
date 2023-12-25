@@ -1,0 +1,15 @@
+<script>
+    let xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+        // console.log(xhr.response); 
+
+        // 得到xml数据
+        console.log(xhr.responseXML);
+    }
+
+    // xhr.responseType = "xml"  // 不OK
+
+    xhr.open("get", "http://127.0.0.1:3000/xml");
+    xhr.send();
+</script>

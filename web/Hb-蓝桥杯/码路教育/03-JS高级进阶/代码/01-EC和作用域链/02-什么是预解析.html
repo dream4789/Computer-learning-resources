@@ -1,0 +1,148 @@
+<script>
+    // JS代码在执行时，是分两个阶段：
+    //    1）预解析  也叫预编译
+    //    2）代码执行   就一行一行执行   只有等到预解析结束后，才会进行代码执行
+    // 说白了，就是浏览器把你的JS代码进行加工后，再去执行，这个加工的过程，就是所谓的预编译
+
+    // 预解析期间做了什么？
+    //    1）声明要提升   加var的变量要提升，提升的是声明，没有赋值，function声明的函数整体要提升
+    //       提升到了代码段最前面
+    //    2）如果在函数内部的局部变量，就提升到函数内部的最前面
+    //   特别需要注意：加var的变量，仅仅是提升声明，函数提升的不仅是声明，还有赋值
+</script>
+
+<!-- ============================= -->
+
+<!-- <script>
+    console.log(a);
+    var a = 110;
+    console.log(a);
+
+    // 这里只所以能调用，原因是函数整体都提升
+    fn();
+
+    function fn(){
+        console.log("我是一个函数");
+    }
+</script> -->
+
+<!-- ============================= -->
+
+<!-- <script>
+
+    // 这里会报错   g is not funciton
+    // 加var的变量提升的仅仅是声明，没有提升赋值
+    // g的值是und   und()直接报错了
+    // TypeError: g is not a function    
+    g();
+
+    // 函数表达式
+    // 本质是一个变量  var是用来声明变量的
+    // 这个变量的值是函数   函数也是一种数据
+    var g = function(){
+        console.log("g....");
+    };
+</script> -->
+
+<!-- ============================= -->
+
+<!-- <script>
+    // i是全局变量，还是局部变量？
+    // 答：全局变量
+    console.log(i);
+    for(var i=0; i<10; i++){};
+    console.log(i);
+</script> -->
+
+<!-- ============================= -->
+
+<!-- <script>
+    // a是全局变量
+    var a = 666;
+    fn()
+    function fn() {
+        // 函数内部加var的变量，也要提升
+        // 提升到函数内部的最前面
+        var b = 777;
+        console.log(a);  // und 
+        console.log(b);  // 777
+        console.log(c);  // und
+        var a = 888;  // 局部变量
+        var c = 999;
+    }
+</script> -->
+
+<!-- ============================= -->
+
+<!-- <script>
+    // 预编译：
+    //      提升：
+    //          var  value要提升   value的值是und
+    //          value函数整体要提升
+    //             如果变量名函数名一样，变量提升了，函数也提升了，提升后，只可能存在一个名字
+    //             当函数也提升后，value的值从之前的und就变成了函数
+    console.log(value);
+    var value = 123;
+    function value() {
+        console.log("我是value函数...");
+    }
+    console.log(value);
+</script> -->
+
+<!-- ============================= -->
+
+<!-- <script>
+    // 提升：加var的变量，和 funtion声明的函数
+    // ReferenceError: a is not defined
+    console.log(a);
+    a = 666;
+    console.log(a);  // 报了一个引用错误，下面的代码，就不会执行了
+</script> -->
+
+<!-- ============================= -->
+
+<!-- <script>
+    function fn() {
+        // ReferenceError: a is not defined
+        console.log(a);
+        a = 666;
+        console.log(a);
+    }
+    fn();
+    console.log(a);
+</script> -->
+
+<!-- ============================= -->
+
+<!-- <script>
+    function fn() {
+        a = 110;
+    }
+    // ReferenceError: a is not defined
+    console.log(a);
+</script> -->
+
+<!-- ============================= -->
+
+<!-- <script>
+    function fn() {
+        // 没有加var的变量，都是全局变量，
+        // 全局变量，在函数内外都可以访问
+        a = 110;
+    }
+    fn();
+    console.log(a);  // 110
+</script> -->
+
+<!-- ============================= -->
+
+<script>
+    gn()
+    function gn() {
+        // k是局部变量
+        var k = 123;
+        console.log(k);
+    }
+    // k is not def 引用错误
+    console.log(k);
+</script>

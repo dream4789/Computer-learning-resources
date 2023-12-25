@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "mode": "debug",
+            "name": "自定义调试文件",
+            "outFiles": [
+                "${workspaceFolder}/dist/**/*.js"
+            ],
+            "program": "${workspaceFolder}/dist/app.js",
+            "request": "attach",
+            "skipFiles": [
+                "<node_internals>/**/*.js"
+            ],
+            "sourceMap": false,
+            "sourceMapPathOverrides": {
+            },
+            "type": "node"
+        }
+    ],
+    "version": "0.1"
+}

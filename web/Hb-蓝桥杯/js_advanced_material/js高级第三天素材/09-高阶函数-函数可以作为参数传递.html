@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<script src="./jquery.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script>
+
+		<style>
+			div {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				background-color: pink;
+			}
+
+			#block {
+				background-color: #bada55;
+				width: 100px;
+				border: 1px solid green;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div></div>
+		<script>
+			// 高阶函数- 函数可以作为参数传递
+			function fn(a, b, callback) {
+				console.log(a + b);
+				callback && callback(); // 如果没有callback（参数），则不执行callback()
+			}
+			fn(1, 2, function() {
+				console.log('我是最后调用的');
+			});
+			$("div").eq(0).animate({
+				left: 500
+			}, function() {
+				$("div").eq(0).css("backgroundColor", "purple");
+			})
+		</script>
+
+		<button id="go">Simple</button>
+		<div id="block">Hello!</div>
+		<script>
+			$("#go").on("click", function() {
+				$("#block").animate({
+					backgroundColor: "#ff0000"
+				}, 1000);
+			});
+		</script>
+	</body>
+
+</html>

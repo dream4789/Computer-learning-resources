@@ -1,0 +1,74 @@
+<view>---------------- 7)另一种传参方式</view>
+<!-- 把bind换成catch就可以阻止事件进一步传递 -->
+<view class="page">
+  <view class="arguments" 
+    mark:name="malu"
+    mark:age="18"
+    bindtap="onArguemntsTap02"
+  >
+    <text mark:address="bj">传递多个参数</text>
+  </view>
+</view>
+
+<view>---------------- 6)阻止冒泡</view>
+<!-- 把bind换成catch就可以阻止事件进一步传递 -->
+<view class="page">
+  <view class="view01" catch:tap="onView01Tap">
+    <view class="view02"  catch:tap="onView02Tap">
+      <view class="view03"  catch:tap="onView03Tap">
+      </view>
+    </view>
+  </view>
+</view>
+
+<view>---------------- 5)事件的冒泡与捕获</view>
+<view class="page">
+  <view class="view01" capture-bind:tap="onView01CaptureTap" bind:tap="onView01Tap">
+    <view class="view02"  capture-bind:tap="onView02CaptureTap" bind:tap="onView02Tap">
+      <view class="view03"  capture-bind:tap="onView03CaptureTap" bind:tap="onView03Tap">
+      </view>
+    </view>
+  </view>
+</view>
+
+<view>---------------- 4)tabbar案例</view>
+<view class="page">
+    <view class="tab-control">
+      <!-- *this 表示item -->
+      <block wx:for="{{titles}}" wx:key="*this">
+          <view 
+            class="item {{index === currentIndex ? 'active' : ''}}"
+            bindtap="onItemTap"
+            data-index="{{index}}"
+          >
+            <text class="title">{{item}}</text>
+          </view>
+      </block>
+    </view>
+</view>
+
+<view>---------------- 3)如何传参</view>
+<view class="page">
+  <view class="arguments" 
+    data-name="wc" 
+    data-age="18"
+    data-address="bj"
+    data-score="88"
+    bindtap="onArguemntsTap"
+  >传递多个参数</view>
+</view>
+
+<view>---------------- 2)target和currentTarget</view>
+<view class="page">
+  <!-- 给方法传参是通过自定义属性：data-name="malu" -->
+  <!-- html5中自定义属性需要以data-打头 -->
+  <view class="outer" data-name="malu" bindtap="onOuterTap">
+    <!-- 由于事件会冒泡，点里面，也相当于点了外面 -->
+    <view class="inner"></view>
+  </view>
+</view>
+
+<view>---------------- 1)事件绑定</view>
+<view class="page">
+  <button bindtap="onBtnTap">点我</button>
+</view>

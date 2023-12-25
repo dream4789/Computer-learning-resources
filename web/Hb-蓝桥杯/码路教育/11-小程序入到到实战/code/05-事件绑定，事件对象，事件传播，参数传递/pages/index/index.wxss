@@ -1,0 +1,83 @@
+
+
+
+.page{
+  margin: 10px 10px;
+  border: 1px solid red;
+}
+
+.outer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400rpx;
+  height: 400rpx;
+  background-color: skyblue;
+}
+
+.inner{
+  width: 200rpx;
+  height: 200rpx;
+  background-color: gold;
+}
+
+.tab-control{
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.tab-control .item{
+  flex: 1;
+}
+
+.tab-control .item.active{
+  color: deeppink;
+}
+
+.tab-control .item.active .title{
+  border-bottom: 3px solid deeppink;
+  padding: 5px;
+}
+
+.view01{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600rpx;
+  height: 600rpx;
+  background-color: gold;
+}
+.view02{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400rpx;
+  height: 400rpx;
+  background-color: skyblue;
+}
+.view03{
+  width: 200rpx;
+  height: 200rpx;
+  background-color: pink;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

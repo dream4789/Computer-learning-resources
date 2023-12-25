@@ -1,0 +1,71 @@
+<!-- <script>
+    // 之前的学过的集合：[]  {}
+    // let arr = [];  // 通过字面量的形式创建一个数组
+    // let obj = {};  //  通过字面量的形式创建一个对象
+
+    // 在ES6中又提出了两种集合：Set和Map   WeakSet和WeakMap
+    // 创建一个set集合
+    // set是没有所谓的字面量的形式创建的，只能通过new的形式
+    let s = new Set();
+
+    s.add(1)
+    s.add(2)
+    s.add(3)
+
+    // Set(3) {1, 2, 3}
+    console.log(s);
+    console.log(s.size);
+    console.log(s.has(1));
+    s.delete(1)
+    console.log(s.has(1));
+    s.clear();
+    console.log(s);
+</script> -->
+
+<!-- <script>
+    // set是可迭代对象
+    // 迭代器   可迭代对象   生成器
+    let s = new Set();
+
+    s.add(1)
+    s.add(2)
+    s.add(3)
+
+    for(let item of s){
+        console.log(item);
+    }
+
+</script> -->
+
+<!-- <script>
+    let s = new Set();
+
+    s.add(1)
+    s.add(2)
+    s.add(3)
+
+    // Array.from的参数，通过查文档得知：参数可以是一个伪数组，也可以是一个可迭代对象
+    console.log(Array.from(s));
+</script> -->
+
+<!-- <script>
+    // 相比数组：set中不能有重复的元素
+    let s = new Set();
+
+    s.add(1)
+    s.add(1)
+    s.add(1)
+
+    console.log(s);
+</script> -->
+
+<!-- <script>
+    let arr = [1, 1, 2, 2, 3, 3];
+    let s = new Set(arr); // set会自动去重
+    console.log(Array.from(s));
+</script> -->
+
+<script>
+    let arr = [1, 1, 2, 2, 3, 3];
+    console.log(Array.from(new Set(arr)));
+</script>

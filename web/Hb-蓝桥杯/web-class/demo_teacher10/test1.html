@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="name">
+		<input type="button" value="点击">
+		<script>
+			let in1 = document.querySelectorAll('input')[0];
+			let in2 = document.querySelectorAll('input')[1];
+			in2.onclick = function(){
+				in1.value = 'hello world!';
+			}
+		</script>
+	</body>
+</html>

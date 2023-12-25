@@ -1,0 +1,48 @@
+<!-- 
+
+    作用域链：
+        一种数据的查找机制。
+
+    witch语句： 
+        扩展作用域链
+ -->
+
+<!-- <script>
+    let address = "bj";
+    let obj = {
+        uname: "wc",
+        uage: 18
+    }
+
+    with (obj) {
+        // var uname = "xq";
+
+        // 如果自己没有uname，会去obj中找uname
+        // with扩展了作用域链
+        // 如果obj中没有，去ECG中找
+        console.log(uname);
+        console.log(address);
+    }
+
+</script> -->
+
+<script>
+    // 在开发中，不要使用with语句，因为破坏了作用域链
+    // vue源码中使用到了with语句 
+    
+    let msg = "xixi";
+    // let obj = { name: "wc", msg: "haha" };
+    let obj = { name: "wc"};
+    function foo() {
+        // let msg = "hehe";
+        function bar() {
+            // let msg = "heihei";
+            with (obj) {
+                // let msg = "lala"
+                console.log(msg);
+            }
+        }
+        bar()
+    }
+    foo();
+</script>

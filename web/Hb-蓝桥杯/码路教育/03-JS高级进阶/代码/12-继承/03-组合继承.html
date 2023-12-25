@@ -1,0 +1,33 @@
+<!-- 
+    组合继承：
+        1）核心：
+            Student.prototype = new Person(); // 继承父类的公有属性
+            Person.call(this,name,age);  // 继承父类的私有属性
+    缺点：
+        Person.call(this,name,age);  让父类构造函数多执行一遍
+ -->
+<script>
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+        console.log("Person执行了...");
+    }
+    Person.prototype.sayHello = function(){
+        console.log("会说话");
+    }
+
+    function Student(name,age,className){
+        // this是stu1
+        Person.call(this,name,age);  // 1遍
+        this.className = className;
+    }
+    // new Person(); // 也让Person函数执行一遍
+    Student.prototype = new Person(); // 原型链继承核心
+    Student.prototype.constructor = Student; 
+
+    let stu1 = new Student("wc",18,"前端1期");
+    console.log(stu1.name);
+    console.log(stu1.age);
+    console.log(stu1.className);
+    stu1.sayHello();
+</script>

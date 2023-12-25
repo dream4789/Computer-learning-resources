@@ -1,0 +1,100 @@
+<!-- <script>
+    // rest运算符
+    // 形式：...   
+    //   可以出现在形参的位置，是用来替代auguments
+    //   还可以出现在解构赋值的位置 
+
+    // function add(num1, num2) {
+    //     return num1 + num2
+    // }
+
+    function add(...args) {
+        // args是一个数组，数组中放了实参
+        console.log(args);
+        return 
+    }
+    console.log(add(2, 3));
+</script> -->
+
+<!-- <script>
+    function add(...args) {
+        let sum = 0;
+        for(let i=0; i<args.length; i++){
+            sum += args[i]
+        }
+        return sum
+    }
+    console.log(add(2, 3, 4, 5, 6, 7));
+</script> -->
+
+<!-- <script>
+    function add(...args) {
+        let sum = 0;
+        args.forEach(function(item){
+            sum += item;
+        })
+        return sum
+    }
+    console.log(add(2, 3, 4, 5, 6, 7));
+</script> -->
+
+<!-- <script>
+    let arr = [1,2,3,4,5,6,7];
+    // ...  叫rest运算符
+    let [data1, ...data2] = arr;
+    console.log(data1);
+    console.log(data2);
+</script> -->
+
+<!-- <script>
+    function sortFunc() {
+        // arguments
+        // console.log(arguments);
+        // console.log(Array.isArray(arguments));
+
+        // Array.from把一个伪数组转化成真数组
+        // console.log(Array.from(arguments));
+
+        // sort sort是一位一位比较
+        // return Array.from(arguments).sort();
+
+        // 把伪数组转化成真实数据
+        // console.log(Array.prototype.slice.call(arguments));
+
+        return Array.prototype.slice.call(arguments).sort();
+    }
+
+    console.log(sortFunc(3, 4, 1, 2, 9, 5, 6));
+</script> -->
+
+<!-- <script>
+    function sortFunc(...args) {
+        return args.sort();
+    }
+
+    console.log(sortFunc(3, 4, 1, 2, 9, 5, 6));
+</script> -->
+
+<!-- <script>
+    // SyntaxError: Rest parameter must be last formal parameter 
+    // rest参数必须是最后一个参数
+    function foo(a, b, ...c) {
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    }
+    foo(1, 2, 3, 4, 5)
+</script> -->
+
+<script>
+    // 当3个点出现在 形参上 或 赋值运算符 左侧，表示rest运算符
+    // 当3个点出现在 实参上 或 赋值运算符 右侧，表示展开运算符
+
+    function foo(array, ...args){
+        array.push(...args);
+        console.log(...array);
+    }
+    let arr = [1,2,3];
+    let arr2 = [4,5,6]
+    console.log(foo(arr,...arr2));
+</script>

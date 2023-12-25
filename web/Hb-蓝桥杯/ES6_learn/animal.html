@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div {
+				background-color: #bada55;
+				width: 100px;
+				border: 1px solid green;
+			}
+		</style>
+		<script src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script>
+	</head>
+	<body>
+		<button id="go">Simple</button>
+		<button id="sat">Desaturate</button>
+		<div id="block">Hello!</div>
+		<script>
+			$("#go").on("click", function() {
+				$("#block").animate({
+					backgroundColor: "#ff0000"
+				}, 1500);
+			});
+			$("#sat").on("click", function() {
+				$("#block").animate({
+					backgroundColor: jQuery.Color({
+						saturation: 0
+					})
+				}, 1500);
+			});
+		</script>
+	</body>
+</html>

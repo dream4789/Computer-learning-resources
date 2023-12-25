@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>绝美宋词</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="./js/vue.min.js"></script>
+		<!-- <script src="./js/axios.min.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<h1 style="text-align: center">输入关键字，找一首词</h1>
+			<!-- TODO：待补充代码 -->
+			<div class="search-form">
+				<!-- <input type="text" :value="tag" @input="search_poet" id="search" class="search"
+					placeholder="词牌名 词句 词人" /> -->
+				<input type="text" :value="tag" @keyup.enter="search_poet" id="search" class="search"
+					placeholder="词牌名 词句 词人" />
+					
+				<ul class="suggestions">
+					<!-- 每一首完整词句用一个 li 包裹 -->
+					<li v-for="(item,index) in select">
+						<span class="poet" v-html="item.poet"></span>
+						<span class="title" v-html="item.title + '-' +item.author"></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			let vm = new Vue({
+				el: '#app',
+				// TODO：待补充代码
+				data() {
+					return {
+						tag: "",
+						data: [],
+						select: [],
+					}
+				},
+				created() {
+					// this.data = (axios.get("./data.json")).data
+					axios.get('./data.json').then(res => {
+						this.data = res.data
+					})
+				},
+				methods: {
+					search_poet(e) {
+						this.tag = e.target.value
+						this.data.forEach((item, index) => {
+							var a = item.poetry_content
+							var b = item.title
+							var c = item.author
+							let tag = 0
+							if (item.poetry_content.indexOf(this.tag) != -1) {
+								tag = 1
+								var a = item.poetry_content.replaceAll(this.tag, `<span class="highlight">${this.tag}</span>`)
+							}
+							if (item.title.indexOf(this.tag) != -1) {
+								tag = 1
+								var b = item.title.replaceAll(this.tag, `<span class="highlight">$&</span>`)
+							}
+							if (item.author.indexOf(this.tag) != -1) {
+								tag = 1
+								var c = item.author.replaceAll(this.tag, `<span class="highlight">$&</span>`)
+							}
+							if (tag == 1) {
+								let sele = {
+									poet: a,
+									title: b,
+									author: c,
+								}
+								this.select.push(sele)
+							}
+						})
+					}
+				},
+			})
+		</script>
+	</body>
+
+</html>

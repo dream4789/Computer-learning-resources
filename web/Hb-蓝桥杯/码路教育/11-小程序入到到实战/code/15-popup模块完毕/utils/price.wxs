@@ -1,0 +1,13 @@
+
+function priceFormater(val){
+  return "￥"+val.toFixed(2)+"元"
+}
+
+module.exports = {
+  priceFormater:priceFormater
+}
+
+
+
+
+

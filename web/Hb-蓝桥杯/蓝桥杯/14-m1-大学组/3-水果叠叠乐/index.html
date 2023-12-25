@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>水果叠叠乐</title>
+		<script src="./js/jquery.min.js"></script>
+		<link rel="stylesheet" href="./css/style.css" />
+	</head>
+	<body>
+		<div id="stars"></div>
+		<div id="stars2"></div>
+		<div id="stars3"></div>
+		<ul id="card">
+			<li data-id="1" id="fruit-one">
+				<img src="./images/pineapple.svg" alt="" />
+			</li>
+			<li data-id="1" id="fruit-two">
+				<img src="./images/pineapple.svg" alt="" />
+			</li>
+			<li data-id="2" id="fruit-three">
+				<img src="./images/apple.svg" alt="" />
+			</li>
+			<li data-id="2" id="fruit-four">
+				<img src="./images/apple.svg" alt="" />
+			</li>
+			<li data-id="2" id="fruit-five">
+				<img src="./images/apple.svg" alt="" />
+			</li>
+			<li data-id="1" id="fruit-six">
+				<img src="./images/pineapple.svg" alt="" />
+			</li>
+			<li data-id="3" id="fruit-seven">
+				<img src="./images/avocado.svg" alt="" />
+			</li>
+			<li data-id="3" id="fruit-eight">
+				<img src="./images/avocado.svg" alt="" />
+			</li>
+			<li data-id="3" id="fruit-nine">
+				<img src="./images/avocado.svg" alt="" />
+			</li>
+			<li data-id="4" id="fruit-ten">
+				<img src="./images/grapes.svg" alt="" />
+			</li>
+			<li data-id="4" id="fruit-eleven">
+				<img src="./images/grapes.svg" alt="" />
+			</li>
+			<li data-id="4" id="fruit-twelve">
+				<img src="./images/grapes.svg" alt="" />
+			</li>
+		</ul>
+		<!-- 图片位置 -->
+		<!-- 卡槽位置 -->
+		<div class="fixed">
+			<div class="gradient-border" id="box"></div>
+		</div>
+		<script>
+			//  多出不能再填入，满三个消除
+
+			// 四个类别，放入box后计数
+			// var count=[{1:0},{2:0},{3:0},{4:0}]
+			// $("#card li").on("click", function(e) {
+			// 	// TODO: 待补充代码
+			// 	let copy = $(this).clone();
+			// 	if ($("#box li").length < 7) {
+			// 		$("#box").append(copy);
+			// 		$(this).hide();
+			// 		count[parseInt($(this).attr("data-id")) - 1][parseInt($(this).attr("data-id"))] += 1;
+			// 		// console.log(count)
+			// 		for (let i = 0; i < count.length; i++) {
+			// 			if (count[i][i + 1] == 3) {
+			// 				$("#box li[data-id=" + (i + 1) + "]").hide();
+			// 				$("#stars").append($("#box li[data-id=" + (i + 1) + "]"));
+			// 				// console.log("OK")
+			// 			}
+			// 		}
+			// 	}
+			// });
+
+			// 满三个消除。
+			// $("#card li").on("click", function(e) {
+			// 	// TODO: 待补充代码
+			// 	if ($("#box li").length >= 7) {
+			// 		return;
+			// 	} else {
+			// 		$("#box").append($(this).clone());
+			// 		$(this).hide();
+			// 		// 判断是否消除
+			// 		const list = $(`#box li[data-id=${this.getAttribute('data-id')}]`)
+			// 		if (list.length >= 3) {
+			// 			list.each((index, item) => {
+			// 				item.remove();
+			// 			});
+			// 		}
+			// 	}
+			// });
+
+			// 同上
+			$("#card li").on("click", function(e) {
+				if ($("#box li").length == 7) return
+				$("#box").append($(this).clone())
+				$(this).hide()
+				if ($(`#box li[data-id=${$(this).attr('data-id')}]`).length == 3) {
+					$(`#box li[data-id=${$(this).attr('data-id')}]`).each((i, item) => $(item).remove())
+				}
+			});
+		</script>
+	</body>
+</html>

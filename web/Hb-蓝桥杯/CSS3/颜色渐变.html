@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			:root {
+				--cp-color-1-hsl: 0deg 0% 100%;
+				--cp-color-1: hsl(var(--cp-color-1-hsl));
+				--cp-color-link-hsl: 196.204379562deg 100% 73.137254902%;
+				--cp-color-link: hsl(var(--cp-color-link-hsl));
+				--cp-color-8-hsl: 226.6666666667deg 11.8421052632% 70.1960784314%;
+				--cp-color-8: hsl(var(--cp-color-8-hsl));
+				--cp-color-blue-hsl: 196.1825726141deg 100% 52.7450980392%;
+				--cp-color-blue: hsl(var(--cp-color-blue-hsl));
+				--cp-color-yellow-hsl: 49.3193717277deg 100% 62.5490196078%;
+				--cp-color-yellow: hsl(var(--cp-color-yellow-hsl));
+				--cp-color-green-hsl: 139.4117647059deg 58.6206896552% 54.5098039216%;
+				--cp-color-green: hsl(var(--cp-color-green-hsl));
+				--cp-color-purple-hsl: 274.8837209302deg 70.4918032787% 64.1176470588%;
+				--cp-color-purple: hsl(var(--cp-color-purple-hsl));
+			}
+
+			div {
+				display: block;
+			}
+
+			a {
+				text-decoration: none;
+				color: var(--cp-color-link);
+			}
+
+			.SidebarCreate_root-PNqyr {
+				position: relative;
+			}
+
+
+			body:not(.logged-out) .SidebarCreate_root-PNqyr .SidebarCreate_createHeading-ZRTG7:after {
+				position: absolute;
+				bottom: -.75rem;
+				left: 0;
+				right: 0;
+				content: "";
+				height: 3px;
+				border-radius: 5px 5px 0 0;
+				z-index: 1;
+				background: linear-gradient(70deg, var(--cp-color-blue), var(--cp-color-yellow), var(--cp-color-purple), var(--cp-color-green))
+			}
+
+			.SidebarCreate_root-PNqyr .SidebarCreate_anonButton-NtSrZ {
+				margin: 0 auto;
+				width: calc(100% - 2.75rem);
+				text-align: center;
+				position: relative;
+				border-radius: 6px;
+				box-sizing: border-box;
+				color: var(--cp-color-1);
+				display: block;
+				z-index: 2;
+				overflow: hidden;
+				padding: 10px;  /* 改变宽度 */
+			}
+
+			.SidebarCreate_root-PNqyr .SidebarCreate_anonButton-NtSrZ:before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 200%;
+				height: 100%;
+				background: linear-gradient(115deg, #4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b);
+				background-size: 50% 100%
+			}
+
+			.SidebarCreate_root-PNqyr .SidebarCreate_anonButton-NtSrZ span {
+				position: relative;
+				z-index: 2;
+				padding: .875rem 0;
+				font-size: 1.1rem;
+				align-items: center;
+				background: #000;
+				border-radius: 3px;
+				display: block;
+				justify-content: center;
+				box-sizing: border-box;
+				height: 100%
+			}
+
+			.SidebarCreate_root-PNqyr .SidebarCreate_anonButton-NtSrZ:hover:before {
+				animation: SidebarCreate_rainbowSlide-zxLzf .75s linear infinite
+			}
+			@keyframes SidebarCreate_rainbowSlide-zxLzf {
+			    to {
+			        transform: translateX(-50%)
+			    }
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="SidebarCreate_root-PNqyr">
+			<a href="#" class="SidebarCreate_anonButton-NtSrZ">
+				<span>Start Coding</span>
+			</a>
+		</div>
+	</body>
+</html>

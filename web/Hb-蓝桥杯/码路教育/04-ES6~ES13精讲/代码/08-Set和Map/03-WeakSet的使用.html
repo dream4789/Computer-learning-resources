@@ -1,0 +1,103 @@
+<!-- <script>
+    // WeakSet   和Set类似
+    // Set:
+    //   特点：存储的元素不能重复
+    // iterable 可迭代的  
+    // 可以传递数组，数组是可迭代的
+    let s = new Set([1, 2, 3]);
+    console.log(s);
+    s.add(4);
+    console.log(s);
+</script> -->
+
+<!-- <script>
+    // WeakSet   和Set类似
+    //   区别一：只能存储对象
+    //   区别二：对元素的引用是弱引用，如果没有其它引用对某个对象的引用，那么GC可以对该对象回收
+    //   区别三：WeakSet中的元素不能遍历，因为WeakSet中只是弱引用
+
+    let obj1 = {name:"wc"}
+    let obj2 = {name:"xq"}
+    let obj3 = {name:"z3"}
+
+    let weakSet = new WeakSet();
+    weakSet.add(obj1)
+    weakSet.add(obj2)
+    weakSet.add(obj3)
+    console.log(weakSet);
+</script> -->
+
+<!-- <script>
+    // WeakSet   和Set类似
+    //   区别一：只能存储对象
+    //   区别二：对元素的引用是弱引用，如果没有其它引用对某个对象的引用，那么GC可以对该对象回收
+    //   区别三：WeakSet中的元素不能遍历，因为WeakSet中只是弱引用
+
+    // Strong Reference 强引用
+    let obj1 = { name: "wc" }
+    let obj2 = { name: "xq" }
+    let obj3 = { name: "z3" }
+
+    let arr = [obj1,obj2,obj3];
+    console.log(arr);
+
+    obj1 = null;
+    obj2 = null;
+    obj3 = null;
+
+    console.log(arr);
+
+</script> -->
+
+<!-- <script>
+    // WeakSet   和Set类似
+    //   区别一：只能存储对象
+    //   区别二：对元素的引用是弱引用，如果没有其它引用对某个对象的引用，那么GC可以对该对象回收
+    //   区别三：WeakSet中的元素不能遍历，因为WeakSet中只是弱引用
+
+    // Strong Reference 强引用
+    let obj1 = { name: "wc" }
+    let obj2 = { name: "xq" }
+    let obj3 = { name: "z3" }
+
+    // 对元素的引用是弱引用
+    // 弱引用特点：如果没有强引用去引用堆，那么这个堆就在合适的时机回收
+    let weakSet = new WeakSet();
+    weakSet.add(obj1)
+    weakSet.add(obj2)
+    weakSet.add(obj3)
+
+    obj1 = null; obj2 = null; obj3 = null;
+    setTimeout(() => {
+        console.log(weakSet);
+    }, 3000)
+</script> -->
+
+<script>
+    // WeakSet的应用场景 
+    let aWeakSet = new WeakSet();
+    class Animal {
+        constructor() {
+            // this 指 a
+            aWeakSet.add(this)
+        }
+        // runing方法是位于原型对象上的
+        runing() {
+            if (!aWeakSet.has(this)) {
+                // 说明不是通过new出来的对象去调用的
+                throw new TypeError("调用的方法不对，需要通过new出来的对象去调用")
+                return
+            }
+            console.log("running~");
+        }
+    }
+    let a = new Animal();
+    // a = null; // 没有强引用了
+    a.runing();
+
+    let b = a.runing;
+    b();
+
+    let obj = { run: b }
+    obj.run();
+</script>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function request(num) { // 模拟接口请求
+        return new Promise(async resolve => {
+          setTimeout(() => {
+            resolve();
+            console.log(num)
+          }, 1000)
+        })
+      }
+      
+      // 先请求完接口1，再去请求接口2
+      // request(1).then(res1 => {
+      //   console.log(res1) // 1秒后 输出 2
+      //   request(2).then(res2 => {
+      //     console.log(res2) // 2秒后 输出 4
+      //   })
+      // })
+      
+      // --------------等同于-------------
+      async function fn() {
+        await request(1)
+        await request(2)
+        // 2秒后执行完
+      }
+      fn();
+    </script>
+  </body>
+</html>

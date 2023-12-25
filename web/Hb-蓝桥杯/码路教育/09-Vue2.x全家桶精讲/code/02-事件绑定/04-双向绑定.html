@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+			<!-- v-打头的都是指令 实现数据的双向绑定-->
+			<!-- 一向:把data中的数据,绑定到模板上,如果data中的数据变了,模板重新渲染 -->
+			<!-- 另一向:如果通过模板候修改了数据,data中的数据也会改变 -->
+			<!-- vue非常适合做管理系统,因为利用v-model可以非常方便收集表单中的数据 -->
+			<input type="text" v-model="name">
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa"
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

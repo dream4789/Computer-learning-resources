@@ -1,0 +1,95 @@
+<!-- 
+    解构赋值：
+        解构：
+        赋值
+
+    分类：
+        数组的解构赋值
+        对象的解构赋值
+ -->
+
+<!-- <script>
+    let arr = ["wc", "xq", "jj"];
+
+    let name1 = arr[0];
+    let name2 = arr[1];
+    let name3 = arr[2];
+
+    console.log(name1,name2,name3);
+
+</script> -->
+
+<!-- <script>
+    let arr = ["wc", "xq", "jj"];
+
+    // 需要保证 = 两侧的数据类型要一样
+    // arr是一个数组  =左侧也需要写一个数组
+    // 在[]，就可以写一个变量，变量的值就是解构出来的数组元素
+    let [name1,name2,name3] = arr;
+    console.log(name1,name2,name3);
+
+</script> -->
+
+<!-- <script>
+    let arr = [
+        {
+            userName: 'zs',
+            age: 18
+        },
+        [1, 3],
+        6
+    ];
+
+    let [
+        {
+            userName, 
+            age
+        },
+        [num1,num2],
+        num3
+    ] = arr;
+    console.log(userName,age,num1,num2,num3);
+</script> -->
+
+<!-- <script>
+    let arr = [
+        {
+            userName:"wc",
+            age:18
+        },
+        [666,888],
+        "hello es6+"
+    ]
+
+    let [data1,data2,data3] = arr;
+    console.log(data1,data2,data3);
+</script> -->
+
+<!-- <script>
+    // 如果解构不成功，对应的值是und
+    // 问：und都在哪些地方出现过？
+    // 答：
+    //      1)声明的变量，没有赋值
+    //      2)访问一个对象中不存在的属性
+    //      3)函数没有返回值，默认也是返回und
+    //      4)形参没有赋值，也是und
+    //      5)访问数组中不存在的索引，对应的元素也是und
+    //      6)解析不成功的，得到的也是und
+    let [num1,num2] = [666];
+    console.log(num1,num2);
+</script> -->
+
+<script>
+    // 不完全解构，只解构其中的一部分
+    // let [data1,data2] = ["wc","xq","jj"];
+    // console.log(data1,data2);
+
+    // let [data1] = ["wc", "xq", "jj"];
+    // console.log(data1);
+
+    // let [,data1] = ["wc", "xq", "jj"];
+    // console.log(data1);
+
+    let [, , data1] = ["wc", "xq", "jj"];
+    console.log(data1);
+</script>

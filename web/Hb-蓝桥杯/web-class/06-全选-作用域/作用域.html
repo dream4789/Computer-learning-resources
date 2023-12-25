@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<pre>
+		JavaScript 中，变量的作用域有 全局作用域 和 局部作用域 两种。
+		1、全局变量   
+			1.函数外定义的变量
+			2.没有用 var定义的变量
+			3.window对象定义的变量
+			
+		2、局部变量  函数内用var定义的变量  
+		            形参
+					
+		变量的生命周期
+			全局变量活得和您的应用程序（窗口、网页）一样久。
+			局部变量活得不长。它们在函数调用时创建，在函数完成后被删除。
+		</pre>
+		<script>
+			//1  全局变量
+			var str1 = "我是全局1"
+
+
+			function fn1() {
+				var str1 = "我是局部2"
+				var str2 = "我是局部2" //2  局部变量  使用var在函数内部定义的变量
+				var a = b = 10;
+				window.c = 200; // 全局window
+				console.log(str1)
+			}
+			fn1();
+			console.log(str1);
+			// console.log(str2); 报错  紧跟 var
+			// console.log(a); 报错  紧跟 var
+			console.log(b); // b 前面不紧跟 var
+			console.log(c);
+
+
+
+			//对Js而言，只要变量是在同一个范围（函数）里，就视为已经声明，
+			//哪怕是在变量声明前就使用
+			var num1 = 10;
+			// let num1 = 10;
+
+			function fn2() {
+				// 因为num1是局部的 fn1内部的。所以提升到fn1函数最前面声明
+				console.log(num1); // 输出？undefined
+				var num1 = 20; // 变量提升，num1已经定义，但未赋值，为undefined
+				// let num1 = 20;
+			}
+			fn2();
+
+
+
+
+			var a = "1111";
+
+			function fn3() {
+				console.log(a);  // 变量提升 undefined
+				var a = "2222"
+				console.log(a);  // undefind
+			}
+			fn3();
+			
+			
+		</script>
+
+	</body>
+</html>

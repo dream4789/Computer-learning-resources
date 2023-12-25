@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			let a = {
+				name: 'a0',
+				sayName: function() {
+					console.log(this.name);
+				}
+			}
+			a.sayName();
+		</script>
+		<hr>
+		<script>
+			function Person() {
+				this.name = 'a1';
+
+				function sayName() {
+					console.log(this.name)
+				};
+				sayName();
+			}
+			// Person.sayName(); // error
+			const a1 = new Person();
+			// a1.sayName() // error
+		</script>
+		<hr>
+		<script>
+			function Person() {
+				name = 'a1';
+				// return () => {  // 可以获取
+				// 	console.log(this.name)
+				// };
+				return function sayName() {  // 可以获取
+					console.log(this.name)
+				};
+			}
+			// Person.sayName(); // error
+			const a2 = new Person();
+			// a2.sayName() // error
+		</script>
+		<hr>
+		添加方法
+		<script>
+			function Person() {
+				this.name = 'a2';
+			}
+			Person.prototype.sayName = function() {
+				console.log(this.name);
+			}
+			const a3 = new Person();
+			a3.sayName() // a2
+		</script>
+
+		<hr>
+		重写原型
+		<script>
+			function Dog() {
+				this.color = 'black';
+			}
+			var dog = new Dog();
+			console.log(dog.color); //black
+
+			//重写原型
+			Dog.prototype = {
+				constructor: Dog,
+				name: '长江七号',
+				age: 11,
+				sayName: function() {
+					console.log(this.name);
+				}
+			};
+			var dog1 = new Dog();
+			dog1.sayName();
+			console.log(Dog);
+		</script>
+		<hr>
+		ES6 class
+		<script>
+			class Person1 {
+			  constructor(name) { // 构造器
+			    this.name = name
+			  }
+			  sayName() {
+			    console.log(this.name)
+			  }
+			}
+			
+			const aab = new Person1('aa')
+			aab.sayName() // aa
+		</script>
+		<hr>
+		解构赋值
+		<script>
+			const obj = {
+			  name: 'aaa',
+			  age: 22,
+			  gender: '男',
+			  doing: {
+			    morning: '摸鱼',
+			    afternoon: '摸鱼',
+			    evening: 'sleep'
+			  }
+			}
+			
+			const { name, age, gender } = obj  // 与obj里的变量对应
+			console.log(name, age, gender) // aaa 22 男
+			
+			// 解构重名
+			const { name: myname } = obj  // myname=name
+			console.log(myname) // aaa
+			
+			// 嵌套解构
+			const { doing: { evening } } = obj
+			console.log(evening) // sleep
+		</script>
+	</body>
+</html>

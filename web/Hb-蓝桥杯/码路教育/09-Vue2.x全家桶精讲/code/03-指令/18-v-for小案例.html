@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../lib/vue2.7.8.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            width: 80%;
+            height: 50px;
+            list-style: none;
+            display: flex;
+            margin: 10px auto;
+            border: 1px solid yellowgreen;
+        }
+
+        li {
+            flex: 1;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <ul>
+            <!-- 如果ref写在DOM标签上，目的是为了获取对应的DOM元素 -->
+            <li v-for="(item,index) in arr" @click="handle(index)" :ref="index">
+                {{item.title}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: ".app",
+            data() {
+                return {
+                    arr: [
+                        { id: 1, title: '军事' },
+                        { id: 2, title: '游戏' },
+                        { id: 3, title: '直播' },
+                        { id: 4, title: '财经' },
+                        { id: 5, title: '汽车' },
+                        { id: 6, title: '娱乐' },
+                        { id: 7, title: '生活' },
+                        { id: 8, title: '感情' },
+                        { id: 9, title: '购物' },
+                        { id: 10, title: '美食' },
+                    ]
+                }
+            },
+            methods: {
+                handle(index) {
+                    for (let key in this.$refs) {
+                        this.$refs[key][0].style.background = ""
+                    }
+                    this.$refs[index][0].style.background = "gold"
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

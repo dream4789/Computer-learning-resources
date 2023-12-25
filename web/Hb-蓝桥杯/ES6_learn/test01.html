@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<h4>代码段</h4>
+		<script>
+			var a = 100;
+			// 正常
+			console.log(a);
+			// 报错 Uncaught ReferenceError
+			// 引用错误，之后代码不执行
+			// console.log(c);
+			// console.log(b);
+			// 不输出 
+			console.log(a);
+			console.log('----------');
+		</script>
+
+		<script>
+			var b = 110;
+			console.log(b);
+			// 下面可使用上面的代码
+			console.log(a);
+			console.log('----------');
+		</script>
+
+		<hr>
+		<h4>预解析->代码执行</h4>
+		预解析<br>
+		<li>1.声明要提升，var变量提升，提升声明，没有赋值，<br></li>
+		function声明函数整体提升，提升声明，并赋值，提升到代码段最前面<br>
+		<li>2.函数内部局部变量，变量提升到函数内部最前面</li>
+		<script>
+			console.log(d); // undefined
+			var d = 100;
+			console.log(d); // 100
+
+
+			fn();
+
+			function fn() {
+				console.log('h函数');
+			}
+
+			console.log(i);
+			for (var i = 0; i < 10; i++) {}
+			console.log(i);
+
+			console.log('----------');
+		</script>
+
+		<hr>
+		<h4>函数表达式</h4>
+		<script>
+			// g();  // 错误，g是个变量，提升后未定义
+			var g = function() {
+				console.log('g...');
+			}
+
+			console.log('----------');
+		</script>
+		
+		
+		<hr>
+		<script>
+			var add = (function() {
+				var counter = 0;
+				console.log(counter);
+				return function() {
+					return counter += 1;
+				}
+			})();
+			console.log(add());  // 1
+			console.log(add());  // 2
+			console.log(add());  // 3
+		</script>
+
+	</body>
+</html>

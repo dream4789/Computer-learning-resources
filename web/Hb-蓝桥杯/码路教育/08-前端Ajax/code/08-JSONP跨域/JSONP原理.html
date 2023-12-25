@@ -1,0 +1,33 @@
+<button id="btn">发送ajax请求</button>
+<script>
+    let btn = document.getElementById("btn");
+    // ajax发送请求,存在跨域问题
+    // 但是script标签的scr属性是不存在跨域问题
+    // jsonp就利用了这样一个属性来解决跨域问题
+    // jsonp就是模拟jsonp的实现原理  
+    function jsonp(options) {
+        let callBackName = "wangcai";
+
+        window[callBackName] = function(data){
+            if(data != null){
+                options.success(data)
+            }
+        }
+
+        let url = options.url + "?callBack=" + callBackName;
+        let scriptEle = document.createElement("script");
+        scriptEle.src = url;
+        document.body.append(scriptEle)
+    }
+    btn.onclick = function () {
+        jsonp({
+            url: "http://127.0.0.1:3000",
+            success: function (data) {
+                console.log("data:", data);
+            },
+            fail: function (err) {
+                console.log("失败了");
+            }
+        })
+    }
+</script>

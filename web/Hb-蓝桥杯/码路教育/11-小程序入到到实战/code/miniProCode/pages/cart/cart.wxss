@@ -1,0 +1,27 @@
+.cartBox {
+  display: flex;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+  height: 290rpx;
+}
+.cartBox .cartCheckbox {
+  height: 290rpx;
+  padding-top: 120rpx;
+  padding-left: 10rpx;
+}
+.cartBox .cartGood {
+  width: 90%;
+  padding: 10px;
+}
+.cartBox .cartGood .cartFooter {
+  display: flex;
+  justify-content: flex-end;
+}
+.cartBox .cartGood .cartFooter .delBtn {
+  margin-left: 25rpx;
+}
+.van-submit-bar {
+  position: fixed;
+  left: 0;
+  bottom: 100rpx !important;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		查找元素方法：
+		
+		<hr>
+		1、通过 id 查找元素
+		<br>
+		<p id="intro">Hello!</p>
+		<button name="button" id='btn1'>确定</button>
+		<script>
+			var p1 = document.getElementById('intro');  // 通过id标签获取信息
+			console.log(p1);
+			
+			var btn1 = document.getElementById('btn1');
+			console.log(btn1);
+			// 注册事件
+			btn1.onclick=function(){
+				p1.innerHTML = "你好!";  // 重写p1内容
+				p1.style.fontSize = '3em';  // p1内容变大三倍
+			}
+		</script>
+		
+		
+		
+		<hr>
+		2、通过标签名查找元素
+		<br>
+		<ul>
+			<li>【#回应何时开学#】</li>
+			<li>【#回应何时开学#】</li>
+			<li>【#回应何时开学#】</li>
+			<li>【#回应何时开学#】</li>
+			<li>【#回应何时开学#】</li>
+			<li>【#回应何时开学#】</li>
+		</ul>
+		<script>
+			var lis = document.getElementsByTagName('li');  // 获取为数组
+			console.log(lis);
+			for (var i = 0 ; i < lis.length ; i++){
+				if (i % 2 == 0)
+					lis[i].style.background = 'yellow';  // 隔行变颜色
+			}
+		</script>
+		
+		
+
+		<hr>
+		3 html5新增的 通过 CSS 选择器查找 HTML 元素:
+		<br>
+		querySelectorAll() 方法 :查找匹配指定 CSS 选择器（id、类名、标签等）的所有 HTML 元素<br>
+		querySelector() 方法 :查找匹配指定 CSS 选择器的第一个 HTML 元素<br>
+		<p id = "p1">Hello!</p>
+		<button name = "button" id = 'btn1'>确定11</button>
+		<p class = "imp">Hello!</p>
+		<p class = "imp">world!</p>
+		<script>
+			//querySelectorAll() 方法  获得class为imp的元素   .不能少
+			var ps = document.querySelectorAll('.imp');  // 获得class属性
+			console.log(ps);
+			
+			ps[0].innerHTML = '123456';
+			
+			//querySelector（）方法   获得id为btn1的元素 #不能少
+			var btn1 = document.querySelector('#btn1');
+			console.log(btn1);
+			
+			
+		</script>
+	</body>
+</html>

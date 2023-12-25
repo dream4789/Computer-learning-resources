@@ -1,0 +1,74 @@
+<!-- <script>
+    // 对象的解构赋值
+
+    // let {a,b} = {userName:"wc",age:18};
+    // console.log(a,b); // undefined   undefined
+
+    // = 左侧是变量名，需要保证和对象中的键要一样的
+    // let { userName, age } = { userName: "wc", age: 18 };
+    // console.log(userName,age);
+
+    // 可以给变量名起别名  name和age叫别名
+    let { userName:name, userAge:age } = { userName: "wc", userAge: 18 };
+    // ReferenceError: userName is not defined
+    // console.log(userName);
+    // 如果起了别名，只能使用别名
+    console.log(name,age);
+</script> -->
+
+<!-- <script>
+    // 默认解构
+    // 如果解构不成功，可以指定默认值
+    let obj = {
+        name: "wc",
+        age:666
+    }
+
+    // let { name,age } = obj;
+    // console.log(name);
+    // console.log(age);  // undefined
+
+    let { name, age=18 } = obj;
+    console.log(name);
+    console.log(age);  // undefined
+</script> -->
+
+
+<!-- <script>
+    let obj = {
+        arr: [
+            "Hello",
+            {
+                msg: "ES6+"
+            }
+        ]
+    };
+    let {
+        arr: [
+            str,
+            {
+                msg
+            }
+        ]
+    } = obj;
+    console.log(str,msg);
+</script> -->
+
+<script>
+    let obj = {
+        local:{
+            start:{
+                x:10,
+                y:20
+            }
+        }
+    }
+    let {
+        local:{
+            start:{
+                x,y
+            }
+        }
+    } = obj;
+    console.log(x,y);
+</script>

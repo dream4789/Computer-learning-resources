@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../lib/vue2.7.8.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <h1>{{name}}</h1>
+    </div>
+    <!-- 
+        为什么组件的data必须是一个函数？
+        答：保证每个组件中的data彼此独立，互不影响
+     -->
+    <!-- <script>
+         function data(){
+             return {
+                 a:1
+             }
+         }
+
+         let C1 = data();
+         let C2 = data();
+         C1.a = 110;
+         console.log(C1 === C2);
+         console.log(C2.a);
+     </script> -->
+
+    <script>
+        let data = {
+            a: 1
+        }
+        let C1 = data;
+        let C2 = data;
+        C1.a = 110;
+        console.log(C1 === C2);
+        console.log(C2.a);
+    </script>
+    <script>
+        let vm = new Vue({
+            el: ".app",
+            data() {
+                return {
+                    name: "码路教育"
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		倒计时:<br>
+		1、时间戳 跟1970年1月1号相差多少毫秒数<br>
+		2、当前时间与目标时间之间的差:<br>
+		目标时间时间戳-当前时间时间戳 -> 剩余的毫秒数<br>
+		3、把剩余的毫秒数转为秒，再把秒转为天时分秒。<br>
+		<hr>
+		<script>
+			// window.onload = function() {
+				// 获得Date总的毫秒数-时间戳跟1970年1月1号相差多少毫秒数
+				// 1 +new Date();获得总的毫秒数
+				var d = +new Date();
+				document.write(d + '<br>');
+
+				// 2 h5新增 now() 获得总的毫秒数
+				document.write(Date.now() + '<br>');
+
+				setInterval(countDown, 1000);
+
+				// 距离 2023 年元旦还差多少天多少时多少分多少秒
+				function countDown() {
+					//1. 当前总毫秒
+					var t = +new Date();
+					//2. 2023年元旦的总毫秒
+					var dt = +new Date(2023, 0, 1);
+					//3. 剩余总毫秒
+					var st = dt - t;
+					//4. 毫秒转为秒-除1000
+					st = st / 1000;
+
+					//5秒数转为天时分秒公式如下:
+					//计算天(秒数/60/60/24)
+					var d = st / 60 / 60 / 24;
+					if (d < 10) {
+						d = '0' + d;
+					}
+					//计算小时(秒数/60/60 %24)
+					var h = st / 60 / 60 % 24;
+					if (h < 10) {
+						h = '0' + h;
+					}
+					//计算分钟（(秒数/60%60 )
+					var m = st / 60 % 60;
+					if (m < 10) {
+						m = '0' + m;
+					}
+					//计算当前秒数(秒数%60)
+					var s = st % 60;
+					if (s < 10) {
+						s = '0' + s;
+					}
+					var str = parseInt(d) + '天' + parseInt(h) + '时' + parseInt(m) + '分' + parseInt(s) + '秒';
+					document.write('<p>距离元旦：' + str + '</p>');
+					return str;
+				}
+				// document.write('<h1>距离元旦：' + countDown() + '</h1>');
+			// }
+		</script>
+	</body>
+</html>

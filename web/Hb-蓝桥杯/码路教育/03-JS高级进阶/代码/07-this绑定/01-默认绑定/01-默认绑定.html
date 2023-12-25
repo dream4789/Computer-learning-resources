@@ -1,0 +1,28 @@
+
+<!-- -------------------- -->
+
+<script>
+    // this到底是什么？
+    //   本意是这个的意思
+    //   this到底是什么和你书写的位置没有关系，和调用方式有关系
+    //   this是在产生EC时，动态绑定的
+    function fn(){
+        console.log(this);
+    }
+    // fn();
+
+    // let obj = {name:"wc"};
+    // fn.call(obj)
+
+    // let obj2 = {name:"xq",fn:fn};
+    // obj2.fn();
+</script>
+<!-- -------------------- -->
+
+<script>
+    // this的绑定规则
+    //   1）默认绑定
+    //   2）隐式绑定
+    //   3）显示绑定
+    //   4）new绑定
+</script>

@@ -1,0 +1,200 @@
+<!-- <script>
+    let arr = [1,2,3];
+    // 浅copy  copy的是一个地址
+    let arr2 = arr;
+    arr2[0] = 666;
+    console.log(arr[0]);
+</script> -->
+
+<!-- <script>
+    let obj = {
+        name:"wc",
+        age:18,
+        address:"bj"
+    };
+    // let obj2 = obj;  // 浅copy 
+
+    let newObj = JSON.parse(JSON.stringify(obj));
+    newObj.name = "xq";
+    console.log(obj.name);
+</script> -->
+
+<!-- <script>
+    // JSON.parse(JSON.stringify(obj)) 不能对方法copy
+    let obj = {
+        name: "wc",
+        age: 18,
+        address: "bj",
+        sayHello(){
+            console.log("sayHello~");
+        }
+    };
+    // let obj2 = obj;  // 浅copy 
+
+    let newObj = JSON.parse(JSON.stringify(obj));
+    newObj.sayHello();
+</script> -->
+
+<!-- <script>
+    let obj = {
+        name: "wc",
+        age: 18,
+        address: {
+            city:"bj"
+        },
+    };
+    let newObj = JSON.parse(JSON.stringify(obj));
+    newObj.address.city = "sh";
+    console.log(obj.address.city);
+</script> -->
+
+<!-- <script>
+    // JSON.parse(JSON.stringify(arr)) 对数组也可以实现深copy
+    let arr = [1,2,3,"hello",true];
+    let newArr = JSON.parse(JSON.stringify(arr));
+    console.log(newArr);
+    newArr[0] = 666;
+    console.log(arr);
+</script> -->
+
+<!-- <script>
+    // 自己去封装一个方法，实现深copy
+    function deepClone(target) {
+        let cloneTarget = {};
+        for (let key in target) {
+            // console.log(key);
+            if (target.hasOwnProperty(key)) {
+                // copy时，只copy的私有属性
+                cloneTarget[key] = target[key];
+            }
+        }
+        return cloneTarget;
+    }
+
+    let obj = {
+        name: "wc",
+        age: 18,
+        score: [99, 88, 66],
+        address: {
+            city: "bj"
+        },
+        sayHello() {
+            console.log("sayHello~");
+        }
+    };
+
+    let newObj = deepClone(obj);
+    console.log(newObj);
+    // newObj.name = "wc666"
+    // console.log(obj.name);
+    newObj.score[0] = 100;
+    console.log(obj.score[0]);
+</script> -->
+
+<!-- <script>
+    // target是数组    
+    function deepClone(target) {
+        if (typeof target !== "object") {
+            return target
+        }
+        // let cloneTarget = {};
+        let cloneTarget = new target.constructor; // Object
+        for (let key in target) {
+            if (target.hasOwnProperty(key)) {
+                // target[key] 可能还是引用类型
+                // console.log(target[key]);
+                cloneTarget[key] = deepClone(target[key]);
+            }
+        }
+        return cloneTarget;
+    }
+
+    let obj = {
+        name: "wc",
+        age: 18,
+        score: [99, 88, 66],
+        address: {
+            city: "bj"
+        },
+        sayHello() {
+            console.log("sayHello~");
+        }
+    };
+
+    let newObj = deepClone(obj);
+    newObj.score[0] = 100;
+    console.log(obj.score[0]);
+    newObj.address.city = "sh";
+    console.log(obj.address.city);
+</script> -->
+
+<!-- <script>
+    function deepClone(target) {
+        if (target == null) return target;
+        if (target instanceof Date) return new Date(target)
+        if (target instanceof RegExp) return new RegExp(target)
+        // ...... 还有一些其它的特殊的对象，需要单独处理
+
+        if (typeof target !== "object") return target
+
+        let cloneTarget = new target.constructor;
+
+        for (let key in target) {
+            if (target.hasOwnProperty(key)) {
+                cloneTarget[key] = deepClone(target[key]);
+            }
+        }
+        return cloneTarget;
+    }
+
+    let obj = {
+        name: "wc",
+        age: 18,
+        score: [99, 88, 66],
+        address: {
+            city: "bj"
+        },
+        sayHello() {
+            console.log("sayHello~");
+        }
+    };
+
+    // let newObj = deepClone(null);
+    // console.log(newObj);
+
+    // let d = new Date();
+    // let newObj = deepClone(d)
+    // console.log(newObj);
+    // console.log(d);
+
+    let reg = new RegExp("abc");
+    let newObj = deepClone(reg)
+    console.log(newObj);
+    console.log(reg);
+</script> -->
+
+<script>
+    // WeakMap  休息10分钟
+    function deepClone(target) {
+        if (target == null) return target;
+        if (target instanceof Date) return new Date(target)
+        if (target instanceof RegExp) return new RegExp(target)
+        // ....
+
+        if (typeof target !== "object") return target
+
+        let cloneTarget = new target.constructor;
+
+        for (let key in target) {
+            if (target.hasOwnProperty(key)) {
+                cloneTarget[key] = deepClone(target[key]);
+            }
+        }
+        return cloneTarget;
+    }
+    let arr = ["a", "b", "c"];
+    let newArr = deepClone(arr);
+    newArr[0] = "aaa";
+    console.log(arr);
+
+</script>

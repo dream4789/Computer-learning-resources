@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./jquery.min.js"></script>
+	</head>
+	<body>
+		<script>
+			// 原生bind
+			var a = document.write;
+			// a('hello');  // error
+			document.write('hello1-- ')
+			a.bind(document)('hello2-- '); // hello
+			a.call(document, 'hello3-- '); // hello
+		</script>
+
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script>
+			$('li').each(function(index, ele) {
+				// console.log($(ele).text())
+				$(ele)
+					.text(index) // 为每个li添加文本内容
+					.addClass('demo' + index) // 为每个li添加类名
+				console.log($(ele).text())
+			});
+		</script>
+		<hr>
+		<div class="wrapper">
+			<p>p:1</p>
+			<div>div:2</div>
+			<p>p:3</p>
+			<div>div:4</div>
+			<p>p:5</p>
+			<div>div:6</div>
+		</div>
+		<script>
+			// 获取点击元素在所有兄弟元素中的索引值
+			$('.wrapper').children().on('click', function(e) {
+				console.log(e.target)  // 它自己
+				console.log("全部索引值:", $(e.target).index()); // 执行结果：输出0, 1, 2, 3, 4, 5
+			});
+			// 获取点击元素在p兄弟元素中的索引值（-1，指不是p元素）
+			$('.wrapper').children().on('click', function(e) {
+				console.log("p 索引值:", $('p').index($(e.target))); // 执行结果：输出0, -1, 1, -1, 2, -1
+			});
+		</script>
+
+		<hr>
+		<div>
+			<div>
+				<label class="base-form-txt"> xxxxx </label>
+				<input type="checkbox" class="radioCheck" />
+			</div>
+			<div id="is9000">
+				<label> xxxx </label>
+				<div>
+					<input id="is9000_no" type="text" value="">
+				</div>
+			</div>
+		</div>
+		<script>
+			// radio控制div显示隐藏
+			// 知识点：
+			// $("#id").prop("checked") 或 $("#id").is(":checked") 值为false / true;
+			$(".radioCheck").attr("checked", true) // 默认打勾;
+			
+			if (!$(".radioCheck").prop("checked")) {
+				$("#is9000").hide();
+			} else {
+				$("#is9000").show();
+			}
+			// 如下radio打勾，就显示入栏，否则就隐藏：
+			$(".radioCheck").bind("change", function() { // 绑定一个点击事件
+				if ($(".radioCheck").is(":checked")) { // 选中
+					$("#is9000").show();
+				} else {
+					$("#is9000").hide();
+				}
+			})
+		</script>
+
+	</body>
+</html>

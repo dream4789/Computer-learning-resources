@@ -1,0 +1,14 @@
+<script>
+    let xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+        console.log(xhr.response);
+    }
+    xhr.responseType = "json"
+    xhr.open("post", "http://127.0.0.1:3000/post");
+
+    xhr.setRequestHeader("Content-Type", "application/json")
+    // 传递json数据
+    // 前后端只能传递字符串  前端给后端传递的JSON数据需要转化成JSON串
+    xhr.send(JSON.stringify({ "a": 1, "b": 2 }));
+</script>

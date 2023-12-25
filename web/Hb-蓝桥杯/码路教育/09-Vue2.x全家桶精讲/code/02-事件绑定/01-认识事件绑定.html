@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+		<style>
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: gold;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+
+			<!-- v-on叫指令,所谓的指令,说白了,就是vue发明的自定义属性 -->
+			<!-- v-on就是用来绑定事件,click叫事件类型,还有其它的事件,mouseover mouseout mouseleave....
+            handle叫监听器
+            绑定事件格式:v-on:事件名字 = "监听器(事件处理程序)"
+        -->
+			<!-- <div class="box" v-on:click="handle"></div> -->
+
+			<!-- v-on可以简写,可以简写成@,在项目中通常使用@ -->
+			<!-- <div class="box" @click="handle"></div> -->
+
+			<!-- 一个标签上,可以绑定多个事件 -->
+			<div class="box" @click="handle" @mouseover="over"></div>
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						// data中的数据,都会挂载到vm身上
+						name: "aaa",
+						// 可以把监听器写在data中,不推荐这么
+						// 规定,把监听器或方法放在methods选项中
+						// handle() {
+						//     console.log("点我弄啥~");
+						// }
+					}
+				},
+				methods: {
+					// 写在methods中的方法，会挂载到vm身上
+
+					// ES6中的方法简写
+					handle() {
+						// this表示 vm 实例
+						console.log(this);  // Vue {_uid: 0, _isVue: true, …}
+						console.log(this.name);
+
+						// 设置数据，数据是响应式的，数据变了，模板重新渲染
+						this.name = "maluedu"
+					},
+
+					// -----------------------------
+
+					// handle方法,不能写成箭头函数
+					// handle: () => {
+					// 	// 如果把方法写成箭头函数，它里在的this表示window
+					// 	console.log(this); // Window {window: Window, self: Window,  …}
+					// 	this.name = "malu"
+					// },
+
+					// -----------------------------
+
+					// 不简写的形式
+					// handle: function() {
+					// 	console.log(this); // Vue {_uid: 0, _isVue: true, …}
+					// 	this.name = "malu"
+					// },
+
+					// -----------------------------
+
+					over() {
+						console.log("over....");
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

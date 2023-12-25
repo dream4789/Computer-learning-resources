@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+			<ul>
+				<!-- 使用v-for遍历数组 -->
+
+				<!-- students中有多个少数据，就遍历出多个少li -->
+				<!-- 你的肉眼看上去是一个li，实际上是N个li -->
+				<li v-for="(item,index) in students">
+					{{index}} --- {{item.id}} --- {{item.name}}
+				</li>
+			</ul>
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						students: [{
+								id: 1,
+								name: "貂蝉"
+							},
+							{
+								id: 2,
+								name: '妲己'
+							},
+							{
+								id: 3,
+								name: '大桥'
+							},
+							{
+								id: 4,
+								name: '小乔'
+							},
+							{
+								id: 5,
+								name: '周瑜'
+							},
+						],
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

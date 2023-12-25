@@ -1,0 +1,16 @@
+Component({
+  properties:{
+    tipsList:{
+      type:Array,
+      value:[]
+    }
+  },
+  methods:{
+    cellClick(e){
+      this.triggerEvent("fn",{
+        num:3,
+        keyword:e.currentTarget.dataset.kw
+      })
+    }
+  }
+})

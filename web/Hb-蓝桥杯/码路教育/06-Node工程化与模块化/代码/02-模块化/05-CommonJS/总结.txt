@@ -1,0 +1,79 @@
+
+node.js  
+
+是JS的运行环境，之前，JS都是在浏览器中运行，浏览器了是JS的运行环境。
+
+---------------------------
+
+安装node:
+    NVM:Node Version Manger
+
+    命令：
+        nvm list 
+        nvm install 17.0.0
+        nvm use 17.0.0
+---------------------------
+
+node运行JS文件：
+    1）CMD窗口中运行
+    2）VSCODE中的终端中运行
+    3）安装VSCODE插件，叫 code runner
+
+---------------------------
+
+没有模块化：
+    造成命名冲突，全局污染，最早之前如何觖：IIFE
+
+---------------------------
+
+CommonJS规范：
+    1）每个文件都是一个模块
+    2）模块与模块之间天生隔绝
+    3）导出
+        A）exports.a = a;
+        B）module.exports.a = a;
+        C）module.exprots = { a }
+        核心：exports = module.exprots
+    4）导入
+        require导入  得到对象
+
+---------------------------
+
+模块分三类：
+    1）系统模块  核心模块   http   path
+        let http = require("http")
+
+    2）自定义模块  要求：必须要以./或../打头
+        let jj = require("./jj.js")
+
+    3）第三方模块  大牛开发好的模块，让我们使用
+        npm i jquery
+        let jq = require("jquery");
+
+---------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

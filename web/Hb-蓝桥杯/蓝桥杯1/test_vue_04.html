@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#num,
+			button {
+				height: 30px;
+				width: 60px;
+				display: inline;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+		<div id="app">
+			<button @click="sub">-</button>
+			<div id="num"> {{ count }} </div>
+			<button @click="add">+</button>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					count: 0,
+				},
+				methods: {
+					add() {
+						// count++;
+						if (this.count >= 10) {
+							alert("大于10了")
+						} else {
+							this.count++;
+						}
+					},
+					sub: function() {
+						if (this.count <= 0) {
+							alert("小于0了")
+
+						} else {
+							this.count--;
+						}
+					}
+				},
+			})
+		</script>
+
+
+
+	</body>
+</html>

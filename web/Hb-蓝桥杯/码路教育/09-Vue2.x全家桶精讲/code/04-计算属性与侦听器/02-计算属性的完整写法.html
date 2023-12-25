@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+			请输入你姓：<input type="text" v-model="fristName"> <br>
+			请输入你名：<input type="text" v-model="lastName"> <br>
+			<p>全名：{{allName}}</p>
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						fristName: "ma",
+						lastName: "lu"
+					}
+				},
+				methods: {
+					fullName() {
+						console.log("函数调用了~");
+						return (this.fristName + this.lastName).toUpperCase()
+					}
+				},
+				computed: {
+					// 计算属性的第1种写法
+					// allName() {
+					//     return this.fristName + this.lastName;
+					// }
+
+					// 计算属性的第2种写法  写成对象的形式    用的不多
+					allName: {
+						// 当使用计算属性时，会走get
+						get() {
+							console.log("get~");
+							return this.fristName + this.lastName;
+						},
+						// 当你修改计算属性时，走set，项目中一般情况下，不会修改
+						set(val) {
+							console.log("val:", val);
+							let arr = val.split("-");
+							console.log(arr);
+							this.fristName = arr[0]
+s							this.lastName = arr[1]
+						}
+					}
+				}
+			});
+		</script>
+		<!-- 
+        计算属性和方法有什么区别：
+            1）不管是计算属性还是方法，都会挂载到vm身上。
+            2）计算属性有缓存，第1次需要计算，后面再使用，直接从缓存中取结果，
+               当依赖的数据变化了，才会重新计算。
+            3）方法是每使用一次，就会调用，用一次，调一次
+            4）计算属性中不能写异步代码
+            5）计算属性有两种定法，方法只能写成方法
+     -->
+	</body>
+
+</html>

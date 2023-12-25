@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body,#app{
+    height: 100%;
+    width: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.container{ 
+    display: flex;
+    
+}
+
+.container > .box {
+    height: 180px;
+    width: 180px; 
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #fcc419;
+    box-shadow: 0 0 2px 2px #adb5bd;
+    font-size: 40px;
+    font-weight: 800;
+    text-align: center;
+    transition-duration: 400ms;
+    color: #202020;
+}
+
+.box.hide{
+    background-color: #fff9db;
+    box-shadow: 0 0 2px 2px #eceff4;
+    color: #909090;
+}

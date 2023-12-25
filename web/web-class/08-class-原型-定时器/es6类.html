@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+	</head>
+	<body>
+		1.箭头函数
+		<script>
+			var fn = function() {
+
+			}
+			fn()
+			var fn1 = () => { // 外层作用域调用，this指向window
+				alert('hello');
+			}
+			// fn1();
+		</script>
+
+		2. es6标准的类
+		<script>
+			class Person {
+				// 属性
+				name = '11'
+				age = 20
+				// 1. 方法
+				// say = function(){
+				// 	alert('world');
+				// }
+				// Person {name: '11', age: 20, say: ƒ}
+				// {constructor: ƒ}
+				// {constructor: ƒ}
+
+				// 2. 在原型变量上添加方法
+				say() {
+					alert("11")
+				}
+				// Person {name: '11', age: 20}
+				// {constructor: ƒ, say: ƒ}
+				// {constructor: ƒ, say: ƒ}
+
+			}
+			// var p1 = new Person();
+			// console.log(p1);
+			// // p1.say();
+			// console.log(Person.prototype);
+			// console.log(p1.__proto__);
+		</script>
+
+
+		3. 静态成员
+		类名调用静态变量，函数
+		<script>
+			class Person1 {
+				name = '22'
+				age = 10
+				static count
+				static doCount() {
+					if (!Person1.count)
+						Person1.count = 0;
+					Person1.count++;
+					console.log("当前对象个数", Person1.count);
+				}
+			}
+			// var p11 = new Person1();
+			// Person1.doCount();
+
+			// var p22 = new Person1();
+			// Person1.doCount();
+
+			// console.log(p11 === p22);  // 两个对象不一样
+		</script>
+
+		4. 类中构造函数
+		<script>
+			class Person2 {
+				// 属性
+				// 存在构造函数，可不写属性
+				// name
+				age
+
+				// 构造函数(不可重载)
+				constructor(name, age) {
+					this.name = name;
+					this.age = age;
+				}
+				// 不可重载
+				// constructor(name){
+				// 	this.name = name;
+				// }
+
+				say() {
+					alert("11")
+				}
+
+			}
+
+			// var p111 =  new Person2("33",30);
+			// // p111.age = 200;
+			// console.log(p111);	
+		</script>
+		4. 私有属性
+		<script>
+			class Person3 {
+				// 私有属性
+				#name
+				#age
+
+				// 读写私有属性的接口
+				getAge(){
+					return this.#age;
+				}
+				setAge(age){
+					this.#age = age;
+				}
+				// 也可以按以下方法写：
+				// get age() {
+				// 	return this.#age;
+				// }
+				// set age(age) {
+				// 	if (age < 200 && age > 20)
+				// 		this.#age = age;
+				// 	else
+				// 		console.log("不符合");
+				// }
+
+
+				// 构造函数(不可重载)
+				constructor(name, age) {
+					this.#name = name;
+					this.#age = age;
+				}
+
+				say() {
+					console.log("--", this.#name, "--")
+				}
+			}
+			
+			
+			
+			var p33 = new Person3("aaa", 40);
+			p33.setAge(100);
+			console.log("===", p33);
+			console.log("===", p33.getAge());
+			
+			
+			console.log("---", p33.age); // 40 会调用 get age()，否则undefined
+			p33.age = 100; // 会调用 set age()，否则不会改变，age未识别  ，
+			console.log("===", p33);  // Person3 {#name: 'aaa', #age: 100}
+			p33.say(); // -- aaa --
+			console.log("+++", p33.age);  // +++ 100
+			
+			
+		</script>
+
+		6. 继承
+		<script>
+			class Person4 {
+				// 构造函数(不可重载)
+				constructor(name, age) {
+					this.name = name;
+					this.age = age;
+				}
+
+				say() {
+					alert("11,", this.name, "22")
+				}
+			}
+			class Student extends Person4 {
+				// 子类构造，要先调用父类构造
+				constructor(name, age, score) {
+					super(name, age);
+					// super.say();
+					// this.name = name;
+					// this.age = age;
+					this.score = score;
+				}
+
+				// override重写父类方法
+				say() {
+					alert("继承" + this.name + this.age);
+				}
+			}
+			// var std = new Student('55',18);
+			var std1 = new Student('xx', 18, 100);
+			// std1.say();
+
+			//std1 的原型
+			// console.log(std1.__proto__) // Person4，子类原型是父类
+			// console.log(std1.__proto__.__proto__) // Object
+			// console.log(Person4.prototype) // Object
+			// console.log(Person4.prototype.prototype) // undefined
+			// console.log(Person4.prototype.__proto__) // object 创建的原型变量
+			// console.log(Person4.prototype.__proto__.__proto__) // null
+		</script>
+
+
+	</body>
+</html>

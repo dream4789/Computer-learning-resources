@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../lib/vue2.7.8.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <h1>{{name}}</h1>
+        <!-- :style后面跟一个数组，数组中放对象 -->
+        <p :style="[{color:'red',background:'pink'},{height:'100px'}]">:style-[{}]---P标签</p>
+
+        <!-- 数组定义到data中，目的是操作数据 -->
+        <p :style="arr">:style-arr---P标签</p>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: ".app",
+            data() {
+                return {
+                    name: "aaa",
+                    arr: [
+                        { color: 'red', background: 'pink' },
+                        { height: '100px' }
+                    ]
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

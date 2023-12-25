@@ -1,0 +1,46 @@
+<!-- <script>
+    // 在ES6中，提供一个类，叫Promise，承诺的意思
+    // 在new Promise时，需要传递一个执行器，执行器是立即执行的
+    // 刚创建出来的promise是处于等待状态
+    // 执行器函数有两个参数，一个叫resolve，一个叫reject
+    // resolve是一个函数，调用此函数，可以把等待的promise变成成功的promise
+    // reject是一个函数，调用此函数，可以把等待的promise变成失败的promise
+    // promise就三个状态：等待状态  成功状态  失败的状态
+    let p = new Promise((resolve, reject)=>{
+        console.log("hello promise~");
+    });
+    // <pending>  等待的意思
+    console.log(p);
+</script> -->
+
+<!-- <script>
+    // 在执行器函数中，写异步代码
+    let p = new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            // console.log("我是一个定时器~");
+
+            // 包包是成功的结果，叫终值
+            resolve("包包~")
+            // fulfilled : '包包~'
+            console.log(p);
+        },3000)
+    });
+    console.log(p);
+</script> -->
+
+<script>
+    // Promsie只能从等待到成功，或从等待到失败
+    // 一旦成功了，就不能失败了
+    // 一旦失败了，就不能成功了
+    let p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("包包")
+
+            reject("没钱~")
+
+            // rejected: '没钱~'  拒因  失败的原因
+            console.log(p);
+        }, 3000)
+    });
+    console.log(p);
+</script>

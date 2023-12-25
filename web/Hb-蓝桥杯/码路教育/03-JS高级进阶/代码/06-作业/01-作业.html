@@ -1,0 +1,191 @@
+<!-- <script>
+    console.log(fn);  // und
+    // 1 == 1  true
+    if (1 == 1) {
+        // 进入来的第一件事，是给fn赋值
+        console.log(fn);  // fn函数
+
+        function fn() {
+            console.log("ok");
+        }
+    }
+    console.log(fn);  // fn函数
+</script> -->
+
+<!-- <script>
+    console.log(num);  // und
+    console.log(fn);   // und
+    // 0  -0  ""  und  null  NaN ===> false
+    // 其它的统一转化成true
+    if ([]) {  // []转成true
+        // 进来的第一件事是给fn赋值
+        fn()   // "a"
+        var num = 100;
+
+        function fn() {
+            console.log("a")
+        }
+    }
+    console.log(fn);  // fn函数
+</script> -->
+
+<!-- <script>
+    function fn(i) {
+        return function (n) {
+            console.log(n + (++i));
+        }
+    }
+    var f = fn(2);
+    f(3);
+    fn(5)(6);
+    fn(7)(8);
+    f(4);
+</script> -->
+
+<!-- <script>
+    // GO中有一个foo 值是hello
+    var foo = "hello";
+    // IIFE  没有函数需要
+    // IIFE，即使有函数名，函数名在外面也是不能使用的
+    (function (foo) { // foo是形参  形参相当于函数内部的局部变量
+        console.log(foo);  // "hello"
+        // foo || "word"  foo是"hello" 
+        var foo = foo || "word";
+        console.log(foo);  // hello
+    })(foo);  // foo是"hello"
+    console.log(foo);
+</script> -->
+
+<!-- <script>
+    var a = 9;
+
+    function fn() {
+        a = 0;
+        return function (b) {
+            return b + a++;
+        }
+    }
+    var f = fn();
+    console.log(f(5));
+    console.log(fn()(5));
+    console.log(f(5));
+    console.log(a);
+</script> -->
+
+<!-- <script>
+    let obj = {   // {x:0,y:[1,2]}
+        x: 1,  // 100
+        y: [10, 20]  // [10, 30, 40]
+    };
+    let obj2 = obj;
+    let obj3 = {
+        ...obj2   // x:200  y:[10,30,40]  y:{x:0,y:[1,2]}
+    };
+    obj2.x = 100;
+    obj2.y[1] = 30;
+    obj3.x = 200;
+    obj3.y[2] = 40;
+    obj = obj3.y = {
+        x: 0,
+        y: [1, 2]
+    };
+    console.log(obj, obj2, obj3);
+</script> -->
+
+<!-- <script>
+    // let a = {
+    //     num:0,
+    //     valueOf:function(){
+    //         // console.log("valueOf...");
+    //         return ++a.num
+    //     }
+    // };
+
+    let a = {
+        num: 0,
+        valueOf: function () {
+            return a.num++
+        },
+        toString: function () {
+            // console.log("valueOf...");
+            return ++a.num
+        }
+    };
+
+    // a和别人作比较时，会自动调用valueOf和toString
+    // 如果a是一个对象，对象中有自己的valueOf或toStirng，就会调用自己的valueOf或toStirng
+    if (a == 1 && a == 2 && a == 3) {
+        console.log('OK');
+    }
+</script> -->
+
+<!-- <script>
+    // 12.5 ==> 0进制  不转  12
+    // 100  ==> 1进制   NaN
+    // 0013 ==> 以0打头  8进制数据  先转成10进制   11  转2进制   3
+    // "27px"  ===> 转3进制   2
+    // 456  ===> 转4进制   NaN
+    let arr = [12.5, 100, 0013, '27px', 456];
+    arr = arr.map(parseInt);
+    console.log(arr);
+</script> -->
+
+<!-- <script>
+    (function b() {
+        console.log(b);
+    })();
+
+    // IIFE中的函数名在外界是得不到的
+    console.log(b);
+</script> -->
+
+<!-- <script>
+    (function b() {
+        // 说明把110确实赋值给了b  b的值是110
+        c = b = 110;
+        console.log(c);  // 110
+    })();
+</script> -->
+
+<!-- <script>
+    (function b() {
+        // IIFE的函数名b  和   函数体中的b是同一个b
+        // IIFE中的函数名b，在函数体内是不能修改的
+        c = b = 110;
+        console.log(b); 
+        console.log(c); 
+    })();
+</script> -->
+
+<!-- <script>
+    (function b() {
+        const PI = 3.14;
+        PI = 666;
+        console.log(PI);
+    })();
+</script> -->
+
+<!-- <script>
+    (function b() {
+        var b = 110;
+        console.log(b);
+    })();
+</script> -->
+
+<!-- <script>
+    (function b() {
+        b = 110;
+        console.log(b);
+    })();
+</script> -->
+
+<script>
+    var b = 10;
+    (function b() {
+        "use strict"
+        // TypeError: Assignment to constant variable.
+        b = 20;
+        console.log(b);
+    })();
+    console.log(b);
+</script>

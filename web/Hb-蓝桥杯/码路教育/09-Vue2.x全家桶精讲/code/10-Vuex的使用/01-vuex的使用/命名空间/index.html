@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+		<script src="./vue.min.js"></script>
+		<script src="./vuex.min.js"></script>
+		<script src="./index.js"></script>
+
+	</head>
+	<body>
+		<div id="app">
+			{{name}}
+			{{age}}
+		</div>
+
+
+		<script type="module">
+
+			var app = new Vue({
+				el: '#app',
+				data() {},
+				store,  // 需要挂载
+				// 辅助函数
+				// 方式一：直接访问 modules 名为 user 的空间
+				computed: {
+					// ...mapState({
+					// 	name: state => state.user.name,
+					// 	age: state => state.user.age
+					// }),
+					name() {
+						return store.state.name
+					},
+					age() {
+						return store.state.age
+					}
+
+				},
+
+				mounted() {
+					// console.log(store.name); 
+					// console.log(this.name); // zhangsan
+					// console.log(this.age); // 20
+
+					// 原始方式
+					console.log(this.$store.state.user)
+				},
+
+				// 方式二：本质与方式一相同，额外使用了解构
+				// computed: {
+				// 	...mapState({
+				// 		name: state => state.user.name,
+				// 		age: state => state.user.age
+				// 	})
+				// },
+
+				// 方式三：参数设置命名空间
+				// mapState( ' 命名空间模块名称 ' , [ ' 模块内部的数据 ' ])
+				// mapState( ' 命名空间模块名称 ' , { ' 新名称 ': ' 模块内部数据名称 ' } )
+				// computed: {
+				// 	...mapState('user', ['name', 'age']);
+				// 	...mapState('user', {
+				// 		'userName': 'name',
+				// 		'userAge': 'age'
+				// 	})
+				// },
+
+				// 方式四：快捷方式（测试 mapState 不能使用）
+				// mapGetters({ 方法名称：‘命名空间名称’ + ’ / ’ + ’ 方法名称 ’ })
+				// computed: {
+				// 	...mapGetters({
+				// 		getName: 'user/getName'
+				// 	})
+				// }
+
+			});
+		</script>
+	</body>
+</html>

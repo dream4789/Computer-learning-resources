@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			const players = [{
+					name: '科比',
+					num: 24
+				},
+				{
+					name: '詹姆斯',
+					num: 23
+				},
+				{
+					name: '保罗',
+					num: 3
+				},
+				{
+					name: '威少',
+					num: 0
+				},
+				{
+					name: '杜兰特',
+					num: 35
+				}
+			]
+		</script>
+		<hr />
+		foreach
+		<script>
+			Array.prototype.sx_forEach = function(callback) {
+				for (let i = 0; i < this.length; i++) {
+					callback(this[i], i, this)
+				}
+			}
+
+			players.sx_forEach((item, index, arr) => {
+				console.log(item, index)
+			})
+		</script>
+		<hr>
+		filter
+		<script>
+			Array.prototype.sx_filter = function(callback) {
+				const res = [];
+				for (let i = 0; i < this.length; i++) {
+					callback(this[i], i, this) && res.push(this[i])
+				}
+				return res;
+			}
+			console.log(players.sx_filter(item => item.num >= 23));
+		</script>
+		<hr>
+		every
+		<script>
+			Array.prototype.sx_every = function(callback) {
+				let flag = true
+				for (let i = 0; i < this.length; i++) {
+					flag = callback(this[i], i, this)
+					if (!flag) break
+				}
+				return flag
+			}
+			console.log(players.sx_every(item => item.num >= 23)) // false
+			console.log(players.sx_every(item => item.num >= 0)) // true
+		</script>
+		join
+		<p id="demo"></p>
+		<script>
+			const fruits = ["a","b","c","d","e"];
+			document.getElementById("demo").innerHTML = fruits.join(''); // 默认','
+		</script>
+		<hr>
+		splice
+		<script>
+			var arrs = [1, 2, 3, 4, 5, 6];
+			arrs.splice(2, 2); // 从第二个位置，删除后面两个
+			console.log(arrs);
+		</script>
+		<hr>
+		forEach
+		<script>
+			var a = [1, 2, 3, 1, 2, 3];
+			a.forEach((item, index) => {
+				console.log(index, item);
+				if (item === 1) {
+					// console.log(index, item);
+					a.splice(index, 1);
+					// console.log(a);
+				}
+			});
+		</script>
+		<hr>
+		flat
+		<script>
+			 arr2 = [1, [2, 3, [4, 5]], [8, 9]];
+			 console.log(arr2.flat().flat());  // 多维数组一维处理
+		</script>
+		<hr>
+		sx_fill
+		<script>
+			Array.prototype.sx_fill = function (value, start = 0, end) {
+				  end = (end > this.length ? this.length : end) || end // 取较小的，当end没有时，默认为数组长度
+				  console.log(end);
+				  for (let i = start; i < end; i++) {
+				      this[i] = value
+				  }
+				  return this
+			}
+			
+			console.log(players.sx_fill('林三心', 1, 9))
+		</script>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<script>
+    // 1）let不会提升
+
+    // 2）暂存性死区  （暂时性死区）
+    // var num = 666;  // 全局变量
+
+    // if(true){
+    //     // ReferenceError: Cannot access 'num' before initialization
+    //     num = 888;  // 把888赋值给num  找num  只能在自己的作用域中找
+    //     // 在使用let声明变量之前，不能使用这个变量，在之前的这一片区域，叫暂时性死区
+    //     // 说白了，使用let声明变量之前，该变量不能使用。
+    //     let num; // let + {}形成块给作用域  num说白了，是局部变量
+    // }
+
+    // 3）不允许重复声明
+    // function bar() {
+    //     // SyntaxError: Identifier 'n1' has already been declared 
+    //     let n1 = 1;
+    //     let n1 = 2;
+    // }
+    // bar();
+
+    // 形参相当于函数内部加var的局部变量
+    // 形参也相当于声明了一个变量
+    // function bar(num) {
+    //     // 也是重复声明
+    //     let num = 1;
+    // }
+    // bar(2);
+
+    // 也叫重复声明
+    // var a = 1;
+    // let a = 2;
+
+
+    // 4）使用let声明的变量，并不会挂载到GO上的
+    let a = 110;
+    // 访问一个对象上不存在的属性，结果是und
+    console.log(window.a);
+</script>

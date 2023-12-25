@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<title>班级管理</title>
+	</head>
+
+	<body>
+		<div id='app'>
+			<h3>班级管理系统</h3>
+			<el-table :data="tableData" border style="width: 100%">
+				<el-table-column prop="name" label="姓名" width="180">
+				</el-table-column>
+				<el-table-column prop="age" label="年龄" width="180">
+				</el-table-column>
+				<el-table-column prop="score" label="分数" width='180'>
+				</el-table-column>
+				<el-table-column prop="class" label="班级" width='180'>
+				</el-table-column>
+				<el-table-column label="操作">
+					<template slot-scope="scope">
+						<el-button @click="handleClick(scope.row)" type="primary" size="small">编辑(无)</el-button>
+						<el-button type="danger" size="small" @click.native.prevent="deleteRow(scope.row)">删除
+						</el-button>
+					</template>
+				</el-table-column>
+			</el-table>
+			<!-- 表格展示  班级管理数据展示 -->
+
+			<el-pagination @current-change="handleCurrentChange" :current-page="pageIndex" :page-size="pageSize"
+				layout="total, prev, pager, next, jumper" :total="total">
+			</el-pagination>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+		<!-- 引入组件库 -->
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script>
+			// axios.defaults.withCredentials = false;
+			axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+			// axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
+
+			//基础url
+			axios.defaults.baseURL = "http://localhost:3000"; // 不设置就会访问 8848 端口的 /api
+
+			var instance = axios.create({
+				// baseURL: "http://127.0.0.1:3000",
+				timeout: 5000,
+				// headers: {
+				// 	'Access-Control-Allow-Origin': '*',
+				// 	'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+				// }
+			})
+
+			new Vue({
+				el: "#app",
+				data() {
+					return {
+						tableData: [],
+						pageIndex: 1,
+						pageSize: 4,
+						total: 0
+					}
+				},
+				created() {
+					this.getClassList();
+				},
+				methods: {
+					deleteRow(row) {
+						// 做删除操作
+						console.log(row._id);
+						this.$confirm('您确定要删除此条数据吗?', '提示', {
+							confirmButtonText: '确定',
+							cancelButtonText: '取消',
+							type: 'warning'
+						}).then(async () => {
+
+							// 发起ajax请求做删除操作
+							const data = new URLSearchParams();
+							data.append('_id', row._id);
+							// _id=xxxxx&name=ioiiiiii
+							// data.append('name',row.name);
+							const res = await instance.post('/api/deleteUser', data)
+							console.log(res);
+							if (res.data.ok === 1) {
+								this.getClassList();
+								this.$message({
+									type: 'success',
+									message: res.data.msg
+								});
+							}
+						}).catch(() => {
+							this.$message({
+								type: 'info',
+								message: '已取消删除'
+							});
+						});
+
+					},
+					handleClick(row) {
+						console.log(row);
+					},
+					handleCurrentChange(currentPageIndex) {
+						console.log(`当前页: ${currentPageIndex}`);
+						this.pageIndex = currentPageIndex;
+						this.getClassList();
+					},
+					async getClassList() {
+						// 发起ajax请求
+						const res = await instance.get('/api/classList', {
+							params: {
+								pageIndex: this.pageIndex,
+								pageSize: this.pageSize
+							}
+						}).then((res) => {
+							console.log('==========================', res)
+							if (res.data.ok === 1) {
+								this.tableData = res.data.data;
+								this.total = res.data.total
+							}
+						})
+
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

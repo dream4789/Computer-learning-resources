@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<dl>
+				<dt>{{personLength}}</dt>
+				<dd v-for="item in persons" :key="item.key">{{item.name}}</dd>
+			</dl>
+			<button @click="addPerson">添加</button><button @click="delPerson">删除</button>
+		</div>
+		<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+		<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+
+		<script>
+			Vue.use(Vuex);
+			let store = new Vuex.Store({
+				state: {
+					persons: [{
+							name: '刘能',
+							id: 0
+						},
+						{
+							name: '赵四',
+							id: 1
+						},
+						{
+							name: '广坤',
+							id: 2
+						}
+					]
+				},
+				getters: {
+					persons(state) {
+						return state.persons;
+					}
+				},
+				mutations: {
+					addPerson(state) {
+						state.persons = state.persons.concat({
+							name: `名称${Date.now()}`,
+							id: state.persons.length + 1
+						});
+					},
+					delPerson(state, delId) {
+						state.persons = state.persons.filter(d => d.id !== delId);
+					}
+				}
+			});
+
+			new Vue({
+				el: '#app',
+				store,
+				computed: {
+					personLength() {
+						return this.persons.length;
+					},
+					...Vuex.mapGetters([
+						'persons'
+					])
+				},
+				methods: {
+					addPerson() {
+						// 提交 mutation 修改 state
+						this.$store.commit('addPerson');
+					},
+					delPerson() {
+						// 对象方式提交 mutation
+						this.$store.commit({
+							type: 'delPerson',
+							id: this.persons.length--
+						});
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

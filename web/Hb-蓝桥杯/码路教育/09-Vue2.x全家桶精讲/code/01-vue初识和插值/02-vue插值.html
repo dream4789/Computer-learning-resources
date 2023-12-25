@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<!-- 模板，容器 -->
+		<div class="app">
+<!-- 			插值语法注意点：
+			1）只能放在文本节点处，不能写属性节点处
+			2）插值语法，只能放在模板内部使用，不能放在模板外部使用
+			3）小胡子中，只能放表达式，任何有值的内容都是个表达式 a = 1
+			4）不能在小胡子中，放语句
+ -->
+			<h1>{{name}}</h1>
+			<h3>{{1}}</h3>
+			<h3>{{1+100}}</h3>
+			<h3>{{2>1}}</h3>
+			<h3>{{2>1 ? "malu" : "ok"}}</h3>
+			<h3>{{arr}}</h3>
+			<!-- msg.toUpperCase() 函数调用在你的眼中也是一个值，返回值 -->
+			<h3>{{msg.toUpperCase()}}</h3>
+			<h3> {{arr[0]}}</h3>
+
+			<!-- var a = 110; 声明语句，不能放在小胡子 -->
+			<!-- <h3>{{var a = 110;}}</h3> -->
+			<!-- <h3>{{if(true){console.log("malu");}}}</h3> -->
+		</div>
+		<hr>
+		<!-- 尝试在模板外面使用小胡子 -->
+		<p>{{name}}</p>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa",
+						msg: "malujiaoyu",
+						arr: [1, 2, 3]
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

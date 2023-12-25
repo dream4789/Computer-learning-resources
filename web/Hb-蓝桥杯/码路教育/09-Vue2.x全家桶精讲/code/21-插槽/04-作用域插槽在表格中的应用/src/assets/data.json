@@ -1,0 +1,171 @@
+{
+    "status": 0,
+    "message": "获取商品列表成功",
+    "data": [
+        {
+            "id": 1,
+            "goods_name": "YLSZ定制~纯色毛衣套头宽松马海毛百搭软奶慵懒风针织衫上衣潮",
+            "goods_price": 28,
+            "tags": [
+                "保暖",
+                "透气"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 2,
+            "goods_name": "大豆纤维被子被芯单人春秋被加厚冬被四季棉被褥太空被夏季空调被",
+            "goods_price": 189,
+            "tags": [
+                "保暖",
+                "防滑"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 3,
+            "goods_name": "骆驼登山鞋男防水防滑耐磨专业户外运动鞋牛皮徒步鞋45码",
+            "goods_price": 19,
+            "tags": [
+                "秋冬",
+                "透气"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 4,
+            "goods_name": "断码品牌男鞋运动鞋2022春秋新款皮面防水跑步鞋男士减震休闲鞋子",
+            "goods_price": 19,
+            "tags": [
+                "秋冬",
+                "透气"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 5,
+            "goods_name": "FILA 斐乐老爹鞋情侣鞋子篮球鞋运动鞋休闲鞋男鞋面包鞋女鞋男鞋",
+            "goods_price": 178,
+            "tags": [
+                "圆领",
+                "连衣裙"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 6,
+            "goods_name": "YLSZ定制~纯色毛衣套头宽松马海毛百搭软奶慵懒风针织衫上衣潮",
+            "goods_price": 28,
+            "tags": [
+                "保暖",
+                "透气"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 7,
+            "goods_name": "大豆纤维被子被芯单人春秋被加厚冬被四季棉被褥太空被夏季空调被",
+            "goods_price": 189,
+            "tags": [
+                "保暖",
+                "防滑"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 8,
+            "goods_name": "骆驼登山鞋男防水防滑耐磨专业户外运动鞋牛皮徒步鞋45码",
+            "goods_price": 19,
+            "tags": [
+                "秋冬",
+                "透气"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 9,
+            "goods_name": "断码品牌男鞋运动鞋2022春秋新款皮面防水跑步鞋男士减震休闲鞋子",
+            "goods_price": 19,
+            "tags": [
+                "秋冬",
+                "透气"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 10,
+            "goods_name": "FILA 斐乐老爹鞋情侣鞋子篮球鞋运动鞋休闲鞋男鞋面包鞋女鞋男鞋",
+            "goods_price": 178,
+            "tags": [
+                "圆领",
+                "连衣裙"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 11,
+            "goods_name": "YLSZ定制~纯色毛衣套头宽松马海毛百搭软奶慵懒风针织衫上衣潮",
+            "goods_price": 28,
+            "tags": [
+                "保暖",
+                "透气"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 12,
+            "goods_name": "大豆纤维被子被芯单人春秋被加厚冬被四季棉被褥太空被夏季空调被",
+            "goods_price": 189,
+            "tags": [
+                "保暖",
+                "防滑"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 13,
+            "goods_name": "骆驼登山鞋男防水防滑耐磨专业户外运动鞋牛皮徒步鞋45码",
+            "goods_price": 19,
+            "tags": [
+                "秋冬",
+                "透气"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 14,
+            "goods_name": "断码品牌男鞋运动鞋2022春秋新款皮面防水跑步鞋男士减震休闲鞋子",
+            "goods_price": 19,
+            "tags": [
+                "秋冬",
+                "透气"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        },
+        {
+            "id": 15,
+            "goods_name": "FILA 斐乐老爹鞋情侣鞋子篮球鞋运动鞋休闲鞋男鞋面包鞋女鞋男鞋",
+            "goods_price": 178,
+            "tags": [
+                "圆领",
+                "连衣裙"
+            ],
+            "inputVisible": false,
+            "inputValue": ""
+        }
+    ]
+}

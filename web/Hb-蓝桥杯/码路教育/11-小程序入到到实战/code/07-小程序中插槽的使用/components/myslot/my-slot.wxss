@@ -1,0 +1,24 @@
+.my-slot{
+  margin: 20px 0;
+}
+.my-slot .header{
+  text-align: center;
+  background-color: gold;
+}
+
+.my-slot .footer{
+  text-align: center;
+  background-color: slateblue;
+}
+.my-slot .content{
+  text-align: center;
+  background-color: skyblue;
+}
+
+.default{
+  display: none;
+}
+/* 当没有给插槽插入内容的时候，content就是空 */
+.content:empty + .default{
+  display: block;
+}

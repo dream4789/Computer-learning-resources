@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div class="box" :style="{width:'100px',height:'100px',background:`rgb(${r},${g},${b})`}"></div>
+			<button @click="count++">
+				Count is: {{ count }}
+			</button>
+		</div>
+
+		<script>
+			let app = new Vue({
+				el: '#app',
+				data() {
+					return {
+						count: 0,
+						r: 0,
+						g: 0,
+						b: 0
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

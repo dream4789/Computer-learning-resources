@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		4 对象原型__proto__
+		请问为什么对象 可以访问原型里的方法？
+		原因：每个对象都有一个属性__proto__指向原型对象,
+		所以可以使用原型对象里的方法
+		<script>
+			function Person(name, age) {
+				this.name = name;
+				this.age = age;
+			}
+			// 不能用 p1.__proto__.say= function(){} 构造函数
+			Person.prototype.say = function() {
+				alert('hello!')
+			}
+			var p1 = new Person('abc', 10);
+			var p2 = new Person('bcd', 11);
+
+			// 输出 p1.__proto__
+			// console.log(p1.__proto__);
+			// console.log(Person.prototype);
+			// console.log(p1.__proto__ === Person.prototype)  // 一致的
+		</script>
+
+		5 原型对象中的属性constructor构造函数
+		原型对象里面都有一个属性
+		constructor属性,constructor我们称为构造函数
+		因为它指回构造函数本身.
+		<script>
+			console.log(Person.prototype.constructor)
+			//有时候 我们需要用写代码让constructor指向原来的构造函数
+			Person.prototype = {
+				// 让constructor指向原来的构造函数
+				// constructor:Person,
+				eat: function() {},
+				water: function() {}
+			}
+			//打印 constructor指向了?
+			console.log(Person.prototype.constructor);
+			console.log(p1.constructor.eat)
+
+
+			//可以手动让constructor指向原来的构造函数
+		</script>
+
+		6 原型对象的应用 扩展内置对象方法
+		//数组也有原型对象
+		<script>
+			// console.log(Array.prototype);
+			Array.prototype.sum = function() {
+				var sum = 0;
+				for (var i = 0; i < this.length; i++)
+					sum += this[i];
+
+				console.log(sum)
+				return sum;
+			}
+			var arr = [1, 2, 3, 4]
+			var sum = arr.sum();
+			console.log(sum)
+		</script>
+
+	</body>
+</html>

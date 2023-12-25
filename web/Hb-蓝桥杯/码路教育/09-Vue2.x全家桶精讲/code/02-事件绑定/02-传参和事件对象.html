@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+	<style>
+		button {
+			height: 40px;
+			display: block;
+		}
+	</style>
+
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+			<!-- "getMsg(110)"   虽然你写了双引号,但是不是字符串,不是字符串,不是字符串 -->
+			<!-- "getMsg(110)"  在你眼中并不是一个值,vue内部会自己处理 -->
+			<!-- 在绑定事件时,监听器,可以不写(),也可以写(),不写()不能传参 -->
+			<button @click="getMsg(110)">传递一个参数</button>
+
+			<!-- 在写监听器时,如果没有写(),在监听器函数中第1个参数是事件对象 -->
+			<button @click="getMsg2">不传递参数</button>
+
+			<!-- 传递两个参数 -->
+			<button @click="getMsg3(110,666)">传递两个参数</button>
+
+			<!-- 传递两个参数,又想在监听器函数中得到事件对象 -->
+			<!-- 需要手动传递事件对象,不叫e,$event -->
+			<!-- 事件对象作用:阻止默认事件,阻止冒泡,鼠标位置,键盘码... -->
+			<button @click="getMsg4(888,666,$event)">传递两个参数并传递事件对象</button>
+
+			<button @click="getMsg5(888,666)">传递两个参数，函数内无e</button>
+			<button @click="getMsg6(888,name)">name 自动转化 函数内无e</button>
+
+			<button @click="getMsg6($event,888,name)">name 自动转化 与传参顺序一样</button>
+			<button @click="getMsg6(888,name,$event)">name 自动转化，与传参顺序一样</button>
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa"
+					}
+				},
+				methods: {
+					getMsg(num) {
+						console.log("getMsg...", num);
+					},
+					getMsg2(e) {
+						console.log("getMsg2...", e);
+
+						// 键盘监听
+						// if (event.ctrlKey && event.key === "z") {
+						// 	// 做些事，可以是一个“撤销”操作
+						// }
+
+						// 鼠标事件
+						// event.mx = event.pageX || event.clientX + document.body.scrollLeft;
+						// // 计算鼠标指针的x轴距离
+						// event.my = event.pageY || event.clientY + document.body.scrollTop;
+						// // 计算鼠标指针的y轴距离
+						// return event; // 返回标准化的事件对象
+					},
+					getMsg3(num1, num2) {
+						console.log("getMsg3...", num1, num2);
+					},
+					getMsg4(num1, num2, e) {
+						console.log("getMsg4...", e, num1, num2);
+						// e.preventDefault();  // 阻止默认事件
+					},
+					getMsg6(e, num1, num2) {
+						console.log("getMsg5...", e, num1, num2);
+						// 1.阻止冒泡
+						// e.stopPropagation();
+
+						// 2.若多个元素嵌套重叠，事件会冒泡，过滤节点，选择触发
+						// if (e.target.className === 'xxx') { // 只有class为xxx的可以改变，阻止了冒泡
+						// 	e.target.style.background = 'purple'; // 目标节点的背景色变紫色
+						// }
+
+						// return false  // 相当于 阻止冒泡+阻止默认事件
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

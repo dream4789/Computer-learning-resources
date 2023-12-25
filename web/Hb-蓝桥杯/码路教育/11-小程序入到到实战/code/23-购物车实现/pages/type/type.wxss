@@ -1,0 +1,36 @@
+.top {
+  font-size: .775rem;
+  text-align: center;
+  line-height: 2.2rem;
+  color: #77787b;
+}
+
+.top2 {
+  font-size: 1.2rem;
+  margin-top: .3325rem;
+  color: #130c0e;
+  margin-top: .625rem;
+}
+
+image {
+  width: 9.5rem;
+  height: 9.5rem;
+}
+
+view {
+  font-size: .75rem;
+  text-align: center;
+  line-height: 1.55rem;
+}
+
+.se {
+  color: red;
+}
+
+.he {
+  background-color: white;
+}
+
+.he2 {
+  width: 100%;
+}

@@ -1,0 +1,17 @@
+.tab-control{
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.tab-control .item{
+  flex: 1;
+}
+
+.tab-control .item.active{
+  color: deeppink;
+}
+.tab-control .item.active .title{
+  border-bottom: 3px solid deeppink;
+  padding: 5px;
+}

@@ -1,0 +1,30 @@
+<van-search 
+  value="{{ keyword }}"
+  placeholder="{{defaultKeyword.keyword}}"
+  show-action
+  bind:search="onSearch"  
+  bind:change="onChange"
+  bind:cancel="onCancel"
+/>
+
+<HistoryHot 
+  hotKeywordList="{{hotKeywordList}}"
+  historyKeywordList="{{historyKeywordList}}"
+  bind:clearHistory="clearHistory"
+  wx:if="{{blockShow == 1}}"
+  bind:fn="changeBlockShow"
+></HistoryHot>
+<TipsList  
+  wx:elif="{{blockShow == 2}}"
+  tipsList="{{tipsList}}"  
+  bind:fn="changeBlockShow"
+  ></TipsList>
+<ProductList 
+  goodsList="{{goodsList}}" 
+  filterCategory="{{filterCategory}}" 
+  filterCategoryCurrentID="{{filterCategoryCurrentID}}"
+  bind:fn="categoryChange"
+  bind:fn2="priceChange"
+  wx:else>
+</ProductList>
+

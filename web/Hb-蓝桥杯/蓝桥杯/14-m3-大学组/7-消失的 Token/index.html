@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zn-CH">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="./lib/vue.min.js"></script>
+		<script src="./lib/vuex.min.js"></script>
+		<script src="./store/BaseModule.js"></script>
+		<script src="./store/UserModule.js"></script>
+		<script src="./store/index.js"></script>
+		<link rel="stylesheet" href="./css/style.css">
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="wrapper" style="width: 900px;">
+
+				<!-- 2. 登录成功后的欢迎界面 -->
+				<Panel v-if="token" :username="username">
+					{{welcome}}
+				</Panel>
+
+				<!-- 1. 登录界面 -->
+				<Login v-else @confirm="login">
+					{{welcome}}
+				</Login>
+
+			</div>
+		</div>
+
+		<script src="./components/login.js"></script>
+		<script src="./components/panel.js"></script>
+		<script>
+			// TODO 修改下面错误代码
+
+			var app = new Vue({
+				el: '#app',
+				// store, // 可挂可不挂
+				data() {},
+				computed: {
+					welcome() {
+						// return store.getters['welcome']
+						return store.getters.welcome
+					},
+					username() {
+						// return store.getters.username
+						return store.getters['user/username']
+					},
+					token() {
+						// return store.getters.token
+						return store.getters['user/token']
+					}
+				},
+				methods: {
+					// 回车/点击确认的回调事件
+					login(username) {
+						// username && store.commit('login', {username, token: 'sxgWKnLADfS8hUxbiMWyb' }) // 无效
+						username && store.commit('user/login', {
+							username,
+							token: 'sxgWKnLADfS8hUxbiMWyb'
+						}) // commit提交到store里
+
+						username && store.commit('say', '登录成功，欢迎你回来！')
+
+						// console.log(this.$store.state.UserModule.username) // 错误
+
+						console.log(store.getters.welcome) // 有命名空间，undefined；无，获取
+						console.log(store.getters['welcome']) // 有命名空间，undefined；无，获取
+						console.log(store.getters['base/welcome']) // 有命名空间，undefined；无，undefined
+
+
+						console.log('-------------------------------------------')
+
+						console.log(store.state.username) // 有命名空间，undefined；无，undefined
+						console.log(store.state['user/username']) // 有命名空间，undefined；无，undefined
+						console.log($store.state['user/username']) // 有命名空间，undefined；无，undefined
+						// console.log(this.$store.state['user/username']) // 报错
+
+						console.log('-------------------------------------------')
+
+						console.log(store.getters.username) // 有命名空间，undefined；无，获取的永远是初值
+						console.log($store.getters.username) // 有命名空间，undefined；无，获取的永远是初值
+						// console.log(store.getters.user.username)  // 错误
+						// console.log(this.$store.getters.username) // 报错
+						console.log(store.getters['user/username']) // 有命名空间，获取；无，undefined
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

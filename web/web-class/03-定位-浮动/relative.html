@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>相对定位</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 300px;
+				height: 150px;
+			}
+			#div1{
+				background: #ffff7f;
+			}
+			#div2{
+				background: #aaffff;
+				/* 相对定位 
+				1 不脱离文档流
+				2 相对元素本身位置（原来的左上角为基点来移动）
+				*/
+				position: relative;
+				/* 偏移量，top，bottom，left，right */
+				top: 100px;
+				left: 50px;
+				
+			}
+			#div3{
+				background: #aaff7f;
+			}
+			
+						
+			
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>
+	</body>
+</html>

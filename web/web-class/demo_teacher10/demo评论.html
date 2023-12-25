@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+	</head>
+	<body>
+		<h1>留言:</h1>
+		<textarea id="txt1" rows='5' cols="20"></textarea>
+		<button id='btn1'>发布</button>
+		
+		<h3>评论：</h3>
+		<ul id='ul1'></ul>
+		<script>
+			var ul1 = document.getElementById('ul1');
+			var txt1 = document.getElementById('txt1');
+			var btn1 = document.getElementById('btn1');
+			
+			btn1.onclick = function(){
+				var li = document.createElement("li");
+				li.textContent = txt1.value;
+				
+				// 从最后一条添加
+				// ul1.appendChild(li);
+				
+				// 从第一条前添加
+				ul1.insertBefore(li , ul1.children[0]);
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

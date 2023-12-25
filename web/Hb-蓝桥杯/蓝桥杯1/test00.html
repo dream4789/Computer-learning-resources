@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function fun1() {
+				return new Promise(function(resolve, reject) {
+					//做一些异步操作
+					setTimeout(function() {
+						console.log('异步任务1执行完成');
+						resolve('随便什么数据1');
+					}, 1000);
+				});
+			}
+
+			function fun2() {
+				return new Promise(function(resolve, reject) {
+					//做一些异步操作
+					setTimeout(function() {
+						console.log('异步任务2执行完成');
+						resolve('随便什么数据2');
+					}, 3000);
+				});
+			}
+
+			function fun3() {
+				return new Promise(function(resolve, reject) {
+					//做一些异步操作
+					setTimeout(function() {
+						console.log('异步任务3执行完成');
+						resolve('随便什么数据3');
+					}, 2000);
+				});
+			}
+
+			function getNumber() {
+				return new Promise(function(resolve, reject) {
+					//做一些异步操作
+					setTimeout(function() {
+						var num = Math.ceil(Math.random() * 10); //生成1-10的随机数
+						if (num <= 5) {
+							resolve(num);
+						} else {
+							reject('数字大于5');
+						}
+					}, 2000);
+				});
+			}
+			// 异步获取一个数字，2秒后执行完成，如果数字小于等于5，认为是“成功”了，调用resolve修改Promise的状态。
+			// 否则认为是“失败”了，调用reject并传递一个参数，作为失败的原因。
+			// getNumber()
+			// 	.then(
+			// 		function(data) {
+			// 			console.log('resolved1: ', data);
+			// 		},
+			// 		function(reason) {
+			// 			console.log('rejected1: ', reason);
+			// 		}
+			// 	);
+			// //  1. 或者用 catch
+			// getNumber()
+			// 	.then(function(data) {
+			// 		console.log('resolved2: ', data);
+			// 	})
+			// 	.catch(function(reason) {
+			// 		console.log('rejected2: ', reason);
+			// 	});
+			// // 2. catch
+			// getNumber()
+			// 	.then(function(data) {
+			// 		console.log('resolved3: ', data);
+			// 		console.log(somedata); // 此处的 somedata 未定义，如果未触发该段，就不会触发下面的catch
+			// 	})
+			// 	.catch(function(reason) {
+			// 		console.log('rejected3: ', reason);
+			// 	});
+			// then方法可以接受两个参数，第一个对应resolve的回调，第二个对应reject的回调
+			// 3. 中，如果不用Promise，代码运行到somedata就直接在控制台报错了，不往下运行了。
+			// 报错会进到catch方法里面去了，而且把错误原因传到了reason参数中。即便是有错误的代码也不会报错了，这与我们的try/catch语句有相同的功能。
+
+			// all 并行执行异步操作
+			// 「谁跑的慢，以谁为准执行回调」
+			Promise
+				.all([fun1(), fun2(), fun3()])
+				.then(function(results) {
+					console.log(results);
+				});
+
+			// 赛跑：把fun1的延时改为1秒
+			// 「谁跑的快，以谁为准执行回调」
+			// Promise
+			// 	.race([fun1(), fun2(), fun3()])
+			// 	.then(function(results) {
+			//   console.log(results);
+			// 	});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		函数
+		1、函数定义 与调用
+		2、函数参数 、arguments
+		3、return 返回值 结束
+		4、作用域 ：全局变量 、局部变量<br>
+		<button name="button" id='btn1'>点击</button><br><br>
+		<script>
+			// 1 定义 方法1 
+			function write() {
+				console.log("hello<br>");
+			}
+			// 调用函数
+			write();
+
+
+			// 方法2  函数表达式  (匿名函数)
+			// var 变量名 = function()
+			var wr = function() {
+				document.write("匿名函数<br>")
+			}
+			// 调用函数
+			wr();
+
+
+			// 通常将匿名函数与事件处理程序一起使用
+			btn1.onclick = function() {
+				document.write("事件绑定")
+			};
+			// btn1.onmouseover = function(){
+			// 	document.write("鼠标移过触发");
+			// };
+			// 文档流在执行程序后就关闭了，
+			// 当再用document.write写内容时，重新打开文档流，覆盖原来内容
+
+
+			//自调用函数-立即执行函数
+			// 	   前一个函数体;(函数体)()   需要有分号
+			(function(){
+				document.write("立即执行函数hello<br>");
+			})();
+			//2 函数参数  直接写形参名字
+			function write1() {
+				document.write("hello,<br><br>");
+				//document.write("hello,");
+			}
+			write1();
+			
+			function fn1(name1, name2){
+				document.write(name1+",hello<br>");
+				document.write(name2+",hello<br><br>");
+			}
+			fn1("a");  // 实参多
+			fn1("a","b");  //一样多
+			// fn1("a,"b,"c");  //形参多，报错
+
+			// arguments 对象
+			// 函数有一个名为 arguments 的内置对象。实参赋给形参使用这个参数来接收.
+			//arguments 对象类似于数组的结构（可以遍历，可以用下标访问）。
+			//如果函数调用的参数太多，则可以使用 arguments 对象来得到这些参数。
+			function fn2(a, b){
+				document.write(arguments+"<br>");
+				document.write(arguments.length+"<br>");
+				document.write(arguments[0] + "," + arguments[1] + "<br>");
+				document.write(arguments[2] + "<br><br>");
+				
+			}
+			fn2(10, 20);
+			fn2(10, 20, 30);
+			
+			// arguments用于接收全部参数
+			function fMax(){
+				var max = arguments[0];
+				for(var i = 1;i < arguments.length;i++){
+					if(arguments[i]>max)
+						max = arguments[i];
+				}
+				return max;
+			}
+			var max = fMax(10, 20, 30, 40);
+			document.write("最大值为："+max);
+			
+		</script>
+
+	</body>
+</html>

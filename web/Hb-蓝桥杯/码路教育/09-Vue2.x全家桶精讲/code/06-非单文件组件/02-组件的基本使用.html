@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<!-- <h1>{{name}}</h1> -->
+			<!-- <Hello></Hello> -->
+			<hr>
+			<Count></Count>
+			<hr>
+			<Box></Box>
+
+			<h1 ref="myh1">这是一个大大的H1</h1>
+
+			<hr>
+			<!-- 使用 ref 获取子组件 -->
+			<my-com ref="mycom"></my-com>
+		</div>
+
+
+
+		<script>
+			let Hello = Vue.extend({
+				template: `<h3>我是Hello组件~~</h3>`
+			})
+
+			Vue.component('my-com', {
+				template: '<h5>这是一个子组件</h5>',
+				data() {
+					return {
+						name: '子组件'
+					}
+				}
+			});
+			
+			// 组件的VC
+			let Count = Vue.extend({
+				template: `
+                 <div class="box">
+                    <button @click="minus">-</button>
+                    <span>{{count}}</span>
+                    <button @click="add">+</button>
+                    <Hello></Hello>
+                </div>`,
+				data() {
+					return {
+						count: 0
+					}
+				},
+				methods: {
+					minus() {
+						this.count--
+					},
+					add() {
+						this.count++
+					},
+				},
+				components: {
+					Hello
+				}
+			})
+
+
+			let Box = Vue.extend({
+				data() {
+					return {
+						fs: 16
+					}
+				},
+				template: `
+                <div class="box1">
+                    <p :style="{fontSize:fs+'px'}" @click="fs+=3">P标签</p>
+                </div>`
+			})
+
+
+			let vm = new Vue({
+				el: ".app",
+				// data() {
+				// 	return {
+				// 		name: "aaa"
+				// 	}
+				// },
+				components: {
+					// Hello,
+					Count,
+					Box
+				}
+			});
+		</script>
+	</body>
+
+</html>

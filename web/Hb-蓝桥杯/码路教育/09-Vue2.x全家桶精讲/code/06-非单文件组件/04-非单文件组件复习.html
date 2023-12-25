@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<!-- <h1>{{name}}</h1> -->
+		</div>
+
+		<script>
+			let Count = Vue.extend({
+				data() {
+					return {
+						count: 0
+					}
+				},
+				template: `
+                <div>
+                    <button @click='count--'>Count--- -</button>
+                    <span>{{count}}</span>  
+                    <button @click='count++'>Count--- +</button>
+                </div>`
+			})
+
+			let Box = Vue.extend({
+				data() {
+					return {
+						f: 16
+					}
+				},
+				template: `
+                <div>
+                    <p :style='{fontSize:f+"px"}' @click='f+=5'>Box--- P标签</p>
+                </div>`
+			})
+
+			let App = Vue.extend({
+				template: `
+                <div>
+                    APP 
+                    <hr/>
+                    <Count></Count>
+                    <Count></Count>
+                    <Count></Count>
+                    <Count></Count>
+                    <hr/>
+                    <Box></Box>
+                </div>`,
+				components: {
+					Count,
+					Box
+				}
+			})
+
+
+			let vm = new Vue({
+				// el也可以指定模板
+				// el: ".app",
+
+				// template是指定模板的
+				// 如果有el，还有template,那么template的优先级高
+				template: `
+               <div>
+                    <div>根Vue---DIV</div>
+                    <hr/>
+                    <App></App>
+               </div>`,
+				data() {
+					return {
+						name: "aaa"
+					}
+				},
+				components: {
+					App
+				}
+			});
+			vm.$mount(".app")
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>课后作业</title>
+	</head>
+	<body>
+
+		<h2 style="text-align: center;">教学信息反馈表</h2>
+		<!-- 单元格边距(Cell padding) -->
+		<!-- 单元格间距(Cell spacing) -->
+		<table cellpadding="5" cellspacing="0" width="550" align="center" border="1">
+			<form action="" method="POST">
+				<tbody align="center">
+					<tr>
+						<td height="40" width="250">姓名:</td>
+						<td><input style="height:20px;width:220px" type=text name="adminName"></td>
+					</tr>
+					<tr>
+						<td height="40">性别:</td>
+						<td><input type="radio" checked name="btn1" value="1" />男&emsp;&emsp;&emsp;&emsp;&emsp;
+							<input type="radio" name="btn1" value="2" />女
+						</td>
+					</tr>
+					<tr>
+						<td height="40">专业:</td>
+						<td><input style="height:20px;width:220px" type=text name="professional"></td>
+					</tr>
+					<tr>
+						<td height="40">您认为本学期开设的课程:</td>
+						<td><input type="radio" checked name="btn2" value="1" />合理&emsp;
+							<input type="radio" name="btn2" value="2" />一般&emsp;
+							<input type="radio" name="btn2" value="3" />不合理
+						</td>
+					</tr>
+					<tr>
+						<td height="40" align="center" width="150">你喜欢的课程有:</td>
+						<td><input type="checkbox" name="btn3" value="1" />html
+							<input type="checkbox" name="btn3" value="2" />基础
+							<input type="checkbox" name="btn3" value="3" />Photoshop
+						</td>
+					</tr>
+					<tr>
+						<td>请您对课程安排提出宝贵意见：</td>
+						<td><textarea rows="5" cols="30" name="txt3"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan=2 align=center><br>
+							<input type="submit" value="提 交">&emsp;&emsp;&emsp;&emsp;
+							<input type="reset" value="重 置"><br><br>
+						</td>
+					</tr>
+				</tbody>
+			</form>
+		</table>
+
+		<h2 style="text-align: center;">表格</h2>
+		<table width="300" height="300" border="1" align="center" cellspacing="0">
+			<thead>
+				<tr>
+					<th>分类</th>
+					<th>技能</th>
+					<th>分数</th>
+				</tr>
+			</thead>
+			<tbody align="center">
+				<tr>
+					<td rowspan="3">编程语言</td>
+					<td>JavaScript</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>C++</td>
+					<td>7</td>
+				</tr>
+				<tr>
+					<td>Swift</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td rowspan="2">产品设计</td>
+					<td>Photoshop</td>
+					<td>6</td>
+				</tr>
+				<tr>
+					<td>Axure</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td rowspan="2">销售</td>
+					<td>社交媒体</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>SEO</td>
+					<td>5</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</body>
+</html>

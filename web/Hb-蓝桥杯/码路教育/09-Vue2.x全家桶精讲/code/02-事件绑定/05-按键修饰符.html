@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../lib/vue2.7.8.js"></script>
+	</head>
+
+	<body>
+		<div class="app">
+			<h1>{{name}}</h1>
+			<!-- 
+            vue提供了按钮修饰符:
+                .enter  回车键
+                .left  左键
+                .right
+                .up
+                .down
+                .esc
+                .a
+                .b
+                .c
+                ...
+         -->
+			请输入你喜欢的人的名字,按回车,打印出来:
+			<input type="text" v-model="name" @keyup.enter="handle">
+		</div>
+
+		<script>
+			let vm = new Vue({
+				el: ".app",
+				data() {
+					return {
+						name: "aaa"
+					}
+				},
+				methods: {
+					handle(e) {
+						// console.log(e);
+						// if (e.key == "Enter") {
+						//     console.log("你喜欢的人的名字是:" + this.name);
+						// }
+
+						console.log("你喜欢的人的名字是:" + this.name);
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

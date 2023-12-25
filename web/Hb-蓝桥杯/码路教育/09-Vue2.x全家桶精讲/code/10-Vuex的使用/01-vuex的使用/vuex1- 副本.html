@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="item in fruits" :key="item.key">{{item.name}}</li>
+			</ul>
+			<ul>
+				<li v-for="item in persons" :key="item.key">{{item.name}}</li>
+			</ul>
+			<ul>
+				<li v-for="item in persons2" :key="item.key">{{item.name}}</li>
+			</ul>
+			<ul>
+				<li v-for="item in persons3" :key="item.key">{{item.name}}</li>
+			</ul>
+		</div>
+		<script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+		<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+		<script>
+			Vue.use(Vuex);  // 可加可不加
+			let store = new Vuex.Store({
+				state: {
+					fruits: [{
+							name: '苹果',
+							id: 0
+						},
+						{
+							name: '香蕉',
+							id: 1
+						},
+						{
+							name: '西瓜',
+							id: 2
+						}
+					],
+					persons: [{
+							name: '刘能',
+							id: 0
+						},
+						{
+							name: '赵四',
+							id: 1
+						},
+						{
+							name: '广坤',
+							id: 2
+						}
+					]
+				},
+				getters: {
+					personsGetter(state) {
+						return state.persons;
+					}
+				}
+			});
+
+			// new Vue({
+			// 	el: '#app',
+			// 	store,  // 挂载
+			// 	computed: {
+			// 		// 直接通过 store 实例生成计算属性
+			// 		fruits() {
+			// 			return this.$store.state.fruits
+			// 		},
+			// 		// 使用 mapState 生成计算属性。不需要改变键值时使用数组参数
+			// 		...Vuex.mapState([
+			// 			'persons'
+			// 		]),
+			// 		// 需要改变键时使用对象参数
+			// 		...Vuex.mapState({
+			// 			persons2: 'persons'
+			// 		}),
+			// 		// 通过 getter 生成计算属性
+			// 		...Vuex.mapGetters({
+			// 			persons3: 'personsGetter'
+			// 		})
+			// 	}
+			// });
+			
+			new Vue({
+				el: '#app',
+				store,  // 挂载
+				computed: {
+					// 直接通过 store 实例生成计算属性
+					fruits() {
+						return store.state.fruits
+						// return this.$store.state.fruits
+					},
+					// 使用 mapState 生成计算属性。不需要改变键值时使用数组参数
+					...Vuex.mapState([
+						'persons'
+					]),
+					// 需要改变键时使用对象参数
+					...Vuex.mapState({
+						persons2: 'persons'
+					}),
+					// 通过 getter 生成计算属性
+					...Vuex.mapGetters({
+						persons3: 'personsGetter'
+					})
+				}
+			});
+		</script>
+	</body>
+</html>

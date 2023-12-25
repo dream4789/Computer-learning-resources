@@ -1,0 +1,25 @@
+<script>
+
+    // 用到的API：
+    // length 返回数据的数量
+    // setItem(key, value) 存储数据的 如果key一样，数据会发生覆盖
+    // getItem(key) 获取数据
+    // removeItem(key) 删除数据
+    // Clear() 清除local storage中的所有的数据
+
+
+    // 存储数据
+    window.localStorage.setItem("name", "wc")
+    window.localStorage.setItem("age", 18)
+    // window.localStorage.setItem("obj",{a:1})
+
+    // 获取数据
+    console.log(window.localStorage.getItem("name"));
+    console.log(window.localStorage.getItem("age"));
+
+    // 删除数据
+    // window.localStorage.removeItem("obj")
+
+    // 清除数据
+    // window.localStorage.clear();
+</script>

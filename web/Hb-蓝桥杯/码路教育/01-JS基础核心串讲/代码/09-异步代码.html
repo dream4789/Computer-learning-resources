@@ -1,0 +1,65 @@
+
+<script>
+    // 在JS中，代码就分两类：
+    //   1）同步代码
+    //         代码的书写顺序和代码的执行顺序一样
+    //         你见到的99%的代码都是同步代码
+    //   2）异步代码
+    //         代码的书写顺序和代码的执行顺序不一样
+    //         目前为止，你见到的异步代码就两个：
+    //             1）定时器   2）事件绑定   
+
+    // 代码书写顺序和代码执行顺序是一样的（同步代码）
+    // console.log("start");
+    // for(var i=0; i<=10; i++){
+    //     console.log(i);
+    // }
+    // console.log("end");
+</script>
+
+<script>
+    // 代码的书写顺序和代码的执行顺序不一样
+    // 代码在执行时，先执行同步代码，代码执行完毕后，会在合适的时机去执行异步代码
+    // console.log("start");
+    // setTimeout(function(){
+    //     console.log("setTimeout...");
+    // },2000)
+    // console.log("end");
+</script>
+
+<script>
+    // console.log("start");
+    // // 定时器时间为0，也不会立即执行，至少时间有300ms
+    // setTimeout(function () {
+    //     console.log("setTimeout...");
+    // },0)
+    // console.log("end");
+</script>
+
+<script>
+    // 代码执行，先执行同步代码，同步代码执行完毕后，才会执行异步代码
+    // console.log("start");
+
+    // while(1);
+
+    // setTimeout(function(){
+    //     console.log("setTimeout...");
+    // },0)
+
+    // console.log("end");
+</script>
+
+<button>点我</button>
+<script>
+    let btn = document.getElementsByTagName("button")[0];
+
+    console.log("start");
+
+    // 事件绑定是异步代码  
+    // 异步代码只有在合适的时机才会执行
+    btn.onclick = function(){
+        console.log("click....");
+    }
+
+    console.log("end");
+</script>

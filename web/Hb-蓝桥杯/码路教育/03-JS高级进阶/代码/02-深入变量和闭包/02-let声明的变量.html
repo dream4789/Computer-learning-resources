@@ -1,0 +1,46 @@
+<!-- <script>
+    // ReferenceError: Cannot access 'a' before initialization
+    // a没有初始化（赋值），是不能访问的
+    // 理解成：使用let声明的变量是没有提升
+    // 理解成：使用let声明的变量提升了，但是没有赋值，没有赋值是不能直接访问的
+    console.log(a);
+    let a = 110;
+</script> -->
+
+<!-- <script>
+    // let+{}可以形成块级作用域
+    if(true){
+        // let + {} 形成块级作用域
+        // 块级作用域中定义的变量，只能在块中使用
+        // 出了这个块，就不能使用了
+        let c = 110;
+    }
+
+    console.log(c);
+</script> -->
+
+<!-- <script>
+    // 使用let声明的变量，并不会挂载到GO上
+    let a = 110;
+    console.log(window.a);
+</script> -->
+
+<!-- <script>
+    //  SyntaxError: Identifier 'a' has already been declared 
+    let a = 1;
+    let a = 2;
+    console.log(a);
+</script> -->
+
+<script>
+    function fn(a){
+        // 形参相当于函数内部定义的局部变量
+        // VO：AO已经有a  
+        // SyntaxError: Identifier 'a' has already been declared
+        let a = 110;
+    }
+    fn();
+
+    // 项目开发中，基本上都是清一色的let
+    // let是ES6中提出来，弥补了var声明变量的缺点
+</script>
