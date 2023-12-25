@@ -1,0 +1,16 @@
+CODE SEGMENT
+	ASSUME CS:CODE
+START: 
+    MOV AH,01H ;╪ЭелйДхК
+		INT 21H
+   
+		SUB AL,20H
+		MOV DL,AL
+   
+		MOV AH,02H ;фад╩йДЁЖ
+		INT 21H
+   
+		MOV AH,4CH ;мкЁЖdos
+		INT 21H
+CODE ENDS
+	  END START
