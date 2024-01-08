@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "com01":"/components/com01/com01",
-    "com02":"/components/com02/com02",
-    "com03":"/components/com03/com03",
-    "tabbar":"/components/tabbar/tabbar"
-  }
-}

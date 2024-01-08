@@ -1,5 +1,0 @@
-<view>
-  评论页
-
-  <button type="primary" bindtap="backFn">返回</button>
-</view>

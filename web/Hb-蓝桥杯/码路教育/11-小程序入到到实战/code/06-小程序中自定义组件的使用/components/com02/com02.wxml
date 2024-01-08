@@ -1,8 +1,0 @@
-<view>
-    <view>使用页面传递过来的数据</view>
-    <view>{{title}}</view>
-    <view>{{info}}</view>
-    <view>{{content}}</view>
-    <view>--------------</view>
-    <button bindtap="{{test}}">点我</button>
-</view>

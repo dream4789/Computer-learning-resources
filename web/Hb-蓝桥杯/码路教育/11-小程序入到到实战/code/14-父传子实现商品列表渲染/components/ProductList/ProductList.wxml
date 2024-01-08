@@ -1,6 +1,0 @@
-<van-dropdown-menu>
-  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
-  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
-</van-dropdown-menu>
-
-<GoodsList goodsList="{{goodsList}}"></GoodsList>

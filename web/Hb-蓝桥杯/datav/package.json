@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@jiaminghi/charts": "^0.2.18",
-    "@jiaminghi/data-view": "^2.10.0"
-  }
-}

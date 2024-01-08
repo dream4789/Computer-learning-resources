@@ -1,3 +1,0 @@
-ESModule
-   导出：export let a = 1;   导出去的是标识符
-   导入：import {a} from "./a.js"   导入也是标识符 
