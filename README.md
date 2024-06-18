@@ -44,8 +44,6 @@ linux
 ---
 ## 关于毕业设计
 
-https://github.com/dream4789/Computer-learning-resources/tree/main
-
 
 这几天毕业设计工作才完全结束，论文提交，回家了，准备工作。 
 5-27院级答辩，我们是22人一大组的，由三个指导老师指导的全部学生一起，每个学生都有一个主审阅老师。一般会问三个问题，且都由主审阅提出，其他老师不太会问，答辩时一个一个进去（但有些组不严，会很多人一起进入答辩），全程一般15-20分钟，如果老师了解你论文的方向，可能会问的深一点，如果老师一点都不懂，那他可能直接不会了。。。就过了。
@@ -86,6 +84,8 @@ https://github.com/dream4789/Computer-learning-resources/tree/main
 
 **最后祝学弟学妹们毕业快乐！**
 
+
+我的毕业设计就不展示了，太拉跨了，就展示一下我写的致谢吧！
 ![image](https://github.com/dream4789/Computer-learning-resources/assets/76234943/73f738f4-b64e-40d0-8419-a8a2cee09ada)
 
 
