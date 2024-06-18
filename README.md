@@ -87,6 +87,5 @@ linux
 
 我的毕业设计就不展示了，太拉跨了，就展示一下我写的致谢吧！
 
-![image](https://github.com/dream4789/Computer-learning-resources/assets/76234943/7ae7439a-7b2a-47d2-9dad-456f37e95ca6)
-
+![image](https://github.com/dream4789/Computer-learning-resources/assets/76234943/0593e8da-9dfa-49aa-b792-cdfccda80476)
 
