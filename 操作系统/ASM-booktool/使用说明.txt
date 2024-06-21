@@ -15,3 +15,9 @@
 2，有部分读者对通过端口的硬盘读写感兴趣，为此在“相关教程”目录下添加一个AT设备数据包规范：AT_Attachment_with_Packet_Interface_-_7_Volume_1.pdf
 
 3，在“相关教程“目录下添加了有关实时时钟的参考文档：Periodic Interrupts with the Real Time Clock
+
+
+
+LEECHUNG.vhd 获取
+链接：https://pan.baidu.com/s/1Pp1ZTx3S4Zv5hIWYF4sC4Q?pwd=3333 
+提取码：3333
